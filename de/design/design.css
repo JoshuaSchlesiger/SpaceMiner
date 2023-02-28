@@ -1,0 +1,586 @@
+@font-face {
+  font-family: 'subatomic_tsoonamiregular';
+  src: url('../fonts/subatomic/webfontkit/subatomic.tsoonami-webfont.woff2') format('woff2'),
+       url('../fonts/subatomic/webfontkit/subatomic.tsoonami-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+.font{
+  font-family: subatomic_tsoonamiregular;
+}
+
+
+/* #region Navigation/Body */
+
+
+.nv {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* #endregion */
+
+/* #region Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(105, 105, 105);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.hyperlink, hyperlink:visited {
+  text-decoration: none;
+  color: inherit;
+
+}
+
+/* #endregion */
+
+/* #region INDEX page*/
+
+.nv-brand{
+  font-size: 1.3rem;
+}
+
+
+.index-bg-image {
+  /* The image used */
+  background-image: url('../images/u-mining.png');
+
+  /* Add the blur effect */
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+
+
+  /* Center and scale the image nicely */
+  width: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 60rem;
+
+}
+
+/* Position text in the middle of the page/image */
+.index-bg-text {
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+
+.index-ustone {
+  margin-top: auto;
+  margin-bottom: auto;
+  transform: rotate(25deg);
+}
+
+@media screen and (max-width: 1400px) {
+  .index-ustone {
+    margin-top: 3em;
+    margin-bottom: auto;
+    transform: rotate(25deg);
+
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .index-vertical-center {
+    margin-top: auto;
+    margin-left: 5em;
+    margin-bottom: auto;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .index.vertical-center {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+
+/* #endregion */
+
+/* #region LOGIN PAGE/ Register PAGE */
+.LoReformContainer {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto
+}
+
+.LoReformContainer input {
+  height: 48px;
+  padding-left: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+}
+
+.LoReformContainer input:focus {
+  box-shadow: 0px 0px 2px #41c3ff;
+  background: rgba(70, 70, 70, 0.7);
+}
+
+.LoReinputLogo {
+  position: absolute;
+  margin-top: 12px;
+  margin-left: 18px;
+  color: #fff
+}
+
+.LoRelogo {
+  background: url('/static_files/images/html/dawn_2.jpg') no-repeat;
+  background-size: cover;
+  background-position: center bottom
+}
+
+.LoRebtn-accent {
+  background: rgb(214, 40, 34);
+  /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(214, 40, 34, 1) 0%, rgba(216, 82, 76, 1) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(214, 40, 34, 1) 0%, rgba(216, 82, 76, 1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(214, 40, 34, 1) 0%, rgba(216, 82, 76, 1) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d62822', endColorstr='#d8524c', GradientType=0);
+  /* IE6-9 */
+  height: 48px;
+  color: #fff;
+  border: none;
+}
+
+.LoRebtn-accent:hover {
+  background: rgb(216, 82, 76);
+  /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(216, 82, 76, 1) 0%, rgba(214, 40, 34, 1) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(216, 82, 76, 1) 0%, rgba(214, 40, 34, 1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(216, 82, 76, 1) 0%, rgba(214, 40, 34, 1) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d8524c', endColorstr='#d62822', GradientType=0);
+  /* IE6-9 */
+  color: #fff;
+}
+
+.LoRewindow {
+  width: 400px;
+  height: 380px;
+  padding: 40px;
+
+  border: 1px solid white;
+  border-radius: 20px;
+
+  backdrop-filter: blur(20px) saturate(1) grayscale(1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.registerbgimage {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../images/u-mining.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.loginbgimage {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../images/u-mining.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* #endregion */
+
+/* #region Dashboard */
+
+.dashboard-text {
+  font-size: 5em;
+  margin-top: 1.1em;
+  margin-bottom: 1.1em;
+}
+
+.dashboard-box-inline-red {
+  transform-style: preserve-3d;
+  transition: all 300ms;
+  border: 2px dashed rgba(255, 114, 114, 0.445);
+  border-radius: 0.6rem;
+}
+
+.dashboard-box-inline-blue {
+  transform-style: preserve-3d;
+  transition: all 300ms;
+  border: 2px dashed rgba(119, 174, 247, 0.459);
+  border-radius: 0.6rem;
+}
+
+.dashboard-box-inline-yellow {
+  transform-style: preserve-3d;
+  transition: all 300ms;
+  border: 2px dashed rgba(244, 247, 119, 0.486);
+  border-radius: 0.6rem;
+}
+
+.dashboard-box-inline-green {
+  transform-style: preserve-3d;
+  transition: all 300ms;
+  border: 2px dashed rgba(110, 247, 121, 0.459);
+  border-radius: 0.6rem;
+}
+
+
+.dashboard-box {
+  margin-top: 2em;
+
+  transform-style: preserve-3d;
+  transition: all 300ms;
+  border: 2px dashed rgba(105, 105, 105, 0.5);
+  border-radius: 0.6rem;
+}
+
+@media screen and (max-width: 576px) {
+  .dashboard-box {
+    margin-left: 3em;
+    margin-right: 3em;
+  }
+}
+
+@media screen and (min-width: 567px) {
+  .dashboard-box {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .dashboard-box {
+    margin-left: 3em;
+    margin-right: 3em;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .dashboard-box {
+    margin-left: 6em;
+    margin-right: 6em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .dashboard-box {
+    margin-left: 12em;
+    margin-right: 12em;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .dashboard-box {
+    margin-left: 15em;
+    margin-right: 15em;
+  }
+}
+
+.progress {
+  padding: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  height: 26px;
+}
+
+/* #endregion */
+
+/* #region Jobs */
+
+/* #region Jobs_AddCrew */
+
+
+@media screen and (max-width: 1400px) {
+  .job-topboxes {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-top: 2.5em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .job-topboxes {
+    display: flex;
+    justify-content:space-between;
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-top: 2em;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .jobAdd-box {
+    transform-style: preserve-3d;
+    border: 2px dashed rgba(105, 105, 105, 0.5);
+    border-radius: 0.6rem;
+  }
+  .jobAdd-box.right{
+    margin-top: 2em;
+    min-height: 500px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .jobAdd-box {
+    width: 45%;
+    transform-style: preserve-3d;
+    border: 2px dashed rgba(105, 105, 105, 0.5);
+    border-radius: 0.6rem;
+  }
+  .jobAdd-box.right{
+    max-height: 665px;
+  }
+}
+
+
+
+@media screen and (max-width: 1400px) {
+  .job-addcrew {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .job-addcrew {
+    display: flex;
+    
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .job-addcrew.element {
+    margin-top: 1em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .job-addcrew.element {
+    margin-left: 2em;
+    min-width: 6em;
+  }
+}
+
+
+@media screen and (min-width: 1400px) {
+  .job-addcrew.helptext {
+    margin-left: 2em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .job-addcrew-select {
+    min-width: 12.9em;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .job-addcrew.button {
+    margin-top: 1em;
+    margin-bottom: 3em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .job-addcrew.button.add {
+    margin-left: 10em;
+    max-width: 3.7em;
+    margin-top: 1em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .job-addcrew.button.del {
+    margin-left: 2em;
+    max-width: 3.3em;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .job-addcrewSaveReset {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .job-addcrewSaveReset {
+    display: flex;
+    justify-content:center;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .job-addcrew.buttonForm.save {
+    margin-top: 2.5em;
+    height: 60px;
+    margin-bottom: 2em;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .job-addcrew.buttonForm.save {
+    min-width: 13em;
+    height: 60px;
+    margin-right: 3em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .job-addcrew.buttonForm.reset {
+    min-width: 13em;
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .job-addcrew.buttonForm.reset {
+    height: 60px;
+    width: 100%;
+  }
+}
+
+.job-addcrew.buttonForm span {
+  text-align: center;
+  margin: auto;
+}
+
+.job-scroll {
+  max-height: 600px;
+  overflow-y: scroll;
+  height: fit-content;
+}
+/* #endregion */
+
+/* #region Jobs_EditCrew */
+
+@media screen and (max-width: 1400px) {
+  .jobEdit-box {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-top: 2.5em;
+
+    transform-style: preserve-3d;
+    transition: all 300ms;
+    border: 2px dashed rgba(105, 105, 105, 0.5);
+    border-radius: 0.6rem;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .jobEdit-box {
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-top: 2em;
+
+    transform-style: preserve-3d;
+    transition: all 300ms;
+    border: 2px dashed rgba(105, 105, 105, 0.5);
+    border-radius: 0.6rem;
+  }
+}
+
+
+.jobDiv{
+  min-width: 90px;
+}
+.jobSelectCrew
+  {
+    min-width: 180px;
+    font-size: 1.7em; 
+    min-height:2.65em;
+ }
+
+ .jobSelectCrewOptions{
+  min-width: 160px;
+ }
+
+
+
+
+ @media screen and (min-width: 1400px) {
+ .jobCrewButtonstop{
+
+ margin-left: 6.5em;
+ margin-right: 6.5em;
+ 
+ }
+}
+
+
+ @media screen and (max-width: 1400px) {
+  .jobCrewButtons{
+  width: 45%;
+  min-height: 70px;
+  line-height: 60px;
+
+  }
+ }
+
+ @media screen and (min-width: 1400px) {
+ .jobCrewButtons{
+  width: 35%;
+  min-height: 70px ;
+  line-height: 60px;
+
+ }
+}
+
+.progress.crew{
+  margin-top: 3em !important;
+  margin: auto;
+  width: 75%;
+}
+
+
+
+/* #endregion */
+
+/* #endregion */
