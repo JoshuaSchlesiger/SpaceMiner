@@ -332,65 +332,6 @@ $jobStatus = "Done";
         </div>
     </div>
 
-    <div class="dashboard-box card">
-        <h5 class="header-text card-header">Abgeschlossene Aufträge</h5>
-        <div class="box-text card-body">
-
-            <div class="dashboard-box-inline-green card mb-3">
-                <div class="box-text card-body">
-                    <div class="row ">
-                        <div class="col-md-3 mb-1">
-                            <div class="row mt-2">
-                                <div class="col-md-5">Jobnummer: </div>
-                                <div class="col-md-6"><span class="text-info"><?= $jobNumber ?></span></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-1">
-                            <div class="row mt-2">
-                                <div class="col-md-5">Datum: </div>
-                                <div class="col-md-6"><span class="text-info"><?= $jobDate ?> </span></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3  mb-1">
-                            <div class="row mt-2">
-                                <div class="col-md-5">Mitarbeiter: </div>
-                                <div class="col-md-6"><span class="text-info"><?= $jobUser ?> </span></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3  mb-1">
-                            <div class="row mt-2">
-                                <div class="col-md-5">Gewicht: </div>
-                                <div class="col-md-6"><span class="text-info"><?= $jobTotalSCU ?> SCU </span></div>
-                            </div>
-                        </div>
-
-                        <div class="container mt-3">
-                            <div class="progress" style="height: 26px;">
-                                <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                                    40%
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-3">
-                        <span>Status: </span><span class="text-warning"> <?= $jobStatus ?></span>
-                    </div>
-                    <div class="d-flex ">
-                        <form action="">
-                            <a href="#" type="button" class="btn btn-outline-success mt-3">Auftrag beabeiten</a>
-                        </form>
-                        <form class="ms-3" action="">
-                            <a href="#" type="button" class="btn btn-outline-danger mt-3">Auftrag löschen</a>
-                        </form>
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
-    </div>
     
     <?php
     require "structure/footer.php";

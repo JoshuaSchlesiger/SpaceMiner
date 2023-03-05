@@ -543,8 +543,6 @@ body {
  }
 
 
-
-
  @media screen and (min-width: 1400px) {
  .jobCrewButtonstop{
 
@@ -553,7 +551,6 @@ body {
  
  }
 }
-
 
  @media screen and (max-width: 1400px) {
   .jobCrewButtons{
@@ -578,8 +575,6 @@ body {
   margin: auto;
   width: 75%;
 }
-
-
 
 /* #endregion */
 
