@@ -576,6 +576,39 @@ body {
   width: 75%;
 }
 
+@media screen and (max-width: 1400px) {
+  .jobCrewButtonsEndTop{
+    margin-left: 2em;
+    display: block !important;
+
+  }
+ }
+
+ @media screen and (min-width: 1400px) {
+ .jobCrewButtonsEndTop{
+  display: flex !important;
+
+ }
+}
+
+@media screen and (max-width: 1400px) {
+  .jobCrewButtonsEnd{
+  width: 45%;
+  min-height: 70px;
+  line-height: 60px;
+
+  }
+ }
+
+ @media screen and (min-width: 1400px) {
+ .jobCrewButtonsEnd{
+  width: 12%;
+  min-height: 70px ;
+  line-height: 60px;
+
+ }
+}
+
 /* #endregion */
 
 /* #endregion */
