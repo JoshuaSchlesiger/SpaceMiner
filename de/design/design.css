@@ -612,3 +612,44 @@ body {
 /* #endregion */
 
 /* #endregion */
+
+/* #region Berechnungen */
+
+@media screen and (max-width: 1400px) {
+  .calculate {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-top: 2.5em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .calculate {
+    justify-content:space-between;
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-top: 2em;
+  }
+}
+
+
+@media screen and (max-width: 1400px) {
+  .calculate_sub {
+    transform-style: preserve-3d;
+    border: 2px dashed rgba(105, 105, 105, 0.5);
+    border-radius: 0.6rem;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .calculate_sub {
+    width: 100%;
+    transform-style: preserve-3d;
+    border: 2px dashed rgba(105, 105, 105, 0.5);
+    border-radius: 0.6rem;
+  }
+}
+
+
+/* #endregion */

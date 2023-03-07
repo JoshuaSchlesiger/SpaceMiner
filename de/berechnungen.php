@@ -47,9 +47,27 @@ require "structure/header.php";
 </nav>
 
 
+<div class="calculate">
+    <div class="calculate_sub card">
+        <h5 class="header-text card-header text-center">Berechne den Wert eines Steins</h5>
+        <div class="card-body">
+
+
+            <form action="">
+                <div class="row justify-content-center">
+                    <div class="col">Masse des Steins:</div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+                
+</div>
+
+
 <?php
     require "structure/footer.php";
-    ?>
+?>
 
    
 </body>

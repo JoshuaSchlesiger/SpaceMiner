@@ -74,10 +74,8 @@ $jobCrewProfit = 0;
             <h5 class="header-text card-header text-center">Erstelle einen neuen Auftrag</h5>
             <div class="card-body">
 
-                <hr>
-
                 <form action="">
-                    <div class="job-addcrew align-items-center">
+                    <div class="mt-3 job-addcrew align-items-center">
                         <div class="job-addcrew element">
                             <label for="crewname" class="col-form-label">Crewname: </label>
                         </div>
@@ -202,8 +200,7 @@ $jobCrewProfit = 0;
 
                 <hr>
 
-
-                <div class="job-addcrewSaveReset">
+                <div class="mb-2 job-addcrewSaveReset">
                     <form action="">
                         <div class="mt-1">
                             <button type="submit" class="job-addcrew buttonForm save btn btn-outline-light"><span>SAVE</span></button>
@@ -493,7 +490,7 @@ $jobCrewProfit = 0;
                                     <div class="row  mt-3 d-flex justify-content-center">
                                         <div class="col-6"></div>
 
-                                        <div class="col-3  jobSelectCrewOptions">
+                                        <div class="col-3 jobSelectCrewOptions">
                                             <button type="button" class="button btn btn-outline-success">ADD</button>
                                         </div>
                                     </div>
@@ -567,8 +564,8 @@ $jobCrewProfit = 0;
 
                                 <div class="d-flex justify-content-evenly mt-4 mb-4 jobCrewButtonstop">
 
-                                    <a href="#" type="button" class="btn btn-outline-success jobCrewButtons">Hinzufügen</a>
-                                    <a href="#" type="button" class="btn btn-outline-warning jobCrewButtons">Zurücksetzen</a>
+                                    <button class="btn btn-outline-success jobCrewButtons">Hinzufügen</button>
+                                    <button class="btn btn-outline-warning jobCrewButtons">Zurücksetzen</button>
 
                                 </div>
 
@@ -622,8 +619,8 @@ $jobCrewProfit = 0;
                             </div>
                             <div class="d-flex justify-content-evenly mt-4 mb-4 jobCrewButtonstop">
 
-                                <a href="#" type="button" class="btn btn-outline-success jobCrewButtons">Enholen</a>
-                                <a href="#" type="button" class="btn btn-outline-warning jobCrewButtons">Zurücksetzen</a>
+                                <button class="btn btn-outline-success jobCrewButtons">Einholen</button>
+                                <button class="btn btn-outline-warning jobCrewButtons">Zurücksetzen</button>
 
                             </div>
                         </div>
@@ -666,8 +663,8 @@ $jobCrewProfit = 0;
                             </div>
                             <div class="d-flex justify-content-evenly mt-4 mb-4 jobCrewButtonstop">
 
-                                <a href="#" type="button" class="btn btn-outline-success jobCrewButtons">Auszahlen</a>
-                                <a href="#" type="button" class="btn btn-outline-warning jobCrewButtons">Zurücksetzen</a>
+                                <button class="btn btn-outline-success jobCrewButtons">Auszahlen</button>
+                                <button class="btn btn-outline-warning jobCrewButtons">Zurücksetzen</button>
 
                             </div>
                         </div>
@@ -678,10 +675,10 @@ $jobCrewProfit = 0;
 
 
         <div class="mt-5 mb-5 d-flex justify-content-lg-evenly jobCrewButtonsEndTop">
-            <a href="#" type="button" class="btn btn-outline-success jobCrewButtonsEnd">Abschließen</a>
-            <a href="#" type="button" class="btn btn-outline-info jobCrewButtonsEnd">Alle bezahlen</a>
-            <a href="#" type="button" class="btn btn-outline-warning jobCrewButtonsEnd">Bezahlungen löschen</a>
-            <a href="#" type="button" class="btn btn-outline-danger jobCrewButtonsEnd">Löschen</a>
+            <button class="btn btn-outline-success jobCrewButtonsEnd">Abschließen</button>
+            <button class="btn btn-outline-info jobCrewButtonsEnd">Alle bezahlen</button>
+            <button class="btn btn-outline-warning jobCrewButtonsEnd">Bezahlungen löschen</button>
+            <button class="btn btn-outline-danger jobCrewButtonsEnd">Löschen</button>
         </div>
 
 
