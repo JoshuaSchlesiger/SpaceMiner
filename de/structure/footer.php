@@ -117,8 +117,7 @@
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.125);">
     © 2023 Copyright:
     <a class="text-reset fw-bold" href="">DochSergeantTV</a><br>
-    <a class="hyperlink text-reset" href="">Datenschutz</a> |
-    <a class="hyperlink text-reset" href="">Cookie-Nutzung</a>
+    <a class="hyperlink text-reset" href="datenschutz.php">Datenschutz | Cookie-Nutzung </a>
 
     <div> <a class="hyperlink font text-reset" href="http://www.subatomicglue.com">Benutztes Font</a> </div>
     
