@@ -19,7 +19,7 @@
         <i class="fab fa-instagram"></i>
       </a>
       <a href="https://robertsspaceindustries.com/citizens/DochSergeant" target="_blank" class="hyperlink me-4 link-secondary">
-      <i class="fa-sharp fa-solid fa-rocket"></i>
+        <i class="fa-sharp fa-solid fa-rocket"></i>
       </a>
       <a href="https://www.youtube.com/@dochsergeant6873" target="_blank" class="hyperlink me-4 link-secondary">
         <i class="fa-brands fa-youtube"></i>
@@ -45,10 +45,10 @@
           </h6>
           <p>
             Ich bin leidenschaftlicher Star Citizen Spieler und ich bin der Typ der immer unterwegs ist mit seiner großen Crew,
-            um die dicken fetten Brummer von Quantanium zu finden. 
+            um die dicken fetten Brummer von Quantanium zu finden.
           </p>
           <p>
-          Achja ich liebe es die Stationen mit meiner Prosi zu knutschen ^^
+            Achja ich liebe es die Stationen mit meiner Prosi zu knutschen ^^
           </p>
         </div>
         <!-- Grid column -->
@@ -102,9 +102,15 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">Kontakt</h6>
-          <a href="https://discord.gg/uWQX5Zy8sT" target="_blank" class="hyperlink"><p><i class="fas fa-address-card me-3 text-secondary"></i>MilschSchnitte#1372</p></a>
-          <a href="#" target="_blank" class="hyperlink"><p><i class="fas fa-envelope me-3 text-secondary"></i>help@SpaceMiner.de</p></a>
-          <a href="https://twitter.com/DochSergeant" target="_blank" class="hyperlink"><p><i class="fab fa-twitter me-3 text-secondary"></i>@DochSergeant</p></a>
+          <a href="https://discord.gg/uWQX5Zy8sT" target="_blank" class="hyperlink">
+            <p><i class="fas fa-address-card me-3 text-secondary"></i>MilschSchnitte#1372</p>
+          </a>
+          <a href="#" target="_blank" class="hyperlink">
+            <p><i class="fas fa-envelope me-3 text-secondary"></i>help@SpaceMiner.de</p>
+          </a>
+          <a href="https://twitter.com/DochSergeant" target="_blank" class="hyperlink">
+            <p><i class="fab fa-twitter me-3 text-secondary"></i>@DochSergeant</p>
+          </a>
         </div>
         <!-- Grid column -->
       </div>
@@ -119,13 +125,15 @@
     <a class="text-reset fw-bold" href="">DochSergeantTV</a><br>
     <a class="hyperlink text-reset" href="datenschutz.php">Datenschutz | Cookie-Nutzung </a>
 
-    <div> <a class="hyperlink font text-reset" href="http://www.subatomicglue.com">Benutztes Font</a> </div>
-    
-    <div class="form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Darkmode / Lightmode</label>
+    <div> <a class="hyperlink font text-reset" href="http://www.subatomicglue.com"> Font</a>|
+      <a class="hyperlink font text-reset" href="    https://github.com/Wruczek/Bootstrap-Cookie-Alert"> Banner</a>
     </div>
-    
+
+    <div class="form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"  onchange="mode()">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Darkmode / Lightmode</label>
+    </div>
+
   </div>
 
   <!-- Copyright -->
@@ -134,3 +142,14 @@
 <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
+<script>
+  function mode(){
+      input = document.getElementById('flexSwitchCheckDefault');
+      if(input.checked == false){
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+      }
+      else {
+        document.documentElement.setAttribute('data-bs-theme', 'light');
+      } 
+  }
+</script>

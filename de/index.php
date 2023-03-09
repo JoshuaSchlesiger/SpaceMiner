@@ -94,13 +94,6 @@ require "structure/header.php";
     </div>
 
 
-    <script>
-        window.addEventListener("cookieAlertAccept", function() {
-            alert("cookies accepted")
-        })
-    </script>
-
-
     <?php
     require "structure/footer.php";
     ?>
