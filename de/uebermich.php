@@ -68,9 +68,9 @@ require "structure/header.php";
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="d-flex justify-content-center">
-                <img src="images/t-stone.png" class="ustone" alt="Geiler Quantaniumstein ^^">
+        <div class="mt-5 col-xl-5 col-sm-3">
+            <div class="d-flex justify-content-center skin">
+                <img src="images/Skin.png" class="" alt="me ^^">
             </div>
         </div>
     </div>

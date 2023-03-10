@@ -64,7 +64,6 @@ body {
 
 .index-bg-image {
   /* The image used */
-  background-image: url('../images/u-mining.png');
 
   /* Add the blur effect */
   filter: blur(5px);
@@ -72,14 +71,13 @@ body {
 
 
   /* Center and scale the image nicely */
-  width: 100%;
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
-  height: 60rem;
 
 }
+
 
 /* Position text in the middle of the page/image */
 .index-bg-text {
@@ -99,6 +97,13 @@ body {
   padding: 20px;
   text-align: center;
 }
+
+@media screen and (max-width: 1400px) {
+  .index-bg-text {
+    top: 20%;
+  }
+}
+
 
 .index-ustone {
   margin-top: auto;
@@ -615,6 +620,7 @@ body {
 
 /* #region Berechnungen */
 
+
 @media screen and (max-width: 1400px) {
   .calculate {
     margin-left: auto;
@@ -655,5 +661,23 @@ body {
   width: 100%;
  }
 
+
+/* #endregion */
+
+/* #region uebermich */
+
+.skin{
+  width: 60%;
+}
+.skin img{
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 1400px) {
+  .skin{
+    width: 100%;
+  }
+}
 
 /* #endregion */

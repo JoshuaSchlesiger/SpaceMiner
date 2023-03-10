@@ -46,7 +46,11 @@ require "structure/header.php";
 
     <header>
 
-        <div class="index-bg-image"></div>
+        <div class="index-bg-image">
+            <video width="100%" height="auto" autoplay muted loop id="myVideo">
+                <source src="images/miningVid.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="index-bg-text">
             <h1>Willkommen zum SpaceMiner</h1>
             <p>Hier beginnt der Spaß, trust me :D</p>
@@ -82,7 +86,6 @@ require "structure/header.php";
         </div>
     </div>
 
-
     <div class="alert text-center cookiealert" role="alert">
         <b>Magst du auch so Kekse wie ich?</b> &#x1F36A; Wir brauchen Kekse, um dir die besten Funktionen dieser Seite zu geben.
         <a href="https://cookiesandyou.com/" target="_blank">Erfahre mehr</a> |
@@ -92,7 +95,6 @@ require "structure/header.php";
             Zustimmen
         </button>
     </div>
-
 
     <?php
     require "structure/footer.php";
