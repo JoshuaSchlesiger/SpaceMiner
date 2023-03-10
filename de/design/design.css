@@ -1,3 +1,4 @@
+/* #region Fonts */
 @font-face {
   font-family: 'subatomic_tsoonamiregular';
   src: url('../fonts/subatomic/webfontkit/subatomic.tsoonami-webfont.woff2') format('woff2'),
@@ -11,6 +12,7 @@
   font-family: subatomic_tsoonamiregular;
 }
 
+/* #endregion */
 
 /* #region Navigation/Body */
 
@@ -222,7 +224,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('../images/u-mining.png');
+  background: url('../images/everusharbor.png');
   background-size: cover;
   background-position: center;
 }
@@ -232,7 +234,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('../images/u-mining.png');
+  background: url('../images/portolisar.png');
   background-size: cover;
   background-position: center;
 }
