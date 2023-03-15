@@ -41,7 +41,6 @@ require "structure/header.php";
                     <button class="btn btn-outline-success mt-2 mb-2" type="submit"
                         style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">DE</button>
                 </form>
-
             </ul>
         </div>
     </div>
@@ -75,16 +74,6 @@ require "structure/header.php";
         </div>
     </div>
 
-
-    <div class="alert text-center cookiealert" role="alert">
-        <b>Magst du auch so Kekse wie ich?</b> &#x1F36A; Wir brauchen Kekse, um dir die besten Funktionen dieser Seite zu geben.
-        <a href="https://cookiesandyou.com/" target="_blank">Erfahre mehr</a> |
-        <a href="datenschutz.php" target="_blank">Datenschutz</a>
-
-        <button type="button" class="btn btn-primary btn-sm acceptcookies">
-            Zustimmen
-        </button>
-    </div>
 
     <?php
     require "structure/footer.php";

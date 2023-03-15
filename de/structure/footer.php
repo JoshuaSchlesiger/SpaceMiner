@@ -1,3 +1,22 @@
+<script type="module" src="https://cookieconsent.popupsmart.com/js/CookieConsent.js" ></script>
+<script type="text/javascript" src="https://cookieconsent.popupsmart.com/js/App.js"></script>
+<script>
+    popupsmartCookieConsentPopup({
+        "siteName" : "SpaceMiner" ,
+        "notice_banner_type": "popup",
+        "consent_type": "gdpr",
+        "palette": "dark",
+        "language": "German",
+        "privacy_policy_url" : "datenschutz.php" ,
+        "preferencesId" : "#" ,
+        
+    });
+</script>
+
+<noscript>Cookie Consent by <a href="https://popupsmart.com/" rel="nofollow noopener">Popupsmart Website</a></noscript> 
+
+
+
 <footer class="text-center text-lg-start text-muted mt-5">
   <!-- Section: Social media -->
   <section class="d-flex justify-content-center justify-content-lg-between ps-4 pt-4 pe-4 pb-3 border-bottom">
@@ -139,7 +158,6 @@
   <!-- Copyright -->
 </footer>
 
-<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="scripts/colormode.js"></script>
