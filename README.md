@@ -1,7 +1,7 @@
 # SpaceMiner
 
-1.  Für den Cookiebanner scheint rechtskonform: 
-    https://cookieconsent.popupsmart.com/gdpr-cookie-consent/
+1.  DONE --> Für den Cookiebanner scheint rechtskonform: 
+    https://cookieconsent.popupsmart.com/gdpr-cookie-consent/ 
 
 2.  Model-View-Controller Prinzip beachten
 
