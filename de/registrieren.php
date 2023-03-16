@@ -53,25 +53,33 @@ require "structure/header.php";
                 <form>
                     <div class="mb-4">
                         <span class="LoReinputLogo"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control rounded-pill" name="username" placeholder="Username">
+                        <input type="text" class="LOREinput form-control rounded-pill " name="username" placeholder="Username">
                     </div>
                     <div class="my-2">
                         <span class="LoReinputLogo"><i class="fas fa-key"></i></span>
-                        <input type="password" class="form-control rounded-pill" name="password" placeholder="Passwort">
+                        <input type="password" class="form-control rounded-pill LOREinput" name="password" placeholder="Passwort">
                     </div>
-                    <div class="my-2 mb-4">
+                    <div class="my-2">
                         <span class="LoReinputLogo"><i class="fas fa-key"></i></span>
-                        <input type="password" class="form-control rounded-pill" name="password" placeholder="Passwort wiederholen">
+                        <input type="password" class="form-control rounded-pill LOREinput" name="password" placeholder="Passwort wiederholen">
                     </div>
+                    <div class="form-check mt-2 ms-2 mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+                        <label class="form-check-label" for="flexCheckChecked"><a href="datenschutz.php" class="hyperlink" target="_blank">Datenschutzerklärung</a></label>
+                    </div>
+
                     <button class="btn LoRebtn-accent rounded-pill w-100" type="submit">Registrieren</button>
                 </form>
             </div>
         </div>
+
     </div>
+
 
     <?php
     require "structure/footer.php";
     ?>
+
 
 </body>
 

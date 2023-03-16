@@ -155,13 +155,14 @@ body {
 /* #endregion */
 
 /* #region LOGIN PAGE/ Register PAGE */
+
 .LoReformContainer {
   width: 100%;
   max-width: 320px;
   margin: 0 auto
 }
 
-.LoReformContainer input {
+.LoReformContainer input.LOREinput {
   height: 48px;
   padding-left: 48px;
   background: rgba(255, 255, 255, 0.1);
@@ -169,7 +170,7 @@ body {
   color: #fff;
 }
 
-.LoReformContainer input:focus {
+.LoReformContainer input.LOREinput:focus {
   box-shadow: 0px 0px 2px #41c3ff;
   background: rgba(70, 70, 70, 0.7);
 }
