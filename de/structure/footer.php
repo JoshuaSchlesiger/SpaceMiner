@@ -29,22 +29,22 @@
     <!-- Right -->
     <div>
       <a href="https://www.twitch.tv/dochsergeanttv" target="_blank" class="hyperlink me-4 link-secondary">
-        <i class="fa-brands fa-twitch"></i>
+        <img src="/de/images/icons/twitch.png" alt="Twitch" class="icon_footer">
       </a>
       <a href="https://twitter.com/DochSergeant" target="_blank" class="hyperlink me-4 link-secondary">
-        <i class="fab fa-twitter"></i>
+        <img src="/de/images/icons/twitter.png" alt="Twitter" class="icon_footer">
       </a>
       <a href="https://www.instagram.com/dochsergeanttv/" target="_blank" class="hyperlink me-4 link-secondary">
-        <i class="fab fa-instagram"></i>
+        <img src="/de/images/icons/instagram.png" alt="Instagram" class="icon_footer">
       </a>
       <a href="https://robertsspaceindustries.com/citizens/DochSergeant" target="_blank" class="hyperlink me-4 link-secondary">
-        <i class="fa-sharp fa-solid fa-rocket"></i>
+        <img src="/de/images/icons/rocket.png" alt="Star Citizen" class="icon_footer">
       </a>
       <a href="https://www.youtube.com/@dochsergeant6873" target="_blank" class="hyperlink me-4 link-secondary">
-        <i class="fa-brands fa-youtube"></i>
+        <img src="/de/images/icons/youtube.png" alt="Youtube" class="icon_footer">
       </a>
       <a href="https://github.com/DochSergeantTV" target="_blank" class="hyperlink me-4 link-secondary">
-        <i class="fab fa-github"></i>
+        <img src="/de/images/icons/github.png" alt="Twitch" class="icon_footer">
       </a>
     </div>
     <!-- Right -->
@@ -60,7 +60,7 @@
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3 text-secondary"></i>DochSergeantTV
+            DochSergeantTV
           </h6>
           <p>
             Ich bin leidenschaftlicher Star Citizen Spieler und ich bin der Typ der immer unterwegs ist mit seiner großen Crew,
@@ -122,13 +122,13 @@
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">Kontakt</h6>
           <a href="https://discord.gg/uWQX5Zy8sT" target="_blank" class="hyperlink">
-            <p><i class="fas fa-address-card me-3 text-secondary"></i>MilschSchnitte#1372</p>
+            <p>MilschSchnitte#1372</p>
           </a>
           <a href="#" target="_blank" class="hyperlink">
-            <p><i class="fas fa-envelope me-3 text-secondary"></i>help@SpaceMiner.de</p>
+            <p>help@SpaceMiner.de</p>
           </a>
           <a href="https://twitter.com/DochSergeant" target="_blank" class="hyperlink">
-            <p><i class="fab fa-twitter me-3 text-secondary"></i>@DochSergeant</p>
+            <p>twitter@DochSergeant</p>
           </a>
         </div>
         <!-- Grid column -->
@@ -144,8 +144,9 @@
     <a class="text-reset fw-bold" href="">DochSergeantTV</a><br>
     <a class="hyperlink text-reset" href="datenschutz.php">Datenschutz | Cookie-Nutzung </a>
 
-    <div> <a class="hyperlink font text-reset" href="http://www.subatomicglue.com"> Font</a>|
-      <a class="hyperlink font text-reset" href="    https://github.com/Wruczek/Bootstrap-Cookie-Alert"> Banner</a>
+    <div> 
+      <a class="hyperlink font text-reset" href="http://www.subatomicglue.com"> Font</a>|
+      <a class="hyperlink font text-reset" href="https://www.flaticon.com/"> Icon</a>
     </div>
 
     <div class="form-switch">

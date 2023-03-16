@@ -159,11 +159,11 @@ require "structure/header.php";
 
                     <div class="mt-4 row justify-content-center">
                         <div class="col-lg-1"></div>
-                        <div class="col-lg-2 text-center"><i class="fas fa-weight-hanging"></i> Steingewicht</div>
-                        <div class="col-lg-2 text-center"><i class="fa-regular fa-gem"></i> Mineralisches Gewicht</div>
-                        <div class="col-lg-2 text-center"><i class="fa-regular fa-trash-can"></i> Müllgewicht</div>
-                        <div class="col-lg-2 text-center"><i class="fa-regular fa-circle-check"></i> Rohgewinn</div>
-                        <div class="col-lg-2 text-center"><i class="fas fa-users-cog"></i> Aufgearbeiteter Gewinn</div>
+                        <div class="col-lg-2 text-center"><img src="/de/images/icons/weight.png" alt="Gewicht" class="icon_calc"></i> Steingewicht</div>
+                        <div class="col-lg-2 text-center"><img src="/de/images/icons/gem.png" alt="Mineral" class="icon_calc"> Mineralisches Gewicht</div>
+                        <div class="col-lg-2 text-center"><img src="/de/images/icons/trash-can.png" alt="Müll" class="icon_calc"> Müllgewicht</div>
+                        <div class="col-lg-2 text-center"><img src="/de/images/icons/raw-materials.png" alt="Roh" class="icon_calc"> Rohgewinn</div>
+                        <div class="col-lg-2 text-center"><img src="/de/images/icons/adjust.png" alt="Aufgewertet" class="icon_calc"> Aufgearbeiteter Gewinn</div>
                         <div class="col-lg-1"></div>
                     </div>
                     <div class="mt-2 row justify-content-center">
