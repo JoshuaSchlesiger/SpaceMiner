@@ -1,5 +1,9 @@
 <?php
 require "structure/header.php";
+
+$password = "hallo";
+$pass = password_hash($password, PASSWORD_DEFAULT);
+echo $pass;
 ?>
 
 
@@ -36,7 +40,7 @@ require "structure/header.php";
                     </li>
 
                     <form class="d-flex" role="search">
-                        <button class="btn btn-outline-success mt-2 mb-2" type="submit" style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">DE</button>
+                        <button class="btn btn-outline-success mt-2 mb-2 language" type="submit">DE</button>
                     </form>
 
                 </ul>

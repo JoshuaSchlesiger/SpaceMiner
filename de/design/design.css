@@ -38,6 +38,12 @@
   z-index: 99;
 }
 
+.language{
+  --bs-btn-padding-y: .2rem; 
+  --bs-btn-padding-x: .5rem; 
+  --bs-btn-font-size: .75rem;
+}
+
 * {
   box-sizing: border-box;
 }
