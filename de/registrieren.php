@@ -1,9 +1,19 @@
 <?php
-require "structure/header.php";
+session_start();
 
-$password = "hallo";
-$pass = password_hash($password, PASSWORD_DEFAULT);
-echo $pass;
+
+require "structure/header.php";
+require "functions/database.php";
+require "functions/register_query.php";
+
+connect();
+
+//$pass = password_hash($password, PASSWORD_DEFAULT);
+//echo $pass;
+
+$username_status = username();
+$password_status = password();
+
 ?>
 
 
@@ -54,25 +64,30 @@ echo $pass;
                 <div class="text-center mb-4 pb-3">
                     <img src="/static_files/images/logos/rockMoon.png" alt="Logo" height="48">
                 </div>
-                <form>
-                    <div class="mb-4">
+
+                <form action="" method="post">
+                    <div>
                         <span class="LoReinputLogo"><i class="fas fa-user"></i></span>
-                        <input type="text" class="LOREinput form-control rounded-pill " name="username" placeholder="Username">
+                        <input type="text" class="LOREinput form-control rounded-pill " name="username" placeholder="Username" value="<?php if(isset($_POST["username"])){echo $_POST["username"];}?>">
                     </div>
-                    <div class="my-2">
+                    <div class="text-danger fst-italic ms-2"><?php echo $username_status?></div>
+                    <div class="mt-3">
                         <span class="LoReinputLogo"><i class="fas fa-key"></i></span>
                         <input type="password" class="form-control rounded-pill LOREinput" name="password" placeholder="Passwort">
                     </div>
-                    <div class="my-2">
+                    <div class="mt-2">
                         <span class="LoReinputLogo"><i class="fas fa-key"></i></span>
-                        <input type="password" class="form-control rounded-pill LOREinput" name="password" placeholder="Passwort wiederholen">
+                        <input type="password" class="form-control rounded-pill LOREinput" name="password2" placeholder="Passwort wiederholen">
                     </div>
-                    <div class="form-check mt-2 ms-2 mb-3">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+                    <div class="text-danger fst-italic ms-2"><?php echo $password_status?></div>
+                    <div class="form-check mt-2 ms-2">
+                        <input class="form-check-input" type="checkbox" name="checkbox" value="" id="flexCheckChecked" checked />
                         <label class="form-check-label" for="flexCheckChecked"><a href="datenschutz.php" class="hyperlink" target="_blank">Datenschutzerklärung</a></label>
                     </div>
 
+                    <div class="mt-3">
                     <button class="btn LoRebtn-accent rounded-pill w-100" type="submit">Registrieren</button>
+                    </div>
                 </form>
             </div>
         </div>
