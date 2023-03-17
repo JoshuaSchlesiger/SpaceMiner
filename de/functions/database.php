@@ -1,5 +1,7 @@
 <?php
 
+$conn;
+
 function connect(){
 $servername = "localhost";
 $username = "spaceminer";
@@ -15,8 +17,18 @@ $dbname = "spaceminer";
   }
 }
 
-function register(){
-  
+
+
+function register($username_status, $password_status, $checkbox_status){
+  if($username_status == "" && $password_status == ""  && $checkbox_status == ""){
+
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+
+      $sql = "INSERT INTO MyGuests (firstname, lastname, email)
+      VALUES ('John', 'Doe', 'john@example.com')";
+      $conn->exec($sql);
+  }
 }
 
 ?>

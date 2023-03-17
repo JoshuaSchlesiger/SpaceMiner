@@ -181,19 +181,6 @@ body {
   background: rgba(70, 70, 70, 0.7);
 }
 
-.LoReinputLogo {
-  position: absolute;
-  margin-top: 12px;
-  margin-left: 18px;
-  color: #fff
-}
-
-.LoRelogo {
-  background: url('/static_files/images/html/dawn_2.jpg') no-repeat;
-  background-size: cover;
-  background-position: center bottom
-}
-
 .LoRebtn-accent {
   background: rgb(214, 40, 34);
   /* Old browsers */

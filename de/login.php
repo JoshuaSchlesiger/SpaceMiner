@@ -1,66 +1,73 @@
-<?php 
+<?php
 require "structure/header.php";
+
+$username_status = "";
+$password_status = "";
 ?>
 
 
 
 <body>
-    
-<nav class="nv navbar navbar-expand-lg bg-body-tertiary shadow">
-    <div class="container-fluid ps-4">
-        <a class="navbar-brand mb-auto nv-brand" href="index.php">SpaceMiner</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="auftraege.php">Aufträge</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="berechnungen.php">Berechnungen</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="uebermich.php">Über Mich</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="registrieren.php">Registrieren</a>
-                </li>
-                <li class="nav-item me-2">
-                    <a class="nav-link active" href="login.php">Login</a>
-                </li>
 
-                <form class="d-flex" role="search">
-                    <button class="btn btn-outline-success mt-2 mb-2 language" type="submit">DE</button>
-                </form>
+    <nav class="nv navbar navbar-expand-lg bg-body-tertiary shadow">
+        <div class="container-fluid ps-4">
+            <a class="navbar-brand mb-auto nv-brand" href="index.php">SpaceMiner</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="auftraege.php">Aufträge</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="berechnungen.php">Berechnungen</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="uebermich.php">Über Mich</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="registrieren.php">Registrieren</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link active" href="login.php">Login</a>
+                    </li>
 
-            </ul>
+                    <form class="d-flex" role="search">
+                        <button class="btn btn-outline-success mt-2 mb-2 language" type="submit">DE</button>
+                    </form>
+
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <div class="loginbgimage">
         <div class="vh-100 w-100 d-flex align-items-center">
             <div class="LoReformContainer LoRewindow">
                 <div class="text-center mb-4 pb-3 LoRelogo">
-                    <img src="/static_files/images/logos/rockMoon.png" alt="Logo" >
+                    <img src="/static_files/images/logos/rockMoon.png" alt="Logo">
                 </div>
-                <form>
-                <div class="">
-                    <span class="LoReinputLogo"><i class="fas fa-user"></i></span>
-                    <input type="text" class="form-control rounded-pill" name="username" placeholder="Username">
-                </div>
-                <div class="my-2 mb-4">
-                    <span class="LoReinputLogo"><i class="fas fa-key"></i></span>
-                    <input type="password" class="form-control rounded-pill" name="password" placeholder="Passwort">
-                </div>
-                    <button class="btn LoRebtn-accent rounded-pill w-100" type="submit">Login</button>
+
+                <form action="" method="post">
+                    <div>
+                        <span class="LoReinputLogo"><img src="/de/images/icons/user.png" alt="user" class="icon_footer"></span>
+                        <input type="text" class="LOREinput form-control rounded-pill " name="username" placeholder="Username" value="<?php if(isset($_POST["username"])){echo $_POST["username"];}?>">
+                    </div>
+                    <div class="text-danger fst-italic ms-2"><?php echo $username_status?></div>
+                    <div class="mt-3">
+                        <span class="LoReinputLogo"><img src="/de/images/icons/key.png" alt="key" class="icon_footer"></span>
+                        <input type="password" class="form-control rounded-pill LOREinput" name="password" placeholder="Passwort">
+                    </div>
+                    <div class="text-danger fst-italic ms-2"><?php echo $password_status?></div>
+
+                    <button class="mt-4 btn LoRebtn-accent rounded-pill w-100" type="submit">Login</button>
                 </form>
             </div>
         </div>
@@ -72,6 +79,7 @@ require "structure/header.php";
     require "structure/footer.php";
     ?>
 
-   
+
 </body>
+
 </html>

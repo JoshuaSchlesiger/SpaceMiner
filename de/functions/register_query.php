@@ -28,7 +28,10 @@ function password(){
     }
 }
 
-
-
-
-?>
+function checkbox(){
+    if(isset($_POST["checkbox"])){
+        if(strcmp($_POST["checkbox"], "1")){
+            return "Datenschutz muss zugestimmt sein";
+        }
+    }
+}

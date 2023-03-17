@@ -13,6 +13,9 @@ connect();
 
 $username_status = username();
 $password_status = password();
+$checkbox_status = checkbox();
+
+register($username_status, $password_status, $checkbox_status);
 
 ?>
 
@@ -61,29 +64,30 @@ $password_status = password();
     <div class="registerbgimage">
         <div class="vh-100 w-100 d-flex align-items-center">
             <div class="LoReformContainer LoRewindow">
-                <div class="text-center mb-4 pb-3">
-                    <img src="/static_files/images/logos/rockMoon.png" alt="Logo" height="48">
-                </div>
 
                 <form action="" method="post">
                     <div>
-                        <span class="LoReinputLogo"><i class="fas fa-user"></i></span>
+                        <span class="LoReinputLogo"><img src="/de/images/icons/user.png" alt="user" class="icon_footer"></span>
                         <input type="text" class="LOREinput form-control rounded-pill " name="username" placeholder="Username" value="<?php if(isset($_POST["username"])){echo $_POST["username"];}?>">
                     </div>
                     <div class="text-danger fst-italic ms-2"><?php echo $username_status?></div>
                     <div class="mt-3">
-                        <span class="LoReinputLogo"><i class="fas fa-key"></i></span>
+                        <span class="LoReinputLogo"><img src="/de/images/icons/key.png" alt="key" class="icon_footer"></span>
                         <input type="password" class="form-control rounded-pill LOREinput" name="password" placeholder="Passwort">
                     </div>
                     <div class="mt-2">
-                        <span class="LoReinputLogo"><i class="fas fa-key"></i></span>
+                        <span class="LoReinputLogo"><img src="/de/images/icons/key.png" alt="key" class="icon_footer"></span>
                         <input type="password" class="form-control rounded-pill LOREinput" name="password2" placeholder="Passwort wiederholen">
                     </div>
                     <div class="text-danger fst-italic ms-2"><?php echo $password_status?></div>
                     <div class="form-check mt-2 ms-2">
-                        <input class="form-check-input" type="checkbox" name="checkbox" value="" id="flexCheckChecked" checked />
-                        <label class="form-check-label" for="flexCheckChecked"><a href="datenschutz.php" class="hyperlink" target="_blank">Datenschutzerklärung</a></label>
+                        <input class="form-check-input" type="hidden" name="checkbox" value="0" id="flexCheckChecked" checked />
+                        <input class="form-check-input" type="checkbox" name="checkbox" value="1" id="flexCheckChecked" checked />
+                        <label class="form-check-label" for="flexCheckChecked">
+                            <a href="datenschutz.php" class="hyperlink" target="_blank">Datenschutzerklärung</a>
+                        </label>
                     </div>
+                    <div class="text-danger fst-italic ms-2"><?php echo $checkbox_status?></div>
 
                     <div class="mt-3">
                     <button class="btn LoRebtn-accent rounded-pill w-100" type="submit">Registrieren</button>
