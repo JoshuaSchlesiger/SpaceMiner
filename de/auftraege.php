@@ -548,27 +548,12 @@ $jobCrewProfit = 0;
 
                                 <hr class="mt-4">
 
-
-                                <div class="mt-4">
-                                    <div class="row mt-4 d-flex justify-content-center">
-                                        <div class="col-6 ">Wähle die Miningstation: </div>
-                                        <div class="col-3 text-info jobSelectCrewOptions">
-                                            <select class="form-select">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="d-flex justify-content-evenly mt-4 mb-4 jobCrewButtonstop">
 
                                     <button class="btn btn-outline-success jobCrewButtons">Hinzufügen</button>
                                     <button class="btn btn-outline-warning jobCrewButtons">Zurücksetzen</button>
 
                                 </div>
-
 
                             </form>
 

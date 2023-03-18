@@ -168,6 +168,14 @@ body {
   margin: 0 auto
 }
 
+.LoReinputLogo {
+  position: absolute;
+  margin-top: 12px;
+  margin-left: 18px;
+  color: #fff
+}
+
+
 .LoReformContainer input.LOREinput {
   height: 48px;
   padding-left: 48px;

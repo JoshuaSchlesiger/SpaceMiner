@@ -6,16 +6,28 @@ require "structure/header.php";
 require "functions/database.php";
 require "functions/register_query.php";
 
-connect();
 
-//$pass = password_hash($password, PASSWORD_DEFAULT);
-//echo $pass;
 
-$username_status = username();
-$password_status = password();
-$checkbox_status = checkbox();
+$password_status = "";
+$checkbox_status = "";
+$username_statusCheck = "";
+$username_statusUsed = "";
 
-register($username_status, $password_status, $checkbox_status);
+
+$conn = connect();
+
+if(isset($_POST["sent"])){
+
+    $username_statusCheck = usernameCheck();
+    $username_statusUsed = usernameUsed($conn, $_POST["username"]);
+    $password_status = password();
+    $checkbox_status = checkbox();
+
+    if($username_statusCheck == "" && $password_status == "" && $checkbox_status == "" && $username_statusUsed == ""){
+        register($conn, $_POST["username"], $_POST["password"]);
+    }
+}
+
 
 ?>
 
@@ -70,7 +82,7 @@ register($username_status, $password_status, $checkbox_status);
                         <span class="LoReinputLogo"><img src="/de/images/icons/user.png" alt="user" class="icon_footer"></span>
                         <input type="text" class="LOREinput form-control rounded-pill " name="username" placeholder="Username" value="<?php if(isset($_POST["username"])){echo $_POST["username"];}?>">
                     </div>
-                    <div class="text-danger fst-italic ms-2"><?php echo $username_status?></div>
+                    <div class="text-danger fst-italic ms-2"><?php echo $username_statusCheck; echo $username_statusUsed ?></div>
                     <div class="mt-3">
                         <span class="LoReinputLogo"><img src="/de/images/icons/key.png" alt="key" class="icon_footer"></span>
                         <input type="password" class="form-control rounded-pill LOREinput" name="password" placeholder="Passwort">
@@ -90,7 +102,7 @@ register($username_status, $password_status, $checkbox_status);
                     <div class="text-danger fst-italic ms-2"><?php echo $checkbox_status?></div>
 
                     <div class="mt-3">
-                    <button class="btn LoRebtn-accent rounded-pill w-100" type="submit">Registrieren</button>
+                        <button class="btn LoRebtn-accent rounded-pill w-100" type="submit" name="sent">Registrieren</button>
                     </div>
                 </form>
             </div>

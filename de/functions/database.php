@@ -1,6 +1,6 @@
 <?php
 
-$conn;
+
 
 function connect(){
 $servername = "localhost";
@@ -9,9 +9,10 @@ $password = "7XjnJBdMiik9uxB4QVaBM6H9PqvzrCL9ijSpHPe3ghMpQ8hRsM77v9ZBrW4knVYYoWU
 $dbname = "spaceminer";
 
   try {
-    $conn = new PDO("mysql:host=$servername;$dbname", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $conn;
   } catch(PDOException $e) {
     die("Connection to database failed. Please be patient");
   }
@@ -19,16 +20,30 @@ $dbname = "spaceminer";
 
 
 
-function register($username_status, $password_status, $checkbox_status){
-  if($username_status == "" && $password_status == ""  && $checkbox_status == ""){
+function register($conn, $username, $password){
 
-      $username = $_POST['username'];
-      $password = $_POST['password'];
+  try {
+    $password = passwordHash($password);
 
-      $sql = "INSERT INTO MyGuests (firstname, lastname, email)
-      VALUES ('John', 'Doe', 'john@example.com')";
-      $conn->exec($sql);
+    // SQL-Abfrage zum Einfügen von Daten
+    $stmt = $conn->prepare("INSERT INTO website_user (name, password) 
+                            VALUES (:username, :password)");
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':password', $password);
+
+    // Abfrage ausführen
+    $stmt->execute();
+    echo "Daten erfolgreich gesendet.";
+  } 
+  catch(PDOException $e) {
+    echo "Fehler beim Senden der Daten: " . $e->getMessage();
   }
+}
+
+
+function passwordHash($password){
+  $pass = password_hash($password, PASSWORD_DEFAULT);
+  return $pass;
 }
 
 ?>
