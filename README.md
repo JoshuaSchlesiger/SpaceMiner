@@ -11,7 +11,7 @@
   III. Passwordanforderungen
   IV.  PDO beachten wegen SQL-Injection
 
-4. Anzeige von Aufträge und Dashboard wenn angemeldet / Login und Restister weg dafür LogOut
+4. DONE --> Anzeige von Aufträge und Dashboard wenn angemeldet / Login und Restister weg dafür LogOut
 
 5. Auftrag erstellen und in DB laden  ----> OBJ sind, Auftrag, Crew, Spieler(Scouts/Miner)
   0.   AJAX lernen
