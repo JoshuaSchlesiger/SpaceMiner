@@ -1,5 +1,21 @@
 <?php
+session_start();
 require "structure/header.php";
+
+if(isset($_POST["logout"])){
+    $_SESSION["loggedIn"] = "false";
+    session_destroy();
+}
+
+if(isset($_SESSION["loggedIn"])){
+    if($_SESSION["loggedIn"] == "false"){
+        header("Location: registrieren.php");
+        exit();
+    }
+}else{
+    header("Location: registrieren.php");
+        exit();
+}
 
 //Variables
 $username = "User";
@@ -53,12 +69,32 @@ $jobCrewProfit = 0;
                     <li class="nav-item">
                         <a class="nav-link" href="uebermich.php">Über Mich</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="registrieren.php">Registrieren</a>
-                    </li>
-                    <li class="nav-item me-2">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
+                    <?php
+                        if(isset($_SESSION["loggedIn"])){
+                            if($_SESSION["loggedIn"] == "true"){
+                                echo '<li class="nav-item">
+                                <form action="" method="post">
+                                    <button type="submit" class="btn btn-link hyperlink" name="logout">Logout</button>
+                                </form>
+                            </li>';
+                            }
+                            else{
+                                echo '<li class="nav-item">
+                                        <a class="nav-link " href="registrieren.php">Registrieren</a>
+                                    </li>
+                                    <li class="nav-item me-2">
+                                        <a class="nav-link" href="login.php">Login</a>
+                                    </li>';
+                            }
+                        }else{
+                            echo '<li class="nav-item">
+                            <a class="nav-link" href="registrieren.php">Registrieren</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>';
+                        }
+                    ?>
 
                     <form class="d-flex" role="search">
                         <button class="btn btn-outline-success mt-2 mb-2 language" type="submit">DE</button>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "structure/header.php";
 
 //Variables
@@ -21,6 +22,18 @@ $jobDate = "23/02/2003";
 $jobUser = "0";
 $jobTotalSCU = 0;
 $jobStatus = "Done";
+
+
+if(isset($_SESSION["loggedIn"])){
+    if($_SESSION["loggedIn"] == "false"){
+        header("Location: registrieren.php");
+        exit();
+    }
+}else{
+    header("Location: registrieren.php");
+        exit();
+}
+
 ?>
 
 
@@ -48,13 +61,30 @@ $jobStatus = "Done";
                 <li class="nav-item">
                     <a class="nav-link" href="uebermich.php">Über Mich</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="registrieren.php">Registrieren</a>
-                </li>
-                <li class="nav-item me-2">
-                    <a class="nav-link" href="login.php">Login</a>
-                </li>
-
+                <?php
+                        if(isset($_SESSION["loggedIn"])){
+                            if($_SESSION["loggedIn"] == "true"){
+                                echo '<li class="nav-item">
+                                <a class="nav-link " href="xx">Logout</a>
+                            </li>';
+                            }
+                            else{
+                                echo '<li class="nav-item">
+                                        <a class="nav-link " href="registrieren.php">Registrieren</a>
+                                    </li>
+                                    <li class="nav-item me-2">
+                                        <a class="nav-link" href="login.php">Login</a>
+                                    </li>';
+                            }
+                        }else{
+                            echo '<li class="nav-item">
+                            <a class="nav-link" href="registrieren.php">Registrieren</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>';
+                        }
+                    ?>
                 <form class="d-flex" role="search">
                     <button class="btn btn-outline-success mt-2 mb-2 language" type="submit">DE</button>
                 </form>

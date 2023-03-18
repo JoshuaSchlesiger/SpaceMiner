@@ -1,5 +1,13 @@
 <?php
+session_start();
 require "structure/header.php";
+
+if(isset($_POST["logout"])){
+    $_SESSION["loggedIn"] = "false";
+    session_destroy();
+}
+
+
 ?>
 
 <body>
@@ -12,12 +20,19 @@ require "structure/header.php";
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="auftraege.php">Aufträge</a>
-                    </li>
+                <?php
+                        if(isset($_SESSION["loggedIn"])){
+                            if($_SESSION["loggedIn"] == "true"){
+                                echo '
+                                <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="auftraege.php">Aufträge</a>
+                                </li>';
+                            }
+                        }
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="berechnungen.php">Berechnungen</a>
                     </li>
@@ -26,13 +41,35 @@ require "structure/header.php";
                     <li class="nav-item">
                         <a class="nav-link" href="uebermich.php">Über Mich</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="registrieren.php">Registrieren</a>
-                    </li>
-                    <li class="nav-item me-2">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-
+                    <?php
+                        if(isset($_SESSION["loggedIn"])){
+                            if($_SESSION["loggedIn"] == "true"){
+                                echo '
+                                <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="auftraege.php">Aufträge</a>
+                                </li>
+                                ';
+                            }
+                            else{
+                                echo '<li class="nav-item">
+                                        <a class="nav-link " href="registrieren.php">Registrieren</a>
+                                    </li>
+                                    <li class="nav-item me-2">
+                                        <a class="nav-link" href="login.php">Login</a>
+                                    </li>';
+                            }
+                        }else{
+                            echo '<li class="nav-item">
+                            <a class="nav-link" href="registrieren.php">Registrieren</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>';
+                        }
+                    ?>
                     <form class="d-flex" role="search">
                         <button class="btn btn-outline-success mt-2 mb-2 language" type="submit">DE</button>
                     </form>

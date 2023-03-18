@@ -25,9 +25,17 @@ if(isset($_POST["sent"])){
 
     if($username_statusCheck == "" && $password_status == "" && $checkbox_status == "" && $username_statusUsed == ""){
         register($conn, $_POST["username"], $_POST["password"]);
+        $_SESSION["loggedIn"] = "true";
+    }
+    else{
+        $_SESSION["loggedIn"] = "false";
     }
 }
 
+if(isset($_POST["logout"])){
+    $_SESSION["loggedIn"] = "false";
+    session_destroy();
+}
 
 ?>
 
@@ -43,12 +51,20 @@ if(isset($_POST["sent"])){
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="auftraege.php">Aufträge</a>
-                    </li>
+                <?php
+                        if(isset($_SESSION["loggedIn"])){
+                            if($_SESSION["loggedIn"] == "true"){
+                                echo '
+                                <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="auftraege.php">Aufträge</a>
+                                </li>
+                                ';
+                            }
+                        }
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="berechnungen.php">Berechnungen</a>
                     </li>
@@ -57,12 +73,33 @@ if(isset($_POST["sent"])){
                     <li class="nav-item">
                         <a class="nav-link" href="uebermich.php">Über Mich</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="registrieren.php">Registrieren</a>
-                    </li>
-                    <li class="nav-item me-2">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
+                    <?php
+                        if(isset($_SESSION["loggedIn"])){
+                            if($_SESSION["loggedIn"] == "true"){
+                                echo '<li class="nav-item">
+                                <form action="" method="post">
+                                    <button type="submit" class="btn btn-link hyperlink" name="logout">Logout</button>
+                                </form>
+                            </li>';
+                            }
+                            else{
+                                echo '<li class="nav-item">
+                                        <a class="nav-link " href="registrieren.php">Registrieren</a>
+                                    </li>
+                                    <li class="nav-item me-2">
+                                        <a class="nav-link" href="login.php">Login</a>
+                                    </li>';
+                            }
+                        }else{
+                            echo '<li class="nav-item">
+                            <a class="nav-link active" href="registrieren.php">Registrieren</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>';
+                        }
+                    ?>
+
 
                     <form class="d-flex" role="search">
                         <button class="btn btn-outline-success mt-2 mb-2 language" type="submit">DE</button>
@@ -93,7 +130,7 @@ if(isset($_POST["sent"])){
                     </div>
                     <div class="text-danger fst-italic ms-2"><?php echo $password_status?></div>
                     <div class="form-check mt-2 ms-2">
-                        <input class="form-check-input" type="hidden" name="checkbox" value="0" id="flexCheckChecked" checked />
+                        <input class="form-check-input" type="hidden" name="checkbox" value="0" id="flexCheckChecked2" checked />
                         <input class="form-check-input" type="checkbox" name="checkbox" value="1" id="flexCheckChecked" checked />
                         <label class="form-check-label" for="flexCheckChecked">
                             <a href="datenschutz.php" class="hyperlink" target="_blank">Datenschutzerklärung</a>
