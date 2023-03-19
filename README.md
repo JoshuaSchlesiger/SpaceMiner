@@ -5,7 +5,7 @@
 
 2.  Model-View-Controller Prinzip beachten
 
-3.  Login und Register umsetzen
+3.  DONE --> Login und Register umsetzen
   I.   Hashed
   II.  Salted-Password
   III. Passwordanforderungen
