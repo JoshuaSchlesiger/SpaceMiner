@@ -15,7 +15,8 @@ if(isset($_POST["sentLogin"])){
     $status = login($conn, $_POST["username"], $_POST["password"]);
     if($status == ""){
         $_SESSION["loggedIn"] = "true";
-        $status = "Erfolgreich eingeloggt";
+        header("Location: dashboard.php");
+        exit();
     }
     else{
         $_SESSION["loggedIn"] = "false";

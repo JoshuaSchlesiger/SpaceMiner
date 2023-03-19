@@ -33,10 +33,8 @@ function register($conn, $username, $password){
 
     // Abfrage ausführen
     $stmt->execute();
-    echo "Daten erfolgreich gesendet.";
   } 
   catch(PDOException $e) {
-    echo "Fehler beim Senden der Daten: " . $e->getMessage();
   }
 }
 
