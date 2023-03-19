@@ -52,10 +52,21 @@ function login($conn, $username, $password){
       return "Password falsch";
     }
   }
-
-  
 }
 
+function getAllNameRefineryStations($conn){
+  $stmt = $conn->prepare('SELECT name FROM refinery_station');
+  $stmt->execute();
+  $value = $stmt->fetchAll();
+  return $value;
+}
+
+function getOreTypes($conn){
+  $stmt = $conn->prepare('SELECT * FROM type');
+  $stmt->execute();
+  $type = $stmt->fetchAll();
+  return $type;
+}
 
 function passwordHash($password){
   $pass = password_hash($password, PASSWORD_DEFAULT);

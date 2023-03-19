@@ -1,12 +1,16 @@
 <?php
-session_start();
-require "structure/header.php";
 
+require "structure/header.php";
+require "functions/database.php";
 
 if(isset($_POST["logout"])){
     $_SESSION["loggedIn"] = "false";
     session_destroy();
 }
+
+session_start();
+$conn = connect();
+$_SESSION['oreTypes'] = getOreTypes($conn);
 
 
 ?>
@@ -120,9 +124,13 @@ if(isset($_POST["logout"])){
                         <div class="col-lg-2">
                             <div class="col-3 text-info calculateOre">
                                 <select class="form-select">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <?php 
+                                        for ($i = 0; $i < count($_SESSION['oreTypes']); $i++){
+                                            echo '<option value="$i">';
+                                            echo $_SESSION['oreTypes'][$i][1];
+                                            echo '</option>';
+                                    } 
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -145,9 +153,13 @@ if(isset($_POST["logout"])){
                         <div class="col-lg-2">
                             <div class="col-3 text-info calculateOre">
                                 <select class="form-select">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <?php 
+                                        for ($i = 0; $i < count($_SESSION['oreTypes']); $i++){
+                                            echo '<option value="$i">';
+                                            echo $_SESSION['oreTypes'][$i][1];
+                                            echo '</option>';
+                                    } 
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -170,9 +182,13 @@ if(isset($_POST["logout"])){
                         <div class="col-lg-2">
                             <div class="col-3 text-info calculateOre">
                                 <select class="form-select">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <?php 
+                                        for ($i = 0; $i < count($_SESSION['oreTypes']); $i++){
+                                            echo '<option value="$i">';
+                                            echo $_SESSION['oreTypes'][$i][1];
+                                            echo '</option>';
+                                    } 
+                                    ?>
                                 </select>
                             </div>
                         </div>
