@@ -40,6 +40,24 @@ function register($conn, $username, $password){
   }
 }
 
+function login($conn, $username, $password){
+
+  $stmt = $conn->prepare('SELECT * FROM website_user WHERE name = :eins');
+  $stmt->bindParam(':eins', $username);
+  $stmt->execute();
+  $value = $stmt->fetch();
+  if(empty($value)){
+      return "Nutzername nicht vergeben";
+  }
+  else{
+    if(!password_verify($password, $value[2])){
+      return "Password falsch";
+    }
+  }
+
+  
+}
+
 
 function passwordHash($password){
   $pass = password_hash($password, PASSWORD_DEFAULT);

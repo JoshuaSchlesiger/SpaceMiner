@@ -2,6 +2,12 @@
 session_start();
 require "structure/header.php";
 
+if(isset($_POST["logout"])){
+    $_SESSION["loggedIn"] = "false";
+    session_destroy();
+}
+
+
 //Variables
 $username = "User";
 
@@ -26,13 +32,14 @@ $jobStatus = "Done";
 
 if(isset($_SESSION["loggedIn"])){
     if($_SESSION["loggedIn"] == "false"){
-        header("Location: registrieren.php");
+        header("Location: index.php");
         exit();
     }
 }else{
-    header("Location: registrieren.php");
+    header("Location: index.php");
         exit();
 }
+
 
 ?>
 
@@ -65,7 +72,9 @@ if(isset($_SESSION["loggedIn"])){
                         if(isset($_SESSION["loggedIn"])){
                             if($_SESSION["loggedIn"] == "true"){
                                 echo '<li class="nav-item">
-                                <a class="nav-link " href="xx">Logout</a>
+                                <form action="" method="post">
+                                    <button type="submit" class="btn btn-link hyperlink" name="logout">Logout</button>
+                                </form>
                             </li>';
                             }
                             else{

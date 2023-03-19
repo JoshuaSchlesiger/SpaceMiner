@@ -16,7 +16,7 @@ $username_statusUsed = "";
 
 $conn = connect();
 
-if(isset($_POST["sent"])){
+if(isset($_POST["sentRegister"])){
 
     $username_statusCheck = usernameCheck();
     $username_statusUsed = usernameUsed($conn, $_POST["username"]);
@@ -139,7 +139,7 @@ if(isset($_POST["logout"])){
                     <div class="text-danger fst-italic ms-2"><?php echo $checkbox_status?></div>
 
                     <div class="mt-3">
-                        <button class="btn LoRebtn-accent rounded-pill w-100" type="submit" name="sent">Registrieren</button>
+                        <button class="btn LoRebtn-accent rounded-pill w-100" type="submit" name="sentRegister">Registrieren</button>
                     </div>
                 </form>
             </div>

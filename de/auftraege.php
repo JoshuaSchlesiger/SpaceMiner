@@ -9,11 +9,11 @@ if(isset($_POST["logout"])){
 
 if(isset($_SESSION["loggedIn"])){
     if($_SESSION["loggedIn"] == "false"){
-        header("Location: registrieren.php");
+        header("Location: index.php");
         exit();
     }
 }else{
-    header("Location: registrieren.php");
+    header("Location: index.php");
         exit();
 }
 

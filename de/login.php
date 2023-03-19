@@ -1,15 +1,30 @@
 <?php
 session_start();
 require "structure/header.php";
-
+require "functions/database.php";
 
 if(isset($_POST["logout"])){
     $_SESSION["loggedIn"] = "false";
     session_destroy();
 }
 
-$username_status = "";
-$password_status = "";
+$status = "";
+$conn = connect();
+
+if(isset($_POST["sentLogin"])){
+    $status = login($conn, $_POST["username"], $_POST["password"]);
+    if($status == ""){
+        $_SESSION["loggedIn"] = "true";
+        $status = "Erfolgreich eingeloggt";
+    }
+    else{
+        $_SESSION["loggedIn"] = "false";
+    }
+}
+else{
+    $_SESSION["loggedIn"] = "false";
+}
+
 ?>
 
 
@@ -95,14 +110,13 @@ $password_status = "";
                         <span class="LoReinputLogo"><img src="/de/images/icons/user.png" alt="user" class="icon_footer"></span>
                         <input type="text" class="LOREinput form-control rounded-pill " name="username" placeholder="Username" value="<?php if(isset($_POST["username"])){echo $_POST["username"];}?>">
                     </div>
-                    <div class="text-danger fst-italic ms-2"><?php echo $username_status?></div>
                     <div class="mt-3">
                         <span class="LoReinputLogo"><img src="/de/images/icons/key.png" alt="key" class="icon_footer"></span>
                         <input type="password" class="form-control rounded-pill LOREinput" name="password" placeholder="Passwort">
                     </div>
-                    <div class="text-danger fst-italic ms-2"><?php echo $password_status?></div>
+                    <div class="text-danger fst-italic ms-2"><?php echo $status?></div>
 
-                    <button class="mt-4 btn LoRebtn-accent rounded-pill w-100" type="submit">Login</button>
+                    <button class="mt-4 btn LoRebtn-accent rounded-pill w-100" type="submit" name="sentLogin">Login</button>
                 </form>
             </div>
         </div>
