@@ -4,6 +4,10 @@
 
 function usernameCheck(){
     if(isset($_POST["username"])){
+        if(!preg_match('/^[a-z0-9 .\-]+$/i', $_POST["username"]))
+        {
+            return "Nutzername darf keine Sonderzeichen haben";
+        }
         if($_POST["username"] == ""){
             return "Nutzername darf nicht leer sein";
         }

@@ -119,7 +119,7 @@ if(isset($_POST["logout"])){
                 <form action="" method="post">
                     <div>
                         <span class="LoReinputLogo"><img src="/de/images/icons/user.png" alt="user" class="icon_footer"></span>
-                        <input type="text" class="LOREinput form-control rounded-pill " name="username" placeholder="Username" value="<?php if(isset($_POST["username"])){echo $_POST["username"];}?>">
+                        <input type="text" class="LOREinput form-control rounded-pill " name="username" placeholder="Username" value="<?php if(isset($_POST["username"])){echo htmlspecialchars($_POST["username"]);}?>">
                     </div>
                     <div class="text-danger fst-italic ms-2"><?php echo $username_statusCheck; echo $username_statusUsed ?></div>
                     <div class="mt-3">
