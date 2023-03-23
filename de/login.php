@@ -20,6 +20,7 @@ if(isset($_POST["sentLogin"])){
         exit();
     }
     else{
+        sleep(3);
         $_SESSION["loggedIn"] = "false";
     }
 }

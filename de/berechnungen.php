@@ -96,7 +96,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     <div class="col-lg-1"></div>
                         <div class="col-lg-2">Masse des Steins:</div>
                         <div class="col-lg-2">
-                            <input type="text" id="massStone" class="form-control">
+                            <input type="number" min="0" max="9999" id="massStone" class="form-control">
                         </div>
                         <div class="col-lg-2 job-addcrew helptext">
                             <span>
@@ -123,7 +123,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                         <div class="col-lg-1"></div>
                         <div class="col-lg-2">
                             <div class="col-3 text-info calculateOre">
-                                <select class="form-select">
+                                <select class="form-select" id="select1">
                                     <?php 
                                         for ($i = 0; $i < count($_SESSION['oreTypes']); $i++){
                                             echo '<option value="$i">';
@@ -135,16 +135,16 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <input type="text" id="proportion" class="form-control">
+                            <input type="number" min="0" max="100" id="proportion1" class="form-control">
                         </div>
                         <div class="col-lg-2 ">
-                            <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                            <input class="form-control" type="text" value=""  id="mass1" disabled readonly>
                         </div>
                         <div class="col-lg-2">
-                            <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                            <input class="form-control" type="text" value="" id="priceRaw1" disabled readonly>
                         </div>
                         <div class="col-lg-2">
-                            <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                            <input class="form-control" type="text" value="" id="priceRefined1" disabled readonly>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -152,7 +152,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                         <div class="col-lg-1"></div>
                         <div class="col-lg-2">
                             <div class="col-3 text-info calculateOre">
-                                <select class="form-select">
+                                <select class="form-select" id="select2">
                                 <?php 
                                         for ($i = 0; $i < count($_SESSION['oreTypes']); $i++){
                                             echo '<option value="$i">';
@@ -164,16 +164,16 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <input type="text" id="proportion" class="form-control">
+                            <input type="number" min="0" max="100" id="proportion2" class="form-control">
                         </div>
                         <div class="col-lg-2 ">
-                            <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                            <input class="form-control" type="text" value=""  id="mass2" disabled readonly>
                         </div>
                         <div class="col-lg-2">
-                            <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                            <input class="form-control" type="text" value="" id="priceRaw2" disabled readonly>
                         </div>
                         <div class="col-lg-2">
-                            <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                            <input class="form-control" type="text" value="" id="priceRefined2" disabled readonly>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -181,7 +181,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                         <div class="col-lg-1"></div>
                         <div class="col-lg-2">
                             <div class="col-3 text-info calculateOre">
-                                <select class="form-select">
+                                <select class="form-select" id="select3">
                                 <?php 
                                         for ($i = 0; $i < count($_SESSION['oreTypes']); $i++){
                                             echo '<option value="$i">';
@@ -193,16 +193,16 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <input type="text" id="proportion" class="form-control">
+                            <input type="number" min="0" max="100" id="proportion3" class="form-control">
                         </div>
                         <div class="col-lg-2 ">
-                            <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                            <input class="form-control" type="text" value="" id="mass3" disabled readonly>
                         </div>
                         <div class="col-lg-2">
-                            <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                            <input class="form-control" type="text" value="" id="priceRaw3" disabled readonly>
                         </div>
                         <div class="col-lg-2">
-                            <input class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                            <input class="form-control" type="text" value="" id="priceRefined3"  disabled readonly>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -220,7 +220,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     </div>
                     <div class="mt-2 row justify-content-center">
                         <div class="col-lg-1"></div>
-                        <div class="col-lg-2 h5 text-center">0 cSCU</div>
+                        <div class="col-lg-2 h5 text-center" id="weightPureSmall" >0 cSCU</div>
                         <div class="col-lg-2 h5 text-center">0 cSCU</div>
                         <div class="col-lg-2 h5 text-center text-warning">0 cSCU</div>
                         <div class="col-lg-2 h5 text-center text-success">0 aUEC</div>
@@ -245,10 +245,12 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
     </div>
 
 
-    
+
     <?php
     require "structure/footer.php";
     ?>
+
+<script src="scripts/calculator.js"></script>
 
 
 </body>

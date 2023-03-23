@@ -68,6 +68,7 @@ function getOreTypes($conn){
   return $type;
 }
 
+
 function passwordHash($password){
   $pass = password_hash($password, PASSWORD_DEFAULT);
   return $pass;

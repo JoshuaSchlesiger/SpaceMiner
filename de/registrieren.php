@@ -31,6 +31,8 @@ if(isset($_POST["sentRegister"])){
     }
     else{
         $_SESSION["loggedIn"] = "false";
+        sleep(3);
+        
     }
 }
 
