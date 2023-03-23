@@ -1,6 +1,5 @@
 window.addEventListener("load", (event) => {
 
-  document.getElementById("weightPureSmall").value = "10";
   
       const selectElem1 = document.getElementById("select1");
       selectElem1.addEventListener("change", () => {
@@ -71,20 +70,33 @@ window.addEventListener("load", (event) => {
         if(proportion1 > 100){
           alert("Mehr als 100% sind nicht möglich");
           document.getElementById("proportion1").value = 0;
+          document.getElementById("mass1").value = 0;
+          setEndValues()
         }
         else if(proportion2 > 100){
           alert("Mehr als 100% sind nicht möglich");
           document.getElementById("proportion2").value = 0;
+          document.getElementById("mass2").value = 0;
+          setEndValues()
         }
         else if(proportion3 > 100){
           alert("Mehr als 100% sind nicht möglich");
           document.getElementById("proportion3").value = 0;
+          document.getElementById("mass3").value = 0;
+          setEndValues()
+
         }
         else if((parseFloat(proportion1) + parseFloat(proportion2) + parseFloat(proportion3)) > 100){
           alert("Mehr als 100% sind nicht möglich");
           document.getElementById("proportion1").value = 0;
           document.getElementById("proportion2").value = 0;
           document.getElementById("proportion3").value = 0;
+          document.getElementById("mass1").value = 0;
+          document.getElementById("mass2").value = 0;
+          document.getElementById("mass3").value = 0;
+
+          setEndValues()
+
         }
         else{
           $.ajax({
@@ -104,7 +116,7 @@ window.addEventListener("load", (event) => {
                 
                 var json = JSON.parse(data);
                 setValues(json);
-                calculate();
+                calculate(json);
   
             });
   
@@ -113,9 +125,41 @@ window.addEventListener("load", (event) => {
 
       }
 
-      function calculate(){
-        document.getElementById("weightPure").value = "10";  //$("#mass1").val(json.mass1) + $("#mass2").val(json.mass2) + $("#mass3").val(json.mass3);
+      function calculate(json){
+        document.getElementById("weightPureSmall").innerHTML = new Intl.NumberFormat('de-DE').format( massStone * 2) + " cSCU";
+        document.getElementById("weightPureBig").innerHTML = new Intl.NumberFormat('de-DE').format( massStone/ 50)  + " SCU";
+
+        document.getElementById("weightMineralSmall").innerHTML = new Intl.NumberFormat('de-DE').format( (json.mass1 + json.mass2 + json.mass3) * 100)  + " cSCU";
+        document.getElementById("weightMineralBig").innerHTML = new Intl.NumberFormat('de-DE').format( (json.mass1 + json.mass2 + json.mass3))  + " SCU";
+
+        document.getElementById("weightTrashSmall").innerHTML = new Intl.NumberFormat('de-DE').format( massStone * 2 - (json.mass1 + json.mass2 + json.mass3) * 100)  + " cSCU";
+        document.getElementById("weightTrashBig").innerHTML = new Intl.NumberFormat('de-DE').format(  massStone/ 50 - (json.mass1 + json.mass2 + json.mass3) ) + " SCU";
+     
+        document.getElementById("rawProfit").innerHTML =new Intl.NumberFormat('de-DE').format( roundTo((json.priceRaw1 * json.mass1 + json.priceRaw2 * json.mass2 + json.priceRaw3 * json.mass3) *100, 2 ) ) + " aUEC";
+
+        document.getElementById("refinedProfit").innerHTML = new Intl.NumberFormat('de-DE').format( roundTo((json.priceRefined1 * json.mass1 + json.priceRefined2 * json.mass2 + json.priceRefined3 * json.mass3) *100, 2 )) + " aUEC";
       }
+
+      function setEndValues(){
+        document.getElementById("weightPureSmall").innerHTML = "0 cSCU";
+        document.getElementById("weightPureBig").innerHTML = "0 SCU";
+
+        document.getElementById("weightMineralSmall").innerHTML =  "0 cSCU";
+        document.getElementById("weightMineralBig").innerHTML = + "0 SCU";
+
+        document.getElementById("weightTrashSmall").innerHTML ="0 cSCU";
+        document.getElementById("weightTrashBig").innerHTML = "0 SCU";
+
+        document.getElementById("rawProfit").innerHTML ="0 aUEC";
+
+        
+        document.getElementById("refinedProfit").innerHTML = " 0 aUEC";
+      }
+
+
+      function roundTo(n, place) {    
+        return +(Math.round(n + "e+" + place) + "e-" + place);
+    }
 
 
   });

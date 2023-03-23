@@ -96,7 +96,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     <div class="col-lg-1"></div>
                         <div class="col-lg-2">Masse des Steins:</div>
                         <div class="col-lg-2">
-                            <input type="number" min="0" max="9999" id="massStone" class="form-control">
+                            <input type="number" value="0" min="0" max="9999" id="massStone" class="form-control">
                         </div>
                         <div class="col-lg-2 job-addcrew helptext">
                             <span>
@@ -135,7 +135,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <input type="number" min="0" max="100" id="proportion1" class="form-control">
+                            <input type="number" value="0" min="0" max="100" id="proportion1" class="form-control">
                         </div>
                         <div class="col-lg-2 ">
                             <input class="form-control" type="text" value=""  id="mass1" disabled readonly>
@@ -164,7 +164,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <input type="number" min="0" max="100" id="proportion2" class="form-control">
+                            <input type="number" value="0" min="0" max="100" id="proportion2" class="form-control">
                         </div>
                         <div class="col-lg-2 ">
                             <input class="form-control" type="text" value=""  id="mass2" disabled readonly>
@@ -193,7 +193,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <input type="number" min="0" max="100" id="proportion3" class="form-control">
+                            <input type="number" value="0"  min="0" max="100" id="proportion3" class="form-control">
                         </div>
                         <div class="col-lg-2 ">
                             <input class="form-control" type="text" value="" id="mass3" disabled readonly>
@@ -220,18 +220,18 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     </div>
                     <div class="mt-2 row justify-content-center">
                         <div class="col-lg-1"></div>
-                        <div class="col-lg-2 h5 text-center" id="weightPureSmall" >0 cSCU</div>
-                        <div class="col-lg-2 h5 text-center">0 cSCU</div>
-                        <div class="col-lg-2 h5 text-center text-warning">0 cSCU</div>
-                        <div class="col-lg-2 h5 text-center text-success">0 aUEC</div>
-                        <div class="col-lg-2 h5 text-center text-success">0 aUEC</div>
+                        <div class="col-lg-2 h5 text-center" id="weightPureSmall">0 cSCU</div>
+                        <div class="col-lg-2 h5 text-center" id="weightMineralSmall" >0 cSCU</div>
+                        <div class="col-lg-2 h5 text-center text-warning" id="weightTrashSmall">0 cSCU</div>
+                        <div class="col-lg-2 h5 text-center text-success" id="rawProfit">0 aUEC</div>
+                        <div class="col-lg-2 h5 text-center text-success" id="refinedProfit">0 aUEC</div>
                         <div class="col-lg-1"></div>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-lg-1"></div>
-                        <div class="col-lg-2 h6 text-center">0 SCU</div>
-                        <div class="col-lg-2 h6 text-center">0 SCU</div>
-                        <div class="col-lg-2 h6 text-center text-warning">0 SCU</div>
+                        <div class="col-lg-2 h6 text-center" id="weightPureBig">0 SCU</div>
+                        <div class="col-lg-2 h6 text-center" id="weightMineralBig">0 SCU</div>
+                        <div class="col-lg-2 h6 text-center text-warning" id="weightTrashBig">0 SCU</div>
                         <div class="col-lg-2 h6 text-center text-success"></div>
                         <div class="col-lg-2 h6 text-center text-success"></div>
                         <div class="col-lg-1"></div>
