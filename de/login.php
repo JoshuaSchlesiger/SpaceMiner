@@ -12,17 +12,28 @@ $status = "";
 $conn = connect();
 
 if(isset($_POST["sentLogin"])){
-    $status = login($conn, $_POST["username"], $_POST["password"]);
-    if($status == ""){
-        $_SESSION["loggedIn"] = "true";
-        $_SESSION['oreTypes'] = getOreTypes($conn);
-        header("Location: dashboard.php");
-        exit();
+
+    $endTime = time();
+    $startTime = $_POST['startTime'];
+    $timeTaken = $endTime - $startTime;
+    
+    if($timeTaken > 1){
+        $status = login($conn, $_POST["username"], $_POST["password"]);
+        if($status == ""){
+            $_SESSION["loggedIn"] = "true";
+            $_SESSION['oreTypes'] = getOreTypes($conn);
+            header("Location: dashboard.php");
+            exit();
+        }
+        else{
+           $_SESSION["loggedIn"] = "false";
+        }
     }
     else{
-        sleep(3);
-        $_SESSION["loggedIn"] = "false";
+        $_SESSION["fast"] = "Zu schnell, mach mal langsamer";
     }
+
+
 }
 else{
     $_SESSION["loggedIn"] = "false";
@@ -118,7 +129,10 @@ else{
                         <input type="password" class="form-control rounded-pill LOREinput" name="password" placeholder="Passwort">
                     </div>
                     <div class="text-danger fst-italic ms-2"><?php echo $status?></div>
+                    <div class="text-danger fst-italic ms-2"><?php if(isset($_SESSION["fast"])){echo $_SESSION["fast"]; unset($_SESSION["fast"]);}?></div>
+                    
 
+                    <input type="hidden" name="startTime" value="<?php echo time(); ?>">
                     <button class="mt-4 btn LoRebtn-accent rounded-pill w-100" type="submit" name="sentLogin">Login</button>
                 </form>
             </div>

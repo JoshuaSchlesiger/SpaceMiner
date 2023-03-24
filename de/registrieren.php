@@ -16,28 +16,38 @@ $username_statusUsed = "";
 
 $conn = connect();
 
+
 if(isset($_POST["sentRegister"])){
 
-    $username_statusCheck = usernameCheck();
-    $username_statusUsed = usernameUsed($conn, $_POST["username"]);
-    $password_status = password();
-    $checkbox_status = checkbox();
 
-    if($username_statusCheck == "" && $password_status == "" && $checkbox_status == "" && $username_statusUsed == ""){
-        register($conn, $_POST["username"], $_POST["password"]);
-        $_SESSION["loggedIn"] = "true";
-        header("Location: dashboard.php");
-        exit();
+    if($timeTaken > 1){
+        $username_statusCheck = usernameCheck();
+        $username_statusUsed = usernameUsed($conn, $_POST["username"]);
+        $password_status = password();
+        $checkbox_status = checkbox();
+    
+        if($username_statusCheck == "" && $password_status == "" && $checkbox_status == "" && $username_statusUsed == ""){
+            register($conn, $_POST["username"], $_POST["password"]);
+            $_SESSION["loggedIn"] = "true";
+            unset($_POST["sentRegister"]);
+            header("Location: dashboard.php");
+            exit();
+        }
+        else{
+            $_SESSION["loggedIn"] = "false";
+            unset($_POST["sentRegister"]);
+        }
     }
     else{
-        $_SESSION["loggedIn"] = "false";
-        sleep(3);
-        
+        echo "<script type='text/javascript'>alert('Mach mal langsamer hier');</script>";
     }
+
+
 }
 
 if(isset($_POST["logout"])){
     $_SESSION["loggedIn"] = "false";
+    unset($_POST["sentRegister"]);
     session_destroy();
 }
 
@@ -143,6 +153,7 @@ if(isset($_POST["logout"])){
                     <div class="text-danger fst-italic ms-2"><?php echo $checkbox_status?></div>
 
                     <div class="mt-3">
+                        <input type="hidden" name="startTime" value="<?php echo time(); ?>">
                         <button class="btn LoRebtn-accent rounded-pill w-100" type="submit" name="sentRegister">Registrieren</button>
                     </div>
                 </form>
