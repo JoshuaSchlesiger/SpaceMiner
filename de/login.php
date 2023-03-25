@@ -32,8 +32,6 @@ if(isset($_POST["sentLogin"])){
     else{
         $_SESSION["fast"] = "Zu schnell, mach mal langsamer";
     }
-
-
 }
 else{
     $_SESSION["loggedIn"] = "false";

@@ -52,8 +52,8 @@ if(isset($_SESSION["loggedIn"])){
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-lg-0">
+        <div class="collapse navbar-collapse " id="navbarText">
+            <ul class="navbar-nav me-auto mb-lg-0 ">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="dashboard.php">Dashboard</a>
                 </li>
@@ -73,7 +73,8 @@ if(isset($_SESSION["loggedIn"])){
                             if($_SESSION["loggedIn"] == "true"){
                                 echo '<li class="nav-item">
                                 <form action="" method="post">
-                                    <button type="submit" class="btn btn-link hyperlink" name="logout">Logout</button>
+                                    <button type="submit" class="btn btn-link hyperlink " name="logout">Logout</button>
+
                                 </form>
                             </li>';
                             }
@@ -97,6 +98,8 @@ if(isset($_SESSION["loggedIn"])){
                 <form class="d-flex" role="search">
                     <button class="btn btn-outline-success mt-2 mb-2 language" type="submit">DE</button>
                 </form>
+
+
 
             </ul>
         </div>
