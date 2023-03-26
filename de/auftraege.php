@@ -17,6 +17,10 @@ if(isset($_SESSION["loggedIn"])){
         exit();
 }
 
+if(isset($_SESSION["crewnames"])){
+    unset($_SESSION["crewnames"]);
+}
+
 //Variables
 $username = "User";
 
@@ -110,7 +114,7 @@ $jobCrewProfit = 0;
             <h5 class="header-text card-header text-center">Erstelle einen neuen Auftrag</h5>
             <div class="card-body">
 
-                <form action="">
+
                     <div class="mt-3 job-addcrew align-items-center">
                         <div class="job-addcrew element">
                             <label for="crewname" class="col-form-label">Crewname: </label>
@@ -125,28 +129,22 @@ $jobCrewProfit = 0;
                         </div>
                     </div>
                     <div class="mt-1">
-                        <button type="submit" class="job-addcrew button add form-control btn btn-outline-success">ADD</button>
+                        <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_crew()">ADD</button>
                     </div>
-                </form>
+
 
                 <hr>
 
-                <form action="">
                     <div class="job-addcrew align-items-center">
                         <div class="job-addcrew element">
                             <label for="crewname" class="col-form-label">Crew wählen: </label>
                         </div>
                         <div class="job-addcrew element">
                             <div class="dropdown">
-                                <a class="btn btn-primary job-addcrew-select form-control" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    "Crewname"
-                                </a>
+                                <a class="btn btn-primary job-addcrew-select form-control" id="selectCrew" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">"Deine Crew"</a>
 
                                 <div class="collapse" id="collapseExample">
-                                    <div class="list-group list-group-light list-group-small  job-addcrew-select">
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
+                                    <div class="list-group list-group-light list-group-small job-addcrew-select" id="crewList">
                                     </div>
                                 </div>
                             </div>
@@ -159,11 +157,10 @@ $jobCrewProfit = 0;
                             </div>
                         </div>
                     </div>
-                </form>
-
+                    
                 <hr>
 
-                <h5 class="header-text text-center mb-3">"Crewname"</h5>
+                <h5 class="header-text text-center mb-3" id="crewHeader">"Deine Crew"</h5>
                 <div class="job-addcrew">
                     <form action="">
                         <div class="job-addcrew align-items-center">
@@ -773,6 +770,7 @@ $jobCrewProfit = 0;
     require "structure/footer.php";
     ?>
 
+<script src="scripts/add_crew.js"></script>
 
 </body>
 
