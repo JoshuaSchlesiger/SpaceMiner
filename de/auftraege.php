@@ -1,6 +1,11 @@
 <?php
 session_start();
 require "structure/header.php";
+require "objects/crew.php";
+
+$hello = new Crew("penis");
+echo $hello->test();
+
 
 if(isset($_POST["logout"])){
     $_SESSION["loggedIn"] = "false";
@@ -18,7 +23,14 @@ if(isset($_SESSION["loggedIn"])){
 }
 
 if(isset($_SESSION["crewnames"])){
+
+    foreach ($_SESSION["crewnames"] as $value) {
+        echo $value;
+    }
+
     unset($_SESSION["crewnames"]);
+}else{
+    $_SESSION["crewnames"] = array();
 }
 
 //Variables
