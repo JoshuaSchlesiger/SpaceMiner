@@ -2,10 +2,10 @@
 
 class Job{
 
-    private $number = 0;
+    private $number = "";
 
-    function Job($number){
-        $this->$number = $number;
+    function __construct($number){
+        $this->number = $number;
     }
 
     public function test()

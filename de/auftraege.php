@@ -3,9 +3,6 @@ session_start();
 require "structure/header.php";
 require "objects/crew.php";
 
-$hello = new Crew("penis");
-echo $hello->test();
-
 
 if(isset($_POST["logout"])){
     $_SESSION["loggedIn"] = "false";

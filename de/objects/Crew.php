@@ -8,8 +8,8 @@ class Crew{
     private $seller = "";
     private $paid_in_status = false;
 
-    function crew($name){
-        $this->$name = $name;
+    function __construct(String $name){
+        $this->name = $name;
     }
 
     public function setSeller($seller){
@@ -28,9 +28,9 @@ class Crew{
         return  $this->paid_in_status;
     }
 
-    public function test()
+    public function test($value)
     {
-        $test = new Job("10");
+        $test = new Job($value);
         return $test->test();
     }
 }
