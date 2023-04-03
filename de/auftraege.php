@@ -4,29 +4,29 @@ require "structure/header.php";
 require "objects/crew.php";
 
 
-if(isset($_POST["logout"])){
+if (isset($_POST["logout"])) {
     $_SESSION["loggedIn"] = "false";
     session_destroy();
 }
 
-if(isset($_SESSION["loggedIn"])){
-    if($_SESSION["loggedIn"] == "false"){
+if (isset($_SESSION["loggedIn"])) {
+    if ($_SESSION["loggedIn"] == "false") {
         header("Location: index.php");
         exit();
     }
-}else{
+} else {
     header("Location: index.php");
-        exit();
+    exit();
 }
 
-if(isset($_SESSION["crewnames"])){
+if (isset($_SESSION["crewnames"])) {
 
     foreach ($_SESSION["crewnames"] as $value) {
         echo $value;
     }
 
     unset($_SESSION["crewnames"]);
-}else{
+} else {
     $_SESSION["crewnames"] = array();
 }
 
@@ -83,30 +83,29 @@ $jobCrewProfit = 0;
                         <a class="nav-link" href="uebermich.php">Über Mich</a>
                     </li>
                     <?php
-                        if(isset($_SESSION["loggedIn"])){
-                            if($_SESSION["loggedIn"] == "true"){
-                                echo '<li class="nav-item">
+                    if (isset($_SESSION["loggedIn"])) {
+                        if ($_SESSION["loggedIn"] == "true") {
+                            echo '<li class="nav-item">
                                 <form action="" method="post">
                                     <button type="submit" class="btn btn-link hyperlink" name="logout">Logout</button>
                                 </form>
                             </li>';
-                            }
-                            else{
-                                echo '<li class="nav-item">
+                        } else {
+                            echo '<li class="nav-item">
                                         <a class="nav-link " href="registrieren.php">Registrieren</a>
                                     </li>
                                     <li class="nav-item me-2">
                                         <a class="nav-link" href="login.php">Login</a>
                                     </li>';
-                            }
-                        }else{
-                            echo '<li class="nav-item">
+                        }
+                    } else {
+                        echo '<li class="nav-item">
                             <a class="nav-link" href="registrieren.php">Registrieren</a>
                         </li>
                         <li class="nav-item me-2">
                             <a class="nav-link" href="login.php">Login</a>
                         </li>';
-                        }
+                    }
                     ?>
 
                     <form class="d-flex" role="search">
@@ -124,68 +123,63 @@ $jobCrewProfit = 0;
             <div class="card-body">
 
 
-                    <div class="mt-3 job-addcrew align-items-center">
-                        <div class="job-addcrew element">
-                            <label for="crewname" class="col-form-label">Crewname: </label>
-                        </div>
-                        <div class="job-addcrew element">
-                            <input type="text" id="crewname" class="form-control">
-                        </div>
-                        <div class="job-addcrew helptext">
-                            <span>
-                                <i>Muss zwischen 5 und 20 Zeichen lang sein</i>
-                            </span>
-                        </div>
+                <div class="mt-3 job-addcrew align-items-center">
+                    <div class="job-addcrew element">
+                        <label for="crewname" class="col-form-label">Crewname: </label>
                     </div>
-                    <div class="mt-1">
-                        <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_crew()">ADD</button>
+                    <div class="job-addcrew element">
+                        <input type="text" id="crewname" class="form-control">
                     </div>
+                    <div class="job-addcrew helptext">
+                        <span>
+                            <i>Muss zwischen 5 und 20 Zeichen lang sein</i>
+                        </span>
+                    </div>
+                </div>
+                <div class="mt-1">
+                    <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_crew()">ADD</button>
+                </div>
 
 
                 <hr>
 
-                    <div class="job-addcrew align-items-center">
-                        <div class="job-addcrew element">
-                            <label for="crewname" class="col-form-label">Crew wählen: </label>
-                        </div>
-                        <div class="job-addcrew element">
-                            <div class="dropdown">
-                                <a class="btn btn-primary job-addcrew-select form-control" id="selectCrew" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">"Deine Crew"</a>
+                <div class="job-addcrew align-items-center">
+                    <div class="job-addcrew element">
+                        <label for="crewname" class="col-form-label">Crew wählen: </label>
+                    </div>
+                    <div class="job-addcrew element">
+                        <div class="dropdown">
+                            <a class="btn btn-primary job-addcrew-select form-control" id="selectCrew" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">"Deine Crew"</a>
 
-                                <div class="collapse" id="collapseExample">
-                                    <div class="list-group list-group-light list-group-small job-addcrew-select" id="crewList">
-                                    </div>
+                            <div class="collapse" id="collapseExample">
+                                <div class="list-group list-group-light list-group-small job-addcrew-select" id="crewList">
                                 </div>
                             </div>
-                            <div class="job-addcrew helptext">
-                                <div class="mt-1">
-                                    <span>
-                                        <i>Wähle die Crew, die du bearbeiten möchtest</i>
-                                    </span>
-                                </div>
+                        </div>
+                        <div class="job-addcrew helptext">
+                            <div class="mt-1">
+                                <span>
+                                    <i>Wähle die Crew, die du bearbeiten möchtest</i>
+                                </span>
                             </div>
                         </div>
                     </div>
-                    
+                </div>
+
                 <hr>
 
                 <h5 class="header-text text-center mb-3" id="crewHeader">"Deine Crew"</h5>
-                <div class="job-addcrew">
-                    <form action="">
-                        <div class="job-addcrew align-items-center">
-                            <div class="job-addcrew element">
-                                <label for="minername" class="col-form-label">Miner: </label>
-                            </div>
-                            <div class="job-addcrew element">
-                                <input type="text" id="minername" class="form-control">
-                            </div>
+
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-xxl-2 text-center">
+                            <label for="minername" class="col-form-label">Miner: </label>
                         </div>
-                        <div class="mt-1">
-                            <button type="submit" class="job-addcrew button add form-control btn btn-outline-success">ADD</button>
+                        <div class="col-xxl-4">
+                            <input type="text" id="minername" class="form-control">
                         </div>
-                    </form>
-                    <form action="">
-                        <div class="job-addcrew helptext">
+
+                        <div class=" col-xxl-4">
                             <div class="dropdown">
                                 <a class="btn btn-warning job-addcrew-select form-control" data-bs-toggle="collapse" href="#collapseMiner" role="button" aria-expanded="false" aria-controls="collapseMiner">
                                     "Minername"
@@ -199,29 +193,29 @@ $jobCrewProfit = 0;
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-1">
-                            <button type="submit" class="job-addcrew button add del form-control btn btn-outline-danger">DEL</button>
+                    </div>
+
+                    <div class="row ">
+                        <div class="offset-xxl-3 col-xxl-4 mt-3">
+                            <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_miner()">ADD</button>
                         </div>
-                    </form>
+                        <div class="col-xxl-4 mt-3">
+                            <button class="job-addcrew button add del form-control btn btn-outline-danger">DEL</button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="mt-3 job-addcrew">
-                    <form action="">
-                        <div class="job-addcrew align-items-center">
-                            <div class="job-addcrew element">
-                                <label for="scoutname" class="col-form-label">Scouts: </label>
-                            </div>
-                            <div class="job-addcrew element">
-                                <input type="text" id="scoutname" class="form-control">
-                            </div>
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-xxl-2 text-center">
+                            <label for="scoutname" class="col-form-label">Scouts: </label>
                         </div>
-                        <div class="mt-1">
-                            <button type="submit" class="job-addcrew button add form-control btn btn-outline-success">ADD</button>
+                        <div class="col-xxl-4">
+                            <input type="text" id="scoutname" class="form-control">
                         </div>
-                    </form>
-                    <form action="">
-                        <div class="job-addcrew helptext">
-                            <div class="dropdown">
+
+                        <div class=" col-xxl-4">
+                        <div class="dropdown">
                                 <a class="btn btn-warning job-addcrew-select form-control" data-bs-toggle="collapse" href="#collapseScout" role="button" aria-expanded="false" aria-controls="collapseScout">
                                     "Scoutname"
                                 </a>
@@ -234,10 +228,16 @@ $jobCrewProfit = 0;
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-1">
-                            <button type="submit" class="job-addcrew button add del form-control btn btn-outline-danger">DEL</button>
+                    </div>
+
+                    <div class="row ">
+                        <div class="offset-xxl-3 col-xxl-4 mt-3">
+                            <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_miner()">ADD</button>
                         </div>
-                    </form>
+                        <div class="col-xxl-4 mt-3">
+                            <button class="job-addcrew button add del form-control btn btn-outline-danger">DEL</button>
+                        </div>
+                    </div>
                 </div>
 
                 <hr>
@@ -779,7 +779,8 @@ $jobCrewProfit = 0;
     require "structure/footer.php";
     ?>
 
-<script src="scripts/add_crew.js"></script>
+    <script src="scripts/add_crew.js"></script>
+    <script src="scripts/add_crew_workers.js"></script>
 
 </body>
 
