@@ -1,6 +1,10 @@
 window.addEventListener("load", (event) => {
 
-  
+      const selectMass = document.getElementById("massStone");
+      selectMass.addEventListener("input", () => {
+        callPHP();
+      });
+
       const selectElem1 = document.getElementById("select1");
       selectElem1.addEventListener("change", () => {
         callPHP();
@@ -13,11 +17,6 @@ window.addEventListener("load", (event) => {
 
       const selectElem3 = document.getElementById("select3");
       selectElem3.addEventListener("change", () => {
-        callPHP();
-      });
-
-      const selectMass = document.getElementById("massStone");
-      selectMass.addEventListener("input", () => {
         callPHP();
       });
 
@@ -36,8 +35,6 @@ window.addEventListener("load", (event) => {
         callPHP();
       });
       
-
-
       function setValues(json){
         
         $("#priceRaw1").val(json.priceRaw1);
@@ -58,32 +55,36 @@ window.addEventListener("load", (event) => {
         index3 = document.getElementById("select3").selectedIndex;
     
         massStone = document.getElementById("massStone").value;
+
         proportion1 = document.getElementById("proportion1").value;
         proportion2 = document.getElementById("proportion2").value;
         proportion3 = document.getElementById("proportion3").value;
 
-        if(massStone > 10000){
-          alert("Masse des Steins darf nicht höher als 10000 sein");
+        if(parseInt(massStone) >= 10000){
           document.getElementById("massStone").value = 0;
+          document.getElementById("mass1").value = 0;
+          document.getElementById("mass2").value = 0;
+          document.getElementById("mass3").value = 0;
+          alert("Masse des Steins darf nicht höher als 10000 sein");
+          setEndValues();
         }
-
-        if(proportion1 > 100){
+        else if(parseFloat(proportion1) > 100){
           alert("Mehr als 100% sind nicht möglich");
           document.getElementById("proportion1").value = 0;
           document.getElementById("mass1").value = 0;
-          setEndValues()
+          setEndValues();
         }
-        else if(proportion2 > 100){
+        else if(parseFloat(proportion2) > 100){
           alert("Mehr als 100% sind nicht möglich");
           document.getElementById("proportion2").value = 0;
           document.getElementById("mass2").value = 0;
-          setEndValues()
+          setEndValues();
         }
-        else if(proportion3 > 100){
+        else if(parseFloat(proportion3) > 100){
           alert("Mehr als 100% sind nicht möglich");
           document.getElementById("proportion3").value = 0;
           document.getElementById("mass3").value = 0;
-          setEndValues()
+          setEndValues();
 
         }
         else if((parseFloat(proportion1) + parseFloat(proportion2) + parseFloat(proportion3)) > 100){
@@ -141,11 +142,12 @@ window.addEventListener("load", (event) => {
       }
 
       function setEndValues(){
+
         document.getElementById("weightPureSmall").innerHTML = "0 cSCU";
         document.getElementById("weightPureBig").innerHTML = "0 SCU";
 
         document.getElementById("weightMineralSmall").innerHTML =  "0 cSCU";
-        document.getElementById("weightMineralBig").innerHTML = + "0 SCU";
+        document.getElementById("weightMineralBig").innerHTML = "0 SCU";
 
         document.getElementById("weightTrashSmall").innerHTML ="0 cSCU";
         document.getElementById("weightTrashBig").innerHTML = "0 SCU";
@@ -154,6 +156,7 @@ window.addEventListener("load", (event) => {
 
         
         document.getElementById("refinedProfit").innerHTML = " 0 aUEC";
+
       }
 
 
