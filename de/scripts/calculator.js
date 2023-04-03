@@ -1,3 +1,9 @@
+$('#bologna-list a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+
 window.addEventListener("load", (event) => {
 
       const selectMass = document.getElementById("massStone");

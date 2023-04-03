@@ -3,7 +3,7 @@
 require "structure/header.php";
 require "functions/database.php";
 
-if(isset($_POST["logout"])){
+if (isset($_POST["logout"])) {
     $_SESSION["loggedIn"] = "false";
     session_destroy();
 }
@@ -27,10 +27,10 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-lg-0">
-                <?php
-                        if(isset($_SESSION["loggedIn"])){
-                            if($_SESSION["loggedIn"] == "true"){
-                                echo '
+                    <?php
+                    if (isset($_SESSION["loggedIn"])) {
+                        if ($_SESSION["loggedIn"] == "true") {
+                            echo '
                                 <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
                                 </li>
@@ -38,8 +38,8 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                                     <a class="nav-link" href="auftraege.php">Aufträge</a>
                                 </li>
                                 ';
-                            }
                         }
+                    }
                     ?>
                     <li class="nav-item">
                         <a class="nav-link active" href="berechnungen.php">Berechnungen</a>
@@ -50,30 +50,29 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                         <a class="nav-link" href="uebermich.php">Über Mich</a>
                     </li>
                     <?php
-                        if(isset($_SESSION["loggedIn"])){
-                            if($_SESSION["loggedIn"] == "true"){
-                                echo '<li class="nav-item">
+                    if (isset($_SESSION["loggedIn"])) {
+                        if ($_SESSION["loggedIn"] == "true") {
+                            echo '<li class="nav-item">
                                 <form action="" method="post">
                                     <button type="submit" class="btn btn-link hyperlink" name="logout">Logout</button>
                                 </form>
                             </li>';
-                            }
-                            else{
-                                echo '<li class="nav-item">
+                        } else {
+                            echo '<li class="nav-item">
                                         <a class="nav-link " href="registrieren.php">Registrieren</a>
                                     </li>
                                     <li class="nav-item me-2">
                                         <a class="nav-link" href="login.php">Login</a>
                                     </li>';
-                            }
-                        }else{
-                            echo '<li class="nav-item">
+                        }
+                    } else {
+                        echo '<li class="nav-item">
                             <a class="nav-link" href="registrieren.php">Registrieren</a>
                         </li>
                         <li class="nav-item me-2">
                             <a class="nav-link" href="login.php">Login</a>
                         </li>';
-                        }
+                    }
                     ?>
                     <form class="d-flex" role="search">
                         <button class="btn btn-outline-success mt-2 mb-2 language" type="submit">DE</button>
@@ -93,7 +92,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
 
                 <form action="">
                     <div class="mt-2 row ">
-                    <div class="col-lg-1"></div>
+                        <div class="col-lg-1"></div>
                         <div class="col-lg-2">Masse des Steins:</div>
                         <div class="col-lg-2">
                             <input type="number" value="0" min="0" max="9999" id="massStone" class="form-control">
@@ -124,12 +123,12 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                         <div class="col-lg-2">
                             <div class="col-3 text-info calculateOre">
                                 <select class="form-select" id="select1">
-                                    <?php 
-                                        for ($i = 0; $i < count($_SESSION['oreTypes']); $i++){
-                                            echo '<option value="$i">';
-                                            echo $_SESSION['oreTypes'][$i][1];
-                                            echo '</option>';
-                                    } 
+                                    <?php
+                                    for ($i = 0; $i < count($_SESSION['oreTypes']); $i++) {
+                                        echo '<option value="$i">';
+                                        echo $_SESSION['oreTypes'][$i][1];
+                                        echo '</option>';
+                                    }
                                     ?>
                                 </select>
                             </div>
@@ -138,7 +137,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                             <input type="number" value="0" min="0" max="100" id="proportion1" class="form-control">
                         </div>
                         <div class="col-lg-2 ">
-                            <input class="form-control" type="text" value=""  id="mass1" disabled readonly>
+                            <input class="form-control" type="text" value="" id="mass1" disabled readonly>
                         </div>
                         <div class="col-lg-2">
                             <input class="form-control" type="text" value="" id="priceRaw1" disabled readonly>
@@ -153,12 +152,12 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                         <div class="col-lg-2">
                             <div class="col-3 text-info calculateOre">
                                 <select class="form-select" id="select2">
-                                <?php 
-                                        for ($i = 0; $i < count($_SESSION['oreTypes']); $i++){
-                                            echo '<option value="$i">';
-                                            echo $_SESSION['oreTypes'][$i][1];
-                                            echo '</option>';
-                                    } 
+                                    <?php
+                                    for ($i = 0; $i < count($_SESSION['oreTypes']); $i++) {
+                                        echo '<option value="$i">';
+                                        echo $_SESSION['oreTypes'][$i][1];
+                                        echo '</option>';
+                                    }
                                     ?>
                                 </select>
                             </div>
@@ -167,7 +166,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                             <input type="number" value="0" min="0" max="100" id="proportion2" class="form-control">
                         </div>
                         <div class="col-lg-2 ">
-                            <input class="form-control" type="text" value=""  id="mass2" disabled readonly>
+                            <input class="form-control" type="text" value="" id="mass2" disabled readonly>
                         </div>
                         <div class="col-lg-2">
                             <input class="form-control" type="text" value="" id="priceRaw2" disabled readonly>
@@ -182,18 +181,18 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                         <div class="col-lg-2">
                             <div class="col-3 text-info calculateOre">
                                 <select class="form-select" id="select3">
-                                <?php 
-                                        for ($i = 0; $i < count($_SESSION['oreTypes']); $i++){
-                                            echo '<option value="$i">';
-                                            echo $_SESSION['oreTypes'][$i][1];
-                                            echo '</option>';
-                                    } 
+                                    <?php
+                                    for ($i = 0; $i < count($_SESSION['oreTypes']); $i++) {
+                                        echo '<option value="$i">';
+                                        echo $_SESSION['oreTypes'][$i][1];
+                                        echo '</option>';
+                                    }
                                     ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <input type="number" value="0"  min="0" max="100" id="proportion3" class="form-control">
+                            <input type="number" value="0" min="0" max="100" id="proportion3" class="form-control">
                         </div>
                         <div class="col-lg-2 ">
                             <input class="form-control" type="text" value="" id="mass3" disabled readonly>
@@ -202,7 +201,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                             <input class="form-control" type="text" value="" id="priceRaw3" disabled readonly>
                         </div>
                         <div class="col-lg-2">
-                            <input class="form-control" type="text" value="" id="priceRefined3"  disabled readonly>
+                            <input class="form-control" type="text" value="" id="priceRefined3" disabled readonly>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -221,7 +220,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     <div class="mt-2 row justify-content-center">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-2 h5 text-center" id="weightPureSmall">0 cSCU</div>
-                        <div class="col-lg-2 h5 text-center" id="weightMineralSmall" >0 cSCU</div>
+                        <div class="col-lg-2 h5 text-center" id="weightMineralSmall">0 cSCU</div>
                         <div class="col-lg-2 h5 text-center text-warning" id="weightTrashSmall">0 cSCU</div>
                         <div class="col-lg-2 h5 text-center text-success" id="rawProfit">0 aUEC</div>
                         <div class="col-lg-2 h5 text-center text-success" id="refinedProfit">0 aUEC</div>
@@ -241,16 +240,68 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
 
             </div>
         </div>
-
     </div>
 
+    <div class="calculate">
+        <div class="calculate_sub card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#quantanium" role="tab" aria-controls="quantanium" aria-selected="true">Quantanium-ACHTUNG</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#aaronHalo" role="tab" aria-controls="aaronHalo" aria-selected="false">Aaron Halo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#refineries" role="tab" aria-controls="refineries" aria-selected="false">Raffinerien</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sellingstation" role="tab" aria-controls="sellingstation" aria-selected="false">Verkaufsstationen</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="quantanium" role="tabpanel" aria-labelledby="quantanium-tab">
+                        <div class="card-text">
+                            <h3 class="text-center font mt-4">Quantanium und die Zeiten</h3>
+                            
+                        </div>
+                    </div>
+
+                    <div class="tab-pane text-center" id="aaronHalo" role="tabpanel">
+                        <h3>Der Asteroidengürtel</h3>
+                        <h5>Aber wie finde Ich ihn?</h5>
+                        <img src="images/ARC-L1_Routes.PNG" class="img-fluid mt-3 mb-3" alt="ARC-L1_Routes">
+                        <hr>
+                        <img src="images/CRU-L1_Routes.PNG" class="img-fluid mt-3 mb-3" alt="CRU-L1_Routes">
+                        <hr>
+                        <img src="images/HUR-L1_Routes.PNG" class="img-fluid mt-3 mb-3" alt="HUR-L1_Routes">
+                        <hr>
+                        <img src="images/HUR-L2_Routes.PNG" class="img-fluid mt-3 mb-3" alt="HUR-L2_Routes">
+                        <hr>
+                        <img src="images/MIC-L1_Routes.PNG" class="img-fluid mt-3 mb-3" alt="MIC-L1_Routes">
+                        <a href="https://cstone.space/resources/knowledge-base/36-refinery-to-aaron-halo-mining-routes" class="hyperlink">cStone Website</a>
+                    </div>
+
+                    <div class="tab-pane" id="refineries" role="tabpanel" aria-labelledby="refineries-tab">
+                        <p class="card-text">Immerse yourself in the colours, aromas and traditions of Emilia-Romagna with a holiday in Bologna, and discover the city's rich artistic heritage.</p>
+                    </div>
+
+                    <div class="tab-pane" id="sellingstation" role="tabpanel" aria-labelledby="sellingstation-tab">
+                        <p class="card-text">Immerseghgfhgf traditions of Emilia-Romagna with a holiday in Bologna, and discover the city's rich artistic heritage.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <?php
     require "structure/footer.php";
     ?>
 
-<script src="scripts/calculator.js"></script>
+    <script src="scripts/calculator.js"></script>
 
 
 </body>
