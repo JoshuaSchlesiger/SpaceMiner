@@ -19,15 +19,25 @@ if (isset($_SESSION["loggedIn"])) {
     exit();
 }
 
-if (isset($_SESSION["crewnames"])) {
-
-    foreach ($_SESSION["crewnames"] as $value) {
-        echo $value;
-    }
-
-    unset($_SESSION["crewnames"]);
-} else {
+if (!isset($_SESSION["crewnames"])) {
     $_SESSION["crewnames"] = array();
+}
+else{
+    unset($_SESSION["crewnames"]);
+}
+
+if (!isset($_SESSION["minernames"])) {
+    $_SESSION["minernames"] = array();
+}
+else{
+    unset($_SESSION["minernames"]);
+}
+
+if (!isset($_SESSION["scoutnames"])) {
+    $_SESSION["scoutnames"] = array();
+}
+else{
+    unset($_SESSION["scoutnames"]);
 }
 
 //Variables
@@ -156,7 +166,7 @@ $jobCrewProfit = 0;
                         </div>
                         <div class="col-xxl-4 mt-3">
                             <div class="dropdown">
-                                <a class="btn btn-primary form-control" id="selectCrew" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">"Deine Crew"</a>
+                                <a class="btn btn-primary form-control" id="selectCrew" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">&nbsp</a>
 
                                 <div class="collapse" id="collapseExample">
                                     <div class="list-group list-group-light list-group-small " id="crewList">
@@ -177,7 +187,7 @@ $jobCrewProfit = 0;
 
                 <hr class="mt-4">
 
-                <h5 class="header-text text-center mb-3" id="crewHeader">"Deine Crew"</h5>
+                <h4 class="header-text text-center mb-2 mt-4" id="crewHeader">Alpha</h4>
 
                 <div class="container">
                     <div class="row">
@@ -190,14 +200,12 @@ $jobCrewProfit = 0;
 
                         <div class="col-xxl-4 mt-3">
                             <div class="dropdown">
-                                <a class="btn btn-warning job-addcrew-select form-control" data-bs-toggle="collapse" href="#collapseMiner" role="button" aria-expanded="false" aria-controls="collapseMiner">
-                                    "Minername"
+                                <a class="btn btn-warning form-control" id="selectMiner" data-bs-toggle="collapse" href="#collapseMiner" role="button" aria-expanded="false" aria-controls="collapseMiner">
+                                    &nbsp
                                 </a>
                                 <div class="collapse" id="collapseMiner">
-                                    <div class="list-group list-group-light list-group-small  job-addcrew-select">
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
+                                    <div class="list-group list-group-light list-group-small" id="minerList">
+
                                     </div>
                                 </div>
                             </div>
@@ -209,7 +217,7 @@ $jobCrewProfit = 0;
                             <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_miner()">ADD</button>
                         </div>
                         <div class="col-xxl-4 mt-3">
-                            <button class="job-addcrew button add del form-control btn btn-outline-danger">DEL</button>
+                            <button class="job-addcrew button add del form-control btn btn-outline-danger" onclick="del_miner()">DEL</button>
                         </div>
                     </div>
                 </div>
@@ -225,11 +233,11 @@ $jobCrewProfit = 0;
 
                         <div class="col-xxl-4 mt-3">
                             <div class="dropdown">
-                                <a class="btn btn-warning job-addcrew-select form-control" data-bs-toggle="collapse" href="#collapseScout" role="button" aria-expanded="false" aria-controls="collapseScout">
-                                    "Scoutname"
+                                <a class="btn btn-warning form-control" data-bs-toggle="collapse" href="#collapseScout" role="button" aria-expanded="false" aria-controls="collapseScout">
+                                    &nbsp
                                 </a>
                                 <div class="collapse" id="collapseScout">
-                                    <div class="list-group list-group-light list-group-small  job-addcrew-select ">
+                                    <div class="list-group list-group-light list-group-small ">
                                         <a href="#" class="list-group-item list-group-item-action text-center">A</a>
                                         <a href="#" class="list-group-item list-group-item-action text-center">A</a>
                                         <a href="#" class="list-group-item list-group-item-action text-center">A</a>
@@ -379,12 +387,12 @@ $jobCrewProfit = 0;
             <div class="mt-5 d-flex justify-content-center">
                 <div class="job-addcrew align-items-center">
                     <div class="dropdown">
-                        <a class="btn btn-outline-warning btn-lg job-addcrew-select form-control" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+                        <a class="btn btn-outline-warning btn-lg form-control" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
                             <i>'Wähle deine Crew'</i>
                         </a>
 
                         <div class="collapse" id="collapseExample2">
-                            <div class="list-group list-group-light list-group-small job-addcrew-select">
+                            <div class="list-group list-group-light list-group-small ">
                                 <a href="#" class="list-group-item list-group-item-action text-center">A</a>
                                 <a href="#" class="list-group-item list-group-item-action text-center">A</a>
                                 <a href="#" class="list-group-item list-group-item-action text-center">A</a>
@@ -395,7 +403,7 @@ $jobCrewProfit = 0;
             </div>
 
             <div class="row align-items-md-stretch">
-                <div class="col-md-6  mt-5">
+                <div class="col-md-6 mt-5">
                     <div class="h-100 border rounded-3">
 
                         <div class="container">

@@ -12,6 +12,10 @@ function add_crew(){
         alert("Der Name ist zu lang");
         document.getElementById("crewname").value = "";
     }
+    else if(containsWhitespace(crewname)){
+        alert("Leerzeichen sind nicht erlaubt");
+        document.getElementById("crewname").value = "";
+    }
     else{
         element = document.createElement("button");
         element.classList.add("list-group-item");
@@ -29,7 +33,6 @@ function add_crew(){
         if(numberOfChildren == 1){
 
             document.getElementById("selectCrew").textContent = crewname;
-
         }
 
         $.ajax({
@@ -52,3 +55,6 @@ function select_Crew(ele){
 
 }
 
+function containsWhitespace(str) {
+    return str.indexOf(" ") >= 0;
+  }
