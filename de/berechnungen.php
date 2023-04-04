@@ -272,16 +272,6 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     <div class="tab-pane text-center" id="aaronHalo" role="tabpanel">
                         <h3>Der Asteroidengürtel</h3>
                         <h5>Aber wie finde Ich ihn?</h5>
-                        <img src="images/ARC-L1_Routes.PNG" class="img-fluid mt-3 mb-3" alt="ARC-L1_Routes">
-                        <hr>
-                        <img src="images/CRU-L1_Routes.PNG" class="img-fluid mt-3 mb-3" alt="CRU-L1_Routes">
-                        <hr>
-                        <img src="images/HUR-L1_Routes.PNG" class="img-fluid mt-3 mb-3" alt="HUR-L1_Routes">
-                        <hr>
-                        <img src="images/HUR-L2_Routes.PNG" class="img-fluid mt-3 mb-3" alt="HUR-L2_Routes">
-                        <hr>
-                        <img src="images/MIC-L1_Routes.PNG" class="img-fluid mt-3 mb-3" alt="MIC-L1_Routes">
-                        <a href="https://cstone.space/resources/knowledge-base/36-refinery-to-aaron-halo-mining-routes" class="hyperlink">cStone Website</a>
                     </div>
 
                     <div class="tab-pane" id="refineries" role="tabpanel" aria-labelledby="refineries-tab">

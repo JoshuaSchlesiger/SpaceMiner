@@ -405,7 +405,6 @@ body {
 }
 
 
-
 @media screen and (max-width: 1400px) {
   .job-addcrew {
     display: block;
@@ -415,41 +414,9 @@ body {
 @media screen and (min-width: 1400px) {
   .job-addcrew {
     display: flex;
-    
   }
 }
 
-@media screen and (max-width: 1400px) {
-  .job-addcrew.element {
-    margin-top: 1em;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .job-addcrew.element {
-    margin-left: 2em;
-    min-width: 6em;
-  }
-}
-
-
-@media screen and (min-width: 1400px) {
-  .job-addcrew.helptext {
-    margin-left: 2em;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .job-addcrew-select {
-    min-width: 12.9em;
-  }
-}
-
-@media screen and (max-width: 1400px) {
-  .job-addcrew.button {
-    margin-bottom: 3em;
-  }
-}
 
 @media screen and (min-width: 1400px) {
   .job-addcrew.button.add {
@@ -464,48 +431,10 @@ body {
   }
 }
 
-@media screen and (max-width: 1400px) {
-  .job-addcrewSaveReset {
-    display: block;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .job-addcrewSaveReset {
-    display: flex;
-    justify-content:center;
-  }
-}
-
-@media screen and (max-width: 1400px) {
-  .job-addcrew.buttonForm.save {
-    margin-top: 2.5em;
-    height: 60px;
-    margin-bottom: 2em;
-    width: 100%;
-  }
-}
-@media screen and (min-width: 1400px) {
-  .job-addcrew.buttonForm.save {
-    min-width: 13em;
-    height: 60px;
-    margin-right: 3em;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .job-addcrew.buttonForm.reset {
-    min-width: 13em;
-    height: 60px;
-  }
-}
-
-@media screen and (max-width: 1400px) {
-  .job-addcrew.buttonForm.reset {
+  .job-addcrew.buttonForm{
     height: 60px;
     width: 100%;
   }
-}
 
 .job-addcrew.buttonForm span {
   text-align: center;

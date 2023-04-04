@@ -122,41 +122,50 @@ $jobCrewProfit = 0;
             <h5 class="header-text card-header text-center">Erstelle einen neuen Auftrag</h5>
             <div class="card-body">
 
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xxl-2 text-center mt-3">
+                            <label for="crewname" class="col-form-label">Crewname: </label>
+                        </div>
+                        <div class="col-xxl-4 mt-3">
+                            <input type="text" id="crewname" class="form-control">
+                        </div>
 
-                <div class="mt-3 job-addcrew align-items-center">
-                    <div class="job-addcrew element">
-                        <label for="crewname" class="col-form-label">Crewname: </label>
+                        <div class="col-xxl-6 mt-3">
+                            <div class="mt-1">
+                                <span>
+                                    <i>Muss zwischen 5 und 20 Zeichen lang sein</i>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="job-addcrew element">
-                        <input type="text" id="crewname" class="form-control">
+                    <div class="row">
+                        <div class="offset-xxl-2 col-xxl-4 mt-3">
+                            <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_crew()">ADD</button>
+                        </div>
                     </div>
-                    <div class="job-addcrew helptext">
-                        <span>
-                            <i>Muss zwischen 5 und 20 Zeichen lang sein</i>
-                        </span>
-                    </div>
-                </div>
-                <div class="mt-1">
-                    <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_crew()">ADD</button>
                 </div>
 
 
                 <hr>
 
-                <div class="job-addcrew align-items-center">
-                    <div class="job-addcrew element">
-                        <label for="crewname" class="col-form-label">Crew wählen: </label>
-                    </div>
-                    <div class="job-addcrew element">
-                        <div class="dropdown">
-                            <a class="btn btn-primary job-addcrew-select form-control" id="selectCrew" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">"Deine Crew"</a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xxl-2 text-center mt-3">
+                            <label for="selectCrew" class="col-form-label">Crew wählen: </label>
+                        </div>
+                        <div class="col-xxl-4 mt-3">
+                            <div class="dropdown">
+                                <a class="btn btn-primary form-control" id="selectCrew" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">"Deine Crew"</a>
 
-                            <div class="collapse" id="collapseExample">
-                                <div class="list-group list-group-light list-group-small job-addcrew-select" id="crewList">
+                                <div class="collapse" id="collapseExample">
+                                    <div class="list-group list-group-light list-group-small " id="crewList">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="job-addcrew helptext">
+
+                        <div class="col-xxl-6 mt-3">
                             <div class="mt-1">
                                 <span>
                                     <i>Wähle die Crew, die du bearbeiten möchtest</i>
@@ -166,20 +175,20 @@ $jobCrewProfit = 0;
                     </div>
                 </div>
 
-                <hr>
+                <hr class="mt-4">
 
                 <h5 class="header-text text-center mb-3" id="crewHeader">"Deine Crew"</h5>
 
-                <div class="container mt-4">
+                <div class="container">
                     <div class="row">
-                        <div class="col-xxl-2 text-center">
+                        <div class="col-xxl-2 text-center mt-3">
                             <label for="minername" class="col-form-label">Miner: </label>
                         </div>
-                        <div class="col-xxl-4">
+                        <div class="col-xxl-4 mt-3">
                             <input type="text" id="minername" class="form-control">
                         </div>
 
-                        <div class=" col-xxl-4">
+                        <div class="col-xxl-4 mt-3">
                             <div class="dropdown">
                                 <a class="btn btn-warning job-addcrew-select form-control" data-bs-toggle="collapse" href="#collapseMiner" role="button" aria-expanded="false" aria-controls="collapseMiner">
                                     "Minername"
@@ -195,8 +204,8 @@ $jobCrewProfit = 0;
                         </div>
                     </div>
 
-                    <div class="row ">
-                        <div class="offset-xxl-3 col-xxl-4 mt-3">
+                    <div class="row">
+                        <div class="offset-xxl-2 col-xxl-4 mt-3">
                             <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_miner()">ADD</button>
                         </div>
                         <div class="col-xxl-4 mt-3">
@@ -205,17 +214,17 @@ $jobCrewProfit = 0;
                     </div>
                 </div>
 
-                <div class="container mt-3">
+                <div class="container">
                     <div class="row">
-                        <div class="col-xxl-2 text-center">
+                        <div class="col-xxl-2 text-center mt-3">
                             <label for="scoutname" class="col-form-label">Scouts: </label>
                         </div>
-                        <div class="col-xxl-4">
+                        <div class="col-xxl-4 mt-3">
                             <input type="text" id="scoutname" class="form-control">
                         </div>
 
-                        <div class=" col-xxl-4">
-                        <div class="dropdown">
+                        <div class="col-xxl-4 mt-3">
+                            <div class="dropdown">
                                 <a class="btn btn-warning job-addcrew-select form-control" data-bs-toggle="collapse" href="#collapseScout" role="button" aria-expanded="false" aria-controls="collapseScout">
                                     "Scoutname"
                                 </a>
@@ -231,7 +240,7 @@ $jobCrewProfit = 0;
                     </div>
 
                     <div class="row ">
-                        <div class="offset-xxl-3 col-xxl-4 mt-3">
+                        <div class="offset-xxl-2 col-xxl-4 mt-3">
                             <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_miner()">ADD</button>
                         </div>
                         <div class="col-xxl-4 mt-3">
@@ -242,18 +251,16 @@ $jobCrewProfit = 0;
 
                 <hr>
 
-                <div class="mb-2 job-addcrewSaveReset">
-                    <form action="">
-                        <div class="mt-1">
-                            <button type="submit" class="job-addcrew buttonForm save btn btn-outline-light"><span>SAVE</span></button>
-                        </div>
-                    </form>
 
-                    <form action="">
-                        <div class="mt-1">
-                            <button type="submit" class="job-addcrew reset buttonForm btn btn-outline-warning"><span>RESET</span></button>
+                <div class="container">
+                    <div class="row ">
+                        <div class="offset-xxl-2 col-xxl-4 mt-3">
+                            <button class="job-addcrew buttonForm btn btn-outline-light"><span>SAVE</span></button>
                         </div>
-                    </form>
+                        <div class="col-xxl-4 mt-3">
+                            <button class="job-addcrew buttonForm btn btn-outline-warning"><span>RESET</span></button>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -317,8 +324,6 @@ $jobCrewProfit = 0;
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
@@ -371,31 +376,26 @@ $jobCrewProfit = 0;
                 </div>
             </div>
 
-            <form action="">
-                <div class="mt-5 d-flex justify-content-center">
-                    <div class="job-addcrew align-items-center">
-                        <div class="job-addcrew element">
-                            <div class="dropdown">
-                                <a class="btn btn-outline-warning btn-lg job-addcrew-select form-control" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
-                                    <i>'Wähle deine Crew'</i>
-                                </a>
+            <div class="mt-5 d-flex justify-content-center">
+                <div class="job-addcrew align-items-center">
+                    <div class="dropdown">
+                        <a class="btn btn-outline-warning btn-lg job-addcrew-select form-control" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+                            <i>'Wähle deine Crew'</i>
+                        </a>
 
-                                <div class="collapse" id="collapseExample2">
-                                    <div class="list-group list-group-light list-group-small job-addcrew-select">
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
-                                    </div>
-                                </div>
+                        <div class="collapse" id="collapseExample2">
+                            <div class="list-group list-group-light list-group-small job-addcrew-select">
+                                <a href="#" class="list-group-item list-group-item-action text-center">A</a>
+                                <a href="#" class="list-group-item list-group-item-action text-center">A</a>
+                                <a href="#" class="list-group-item list-group-item-action text-center">A</a>
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
 
-            <div class="row align-items-md-stretch mt-5">
-                <div class="col-md-6">
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6  mt-5">
                     <div class="h-100 border rounded-3">
 
                         <div class="container">
@@ -403,20 +403,51 @@ $jobCrewProfit = 0;
                                 <div class="h2 font jobDiv">Verkaufen</div>
                             </div>
 
-                            <form action="#">
-                                <div class="row mt-5 mb-4 d-flex justify-content-center">
-                                    <div class="col-6 ">Wähle den Lagerist/ Verkäufer: </div>
-                                    <div class="col-3 text-info jobSelectCrewOptions">
-                                        <select class="form-select">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
+                            <div class="row mt-5 mb-4 d-flex justify-content-center">
+                                <div class="col-6 ">Wähle den Lagerist/ Verkäufer: </div>
+                                <div class="col-3 text-info jobSelectCrewOptions">
+                                    <select class="form-select">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
                                 </div>
-                                <hr>
+                            </div>
+                            <hr>
+                            <div class="row mt-4 d-flex justify-content-center">
+                                <div class="col-6 ">Wähle die Miningstation: </div>
+                                <div class="col-3 text-info jobSelectCrewOptions">
+                                    <select class="form-select">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-4 d-flex justify-content-center">
+                                <div class="col-6 ">Wähle den Auftrag: </div>
+                                <div class="col-3 text-info jobSelectCrewOptions">
+                                    <select class="form-select">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="progress crew mb-5">
+                                <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:45%">
+                                    40%
+                                </div>
+                            </div>
+
+                            <hr>
+
+
+                            <div class="mt-5">
                                 <div class="row mt-4 d-flex justify-content-center">
-                                    <div class="col-6 ">Wähle die Miningstation: </div>
+                                    <div class="col-6 ">Wähle die Verkaufsstation: </div>
                                     <div class="col-3 text-info jobSelectCrewOptions">
                                         <select class="form-select">
                                             <option value="1">One</option>
@@ -425,49 +456,15 @@ $jobCrewProfit = 0;
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row mt-4 d-flex justify-content-center">
-                                    <div class="col-6 ">Wähle den Auftrag: </div>
-                                    <div class="col-3 text-info jobSelectCrewOptions">
-                                        <select class="form-select">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            </div>
 
+                            <div class="d-flex justify-content-evenly mt-5 mb-5 jobCrewButtonstop">
 
-                                <div class="progress crew mb-5">
-                                    <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:45%">
-                                        40%
-                                    </div>
-                                </div>
+                                <a href="#" type="button" class="btn btn-outline-success jobCrewButtons">Abschließen</a>
+                                <a href="#" type="button" class="btn btn-outline-danger jobCrewButtons">Löschen</a>
 
-                                <hr>
+                            </div>
 
-
-                                <div class="mt-5">
-                                    <div class="row mt-4 d-flex justify-content-center">
-                                        <div class="col-6 ">Wähle die Verkaufsstation: </div>
-                                        <div class="col-3 text-info jobSelectCrewOptions">
-                                            <select class="form-select">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex justify-content-evenly mt-5 mb-5 jobCrewButtonstop">
-
-                                    <a href="#" type="button" class="btn btn-outline-success jobCrewButtons">Abschließen</a>
-                                    <a href="#" type="button" class="btn btn-outline-danger jobCrewButtons">Löschen</a>
-
-                                </div>
-
-
-                            </form>
 
                             <hr class="mt-4">
 
@@ -486,7 +483,7 @@ $jobCrewProfit = 0;
                 </div>
 
 
-                <div class="col-md-6">
+                <div class="col-md-6 mt-5">
                     <div class="h-100 border rounded-3">
 
                         <div class="container">
@@ -494,110 +491,104 @@ $jobCrewProfit = 0;
                                 <div class="h2 font jobDiv">Einlagern</div>
                             </div>
 
-                            <form action="#">
-                                <div class="row mt-5 mb-4 d-flex justify-content-center">
-                                    <div class="col-6 ">Wähle die Miningstation </div>
-                                    <div class="col-3 text-info jobSelectCrewOptions">
-                                        <select class="form-select">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
+                            <div class="row mt-5 mb-4 d-flex justify-content-center">
+                                <div class="col-6 ">Wähle die Miningstation </div>
+                                <div class="col-3 text-info jobSelectCrewOptions">
+                                    <select class="form-select">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <hr>
+
+
+                            <div class="row mt-4 d-flex justify-content-center">
+                                <div class="col-6">Steinart: </div>
+
+                                <div class="col-3 text-info jobSelectCrewOptions">
+                                    <select class="form-select">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
                                 </div>
 
-                                <hr>
+                            </div>
+                            <div class="row mt-4 d-flex justify-content-center">
+                                <div class="col-6">Gewicht: </div>
 
-                                <form action="">
-
-                                    <div class="row mt-4 d-flex justify-content-center">
-                                        <div class="col-6">Steinart: </div>
-
-                                        <div class="col-3 text-info jobSelectCrewOptions">
-                                            <select class="form-select">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                    <div class="row mt-4 d-flex justify-content-center">
-                                        <div class="col-6">Gewicht: </div>
-
-                                        <div class="col-3 jobSelectCrewOptions">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="row  mt-3 d-flex justify-content-center">
-                                        <div class="col-6"></div>
-
-                                        <div class="col-3 jobSelectCrewOptions">
-                                            <button type="button" class="button btn btn-outline-success">ADD</button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                                <hr>
-
-                                <form action="">
-
-                                    <div class="row mt-4 d-flex justify-content-center">
-                                        <div class="col-6">Einlagerung bearbeiten: </div>
-
-                                        <div class="col-3 text-info jobSelectCrewOptions">
-                                            <select class="form-select">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                    <div class="row  mt-3 d-flex justify-content-center">
-                                        <div class="col-6"></div>
-
-                                        <div class="col-3 jobSelectCrewOptions">
-                                            <button type="button" class="button btn btn-outline-danger">DEL</button>
-                                            <button type="button" class="button btn btn-outline-info">SEL</button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                                <div class="row mt-5 d-flex justify-content-center">
-                                    <div class="col-6">Dauer des Auftrags: </div>
-
-                                    <div class="col-3 jobSelectCrewOptions">
-                                        <div class="row">
-                                            <div class="col-5">
-                                                <input type="text" placeholder="h" class="form-control">
-                                            </div>
-                                            <div class="col-5">
-                                                <input type="text" placeholder="min" class="form-control">
-                                            </div>
-                                        </div>
-
-                                    </div>
-
+                                <div class="col-3 jobSelectCrewOptions">
+                                    <input type="text" class="form-control">
                                 </div>
-                                <div class="row mt-4 d-flex justify-content-center">
-                                    <div class="col-6">Kosten: </div>
+                            </div>
+                            <div class="row  mt-3 d-flex justify-content-center">
+                                <div class="col-6"></div>
 
-                                    <div class="col-3 jobSelectCrewOptions">
-                                        <input type="text" class="form-control">
-                                    </div>
+                                <div class="col-3 jobSelectCrewOptions">
+                                    <button type="button" class="button btn btn-outline-success">ADD</button>
                                 </div>
-
-                                <hr class="mt-4">
-
-                                <div class="d-flex justify-content-evenly mt-4 mb-4 jobCrewButtonstop">
-
-                                    <button class="btn btn-outline-success jobCrewButtons">Hinzufügen</button>
-                                    <button class="btn btn-outline-warning jobCrewButtons">Zurücksetzen</button>
-
-                                </div>
-
+                            </div>
                             </form>
+
+                            <hr>
+
+
+                            <div class="row mt-4 d-flex justify-content-center">
+                                <div class="col-6">Einlagerung bearbeiten: </div>
+
+                                <div class="col-3 text-info jobSelectCrewOptions">
+                                    <select class="form-select">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="row  mt-3 d-flex justify-content-center">
+                                <div class="col-6"></div>
+
+                                <div class="col-3 jobSelectCrewOptions">
+                                    <button type="button" class="button btn btn-outline-danger">DEL</button>
+                                    <button type="button" class="button btn btn-outline-info">SEL</button>
+                                </div>
+                            </div>
+
+                            <div class="row mt-5 d-flex justify-content-center">
+                                <div class="col-6">Dauer des Auftrags: </div>
+
+                                <div class="col-3 jobSelectCrewOptions">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <input type="text" placeholder="h" class="form-control">
+                                        </div>
+                                        <div class="col-5">
+                                            <input type="text" placeholder="min" class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row mt-4 d-flex justify-content-center">
+                                <div class="col-6">Kosten: </div>
+
+                                <div class="col-3 jobSelectCrewOptions">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <hr class="mt-4">
+
+                            <div class="d-flex justify-content-evenly mt-4 mb-4 jobCrewButtonstop">
+
+                                <button class="btn btn-outline-success jobCrewButtons">Hinzufügen</button>
+                                <button class="btn btn-outline-warning jobCrewButtons">Zurücksetzen</button>
+
+                            </div>
 
 
                         </div>
@@ -619,19 +610,16 @@ $jobCrewProfit = 0;
                                 <div class="h2 font jobDiv">Eingehende Bezahlung:</div>
                             </div>
 
-                            <form action="#">
-                                <div class="row mt-5 mb-4 d-flex justify-content-center">
-                                    <div class="col-6 ">Wähle Spieler: </div>
-                                    <div class="col-3 text-info jobSelectCrewOptions">
-                                        <select class="form-select">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
+                            <div class="row mt-5 mb-4 d-flex justify-content-center">
+                                <div class="col-6 ">Wähle Spieler: </div>
+                                <div class="col-3 text-info jobSelectCrewOptions">
+                                    <select class="form-select">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
                                 </div>
-                            </form>
-
+                            </div>
                             <hr>
 
                             <div class="justify-content-center">
@@ -663,18 +651,16 @@ $jobCrewProfit = 0;
                                 <div class="h2 font jobDiv">Ausgehende Bezahlung:</div>
                             </div>
 
-                            <form action="#">
-                                <div class="row mt-5 mb-4 d-flex justify-content-center">
-                                    <div class="col-6 ">Wähle Spieler: </div>
-                                    <div class="col-3 text-info jobSelectCrewOptions">
-                                        <select class="form-select">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
+                            <div class="row mt-5 mb-4 d-flex justify-content-center">
+                                <div class="col-6 ">Wähle Spieler: </div>
+                                <div class="col-3 text-info jobSelectCrewOptions">
+                                    <select class="form-select">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
                                 </div>
-                            </form>
+                            </div>
 
                             <hr>
 
@@ -700,13 +686,26 @@ $jobCrewProfit = 0;
             </div>
         </div>
 
+        <div class="container mb-4">
+            <div class="row ">
+                <div class="offset-xxl-1 col-xxl-4 mt-3">
+                    <button class="button form-control btn btn-outline-success btn-lg">Abschließen</button>
+                </div>
+                <div class="offset-xxl-2 col-xxl-4 mt-3">
+                    <button class="button form-control btn btn-outline-info btn-lg">Alle bezahlen</button>
+                </div>
+            </div>
 
-        <div class="mt-5 mb-5 d-flex justify-content-lg-evenly jobCrewButtonsEndTop">
-            <button class="btn btn-outline-success jobCrewButtonsEnd">Abschließen</button>
-            <button class="btn btn-outline-info jobCrewButtonsEnd">Alle bezahlen</button>
-            <button class="btn btn-outline-warning jobCrewButtonsEnd">Bezahlungen löschen</button>
-            <button class="btn btn-outline-danger jobCrewButtonsEnd">Löschen</button>
+            <div class="row ">
+                <div class="offset-xxl-1 col-xxl-4 mt-3">
+                    <button class="button form-control btn btn-outline-warning btn-lg">Bezahlungen löschen</button>
+                </div>
+                <div class="offset-xxl-2 col-xxl-4 mt-3">
+                    <button class="button form-control btn btn-outline-danger btn-lg">Löschen</button>
+                </div>
+            </div>
         </div>
+
 
 
 
