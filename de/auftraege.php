@@ -469,7 +469,7 @@ $jobCrewProfit = 0;
                             <hr class="mt-4">
 
                             <div class="justify-content-center">
-                                <div class="text-center mt-5 ">
+                                <div class="text-center mt-4">
                                     <span class="h3 font">Crew-ertrag</span>
                                 </div>
                                 <div class="justify-content-center">
