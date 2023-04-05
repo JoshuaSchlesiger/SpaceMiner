@@ -93,4 +93,9 @@ class Crew{
         let x = this.MinerNames.indexOf(MinerName);
         this.MinerNames.splice(x, 1);
     }
+
+    delScouts(ScoutName){
+        let x = this.ScoutNames.indexOf(ScoutName);
+        this.ScoutNames.splice(x, 1);
+    }
 }

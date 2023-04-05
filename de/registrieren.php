@@ -29,6 +29,7 @@ if(isset($_POST["sentRegister"])){
         if($username_statusCheck == "" && $password_status == "" && $checkbox_status == "" && $username_statusUsed == ""){
             register($conn, $_POST["username"], $_POST["password"]);
             $_SESSION["loggedIn"] = "true";
+            $_SESSION["username"] = $_POST["username"];
             unset($_POST["sentRegister"]);
             header("Location: dashboard.php");
             exit();

@@ -22,6 +22,7 @@ if(isset($_POST["sentLogin"])){
         if($status == ""){
             $_SESSION["loggedIn"] = "true";
             $_SESSION['oreTypes'] = getOreTypes($conn);
+            $_SESSION["username"] = $_POST["username"];
             header("Location: dashboard.php");
             exit();
         }

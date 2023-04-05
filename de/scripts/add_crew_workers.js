@@ -1,4 +1,5 @@
 crew = "";
+crewnames = new Array();
 
 // #region miner
 
@@ -50,17 +51,6 @@ function add_miner(){
         crew = getCrew(crewHeader);
         crew.setMiners(minername);
 
-    /*
-        $.ajax({
-            url:'functions/add_crew.php',
-            method: "POST",
-            data: {
-                crewname: crewname,
-            }
-        })
-
-        */
-        
     }
 }
 
@@ -115,7 +105,7 @@ function add_scout(){
     
 
      if(minername == ""){
-         alert("Bitte Name für deine Miner setzen");
+         alert("Bitte Name für deine Scout setzen");
      }
      else if(minername.length < 5){
          alert("Der Name ist zu kurz");
@@ -152,17 +142,7 @@ function add_scout(){
          }
 
          crew = getCrew(crewHeader);
-     /*
-         $.ajax({
-             url:'functions/add_crew.php',
-             method: "POST",
-             data: {
-                 crewname: crewname,
-             }
-         })
- 
-         */
-         
+         crew.setScouts(minername);
      }
  }
 
@@ -183,6 +163,9 @@ function del_scout(){
     else{
 
         select = document.getElementById("selectScout").textContent;
+
+        crew = getCrew(crewHeader);
+        crew.delScouts(select);
     
         document.getElementById(select).remove();
     
@@ -197,10 +180,7 @@ function del_scout(){
             x = mainDiv.children[0];
     
             document.getElementById("selectScout").textContent = x.textContent;
-    
-                
-            crew = getCrew(crewHeader);
-            crew.delMiners(x.textContent);
+
         }
     }
 
@@ -228,9 +208,47 @@ function getCrew(crewHeader){
 
 function save(){
 
-    for(i = 0; i<crew.MinerNames.length; i++){
-        alert(crew.MinerNames[i]);
+    if(crews.length <= 0){
+        alert("Es sind keine Crews gesetzt");
+    }
+    else{
+        for(i = 0; i<crew.ScoutNames.length; i++){
+            alert(crew.ScoutNames[i]);
+        }
+    
+        data = new Array()
+        data[0] = new Array();
+        data[0][0] = new Array();
+    
+        for(i = 0; i<crews.length; i++){
+            data[i] = crews[i].CrewName
+        }
+    
+        for(i = 0; i<crews.length; i++){
+            for(y = 0; y<crews[i].ScoutNames.length; y++){
+                data[i][1][y] = crews[i].ScoutNames[y]
+            }
+            for(y = 0; y<crews[i].MinerNames.length; y++){
+                data[i][0][y] = crews[i].MinerNames[y]
+            }
+        }
+    
+        json = JSON.stringify(data)
+    
+    
+        $.ajax({
+            url:'functions/new_job.php',
+            method: "POST",
+            data: {
+                crews: data,
+            }
+        })
     }
 
+    
+}
 
+function reset(){
+    crews = [];
+    location.reload()
 }

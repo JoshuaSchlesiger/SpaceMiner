@@ -3,6 +3,9 @@ session_start();
 require "structure/header.php";
 require "objects/crew.php";
 
+var_dump($_SESSION["crews"]);
+//unset($_SESSION["crews"]);
+
 
 if (isset($_POST["logout"])) {
     $_SESSION["loggedIn"] = "false";
@@ -260,10 +263,10 @@ $jobCrewProfit = 0;
                 <div class="container">
                     <div class="row ">
                         <div class="offset-xxl-2 col-xxl-4 mt-3">
-                            <button class="job-addcrew buttonForm btn btn-outline-light" onclick="save()" ><span>SAVE</span></button>
+                            <button class="job-addcrew buttonForm btn btn-outline-light" onclick="save()"><span>SAVE</span></button>
                         </div>
                         <div class="col-xxl-4 mt-3">
-                            <button class="job-addcrew buttonForm btn btn-outline-warning"><span>RESET</span></button>
+                            <button class="job-addcrew buttonForm btn btn-outline-warning" onclick="reset()"><span>RESET</span></button>
                         </div>
                     </div>
                 </div>
