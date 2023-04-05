@@ -1,3 +1,5 @@
+// #region miner
+
 function add_miner(){
     
    minername =  document.getElementById("minername").value;
@@ -70,14 +72,97 @@ function del_miner(){
     }
 }
 
-function containsWhitespace(str) {
-    return str.indexOf(" ") >= 0;
-  }
-
-
 function select_miner(ele){
 
     var id = ele.id;
     document.getElementById("selectMiner").textContent = id;
     $('#collapseMiner').collapse("toggle");
 }
+
+// #endregion
+
+//#region scout
+function add_scout(){
+    
+    minername =  document.getElementById("scoutname").value;
+ 
+     if(minername == ""){
+         alert("Bitte Name für deine Miner setzen");
+     }
+     else if(minername.length < 5){
+         alert("Der Name ist zu kurz");
+         document.getElementById("scoutname").value = "";
+     }
+     else if(minername.length > 20){
+         alert("Der Name ist zu lang");
+         document.getElementById("scoutname").value = "";
+     }
+     else if(containsWhitespace(minername)){
+         alert("Leerzeichen sind nicht erlaubt");
+         document.getElementById("scoutname").value = "";
+     }
+     
+     else{
+         element = document.createElement("button");
+         element.classList.add("list-group-item");
+         element.classList.add("list-group-item-action");
+         element.classList.add("text-center");
+         element.setAttribute("id", minername);
+         element.setAttribute("onclick", "select_scout(this)");
+         element.textContent= minername;
+      
+         
+         document.getElementById("scoutname").value = "";
+         document.getElementById("scoutList").appendChild(element);
+ 
+         numberOfChildren = document.getElementById('scoutList').childElementCount;
+ 
+         if(numberOfChildren == 1){
+ 
+             document.getElementById("selectScout").textContent = minername;
+ 
+         }
+     /*
+         $.ajax({
+             url:'functions/add_crew.php',
+             method: "POST",
+             data: {
+                 crewname: crewname,
+             }
+         })
+ 
+         */
+         
+     }
+ }
+
+ function select_scout(ele){
+
+    var id = ele.id;
+    document.getElementById("selectScout").textContent = id;
+    $('#collapseScout').collapse("toggle");
+}
+
+function del_scout(){
+    select = document.getElementById("selectScout").textContent;
+    document.getElementById(select).remove();
+
+    numberOfChildren = document.getElementById('scoutList').childElementCount;
+
+    if(numberOfChildren == 0){
+        document.getElementById("selectScout").textContent = "\xa0";
+    }
+    else{
+
+        mainDiv = document.getElementById('scoutList');
+        x = mainDiv.children[0];
+
+        document.getElementById("selectScout").textContent = x.textContent;
+    }
+}
+
+
+// #endregion
+function containsWhitespace(str) {
+    return str.indexOf(" ") >= 0;
+  }

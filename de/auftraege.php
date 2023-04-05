@@ -233,14 +233,12 @@ $jobCrewProfit = 0;
 
                         <div class="col-xxl-4 mt-3">
                             <div class="dropdown">
-                                <a class="btn btn-warning form-control" data-bs-toggle="collapse" href="#collapseScout" role="button" aria-expanded="false" aria-controls="collapseScout">
+                                <a class="btn btn-warning form-control" id="selectScout" data-bs-toggle="collapse" href="#collapseScout" role="button" aria-expanded="false" aria-controls="collapseScout">
                                     &nbsp
                                 </a>
                                 <div class="collapse" id="collapseScout">
-                                    <div class="list-group list-group-light list-group-small ">
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
-                                        <a href="#" class="list-group-item list-group-item-action text-center">A</a>
+                                    <div class="list-group list-group-light list-group-small" id="scoutList">
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -249,10 +247,10 @@ $jobCrewProfit = 0;
 
                     <div class="row ">
                         <div class="offset-xxl-2 col-xxl-4 mt-3">
-                            <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_miner()">ADD</button>
+                            <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_scout()">ADD</button>
                         </div>
                         <div class="col-xxl-4 mt-3">
-                            <button class="job-addcrew button add del form-control btn btn-outline-danger">DEL</button>
+                            <button class="job-addcrew button add del form-control btn btn-outline-danger" onclick="del_scout()">DEL</button>
                         </div>
                     </div>
                 </div>
