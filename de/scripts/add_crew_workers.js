@@ -3,8 +3,12 @@
 function add_miner(){
     
    minername =  document.getElementById("minername").value;
+   crewHeader = document.getElementById("crewHeader").textContent;
 
-    if(minername == ""){
+    if(crewHeader  == "Alpha"){
+        alert("Bitte wähle eine Crew");
+    }
+    else if(minername == ""){
         alert("Bitte Name für deine Miner setzen");
     }
     else if(minername.length < 5){
@@ -40,6 +44,18 @@ function add_miner(){
             document.getElementById("selectMiner").textContent = minername;
 
         }
+
+        crews = getCrews();
+        crew;
+
+        for(i = 0; i<crews.length; i++){
+            if(crews[i].CrewName == crewHeader){
+                crew = crews[i];
+            }
+        }
+
+        alert(crew.CrewName)
+
     /*
         $.ajax({
             url:'functions/add_crew.php',
@@ -85,7 +101,8 @@ function select_miner(ele){
 function add_scout(){
     
     minername =  document.getElementById("scoutname").value;
- 
+    
+
      if(minername == ""){
          alert("Bitte Name für deine Miner setzen");
      }
@@ -163,6 +180,7 @@ function del_scout(){
 
 
 // #endregion
+
 function containsWhitespace(str) {
     return str.indexOf(" ") >= 0;
-  }
+}

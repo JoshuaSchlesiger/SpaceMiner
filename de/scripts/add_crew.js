@@ -1,3 +1,7 @@
+
+crews = [];
+
+
 function add_crew(){
     crewname = document.getElementById("crewname").value;
 
@@ -33,7 +37,12 @@ function add_crew(){
         if(numberOfChildren == 1){
 
             document.getElementById("selectCrew").textContent = crewname;
+            document.getElementById("crewHeader").textContent = crewname;
         }
+
+
+        crew = new Crew(crewname);
+        crews.push(crew);
 
         $.ajax({
             url:'functions/add_crew.php',
@@ -58,3 +67,25 @@ function select_Crew(ele){
 function containsWhitespace(str) {
     return str.indexOf(" ") >= 0;
   }
+
+function getCrews(){
+    return crews;
+}
+
+class Crew{
+    CrewName;
+    MinerNames = [];
+    ScoutNames = [];
+
+    constructor(CrewName){
+        this.CrewName = CrewName;
+    }
+
+    setScouts(ScoutName){
+        this.ScoutNames.push(ScoutName);
+    }
+
+    setMiners(MinerName){
+        this.MinerNames.push(MinerName);
+    }
+}

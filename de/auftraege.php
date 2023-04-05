@@ -21,22 +21,19 @@ if (isset($_SESSION["loggedIn"])) {
 
 if (!isset($_SESSION["crewnames"])) {
     $_SESSION["crewnames"] = array();
-}
-else{
+} else {
     unset($_SESSION["crewnames"]);
 }
 
 if (!isset($_SESSION["minernames"])) {
     $_SESSION["minernames"] = array();
-}
-else{
+} else {
     unset($_SESSION["minernames"]);
 }
 
 if (!isset($_SESSION["scoutnames"])) {
     $_SESSION["scoutnames"] = array();
-}
-else{
+} else {
     unset($_SESSION["scoutnames"]);
 }
 
@@ -187,74 +184,76 @@ $jobCrewProfit = 0;
 
                 <hr class="mt-4">
 
-                <h4 class="header-text text-center mb-2 mt-4" id="crewHeader">Alpha</h4>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xxl-2 text-center mt-3">
-                            <label for="minername" class="col-form-label">Miner: </label>
-                        </div>
-                        <div class="col-xxl-4 mt-3">
-                            <input type="text" id="minername" class="form-control">
-                        </div>
+                <div id="boxMinerScouts">
+                    <h4 class="header-text text-center mb-2 mt-4" id="crewHeader">Alpha</h4>
 
-                        <div class="col-xxl-4 mt-3">
-                            <div class="dropdown">
-                                <a class="btn btn-warning form-control" id="selectMiner" data-bs-toggle="collapse" href="#collapseMiner" role="button" aria-expanded="false" aria-controls="collapseMiner">
-                                    &nbsp
-                                </a>
-                                <div class="collapse" id="collapseMiner">
-                                    <div class="list-group list-group-light list-group-small" id="minerList">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xxl-2 text-center mt-3">
+                                <label for="minername" class="col-form-label">Miner: </label>
+                            </div>
+                            <div class="col-xxl-4 mt-3">
+                                <input type="text" id="minername" class="form-control">
+                            </div>
 
+                            <div class="col-xxl-4 mt-3">
+                                <div class="dropdown">
+                                    <a class="btn btn-warning form-control" id="selectMiner" data-bs-toggle="collapse" href="#collapseMiner" role="button" aria-expanded="false" aria-controls="collapseMiner">
+                                        &nbsp
+                                    </a>
+                                    <div class="collapse" id="collapseMiner">
+                                        <div class="list-group list-group-light list-group-small" id="minerList">
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="offset-xxl-2 col-xxl-4 mt-3">
-                            <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_miner()">ADD</button>
-                        </div>
-                        <div class="col-xxl-4 mt-3">
-                            <button class="job-addcrew button add del form-control btn btn-outline-danger" onclick="del_miner()">DEL</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xxl-2 text-center mt-3">
-                            <label for="scoutname" class="col-form-label">Scouts: </label>
-                        </div>
-                        <div class="col-xxl-4 mt-3">
-                            <input type="text" id="scoutname" class="form-control">
-                        </div>
-
-                        <div class="col-xxl-4 mt-3">
-                            <div class="dropdown">
-                                <a class="btn btn-warning form-control" id="selectScout" data-bs-toggle="collapse" href="#collapseScout" role="button" aria-expanded="false" aria-controls="collapseScout">
-                                    &nbsp
-                                </a>
-                                <div class="collapse" id="collapseScout">
-                                    <div class="list-group list-group-light list-group-small" id="scoutList">
-                                        
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="offset-xxl-2 col-xxl-4 mt-3">
+                                <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_miner()">ADD</button>
+                            </div>
+                            <div class="col-xxl-4 mt-3">
+                                <button class="job-addcrew button add del form-control btn btn-outline-danger" onclick="del_miner()">DEL</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row ">
-                        <div class="offset-xxl-2 col-xxl-4 mt-3">
-                            <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_scout()">ADD</button>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xxl-2 text-center mt-3">
+                                <label for="scoutname" class="col-form-label">Scouts: </label>
+                            </div>
+                            <div class="col-xxl-4 mt-3">
+                                <input type="text" id="scoutname" class="form-control">
+                            </div>
+
+                            <div class="col-xxl-4 mt-3">
+                                <div class="dropdown">
+                                    <a class="btn btn-warning form-control" id="selectScout" data-bs-toggle="collapse" href="#collapseScout" role="button" aria-expanded="false" aria-controls="collapseScout">
+                                        &nbsp
+                                    </a>
+                                    <div class="collapse" id="collapseScout">
+                                        <div class="list-group list-group-light list-group-small" id="scoutList">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xxl-4 mt-3">
-                            <button class="job-addcrew button add del form-control btn btn-outline-danger" onclick="del_scout()">DEL</button>
+
+                        <div class="row ">
+                            <div class="offset-xxl-2 col-xxl-4 mt-3">
+                                <button class="job-addcrew button add form-control btn btn-outline-success" onclick="add_scout()">ADD</button>
+                            </div>
+                            <div class="col-xxl-4 mt-3">
+                                <button class="job-addcrew button add del form-control btn btn-outline-danger" onclick="del_scout()">DEL</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
                 <hr>
 
 
@@ -268,8 +267,8 @@ $jobCrewProfit = 0;
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
 
         <div class="jobAdd-box right card">
