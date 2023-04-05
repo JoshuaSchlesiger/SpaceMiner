@@ -260,7 +260,7 @@ $jobCrewProfit = 0;
                 <div class="container">
                     <div class="row ">
                         <div class="offset-xxl-2 col-xxl-4 mt-3">
-                            <button class="job-addcrew buttonForm btn btn-outline-light"><span>SAVE</span></button>
+                            <button class="job-addcrew buttonForm btn btn-outline-light" onclick="save()" ><span>SAVE</span></button>
                         </div>
                         <div class="col-xxl-4 mt-3">
                             <button class="job-addcrew buttonForm btn btn-outline-warning"><span>RESET</span></button>

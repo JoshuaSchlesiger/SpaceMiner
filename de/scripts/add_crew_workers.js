@@ -1,3 +1,5 @@
+crew = "";
+
 // #region miner
 
 function add_miner(){
@@ -45,16 +47,8 @@ function add_miner(){
 
         }
 
-        crews = getCrews();
-        crew;
-
-        for(i = 0; i<crews.length; i++){
-            if(crews[i].CrewName == crewHeader){
-                crew = crews[i];
-            }
-        }
-
-        alert(crew.CrewName)
+        crew = getCrew(crewHeader);
+        crew.setMiners(minername);
 
     /*
         $.ajax({
@@ -71,28 +65,44 @@ function add_miner(){
 }
 
 function del_miner(){
-    select = document.getElementById("selectMiner").textContent;
-    document.getElementById(select).remove();
+    crewHeader = document.getElementById("crewHeader").textContent;
 
-    numberOfChildren = document.getElementById('minerList').childElementCount;
-
-    if(numberOfChildren == 0){
-        document.getElementById("selectMiner").textContent = "\xa0";
+    if(crewHeader  == "Alpha"){
+        alert("Bitte wähle eine Crew");
     }
     else{
+        select = document.getElementById("selectMiner").textContent;
+    
+        
+        crew = getCrew(crewHeader);
+        crew.delMiners(select);
 
-        mainDiv = document.getElementById('minerList');
-        x = mainDiv.children[0];
+        document.getElementById(select).remove();
+    
+        numberOfChildren = document.getElementById('minerList').childElementCount;
+    
+        if(numberOfChildren == 0){
+            document.getElementById("selectMiner").textContent = "\xa0";
+        }
+        else{
 
-        document.getElementById("selectMiner").textContent = x.textContent;
+            mainDiv = document.getElementById('minerList');
+            x = mainDiv.children[0];
+    
+            document.getElementById("selectMiner").textContent = x.textContent;
+    
+        }
     }
+  
 }
 
 function select_miner(ele){
 
+
     var id = ele.id;
     document.getElementById("selectMiner").textContent = id;
     $('#collapseMiner').collapse("toggle");
+
 }
 
 // #endregion
@@ -101,6 +111,7 @@ function select_miner(ele){
 function add_scout(){
     
     minername =  document.getElementById("scoutname").value;
+    crewHeader = document.getElementById("crewHeader").textContent;
     
 
      if(minername == ""){
@@ -139,6 +150,8 @@ function add_scout(){
              document.getElementById("selectScout").textContent = minername;
  
          }
+
+         crew = getCrew(crewHeader);
      /*
          $.ajax({
              url:'functions/add_crew.php',
@@ -161,21 +174,36 @@ function add_scout(){
 }
 
 function del_scout(){
-    select = document.getElementById("selectScout").textContent;
-    document.getElementById(select).remove();
 
-    numberOfChildren = document.getElementById('scoutList').childElementCount;
+    crewHeader = document.getElementById("crewHeader").textContent;
 
-    if(numberOfChildren == 0){
-        document.getElementById("selectScout").textContent = "\xa0";
+    if(crewHeader  == "Alpha"){
+        alert("Bitte wähle eine Crew");
     }
     else{
 
-        mainDiv = document.getElementById('scoutList');
-        x = mainDiv.children[0];
-
-        document.getElementById("selectScout").textContent = x.textContent;
+        select = document.getElementById("selectScout").textContent;
+    
+        document.getElementById(select).remove();
+    
+        numberOfChildren = document.getElementById('scoutList').childElementCount;
+    
+        if(numberOfChildren == 0){
+            document.getElementById("selectScout").textContent = "\xa0";
+        }
+        else{
+    
+            mainDiv = document.getElementById('scoutList');
+            x = mainDiv.children[0];
+    
+            document.getElementById("selectScout").textContent = x.textContent;
+    
+                
+            crew = getCrew(crewHeader);
+            crew.delMiners(x.textContent);
+        }
     }
+
 }
 
 
@@ -183,4 +211,26 @@ function del_scout(){
 
 function containsWhitespace(str) {
     return str.indexOf(" ") >= 0;
+}
+
+function getCrew(crewHeader){
+    
+    crews = getCrews();
+
+    for(i = 0; i<crews.length; i++){
+        if(crews[i].CrewName == crewHeader){
+            crew = crews[i];
+        }
+    }
+    return crew;
+}
+
+
+function save(){
+
+    for(i = 0; i<crew.MinerNames.length; i++){
+        alert(crew.MinerNames[i]);
+    }
+
+
 }

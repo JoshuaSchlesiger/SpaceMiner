@@ -88,4 +88,9 @@ class Crew{
     setMiners(MinerName){
         this.MinerNames.push(MinerName);
     }
+
+    delMiners(MinerName){
+        let x = this.MinerNames.indexOf(MinerName);
+        this.MinerNames.splice(x, 1);
+    }
 }
