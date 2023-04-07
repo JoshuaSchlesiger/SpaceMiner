@@ -2,6 +2,6 @@
 
 session_start();
 
-$_SESSION["crews"] = $_POST["crews"];
+$_SESSION["crews"] = json_decode($_POST["crews"]);
 
 ?>

@@ -3,31 +3,74 @@ crewnames = new Array();
 
 // #region miner
 
-function add_miner(){
-    
-   minername =  document.getElementById("minername").value;
-   crewHeader = document.getElementById("crewHeader").textContent;
 
-    if(crewHeader  == "Alpha"){
-        alert("Bitte wähle eine Crew");
+function loadMiners(crewName){
+
+    document.getElementById("selectMiner").textContent = "\xa0";
+    const myNode = document.getElementById("minerList");
+    while (myNode.firstChild) {
+      myNode.removeChild(myNode.lastChild);
     }
-    else if(minername == ""){
-        alert("Bitte Name für deine Miner setzen");
+
+
+    crew = getCrew(crewName);
+
+    for(i = 0; i<crew.MinerNames.length; i++){
+        add_miner(crew.MinerNames[i]);
     }
-    else if(minername.length < 5){
-        alert("Der Name ist zu kurz");
-        document.getElementById("minername").value = "";
-    }
-    else if(minername.length > 20){
-        alert("Der Name ist zu lang");
-        document.getElementById("minername").value = "";
-    }
-    else if(containsWhitespace(minername)){
-        alert("Leerzeichen sind nicht erlaubt");
-        document.getElementById("minername").value = "";
-    }
+
+}
+
+
+function add_miner(minername = null){
     
-    else{
+    if(minername == null){
+        minername =  document.getElementById("minername").value;
+        crewHeader = document.getElementById("crewHeader").textContent;
+     
+         if(crewHeader  == "Alpha"){
+             alert("Bitte wähle eine Crew");
+         }
+         else if(minername == ""){
+             alert("Bitte Name für deine Miner setzen");
+         }
+         else if(minername.length < 5){
+             alert("Der Name ist zu kurz");
+             document.getElementById("minername").value = "";
+         }
+         else if(minername.length > 20){
+             alert("Der Name ist zu lang");
+             document.getElementById("minername").value = "";
+         }
+         else if(containsWhitespace(minername)){
+             alert("Leerzeichen sind nicht erlaubt");
+             document.getElementById("minername").value = "";
+         }
+         else{
+             element = document.createElement("button");
+             element.classList.add("list-group-item");
+             element.classList.add("list-group-item-action");
+             element.classList.add("text-center");
+             element.setAttribute("id", minername);
+             element.setAttribute("onclick", "select_miner(this)");
+             element.textContent= minername;
+          
+             
+             document.getElementById("minername").value = "";
+             document.getElementById("minerList").appendChild(element);
+     
+             numberOfChildren = document.getElementById('minerList').childElementCount;
+     
+             if(numberOfChildren == 1){
+     
+                 document.getElementById("selectMiner").textContent = minername;
+     
+             }
+     
+             crew = getCrew(crewHeader);
+             crew.setMiners(minername);
+         }
+    }else{
         element = document.createElement("button");
         element.classList.add("list-group-item");
         element.classList.add("list-group-item-action");
@@ -47,11 +90,8 @@ function add_miner(){
             document.getElementById("selectMiner").textContent = minername;
 
         }
-
-        crew = getCrew(crewHeader);
-        crew.setMiners(minername);
-
     }
+   
 }
 
 function del_miner(){
@@ -98,52 +138,96 @@ function select_miner(ele){
 // #endregion
 
 //#region scout
-function add_scout(){
-    
-    minername =  document.getElementById("scoutname").value;
-    crewHeader = document.getElementById("crewHeader").textContent;
-    
 
-     if(minername == ""){
-         alert("Bitte Name für deine Scout setzen");
-     }
-     else if(minername.length < 5){
-         alert("Der Name ist zu kurz");
-         document.getElementById("scoutname").value = "";
-     }
-     else if(minername.length > 20){
-         alert("Der Name ist zu lang");
-         document.getElementById("scoutname").value = "";
-     }
-     else if(containsWhitespace(minername)){
-         alert("Leerzeichen sind nicht erlaubt");
-         document.getElementById("scoutname").value = "";
-     }
-     
-     else{
-         element = document.createElement("button");
-         element.classList.add("list-group-item");
-         element.classList.add("list-group-item-action");
-         element.classList.add("text-center");
-         element.setAttribute("id", minername);
-         element.setAttribute("onclick", "select_scout(this)");
-         element.textContent= minername;
-      
+function loadScouts(crewName){
+
+    document.getElementById("selectScout").textContent = "\xa0";
+    const myNode = document.getElementById("scoutList");
+    while (myNode.firstChild) {
+      myNode.removeChild(myNode.lastChild);
+    }
+
+
+    crew = getCrew(crewName);
+
+    for(i = 0; i<crew.ScoutNames.length; i++){
+        add_scout(crew.ScoutNames[i]);
+    }
+
+}
+
+
+function add_scout(scoutname = null){
+
+    if(scoutname == null){
+        scoutname =  document.getElementById("scoutname").value;
+        crewHeader = document.getElementById("crewHeader").textContent;
+        
+    
+         if(scoutname == ""){
+             alert("Bitte Name für deine Scout setzen");
+         }
+         else if(scoutname.length < 5){
+             alert("Der Name ist zu kurz");
+             document.getElementById("scoutname").value = "";
+         }
+         else if(scoutname.length > 20){
+             alert("Der Name ist zu lang");
+             document.getElementById("scoutname").value = "";
+         }
+         else if(containsWhitespace(scoutname)){
+             alert("Leerzeichen sind nicht erlaubt");
+             document.getElementById("scoutname").value = "";
+         }
          
-         document.getElementById("scoutname").value = "";
-         document.getElementById("scoutList").appendChild(element);
- 
-         numberOfChildren = document.getElementById('scoutList').childElementCount;
- 
-         if(numberOfChildren == 1){
- 
-             document.getElementById("selectScout").textContent = minername;
- 
+         else{
+             element = document.createElement("button");
+             element.classList.add("list-group-item");
+             element.classList.add("list-group-item-action");
+             element.classList.add("text-center");
+             element.setAttribute("id", scoutname);
+             element.setAttribute("onclick", "select_scout(this)");
+             element.textContent= scoutname;
+          
+             
+             document.getElementById("scoutname").value = "";
+             document.getElementById("scoutList").appendChild(element);
+     
+             numberOfChildren = document.getElementById('scoutList').childElementCount;
+     
+             if(numberOfChildren == 1){
+     
+                 document.getElementById("selectScout").textContent = scoutname;
+     
+             }
+    
+             crew = getCrew(crewHeader);
+             crew.setScouts(scoutname);
          }
 
-         crew = getCrew(crewHeader);
-         crew.setScouts(minername);
-     }
+    } else{
+        element = document.createElement("button");
+        element.classList.add("list-group-item");
+        element.classList.add("list-group-item-action");
+        element.classList.add("text-center");
+        element.setAttribute("id", scoutname);
+        element.setAttribute("onclick", "select_scout(this)");
+        element.textContent= scoutname;
+     
+        
+        document.getElementById("scoutname").value = "";
+        document.getElementById("scoutList").appendChild(element);
+
+        numberOfChildren = document.getElementById('scoutList').childElementCount;
+
+        if(numberOfChildren == 1){
+
+            document.getElementById("selectScout").textContent = scoutname;
+
+        }
+    }
+    
+   
  }
 
  function select_scout(ele){
@@ -189,6 +273,7 @@ function del_scout(){
 
 // #endregion
 
+
 function containsWhitespace(str) {
     return str.indexOf(" ") >= 0;
 }
@@ -212,35 +297,20 @@ function save(){
         alert("Es sind keine Crews gesetzt");
     }
     else{
-        for(i = 0; i<crew.ScoutNames.length; i++){
-            alert(crew.ScoutNames[i]);
-        }
     
-        data = new Array()
-        data[0] = new Array();
-        data[0][0] = new Array();
-    
+        datas = new Array();
+
         for(i = 0; i<crews.length; i++){
-            data[i] = crews[i].CrewName
+            datas[i] = crews[i];
         }
-    
-        for(i = 0; i<crews.length; i++){
-            for(y = 0; y<crews[i].ScoutNames.length; y++){
-                data[i][1][y] = crews[i].ScoutNames[y]
-            }
-            for(y = 0; y<crews[i].MinerNames.length; y++){
-                data[i][0][y] = crews[i].MinerNames[y]
-            }
-        }
-    
-        json = JSON.stringify(data)
-    
-    
+
+        alert(JSON.stringify(datas));
+
         $.ajax({
             url:'functions/new_job.php',
             method: "POST",
             data: {
-                crews: data,
+                crews: JSON.stringify(datas),
             }
         })
     }

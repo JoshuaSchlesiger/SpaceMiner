@@ -62,6 +62,10 @@ function select_Crew(ele){
 
         document.getElementById("crewHeader").textContent = id;
 
+
+        loadMiners(id);
+        loadScouts(id);
+
 }
 
 function containsWhitespace(str) {

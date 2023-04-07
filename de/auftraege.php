@@ -3,8 +3,10 @@ session_start();
 require "structure/header.php";
 require "objects/crew.php";
 
-var_dump($_SESSION["crews"]);
-//unset($_SESSION["crews"]);
+
+$myArray = $_SESSION["crews"];
+print_r($myArray);
+
 
 
 if (isset($_POST["logout"])) {
