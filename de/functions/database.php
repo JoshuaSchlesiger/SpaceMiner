@@ -1,7 +1,5 @@
 <?php
 
-
-
 function connect(){
 $servername = "localhost";
 $username = "spaceminer";
@@ -17,8 +15,6 @@ $dbname = "spaceminer";
     die("Connection to database failed. Please be patient");
   }
 }
-
-
 
 function register($conn, $username, $password){
 
@@ -54,6 +50,7 @@ function login($conn, $username, $password){
   }
 }
 
+
 function getAllNameRefineryStations($conn){
   $stmt = $conn->prepare('SELECT name FROM refinery_station');
   $stmt->execute();
@@ -73,5 +70,28 @@ function passwordHash($password){
   $pass = password_hash($password, PASSWORD_DEFAULT);
   return $pass;
 }
+
+
+function createJob(){
+ // Alles jobs von user holen udn schauen was letze nummer
+
+ getHighestNumberOfJobs();
+}
+
+function getHighestNumberOfJobs(){
+  $conn = connect();
+
+
+
+  $stmt = $conn->prepare('SELECT MAX(j.number) AS max_number FROM website_user w JOIN job j ON w.id = j.website_user_id WHERE w.name = :username');
+  $stmt->bindParam(':username', $_SESSION["username"]);
+  $stmt->execute();
+  $jobUserHighestNumber = $stmt->fetchAll();
+
+
+  return $jobUserHighestNumber;
+}
+
+
 
 ?>

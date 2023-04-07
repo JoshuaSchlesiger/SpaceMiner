@@ -298,21 +298,15 @@ function save(){
     }
     else{
     
-        datas = new Array();
-
-        for(i = 0; i<crews.length; i++){
-            datas[i] = crews[i];
-        }
-
-        alert(JSON.stringify(datas));
-
         $.ajax({
             url:'functions/new_job.php',
             method: "POST",
             data: {
-                crews: JSON.stringify(datas),
+                crews: JSON.stringify(crews),
             }
-        })
+        }).done(function() {
+            location.reload();
+          });
     }
 
     
@@ -320,5 +314,5 @@ function save(){
 
 function reset(){
     crews = [];
-    location.reload()
+    location.reload();
 }

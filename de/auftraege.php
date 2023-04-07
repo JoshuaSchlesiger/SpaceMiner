@@ -2,12 +2,11 @@
 session_start();
 require "structure/header.php";
 require "objects/crew.php";
+require "functions/database.php";
 
+$number = getHighestNumberOfJobs();
 
-$myArray = $_SESSION["crews"];
-print_r($myArray);
-
-
+print_r($number);
 
 if (isset($_POST["logout"])) {
     $_SESSION["loggedIn"] = "false";
