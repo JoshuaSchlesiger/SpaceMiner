@@ -77,7 +77,7 @@ function createJob(){
   try {
     $conn = connect();
 
-    $highestNumber = getHighestNumberOfJobs();
+    $highestNumber = getHighestNumberOfJobs($conn);
 
     if($highestNumber == null){
       $highestNumber = 1;
@@ -86,15 +86,18 @@ function createJob(){
       $highestNumber++;
     }
 
-    // SQL-Abfrage zum Einfügen von Daten
     $stmt = $conn->prepare("INSERT INTO job (number, website_user_id) 
                             VALUES (:number, :website_user_id)");
     $stmt->bindParam(':number', $highestNumber);
     $userId = getUserID();
     $stmt->bindParam(':website_user_id', $userId);
 
-    // Abfrage ausführen
     $stmt->execute();
+
+    //Job ID bekommen zum geweiligen Auftrag zum erstellen der Crews
+    $jobID = getIDofJob($conn, $highestNumber, $userId);
+    createCrew($conn, $jobID);
+    return $jobID;
   } 
 
   catch(PDOException $e) {
@@ -103,8 +106,7 @@ function createJob(){
 
 }
 
-function getHighestNumberOfJobs(){
-  $conn = connect();
+function getHighestNumberOfJobs($conn){
 
   $userID = getUserID();
 
@@ -125,6 +127,30 @@ function getUserID(){
   $userID = $stmt->fetch();
 
   return $userID["id"];
+}
+
+
+function getIDofJob($conn, $number, $userId){
+  $stmt = $conn->prepare('SELECT id FROM job WHERE number = :number AND website_user_id = :website_user_id');
+  $stmt->bindParam(':website_user_id', $userId);
+  $stmt->bindParam(':number', $number);
+  $stmt->execute();
+
+  $jobID = $stmt->fetch();
+  return $jobID["id"];
+}
+
+function createCrew($conn, $jobID){
+  $crews = $_SESSION["crews"];
+
+  for ($i = 0; $i < $crews; $i++) {
+
+    $stmt = $conn->prepare("INSERT INTO crew (name, job_id) 
+    VALUES (:name, :job_id)");
+    $stmt->bindParam(':name', $crews[$i]->CrewName);
+    $stmt->bindParam(':job_id', $jobID);
+    $stmt->execute();
+  }
 }
 
 

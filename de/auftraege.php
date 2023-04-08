@@ -4,6 +4,10 @@ require "structure/header.php";
 require "objects/crew.php";
 require "functions/database.php";
 
+
+print_r($_SESSION["crews"]);
+
+
 if (isset($_POST["logout"])) {
     $_SESSION["loggedIn"] = "false";
     session_destroy();
@@ -19,23 +23,6 @@ if (isset($_SESSION["loggedIn"])) {
     exit();
 }
 
-if (!isset($_SESSION["crewnames"])) {
-    $_SESSION["crewnames"] = array();
-} else {
-    unset($_SESSION["crewnames"]);
-}
-
-if (!isset($_SESSION["minernames"])) {
-    $_SESSION["minernames"] = array();
-} else {
-    unset($_SESSION["minernames"]);
-}
-
-if (!isset($_SESSION["scoutnames"])) {
-    $_SESSION["scoutnames"] = array();
-} else {
-    unset($_SESSION["scoutnames"]);
-}
 
 //Variables
 $username = "User";

@@ -34,7 +34,7 @@ function add_miner(minername = null){
          else if(minername == ""){
              alert("Bitte Name für deine Miner setzen");
          }
-         else if(minername.length < 5){
+         else if(minername.length < 4){
              alert("Der Name ist zu kurz");
              document.getElementById("minername").value = "";
          }
@@ -167,7 +167,7 @@ function add_scout(scoutname = null){
          if(scoutname == ""){
              alert("Bitte Name für deine Scout setzen");
          }
-         else if(scoutname.length < 5){
+         else if(scoutname.length < 4){
              alert("Der Name ist zu kurz");
              document.getElementById("scoutname").value = "";
          }
