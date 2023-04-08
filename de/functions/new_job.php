@@ -4,7 +4,10 @@ require "database.php";
 
 session_start();
 
-$crews = json_decode($_POST["crews"]);
+if(isset($_POST["crews"])){
+    $crews = json_decode($_POST["crews"]);
+}
+
 
 createJob();
 

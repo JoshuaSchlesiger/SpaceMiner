@@ -77,14 +77,21 @@ function createJob(){
   try {
     $conn = connect();
 
-    $userIDandNumber = getHighestNumberOfJobs();
-    $userIDandNumber[0][0] += 1;
+    $highestNumber = getHighestNumberOfJobs();
+
+    if($highestNumber == null){
+      $highestNumber = 1;
+    }
+    else{
+      $highestNumber++;
+    }
 
     // SQL-Abfrage zum Einfügen von Daten
     $stmt = $conn->prepare("INSERT INTO job (number, website_user_id) 
                             VALUES (:number, :website_user_id)");
-    $stmt->bindParam(':number', $userIDandNumber[0][0]);
-    $stmt->bindParam(':website_user_id', $userIDandNumber[0][1]);
+    $stmt->bindParam(':number', $highestNumber);
+    $userId = getUserID();
+    $stmt->bindParam(':website_user_id', $userId);
 
     // Abfrage ausführen
     $stmt->execute();
@@ -99,13 +106,25 @@ function createJob(){
 function getHighestNumberOfJobs(){
   $conn = connect();
 
-  $stmt = $conn->prepare('SELECT MAX(j.number) AS max_number, j.website_user_id  FROM website_user w JOIN job j ON w.id = j.website_user_id WHERE w.name = :username');
+  $userID = getUserID();
+
+  $stmt = $conn->prepare('SELECT MAX(number) AS number FROM job WHERE website_user_id = :id');
+  $stmt->bindParam(':id', $userID);
+  $stmt->execute();
+  $highestNumber = $stmt->fetch();
+
+  return $highestNumber["number"];
+}
+
+function getUserID(){
+  $conn = connect();
+
+  $stmt = $conn->prepare('SELECT id FROM website_user WHERE name = :username');
   $stmt->bindParam(':username', $_SESSION["username"]);
   $stmt->execute();
-  $userIDandNumber = $stmt->fetchAll();
+  $userID = $stmt->fetch();
 
-
-  return $userIDandNumber;
+  return $userID["id"];
 }
 
 
