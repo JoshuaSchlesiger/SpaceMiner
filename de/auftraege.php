@@ -5,7 +5,11 @@ require "objects/crew.php";
 require "functions/database.php";
 
 
-print_r($_SESSION["crews"]);
+$crews = $_SESSION["crews"];
+
+
+
+print_r($crews);
 
 
 if (isset($_POST["logout"])) {
@@ -173,7 +177,7 @@ $jobCrewProfit = 0;
 
 
                 <div id="boxMinerScouts">
-                    <h4 class="header-text text-center mb-2 mt-4" id="crewHeader">Alpha</h4>
+                    <h4 class="header-text text-center mb-2 mt-4" id="crewHeader">CrewNick</h4>
 
                     <div class="container">
                         <div class="row">

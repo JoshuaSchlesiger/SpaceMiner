@@ -28,7 +28,7 @@ function add_miner(minername = null){
         minername =  document.getElementById("minername").value;
         crewHeader = document.getElementById("crewHeader").textContent;
      
-         if(crewHeader  == "Alpha"){
+         if(crewHeader  == "CrewNick"){
              alert("Bitte wähle eine Crew");
          }
          else if(minername == ""){
@@ -163,8 +163,10 @@ function add_scout(scoutname = null){
         scoutname =  document.getElementById("scoutname").value;
         crewHeader = document.getElementById("crewHeader").textContent;
         
-    
-         if(scoutname == ""){
+        if(crewHeader  == "CrewNick"){
+            alert("Bitte wähle eine Crew");
+        }
+        else if(scoutname == ""){
              alert("Bitte Name für deine Scout setzen");
          }
          else if(scoutname.length < 4){
