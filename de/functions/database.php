@@ -73,23 +73,39 @@ function passwordHash($password){
 
 
 function createJob(){
- // Alles jobs von user holen udn schauen was letze nummer
 
- getHighestNumberOfJobs();
+  try {
+    $conn = connect();
+
+    $userIDandNumber = getHighestNumberOfJobs();
+    $userIDandNumber[0][0] += 1;
+
+    // SQL-Abfrage zum Einfügen von Daten
+    $stmt = $conn->prepare("INSERT INTO job (number, website_user_id) 
+                            VALUES (:number, :website_user_id)");
+    $stmt->bindParam(':number', $userIDandNumber[0][0]);
+    $stmt->bindParam(':website_user_id', $userIDandNumber[0][1]);
+
+    // Abfrage ausführen
+    $stmt->execute();
+  } 
+
+  catch(PDOException $e) {
+
+  }
+
 }
 
 function getHighestNumberOfJobs(){
   $conn = connect();
 
-
-
-  $stmt = $conn->prepare('SELECT MAX(j.number) AS max_number FROM website_user w JOIN job j ON w.id = j.website_user_id WHERE w.name = :username');
+  $stmt = $conn->prepare('SELECT MAX(j.number) AS max_number, j.website_user_id  FROM website_user w JOIN job j ON w.id = j.website_user_id WHERE w.name = :username');
   $stmt->bindParam(':username', $_SESSION["username"]);
   $stmt->execute();
-  $jobUserHighestNumber = $stmt->fetchAll();
+  $userIDandNumber = $stmt->fetchAll();
 
 
-  return $jobUserHighestNumber;
+  return $userIDandNumber;
 }
 
 

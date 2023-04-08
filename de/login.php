@@ -8,16 +8,23 @@ if(isset($_POST["logout"])){
     session_destroy();
 }
 
+if(!isset($_SESSION["start_time"])){
+    $_SESSION["start_time"] = time();
+}
+
 $status = "";
 $conn = connect();
 
 if(isset($_POST["sentLogin"])){
 
-    $endTime = time();
-    $startTime = $_POST['startTime'];
-    $timeTaken = $endTime - $startTime;
+    $_SESSION["end_time"] = time();
+    $time_diff = $_SESSION["end_time"] - $_SESSION["start_time"];
     
-    if($timeTaken > 1){
+    if($time_diff > 1){
+
+        unset($_SESSION["start_time"]);
+        unset($_SESSION["end_time"]);
+
         $status = login($conn, $_POST["username"], $_POST["password"]);
         if($status == ""){
             $_SESSION["loggedIn"] = "true";

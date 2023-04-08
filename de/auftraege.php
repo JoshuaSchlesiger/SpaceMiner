@@ -4,10 +4,6 @@ require "structure/header.php";
 require "objects/crew.php";
 require "functions/database.php";
 
-$number = getHighestNumberOfJobs();
-
-print_r($number);
-
 if (isset($_POST["logout"])) {
     $_SESSION["loggedIn"] = "false";
     session_destroy();

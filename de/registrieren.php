@@ -13,6 +13,9 @@ $checkbox_status = "";
 $username_statusCheck = "";
 $username_statusUsed = "";
 
+if(!isset($_SESSION["start_time"])){
+    $_SESSION["start_time"] = time();
+}
 
 $conn = connect();
 
@@ -20,30 +23,37 @@ $conn = connect();
 if(isset($_POST["sentRegister"])){
 
 
-    if($timeTaken > 1){
         $username_statusCheck = usernameCheck();
         $username_statusUsed = usernameUsed($conn, $_POST["username"]);
         $password_status = password();
         $checkbox_status = checkbox();
     
         if($username_statusCheck == "" && $password_status == "" && $checkbox_status == "" && $username_statusUsed == ""){
-            register($conn, $_POST["username"], $_POST["password"]);
-            $_SESSION["loggedIn"] = "true";
-            $_SESSION["username"] = $_POST["username"];
-            unset($_POST["sentRegister"]);
-            header("Location: dashboard.php");
-            exit();
+
+            $_SESSION["end_time"] = time();
+            $time_diff = $_SESSION["end_time"] - $_SESSION["start_time"];
+
+            if($time_diff > 5){
+                
+                unset($_SESSION["start_time"]);
+                unset($_SESSION["end_time"]);
+    
+                register($conn, $_POST["username"], $_POST["password"]);
+                $_SESSION["loggedIn"] = "true";
+                $_SESSION["username"] = $_POST["username"];
+                unset($_POST["sentRegister"]);
+                header("Location: dashboard.php");
+                exit();
+            }
+            else{
+                die("Bist du ein Bot?! Lass dir mal mehr Ziet bei Registrieren, versuche es erneut");
+            }
+
         }
         else{
             $_SESSION["loggedIn"] = "false";
             unset($_POST["sentRegister"]);
         }
-    }
-    else{
-        echo "<script type='text/javascript'>alert('Mach mal langsamer hier');</script>";
-    }
-
-
 }
 
 if(isset($_POST["logout"])){
@@ -154,7 +164,6 @@ if(isset($_POST["logout"])){
                     <div class="text-danger fst-italic ms-2"><?php echo $checkbox_status?></div>
 
                     <div class="mt-3">
-                        <input type="hidden" name="startTime" value="<?php echo time(); ?>">
                         <button class="btn LoRebtn-accent rounded-pill w-100" type="submit" name="sentRegister">Registrieren</button>
                     </div>
                 </form>
