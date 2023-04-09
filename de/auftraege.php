@@ -3,6 +3,7 @@ session_start();
 require "structure/header.php";
 require "objects/crew.php";
 require "functions/database.php";
+require "functions/handleJobs.php";
 
 
 if(isset($_SESSION["alert"])){

@@ -5,11 +5,13 @@ require "Job.php";
 class Crew{
 
     private $name = "";
+    private $id = "";
     private $seller = "";
     private $paid_in_status = false;
 
-    function __construct(String $name){
+    function __construct(String $name, int $id){
         $this->name = $name;
+        $this->id = $id;
     }
 
     public function setSeller($seller){
@@ -24,8 +26,16 @@ class Crew{
         return  $this->seller;
     }
 
-    public function getPaidInStatis(){
+    public function getPaidInStatus(){
         return  $this->paid_in_status;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getID(){
+        return $this->id;
     }
 
     public function test($value)

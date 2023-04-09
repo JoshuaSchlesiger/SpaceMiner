@@ -172,7 +172,6 @@ function createCrew($conn, $jobID)
 
 function getIDofCrew($conn, $crewName, $jobID)
 {
-  $crews = $_SESSION["crews"];
 
   $stmt = $conn->prepare('SELECT id FROM crew WHERE name = :crewName AND job_id = :job_id');
   $stmt->bindParam(':crewName', $crewName);
@@ -213,4 +212,23 @@ function createScout($conn, $crewNumber, $crewID)
     $stmt->bindParam(':crew_id', $crewID);
     $stmt->execute();
   }
+}
+
+function getJobs($conn){
+
+  $userID = getUserID();
+
+
+  $stmt = $conn->prepare('SELECT number, c.id, c.seller, c.name, c.paid_in_status, p.id, p.name, p.type, p.paid_out_status 
+                          FROM job j
+                          JOIN crew c ON j.id = c.job_id
+                          JOIN player p ON c.id = p.crew_id
+                          WHERE j.website_user_id = :id');
+
+  $stmt->bindParam(':id', $userID);
+  $stmt->execute();
+
+  $jobs = $stmt->fetchAll();
+  return $jobs;
+
 }
