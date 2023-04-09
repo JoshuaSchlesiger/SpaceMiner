@@ -110,7 +110,7 @@ function createJob()
     for ($i = 0; $i < $numCrews; $i++) {
       $crewID = getIDofCrew($conn, $crews[$i]->CrewName, $jobID);
       createMiner($conn, $i ,$crewID);
-
+      createScout($conn, $i ,$crewID);
     }
 
     
@@ -188,12 +188,28 @@ function createMiner($conn, $crewNumber, $crewID)
 
   $crews = $_SESSION["crews"];
 
-  for ($i = 0; $i < count($crews[$crewNumber]->MinerNames); $i++) {
+  for($i = 0; $i < count($crews[$crewNumber]->MinerNames); $i++) {
 
     $stmt = $conn->prepare("INSERT INTO player (name, type, crew_id) 
                             VALUES (:name, 0, :crew_id)");
 
     $stmt->bindParam(':name', $crews[$crewNumber]->MinerNames[$i]);
+    $stmt->bindParam(':crew_id', $crewID);
+    $stmt->execute();
+  }
+}
+
+function createScout($conn, $crewNumber, $crewID)
+{
+
+  $crews = $_SESSION["crews"];
+
+  for($i = 0; $i < count($crews[$crewNumber]->ScoutNames); $i++) {
+
+    $stmt = $conn->prepare("INSERT INTO player (name, type, crew_id) 
+                            VALUES (:name, 1, :crew_id)");
+
+    $stmt->bindParam(':name', $crews[$crewNumber]->ScoutNames[$i]);
     $stmt->bindParam(':crew_id', $crewID);
     $stmt->execute();
   }

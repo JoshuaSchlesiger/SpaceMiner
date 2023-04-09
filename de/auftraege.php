@@ -5,11 +5,11 @@ require "objects/crew.php";
 require "functions/database.php";
 
 
-$crews = $_SESSION["crews"];
-
-
-
-print_r($crews);
+if(isset($_SESSION["alert"])){
+    $msg = $_SESSION['alert'];
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+    unset($_SESSION['alert']);
+}
 
 
 if (isset($_POST["logout"])) {

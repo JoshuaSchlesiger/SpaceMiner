@@ -8,6 +8,10 @@ function add_crew(){
     if(crewname == ""){
         alert("Bitte Name für deine Crew setzen");
     }
+    else if(!crewname.match(/^[A-Za-z0-9]*$/)){
+        alert("Bitte keine Sonderzeichen");
+        document.getElementById("crewname").value = "";
+    }
     else if(crewname.length < 4){
         alert("Der Name ist zu kurz");
         document.getElementById("crewname").value = "";

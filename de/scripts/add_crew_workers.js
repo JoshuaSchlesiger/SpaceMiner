@@ -30,6 +30,11 @@ function add_miner(minername = null){
      
          if(crewHeader  == "CrewNick"){
              alert("Bitte wähle eine Crew");
+             document.getElementById("minername").value = "";
+         }
+         else if(!minername.match(/^[A-Za-z0-9]*$/)){
+            alert("Bitte keine Sonderzeichen");
+            document.getElementById("minername").value = "";
          }
          else if(minername == ""){
              alert("Bitte Name für deine Miner setzen");
@@ -165,9 +170,14 @@ function add_scout(scoutname = null){
         
         if(crewHeader  == "CrewNick"){
             alert("Bitte wähle eine Crew");
+            document.getElementById("scoutname").value = "";
         }
         else if(scoutname == ""){
              alert("Bitte Name für deine Scout setzen");
+         }
+         else if(!scoutname.match(/^[A-Za-z0-9]*$/)){
+            alert("Bitte keine Sonderzeichen");
+            document.getElementById("scoutname").value = "";
          }
          else if(scoutname.length < 4){
              alert("Der Name ist zu kurz");
