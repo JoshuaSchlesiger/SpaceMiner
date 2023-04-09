@@ -14,7 +14,7 @@ if(isset($_POST["crews"])){
     $scan = true;
 
     for ($i = 0; $i < $numCrews; $i++) {
-        if (!preg_match('/^[a-z0-9 .\-]+$/i', $crews[$i]->CrewName))
+        if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $crews[$i]->CrewName))
         {
             $scan = false;
         }
@@ -28,14 +28,15 @@ if(isset($_POST["crews"])){
             }
         }
 
-        for($y = 0; $y < count($crews[$i]->MinerNames); $y++) {
-            if (!preg_match('/^[a-z0-9 .\-]+$/i', $crews[$i]->Minernames[$y]))
+        for($x = 0; $x < count($crews[$i]->MinerNames); $x++) {
+            if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $crews[$i]->Minernames[$x]))
                 {
                     $scan = false;
                 }
         }
+        
         for($y = 0; $y < count($crews[$i]->ScoutNames); $y++) {
-            if (!preg_match('/^[a-z0-9 .\-]+$/i', $crews[$i]->ScoutNames[$y]))
+            if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $crews[$i]->ScoutNames[$y]))
                 {
                     $scan = false;
                 }
