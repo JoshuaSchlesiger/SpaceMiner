@@ -1,7 +1,10 @@
 <?php
-session_start();
+
 require "structure/header.php";
 require "functions/database.php";
+require "functions/handleJobs.php";
+
+session_start();
 
 if(isset($_POST["logout"])){
     $_SESSION["loggedIn"] = "false";
@@ -30,6 +33,9 @@ if(isset($_POST["sentLogin"])){
             $_SESSION["loggedIn"] = "true";
             $_SESSION['oreTypes'] = getOreTypes($conn);
             $_SESSION["username"] = $_POST["username"];
+
+            setJobs_Session();
+
             header("Location: dashboard.php");
             exit();
         }

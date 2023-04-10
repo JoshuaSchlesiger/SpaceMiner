@@ -1,12 +1,10 @@
 <?php
-session_start();
+
 require "structure/header.php";
-require "objects/Crew.php";
-require "objects/Job.php";
-require "objects/Player.php";
 require "functions/database.php";
 require "functions/handleJobs.php";
 
+session_start();
 
 if(isset($_SESSION["alert"])){
     $msg = $_SESSION['alert'];
@@ -30,6 +28,10 @@ if (isset($_SESSION["loggedIn"])) {
     exit();
 }
 
+
+$hello = unserialize($_SESSION["jobs"]);
+
+print_r($hello[0]->getNumber());
 
 //Variables
 $username = "User";
