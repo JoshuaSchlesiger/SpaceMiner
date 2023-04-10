@@ -4,7 +4,6 @@ require "structure/header.php";
 require "functions/handleJobs.php";
 require "functions/database.php";
 
-
 require "objects/Crew.php";
 require "objects/Job.php";
 require "objects/Player.php";
@@ -33,9 +32,6 @@ if (isset($_SESSION["loggedIn"])) {
     exit();
 }
 
-
-
-setSingleJobs_Session();
 
 $hello = unserialize($_SESSION["jobs"]);
 print_r($hello);

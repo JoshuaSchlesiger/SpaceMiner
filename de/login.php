@@ -4,7 +4,9 @@ require "structure/header.php";
 require "functions/database.php";
 require "functions/handleJobs.php";
 
-
+require "objects/Crew.php";
+require "objects/Job.php";
+require "objects/Player.php";
 
 session_start();
 

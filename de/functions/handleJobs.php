@@ -1,7 +1,6 @@
 <?php
 
 
-
 function setJobs_Session()
 {
 
@@ -82,6 +81,7 @@ function setSingleJobs_Session()
             $_SESSION["players"] = serialize($players);
 
         }
+
 
 
 }

@@ -2,6 +2,10 @@
 require "database.php";
 require "handleJobs.php";
 
+require "../objects/Crew.php";
+require "../objects/Job.php";
+require "../objects/Player.php";
+
 session_start();
 
 if(isset($_POST["crews"])){
