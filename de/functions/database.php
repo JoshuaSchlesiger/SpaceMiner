@@ -219,13 +219,13 @@ function getJobs($conn){
   $userID = getUserID();
 
 
-  $stmt = $conn->prepare('SELECT number, c.id, c.seller, c.name, c.paid_in_status, p.id, p.name, p.type, p.paid_out_status 
+  $stmt = $conn->prepare('SELECT j.id AS jid, number, c.id AS cid, c.seller, c.name AS cname, c.paid_in_status, p.id AS pid, p.name AS pname, p.type, p.paid_out_status 
                           FROM job j
                           JOIN crew c ON j.id = c.job_id
                           JOIN player p ON c.id = p.crew_id
                           WHERE j.website_user_id = :id');
 
-  $stmt->bindParam(':id', $userID);
+  $stmt->bindParam(':id', $userID);+
   $stmt->execute();
 
   $jobs = $stmt->fetchAll();
