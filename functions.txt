@@ -56,3 +56,11 @@ Jobs:
 
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <script src='assets/bootstrap/js/bootstrap.bundle.min.js'></script>
+
+
+    $crews = [];
+    $crews[0] = new stdClass();
+    $crews[0]->CrewName = "Hallo";
+    $crews[0]->MinerNames = [];
+    $crews[0]->MinerNames[0] = "Hello";
+    $crews[0]->ScoutNames = [];

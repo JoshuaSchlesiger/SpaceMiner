@@ -1,8 +1,13 @@
 <?php
 
 require "structure/header.php";
-require "functions/database.php";
 require "functions/handleJobs.php";
+require "functions/database.php";
+
+
+require "objects/Crew.php";
+require "objects/Job.php";
+require "objects/Player.php";
 
 session_start();
 
@@ -29,9 +34,13 @@ if (isset($_SESSION["loggedIn"])) {
 }
 
 
-$hello = unserialize($_SESSION["jobs"]);
 
-print_r($hello[0]->getNumber());
+setSingleJobs_Session();
+
+$hello = unserialize($_SESSION["jobs"]);
+print_r($hello);
+
+
 
 //Variables
 $username = "User";

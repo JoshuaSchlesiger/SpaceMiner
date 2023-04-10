@@ -78,7 +78,6 @@ function passwordHash($password)
 
 function createJob()
 {
-  session_start();
 
   try {
     $conn = connect();
@@ -103,7 +102,7 @@ function createJob()
     $jobID = getIDofJob($conn, $highestNumber, $userId);
     createCrew($conn, $jobID);
 
-    $crews = $_SESSION["crews"];
+    $crews = $_SESSION["crews2"];
 
     $numCrews = count($crews);
 
@@ -156,7 +155,7 @@ function getIDofJob($conn, $number, $userId)
 
 function createCrew($conn, $jobID)
 {
-  $crews = $_SESSION["crews"];
+  $crews = $_SESSION["crews2"];
 
   foreach ($crews as $crew) {
     $crewName = $crew->CrewName;
@@ -185,7 +184,7 @@ function getIDofCrew($conn, $crewName, $jobID)
 function createMiner($conn, $crewNumber, $crewID)
 {
 
-  $crews = $_SESSION["crews"];
+  $crews = $_SESSION["crews2"];
 
   for($i = 0; $i < count($crews[$crewNumber]->MinerNames); $i++) {
 
@@ -201,7 +200,7 @@ function createMiner($conn, $crewNumber, $crewID)
 function createScout($conn, $crewNumber, $crewID)
 {
 
-  $crews = $_SESSION["crews"];
+  $crews = $_SESSION["crews2"];
 
   for($i = 0; $i < count($crews[$crewNumber]->ScoutNames); $i++) {
 
@@ -218,7 +217,6 @@ function getJobs($conn){
 
   $userID = getUserID();
 
-
   $stmt = $conn->prepare('SELECT j.id AS jid, number, c.id AS cid, c.seller, c.name AS cname, c.paid_in_status, p.id AS pid, p.name AS pname, p.type, p.paid_out_status 
                           FROM job j
                           JOIN crew c ON j.id = c.job_id
@@ -230,5 +228,39 @@ function getJobs($conn){
 
   $jobs = $stmt->fetchAll();
   return $jobs;
+
+}
+
+function getLatestJobs($conn){
+
+  $jobID = getIDofLatestJobs($conn);
+
+  $stmt = $conn->prepare('SELECT j.id AS jid, number, c.id AS cid, c.seller, c.name AS cname, c.paid_in_status, p.id AS pid, p.name AS pname, p.type, p.paid_out_status 
+                          FROM job j
+                          JOIN crew c ON j.id = c.job_id
+                          JOIN player p ON c.id = p.crew_id
+                          WHERE j.id = :id');
+
+  $stmt->bindParam(':id', $jobID);+
+  $stmt->execute();
+
+  $jobs = $stmt->fetchAll();
+  return $jobs;
+
+}
+
+function getIDofLatestJobs($conn){
+
+  $userID = getUserID();
+  $stmt = $conn->prepare('SELECT id
+                          FROM job j
+                          WHERE j.website_user_id = :id 
+                          AND number = (SELECT MAX(number) FROM job)');
+
+  $stmt->bindParam(':id', $userID);+
+  $stmt->execute();
+
+  $jobs = $stmt->fetch();
+  return $jobs["id"];
 
 }

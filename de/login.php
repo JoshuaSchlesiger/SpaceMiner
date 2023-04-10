@@ -4,6 +4,8 @@ require "structure/header.php";
 require "functions/database.php";
 require "functions/handleJobs.php";
 
+
+
 session_start();
 
 if(isset($_POST["logout"])){

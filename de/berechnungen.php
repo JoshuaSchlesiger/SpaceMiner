@@ -3,12 +3,14 @@
 require "structure/header.php";
 require "functions/database.php";
 
+session_start();
+
 if (isset($_POST["logout"])) {
     $_SESSION["loggedIn"] = "false";
     session_destroy();
 }
 
-session_start();
+
 $conn = connect();
 $_SESSION['oreTypes'] = getOreTypes($conn);
 
