@@ -19,7 +19,11 @@ class Job{
 
     
     public function getid() {
-    return $this->id;
+        return $this->id;
+    }
+
+    public function getTime(){
+        return $this->createTime;
     }
 }
 

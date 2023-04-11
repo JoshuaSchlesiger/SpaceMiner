@@ -23,4 +23,18 @@ function getPeopleCount(int $jobInArray){
     return $number;
 }
 
+function getDateofJob(int $jobInArray){
+    $jobs = unserialize($_SESSION["jobs"]);
+    $jobID = $jobs[$jobInArray]->getID();
+
+    for($y = 0; $y < count($jobs); $y++){
+        if($jobID == $jobs[$y]->getID()){
+            $time = $jobs[$y]->getTime();
+            return date("d/m/Y", $time);
+        }
+    }
+
+    return "error";
+}
+
 ?>

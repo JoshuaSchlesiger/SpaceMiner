@@ -34,8 +34,8 @@ if (isset($_SESSION["loggedIn"])) {
 }
 
 
-$hello = unserialize($_SESSION["players"]);
-print_r($hello);
+//$hello = unserialize($_SESSION["players"]);
+//print_r($hello);
 
 $jobs = unserialize($_SESSION["jobs"]);
 $crews = unserialize($_SESSION["crews"]);
@@ -295,7 +295,7 @@ $jobCrewProfit = 0;
                                 <div class="col-md mb-1">
                                     <div class="row mt-2">
                                         <div class="col-md-5">Datum: </div>
-                                        <div class="col-md-6"><span class="text-info"><?= $jobDate ?> </span></div>
+                                        <div class="col-md-6"><span class="text-info"><?= getDateofJob($i) ?> </span></div>
                                     </div>
                                 </div>
                             </div>
