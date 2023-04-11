@@ -10,36 +10,28 @@ function setJobs_Session()
     $crews = [];
     $players = [];
 
-    $output = getJobs($conn);
+    $dataJobs = getJobs($conn);
 
-    for ($i = 0; $i < count($output); $i++) {
+    for($i = 0; $i< count($dataJobs); $i++){
+        $job = new Job($dataJobs[$i]["id"], $dataJobs[$i]["number"], $dataJobs[$i]["time"]);
+        array_push($jobs, $job);
 
-        $scan = true;
-        for ($y = 0; $y < count($jobs); $y++) {
-            if ($output[$i]["jid"] == $jobs[$y]->getJid()) {
-                $scan = false;
-            }
-        }
-        if ($scan) {
-            $job = new Job($output[$i]["jid"], $output[$i]["number"]);
-            array_push($jobs, $job);
-        }
+        $dataCrews = getCrews($conn, $dataJobs[$i]["id"]);
 
-        $scan2 = true;
-        for ($y = 0; $y < count($crews); $y++) {
-            if ($output[$i]["cid"] == $crews[$y]->getCid()) {
-                $scan2 = false;
-            }
-        }
-        if ($scan2) {
-            $crew = new Crew($output[$i]["jid"], $output[$i]["cname"], $output[$i]["cid"]);
+        for($y = 0; $y< count($dataCrews); $y++){
+            $crew = new Crew($dataJobs[$i]["id"], $dataCrews[$y]["name"], $dataCrews[$y]["id"]);
             array_push($crews, $crew);
+
+            $dataPlayer = getPlayers($conn,$dataCrews[$y]["id"]);
+
+            for($x = 0; $x< count($dataPlayer); $x++){
+                $player = new Player($dataPlayer[$x]["name"],$dataPlayer[$x]["id"], $dataCrews[$y]["id"], $dataPlayer[$x]["type"]);
+                array_push($players, $player);
+            }
         }
 
-
-        $player = new Player($output[$i]["pname"], $output[$i]["pid"], $output[$i]["cid"], $output[$i]["type"]);
-        array_push($players, $player);
     }
+
 
     $_SESSION["jobs"] = array();
     $_SESSION["crews"] = array();
@@ -60,28 +52,32 @@ function setSingleJobs_Session()
 
     $conn = connect();
 
-    $output = getLatestJobs($conn);
+    $dataJobs = getLatestJob($conn);
 
     $numJobs = count($jobs);
 
-        if ($output[0]["jid"] != $jobs[$numJobs-1]->getJid()) {
-            for ($i = 0; $i < count($output); $i++) {
+        if ($dataJobs["id"] != $jobs[$numJobs-1]->getid()) {
 
-                $job = new Job($output[$i]["jid"], $output[$i]["number"]);
-                array_push($jobs, $job);
-                $crew = new Crew($output[$i]["jid"], $output[$i]["cname"], $output[$i]["cid"]);
+            $job = new Job($dataJobs["id"], $dataJobs["number"], $dataJobs["time"]);
+            array_push($jobs, $job);
+
+            $dataCrews = getCrews($conn, $dataJobs["id"]);
+
+            for($y = 0; $y< count($dataCrews); $y++){
+                $crew = new Crew($dataJobs["id"], $dataCrews[$y]["name"], $dataCrews[$y]["id"]);
                 array_push($crews, $crew);
-                $player = new Player($output[$i]["pname"], $output[$i]["pid"], $output[$i]["cid"], $output[$i]["type"]);
-                array_push($players, $player);
-            }
+    
+                $dataPlayer = getPlayers($conn,$dataCrews[$y]["id"]);
+    
+                for($x = 0; $x< count($dataPlayer); $x++){
+                    $player = new Player($dataPlayer[$x]["name"],$dataPlayer[$x]["id"], $dataCrews[$y]["id"], $dataPlayer[$x]["type"]);
+                    array_push($players, $player);
+                }
 
+            }
             
             $_SESSION["jobs"] = serialize($jobs);
             $_SESSION["crews"] = serialize($crews);
             $_SESSION["players"] = serialize($players);
-
         }
-
-
-
 }

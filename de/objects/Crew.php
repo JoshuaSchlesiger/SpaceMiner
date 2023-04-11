@@ -2,16 +2,16 @@
 
 class Crew{
 
-    private $cname = "";
-    private $jid = "";
-    private $cid = "";
+    private $name = "";
+    private $jobid = "";
+    private $id = "";
     private $seller = "";
     private $paid_in_status = false;
 
-    function __construct(int $jid ,String $cname, int $cid){
-        $this->cname = $cname;
-        $this->jid = $jid;
-        $this->cid = $cid;
+    function __construct(int $jobid ,String $name, int $id){
+        $this->name = $name;
+        $this->jobid = $jobid;
+        $this->id = $id;
     }
 
     public function setSeller($seller){
@@ -30,16 +30,16 @@ class Crew{
         return  $this->paid_in_status;
     }
 
-    public function getCname(){
-        return $this->cname;
+    public function getName(){
+        return $this->name;
     }
 
-    public function getJid(){
-        return $this->jid;
+    public function getJobid(){
+        return $this->jobid;
     }
 
-    public function getCid(){
-        return $this->cid;
+    public function getid(){
+        return $this->id;
     }
 
 }

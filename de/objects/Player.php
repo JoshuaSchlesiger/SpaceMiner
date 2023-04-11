@@ -2,26 +2,26 @@
 
 class Player{
 
-    private $pid = "";
-    private $pname = "";
+    private $id = "";
+    private $name = "";
     private $type = 0;
     private $paid_out_status = false;
-    private $cid = "";
+    private $crewid = "";
 
-    function __construct(String $pname, int $pid, int $cid, int $type){
-        $this->pname = $pname;
-        $this->pid = $pid;
-        $this->cid = $cid;
+    function __construct(String $name, int $id, int $crewid, int $type){
+        $this->name = $name;
+        $this->id = $id;
+        $this->crewid = $crewid;
         $this->type = $type;
     }
 
 
-    public function getPid() {
-        return $this->pid;
+    public function getid() {
+        return $this->id;
     }
 
-    public function getPname() {
-        return $this->pname;
+    public function getname() {
+        return $this->name;
     }
 
     public function getType() {
@@ -36,8 +36,8 @@ class Player{
        $this->paid_out_status = $paid_out_status;
     }
 
-    public function getCid() {
-        return $this->cid;
+    public function getCrewid() {
+        return $this->id;
     }
 
 

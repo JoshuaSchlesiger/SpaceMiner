@@ -3,6 +3,7 @@
 require "structure/header.php";
 require "functions/handleJobs.php";
 require "functions/database.php";
+require "functions/handleSession.php";
 
 require "objects/Crew.php";
 require "objects/Job.php";
@@ -10,7 +11,7 @@ require "objects/Player.php";
 
 session_start();
 
-if(isset($_SESSION["alert"])){
+if (isset($_SESSION["alert"])) {
     $msg = $_SESSION['alert'];
     echo "<script type='text/javascript'>alert('$msg');</script>";
     unset($_SESSION['alert']);
@@ -33,10 +34,12 @@ if (isset($_SESSION["loggedIn"])) {
 }
 
 
-$hello = unserialize($_SESSION["jobs"]);
+$hello = unserialize($_SESSION["players"]);
 print_r($hello);
 
-
+$jobs = unserialize($_SESSION["jobs"]);
+$crews = unserialize($_SESSION["crews"]);
+$players = unserialize($_SESSION["crews"]);
 
 //Variables
 $username = "User";
@@ -277,59 +280,67 @@ $jobCrewProfit = 0;
 
             <div class="job-scroll box-text card-body">
 
-                <div class="dashboard-box-inline-yellow card mb-3">
-                    <div class="box-text card-body">
-                        <div class="row">
-                            <div class="col-md mb-1">
-                                <div class="row mt-2">
-                                    <div class="col-md-5">Jobnummer: </div>
-                                    <div class="col-md-6"><span class="text-info"><?= $jobNumber ?></span></div>
+                <?php
+                for ($i = count($jobs) -1; $i >= 0; $i--) {
+                ?>
+                    <div class="dashboard-box-inline-yellow card mb-3">
+                        <div class="box-text card-body">
+                            <div class="row">
+                                <div class="col-md mb-1">
+                                    <div class="row mt-2">
+                                        <div class="col-md-5">Jobnummer: </div>
+                                        <div class="col-md-6"><span class="text-info"><?= $jobs[$i]->getNumber()?></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-md mb-1">
+                                    <div class="row mt-2">
+                                        <div class="col-md-5">Datum: </div>
+                                        <div class="col-md-6"><span class="text-info"><?= $jobDate ?> </span></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md mb-1">
-                                <div class="row mt-2">
-                                    <div class="col-md-5">Datum: </div>
-                                    <div class="col-md-6"><span class="text-info"><?= $jobDate ?> </span></div>
+                            <div class="row">
+                                <div class="col-md  mb-1">
+                                    <div class="row mt-2">
+                                        <div class="col-md-5">Mitarbeiter: </div>
+                                        <div class="col-md-6"><span class="text-info"><?= getPeopleCount($i) ?></span></div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md  mb-1">
-                                <div class="row mt-2">
-                                    <div class="col-md-5">Mitarbeiter: </div>
-                                    <div class="col-md-6"><span class="text-info"><?= $jobUser ?> </span></div>
+                                <div class="col-md  mb-1">
+                                    <div class="row mt-2">
+                                        <div class="col-md-5">Gewicht: </div>
+                                        <div class="col-md-6"><span class="text-info"><?= $jobTotalSCU ?> SCU </span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md  mb-1">
-                                <div class="row mt-2">
-                                    <div class="col-md-5">Gewicht: </div>
-                                    <div class="col-md-6"><span class="text-info"><?= $jobTotalSCU ?> SCU </span>
+
+                                <div class="container mt-3">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                                            40%
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="container mt-3">
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                                        40%
-                                    </div>
-                                </div>
+                            <div class="mt-3">
+                                <span>Status: </span><span class="text-warning"> <?= $jobStatus ?></span>
                             </div>
-                        </div>
-
-                        <div class="mt-3">
-                            <span>Status: </span><span class="text-warning"> <?= $jobStatus ?></span>
-                        </div>
-                        <div class="d-flex ">
-                            <form action="">
-                                <a href="#" type="button" class="btn btn-outline-success mt-3">Auftrag beabeiten</a>
-                            </form>
-                            <form class="ms-3" action="">
-                                <a href="#" type="button" class="btn btn-outline-danger mt-3">Auftrag löschen</a>
-                            </form>
+                            <div class="d-flex ">
+                                <form action="">
+                                    <a href="#" type="button" class="btn btn-outline-success mt-3">Auftrag beabeiten</a>
+                                </form>
+                                <form class="ms-3" action="">
+                                    <a href="#" type="button" class="btn btn-outline-danger mt-3">Auftrag löschen</a>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                <?php
+                }
+
+                ?>
             </div>
         </div>
 

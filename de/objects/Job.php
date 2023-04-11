@@ -3,12 +3,14 @@
 class Job{
 
     private $number = "";
+    private $createTime = 0;
     private $website_user_id = "";
-    private $jid = "";
+    private $id = "";
 
-    function __construct(int $jid,int $number){
+    function __construct(int $id,int $number, int $createTime){
         $this->number = $number;
-        $this->jid = $jid;
+        $this->id = $id;
+        $this->createTime = $createTime;
     }
 
     public function getNumber() {
@@ -16,8 +18,8 @@ class Job{
     }
 
     
-    public function getJid() {
-    return $this->jid;
+    public function getid() {
+    return $this->id;
     }
 }
 

@@ -90,11 +90,12 @@ function createJob()
       $highestNumber++;
     }
 
-    $stmt = $conn->prepare("INSERT INTO job (number, website_user_id) 
-                            VALUES (:number, :website_user_id)");
+    $stmt = $conn->prepare("INSERT INTO job (number, website_user_id, time) 
+                            VALUES (:number, :website_user_id, :time )");
     $stmt->bindParam(':number', $highestNumber);
     $userId = getUserID();
     $stmt->bindParam(':website_user_id', $userId);
+    $stmt->bindParam(':time', time());
 
     $stmt->execute();
 
@@ -217,39 +218,34 @@ function getJobs($conn){
 
   $userID = getUserID();
 
-  $stmt = $conn->prepare('SELECT j.id AS jid, number, c.id AS cid, c.seller, c.name AS cname, c.paid_in_status, p.id AS pid, p.name AS pname, p.type, p.paid_out_status 
-                          FROM job j
-                          JOIN crew c ON j.id = c.job_id
-                          JOIN player p ON c.id = p.crew_id
-                          WHERE j.website_user_id = :id');
+  $stmt = $conn->prepare('SELECT id, number, time
+                          FROM job
+                          WHERE website_user_id = :id');
 
-  $stmt->bindParam(':id', $userID);+
+  $stmt->bindParam(':id', $userID);
   $stmt->execute();
 
   $jobs = $stmt->fetchAll();
   return $jobs;
-
 }
 
-function getLatestJobs($conn){
+function getLatestJob($conn){
 
-  $jobID = getIDofLatestJobs($conn);
+  $jobID = getIDofLatestJob($conn);
 
-  $stmt = $conn->prepare('SELECT j.id AS jid, number, c.id AS cid, c.seller, c.name AS cname, c.paid_in_status, p.id AS pid, p.name AS pname, p.type, p.paid_out_status 
-                          FROM job j
-                          JOIN crew c ON j.id = c.job_id
-                          JOIN player p ON c.id = p.crew_id
-                          WHERE j.id = :id');
+  $stmt = $conn->prepare('SELECT id, number, time 
+                          FROM job
+                          WHERE id = :id');
 
   $stmt->bindParam(':id', $jobID);+
   $stmt->execute();
 
-  $jobs = $stmt->fetchAll();
+  $jobs = $stmt->fetch();
   return $jobs;
 
 }
 
-function getIDofLatestJobs($conn){
+function getIDofLatestJob($conn){
 
   $userID = getUserID();
   $stmt = $conn->prepare('SELECT id
@@ -263,4 +259,30 @@ function getIDofLatestJobs($conn){
   $jobs = $stmt->fetch();
   return $jobs["id"];
 
+}
+
+function getCrews($conn, $jobID){
+
+  $stmt = $conn->prepare('SELECT id, seller, name, paid_in_status
+                          FROM crew
+                          WHERE job_id = :id');
+
+  $stmt->bindParam(':id', $jobID);
+  $stmt->execute();
+
+  $crews = $stmt->fetchAll();
+  return $crews;
+}
+
+function getPlayers($conn, $crewID){
+
+  $stmt = $conn->prepare('SELECT id, name, type, paid_out_status
+                          FROM player
+                          WHERE crew_id = :id');
+
+  $stmt->bindParam(':id', $crewID);
+  $stmt->execute();
+
+  $crews = $stmt->fetchAll();
+  return $crews;
 }
