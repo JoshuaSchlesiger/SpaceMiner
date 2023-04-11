@@ -37,7 +37,7 @@ class Player{
     }
 
     public function getCrewid() {
-        return $this->id;
+        return $this->crewid;
     }
 
 
