@@ -131,8 +131,8 @@ else{
     <div class="loginbgimage">
         <div class="vh-100 w-100 d-flex align-items-center">
             <div class="LoReformContainer LoRewindow">
-                <div class="text-center mb-4 pb-3 LoRelogo">
-                    <img src="/static_files/images/logos/rockMoon.png" alt="Logo">
+                <div class="mb-1">
+                    <img class="logo" src="/de/images/logos/logoWhite.png"  alt="Logo">
                 </div>
 
                 <form action="" method="post">

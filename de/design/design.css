@@ -14,6 +14,30 @@
 
 /* #endregion */
 
+/* #region Favicon */
+
+/* Stilregeln für den Dark-Modus */
+@media (prefers-color-scheme: dark) {
+  #favicon-light {
+    display: block;
+  }
+  #favicon-dark {
+    display: none;
+  }
+}
+
+/* Stilregeln für den Light-Modus */
+@media (prefers-color-scheme: light) {
+  #favicon-light {
+    display: none;
+  }
+  #favicon-dark {
+    display: block;
+  }
+}
+
+/* #endregion */
+
 /* #region Icons */
 
 .icon_footer{
@@ -173,6 +197,20 @@ body {
   margin-top: 12px;
   margin-left: 18px;
   color: #fff
+}
+
+
+
+.LoRelogoTop{
+  position: absolute;
+  margin-top: 12px;
+  margin-left: 18px;
+  color: #fff
+}
+
+.logo{
+  height: 150px;
+  width: auto;
 }
 
 
