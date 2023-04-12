@@ -1603,7 +1603,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
 
                     <div class="tab-pane" id="sellingstation" role="tabpanel" aria-labelledby="sellingstation-tab">
                         <p class="card-text">Immerseghgfhgf traditions of Emilia-Romagna with a holiday in Bologna, and
-                            discover the city's rich artistic heritage.</p>
+                            discover the city's rich artistic heritsage.</p>
                     </div>
                 </div>
             </div>
