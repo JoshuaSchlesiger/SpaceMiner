@@ -267,7 +267,87 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     <div class="tab-pane active" id="quantanium" role="tabpanel" aria-labelledby="quantanium-tab">
                         <div class="card-text">
                             <h3 class="text-center font mt-4">Quantanium und die Zeiten</h3>
-                            
+                            <div class="container mt-4">
+                                <div class="row">
+                                    <div class="col-xxl">
+                                        Quantanium ist ein empfindliches, höchst instabiles Mineral, das abgebaut und zu
+                                        Quantenbrennstoff aufbereitet werden kann. Einmal abgebaut, baut sich Quantanium
+                                        mit der Zeit ab.
+                                        Stöße auf das transportierende Schiff beschleunigen diesen Abbau ebenfalls.
+                                        Sobald es ein bestimmtes Ausmaß erreicht hat, besteht die Gefahr, dass es
+                                        explodiert. Der Pilot erhält dann eine optische und akustische Warnung und hat
+                                        die Möglichkeit, die gesamte Ladung über eine Taste im Cockpit auszustoßen. Wird
+                                        der Auswurf nicht rechtzeitig durchgeführt, führt dies in den meisten Fällen zu
+                                        einer Explosion und dem Tod des Spielers.
+                                        In Anbetracht des Risikos ist die erfolgreiche Lieferung von Quantanium ein
+                                        lukratives Unterfangen und sollte nur mit Übung im Bergbau in Angriff genommen
+                                        werden.
+                                        <br>
+                                        <br>
+                                    </div>
+                                    <div class="col-xxl">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                Stufe 1 ->
+                                            </div>
+                                            <div class="col-3">
+                                                <span class="text-warning">Gelb blinkend</span>
+                                            </div>
+                                            <div class="col-3">
+                                                Stunfenzeit: 8min
+                                            </div>
+                                            <div class="col-4">
+                                                Informationen: Keine
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                Stufe 2 ->
+                                            </div>
+                                            <div class="col-3">
+                                                <span class="text-warning">Orange blinkend (schnell)</span>
+                                            </div>
+                                            <div class="col-3">
+                                                Stunfenzeit: 6min
+                                            </div>
+                                            <div class="col-4">
+                                                Informationen: Keine
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                Stufe 3 ->
+                                            </div>
+                                            <div class="col-3">
+                                                <span class="text-danger">Rot blinkend (schnell)</span>
+                                            </div>
+                                            <div class="col-3">
+                                                Stunfenzeit: 2min
+                                            </div>
+                                            <div class="col-4">
+                                                Informationen: Abstoßen von Quantanium
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                Stufe 4 ->
+                                            </div>
+                                            <div class="col-3">
+                                                <span class="text-danger">Rot blinkend (sehr schnell)</span>
+                                            </div>
+                                            <div class="col-3">
+                                                Stunfenzeit: 0.25min
+                                            </div>
+                                            <div class="col-4">
+                                                Informationen: Wird oft nicht angezeigt
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -277,11 +357,13 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     </div>
 
                     <div class="tab-pane" id="refineries" role="tabpanel" aria-labelledby="refineries-tab">
-                        <p class="card-text">Immerse yourself in the colours, aromas and traditions of Emilia-Romagna with a holiday in Bologna, and discover the city's rich artistic heritage.</p>
+                        <p class="card-text">Immerse yourself in the colours, aromas and traditions of Emilia-Romagna
+                            with a holiday in Bologna, and discover the city's rich artistic heritage.</p>
                     </div>
 
                     <div class="tab-pane" id="sellingstation" role="tabpanel" aria-labelledby="sellingstation-tab">
-                        <p class="card-text">Immerseghgfhgf traditions of Emilia-Romagna with a holiday in Bologna, and discover the city's rich artistic heritage.</p>
+                        <p class="card-text">Immerseghgfhgf traditions of Emilia-Romagna with a holiday in Bologna, and
+                            discover the city's rich artistic heritage.</p>
                     </div>
                 </div>
             </div>
