@@ -602,7 +602,6 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                                 </div>
                             </div>
 
-
                             <hr class="mt-4">
 
                             <div class="mt-4">
@@ -1520,8 +1519,86 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     </div>
 
                     <div class="tab-pane" id="refineries" role="tabpanel" aria-labelledby="refineries-tab">
-                        <p class="card-text">Immerse yourself in the colours, aromas and traditions of Emilia-Romagna
-                            with a holiday in Bologna, and discover the city's rich artistic heritage.</p>
+
+                        <div class="container ">
+                            <div class="row">
+                                <div class="col-xxl mt-3">
+                                    <h3 class="text-center font">Die Raffenerien in Star Citizen</h3>
+                                    <div class="row">
+                                        <div class="col mt-3 text-center">
+                                            <p class="text-info">STATION</p>
+                                            <p>ARC-L1 Wide Forest Station</p>
+                                            <p>CRU-L1 Ambitious Dream Station</p>
+                                            <p>HUR-L1 Green Glade Station</p>
+                                            <p>HUR-L2 Faithful Dream Station</p>
+                                            <p>MIC-L1 Shallow Frontier Station</p>
+                                        </div>
+                                        <div class="col mt-3 text-center">
+                                            <p class="text-info">SYSTEM</p>
+                                            <p>Stanton system</p>
+                                            <p>Stanton system</p>
+                                            <p>Stanton system</p>
+                                            <p>Stanton system</p>
+                                            <p>Stanton system</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl mt-3">
+                                    <h3 class="text-center font">Prozessarten</h3>
+                                    <div class="row">
+                                        <div class="col-4 mt-3 text-center">
+                                            <p class="text-info">Methode</p>
+                                            <p>Cormack Method</p>
+                                            <p>Dinyx Solvention</p>
+                                            <p>Electrostarolysis</p>
+                                            <p>Ferron Exchange</p>
+                                            <p>Gaskin Process</p>
+                                            <p>Kazen Winnowing</p>
+                                            <p>Pyrometric Chromalysis</p>
+                                            <p>Thermonatic Deposition</p>
+                                            <p>XCR Reaction</p>
+                                        </div>
+                                        <div class="col mt-3 text-center">
+                                            <p class="text-info">Geschwindigkeit</p>
+                                            <p>Hoch</p>
+                                            <p>Sehr niedrig</p>
+                                            <p>Mäßig</p>
+                                            <p>Niedrig</p>
+                                            <p>Hoch</p>
+                                            <p>Mäßig</p>
+                                            <p>Niedrig</p>
+                                            <p>Niedrig</p>
+                                            <p>Hoch</p>
+                                        </div>
+                                        <div class="col mt-3 text-center">
+                                            <p class="text-info">Kosten</p>
+                                            <p>Mäßig</p>
+                                            <p>Niedrig</p>
+                                            <p>Mäßig</p>
+                                            <p>Mäßig</p>
+                                            <p>Hoch</p>
+                                            <p>Niedrig</p>
+                                            <p>Hoch</p>
+                                            <p>Niedrig</p>
+                                            <p>Hoch</p>
+                                        </div>
+                                        <div class="col mt-3 text-center">
+                                            <p class="text-info">Ertrag</p>
+                                            <p>Niedrig</p>
+                                            <p>Hoch</p>
+                                            <p>Mäßig</p>
+                                            <p>Hoch</p>
+                                            <p>Mäßig</p>
+                                            <p>Niedrig</p>
+                                            <p>Hoch</p>
+                                            <p>Mäßig</p>
+                                            <p>Niedrig</p>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="tab-pane" id="sellingstation" role="tabpanel" aria-labelledby="sellingstation-tab">
