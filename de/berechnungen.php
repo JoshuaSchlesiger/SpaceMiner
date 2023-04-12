@@ -264,7 +264,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
             </div>
             <div class="card-body">
                 <div class="tab-content">
-                    <div class="tab-pane active" id="quantanium" role="tabpanel" aria-labelledby="quantanium-tab">
+                    <div class="tab-pane  active" id="quantanium" role="tabpanel" aria-labelledby="quantanium-tab">
                         <div class="card-text">
                             <h3 class="text-center font mt-4">Quantanium und die Zeiten</h3>
                             <div class="container mt-4">
@@ -351,9 +351,507 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                         </div>
                     </div>
 
-                    <div class="tab-pane text-center" id="aaronHalo" role="tabpanel">
-                        <h3>Der Asteroidengürtel</h3>
-                        <h5>Aber wie finde Ich ihn?</h5>
+                    <div class="tab-pane" id="aaronHalo" role="tabpanel">
+                        <h3 class="text-center font mt-4">Die Asteroiden und wo ich Sie finde</h3>
+                        <div class="container text-center mt-4">
+                            <div>
+                                <div class="row">
+                                    <div class="col text-danger">
+                                        ARC-L1
+                                    </div>
+                                    <div class="col text-info">
+                                        CRU-L4
+                                    </div>
+                                    <div class="col text-info">
+                                        CRUSADER
+                                    </div>
+                                    <div class="col text-info">
+                                        CRU-L5
+                                    </div>
+                                    <div class="col text-info">
+                                        HURSTON
+                                    </div>
+                                    <div class="col text-info">
+                                        CRU-L3
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col text-success">
+                                        Band 1
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>12.725.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>11.277.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>32.494.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>7.182.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>38.835.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>6.332.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>12.670.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>7.640.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>10.966.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>11.746.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col text-success">
+                                        Band 3
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>13.961.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>10.041.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>33.043.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>6.608.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>39.321.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>5.847.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>13.297.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>7.013.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>12.324.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>10.388.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col text-success">
+                                        Band 5
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>15.027.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>8.975.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>33.591.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>6.060.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>39.788.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>5.380.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>13.892.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>6.419.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>13.462.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>9.251.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col text-success">
+                                        Band 7
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>15.952.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>8.050.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>34.105.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>5.546.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>40.231.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>4.937.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>14.446.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>5.865.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>14.439.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>7.976.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="mt-4">
+
+                            <div class="mt-4">
+                                <div class="row">
+                                    <div class="col text-danger">
+                                        ARC-L1
+                                    </div>
+                                    <div class="col text-info">
+                                        CRU-L4
+                                    </div>
+                                    <div class="col text-info">
+                                        CRUSADER
+                                    </div>
+                                    <div class="col text-info">
+                                        CRU-L5
+                                    </div>
+                                    <div class="col text-info">
+                                        HURSTON
+                                    </div>
+                                    <div class="col text-info">
+                                        CRU-L3
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col text-success">
+                                        Band 1
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>12.725.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>11.277.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>32.494.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>7.182.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>38.835.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>6.332.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>12.670.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>7.640.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>10.966.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>11.746.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col text-success">
+                                        Band 3
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>13.961.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>10.041.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>33.043.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>6.608.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>39.321.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>5.847.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>13.297.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>7.013.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>12.324.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>10.388.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col text-success">
+                                        Band 5
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>15.027.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>8.975.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>33.591.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>6.060.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>39.788.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>5.380.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>13.892.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>6.419.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>13.462.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>9.251.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col text-success">
+                                        Band 7
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>15.952.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>8.050.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>34.105.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>5.546.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>40.231.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>4.937.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>14.446.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>5.865.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-warning">↑</span>14.439.000
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-warning">↓</span>7.976.000
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="tab-pane" id="refineries" role="tabpanel" aria-labelledby="refineries-tab">
