@@ -34,6 +34,13 @@ if (isset($_SESSION["loggedIn"])) {
 }
 
 
+
+if(isset($_POST["edit"])){
+    echo '<script src="scripts/scrollView.js"></script>';
+}
+
+
+
 //$hello = unserialize($_SESSION["players"]);
 //print_r($hello);
 
@@ -41,8 +48,6 @@ $jobs = unserialize($_SESSION["jobs"]);
 $crews = unserialize($_SESSION["crews"]);
 $players = unserialize($_SESSION["crews"]);
 
-//Variables
-$username = "User";
 
 //Statistiks
 $totalProfit = 0;
@@ -67,7 +72,6 @@ $jobProceeds = 0;
 $jobProfit = 0;
 $jobCrewProfit = 0;
 ?>
-
 
 <body>
 
@@ -326,12 +330,12 @@ $jobCrewProfit = 0;
                             <div class="mt-3">
                                 <span>Status: </span><span class="text-warning"> <?= $jobStatus ?></span>
                             </div>
-                            <div class="d-flex ">
-                                <form action="">
-                                    <a href="#" type="button" class="btn btn-outline-success mt-3">Auftrag beabeiten</a>
+                            <div class="d-flex">
+                                <form method="POST">
+                                    <button class="btn btn-outline-success mt-3" name="edit" value="<?=$jobs[$i]->getID(); ?>">Auftrag beabeiten</button>
                                 </form>
-                                <form class="ms-3" action="">
-                                    <a href="#" type="button" class="btn btn-outline-danger mt-3">Auftrag löschen</a>
+                                <form class="ms-3" method="POST" >
+                                    <button class="btn btn-outline-danger mt-3" name="delete" value="<?=$jobs[$i]->getID(); ?>">Auftrag löschen</button>
                                 </form>
                             </div>
                         </div>
@@ -339,14 +343,13 @@ $jobCrewProfit = 0;
 
                 <?php
                 }
-
                 ?>
             </div>
         </div>
 
     </div>
 
-    <div class="jobEdit-box card">
+    <div class="jobEdit-box card" id="yourJob">
         <h5 class="header-text card-header">Dein Auftrag</h5>
         <div class="box-text card-body mt-2">
             <div class="row justify-content-center">
@@ -771,7 +774,7 @@ $jobCrewProfit = 0;
                         </div>
                     </div>
 
-                    <div class="mt-3">
+                    <div class="mt-3" id="test">
                         <span>Status: </span><span class="text-warning"> <?= $jobStatus ?></span>
                     </div>
                     <div class="d-flex ">

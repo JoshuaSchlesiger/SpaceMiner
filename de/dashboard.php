@@ -8,8 +8,6 @@ if(isset($_POST["logout"])){
 }
 
 
-//Variables
-$username = "User";
 
 //Statistiks
 $totalProfit = 0;
@@ -106,7 +104,7 @@ if(isset($_SESSION["loggedIn"])){
     </div>
 </nav>
 
-    <h1 class="dashboard-text text-center font">Wilkommen <?= $username ?></h1>
+    <h1 class="dashboard-text text-center font">07 <?= $_SESSION["username"]?></h1>
 
     <div class="dashboard-box card">
         <h5 class="dashboard-header-text card-header">Statistiken</h5>
