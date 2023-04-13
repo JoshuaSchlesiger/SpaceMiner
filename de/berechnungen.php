@@ -244,7 +244,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
         </div>
     </div>
 
-    <div class="calculate">
+    <div class="calculate mt-5">
         <div class="calculate_sub card">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
@@ -264,7 +264,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
             </div>
             <div class="card-body">
                 <div class="tab-content">
-                    <div class="tab-pane  active" id="quantanium" role="tabpanel" aria-labelledby="quantanium-tab">
+                    <div class="tab-pane active " id="quantanium" role="tabpanel" aria-labelledby="quantanium-tab">
                         <div class="card-text">
                             <h3 class="text-center font mt-4">Quantanium und die Zeiten</h3>
                             <div class="container mt-4">
@@ -1519,11 +1519,10 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     </div>
 
                     <div class="tab-pane" id="refineries" role="tabpanel" aria-labelledby="refineries-tab">
-
                         <div class="container ">
                             <div class="row">
                                 <div class="col-xxl mt-3">
-                                    <h3 class="text-center font">Die Raffenerien in Star Citizen</h3>
+                                    <h3 class="text-center font">Die Raffinerien in Star Citizen</h3>
                                     <div class="row">
                                         <div class="col mt-3 text-center">
                                             <p class="text-info">STATION</p>
@@ -1549,7 +1548,7 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                                         <div class="col-4 mt-3 text-center">
                                             <p class="text-info">Methode</p>
                                             <p>Cormack Method</p>
-                                            <p>Dinyx Solvention</p>
+                                            <p class="text-success">Dinyx Solvention</p>
                                             <p>Electrostarolysis</p>
                                             <p>Ferron Exchange</p>
                                             <p>Gaskin Process</p>
@@ -1602,8 +1601,37 @@ $_SESSION['oreTypes'] = getOreTypes($conn);
                     </div>
 
                     <div class="tab-pane" id="sellingstation" role="tabpanel" aria-labelledby="sellingstation-tab">
-                        <p class="card-text">Immerseghgfhgf traditions of Emilia-Romagna with a holiday in Bologna, and
-                            discover the city's rich artistic heritsage.</p>
+                    <div class="container ">
+                            <div class="row">
+                                <div class="col-xxl mt-3">
+                                    <h3 class="text-center font">Lorville CBD</h3>
+                                    Der Central Business District (auch bekannt als CBD, Central Tower oder Central Headquarters and Shared Services Center) 
+                                    ist ein massives, 2,5 Kilometer hohes Gebäude, das Lorville überragt und der Hauptsitz von Hurston Dynamics ist. 
+                                    Es ist auch das größte Gebäude auf Hurston. Der Bau des Turms begann im Jahr 2912 (dem Gründungsjahr von Lorville) 
+                                    und wurde im Jahr 2914 abgeschlossen.
+                                </div>
+                                <div class="col-xxl mt-3">
+                                    <h3 class="text-center font">Area 18</h3>
+                                    Die Abteilung für Handel und Entwicklung in Area18 ist das lokale Büro der Abteilung für Handel und Entwicklung und befindet
+                                    sich im ArcCorp Plaza von Area18, ArcCorp. Die Handels- und Entwicklungsabteilung ist eine Zweigstelle des UEE-Zollamtes, die für die Überwachung des Verkaufs und Erwerbs von Waren zuständig ist. 
+                                    Die TDD unterhält Büros in fast allen Häfen und Drehkreuzen im gesamten Reich.
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-xxl mt-3">
+                                    <h3 class="text-center font">Orison</h3>
+                                    Orison ist ein Netz von großen, miteinander verbundenen Plattformen, die in der Atmosphäre des Planeten Crusader schweben.
+                                    Es ist auf einem vom Militär errichteten Gitterwerk aus bewohnbaren, schwebenden Plattformen aufgebaut, die von Crusader Industries für die Herstellung ihrer großen Schiffe genutzt werden. Die Werften selbst sind berühmt-berüchtigt und haben Orison zu einem beliebten Touristenziel im Stanton-System gemacht, 
+                                    das einen atemberaubenden Blick auf die kommerziellen Schiffsbauplattformen von Crusader bietet.
+                                </div>
+                                <div class="col-xxl mt-3">
+                                    <h3 class="text-center font">New Babbage</h3>
+                                    Die Abteilung für Handel und Entwicklung in New Babbage ist das örtliche Büro der Abteilung für Handel und Entwicklung.
+                                    Es befindet sich im microTech Plaza von New Babbage, microTech.Die Handels- und Entwicklungsabteilung ist eine Zweigstelle des UEE-Zollamtes, die für die Überwachung des Verkaufs und Erwerbs von Waren zuständig ist. 
+                                    Die TDD unterhält Büros in fast allen Häfen und Drehkreuzen im gesamten Reich.
+                                </div>
+                            </div>
+                    </div>
                     </div>
                 </div>
             </div>
