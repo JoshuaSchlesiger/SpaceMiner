@@ -442,6 +442,11 @@ body {
   }
 }
 
+@media screen and (min-width: 1400px) {
+  .job-editCrewButton{
+    min-width: 8em ;
+}
+}
 
 @media screen and (max-width: 1400px) {
   .job-addcrew {
