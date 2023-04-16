@@ -39,6 +39,8 @@ if(isset($_POST["sentLogin"])){
             $_SESSION["username"] = $_POST["username"];
 
             setJobs_Session();
+            $_SESSION["refineryStations"] = getAllRefineryStations($conn);
+            $_SESSION["sellingStations"] = getAllSellingStations($conn);
 
             header("Location: dashboard.php");
             exit();

@@ -11,6 +11,10 @@ require "objects/Player.php";
 
 session_start();
 
+
+//$conn = connect();
+//echo createTask($conn, 100, 200, 81659, 1);
+
 if (isset($_SESSION["alert"])) {
     $msg = $_SESSION['alert'];
     echo "<script type='text/javascript'>alert('$msg');</script>";
@@ -366,7 +370,7 @@ $jobCrewProfit = 0;
     </div>
 
     <div class="jobEdit-box card" id="yourJob">
-        <h5 class="header-text card-header">Dein Auftrag</h5>
+        <h5 class="header-text card-header">Bearbeite deinen Auftrag</h5>
         <?php
 
 
@@ -469,9 +473,14 @@ $jobCrewProfit = 0;
                                         <div class="col-6 ">Wähle den Lagerist/ Verkäufer: </div>
                                         <div class="col-3 text-info jobSelectCrewOptions">
                                             <select class="form-select">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <?php
+
+                                                $crewPlayer = getPeoplenOfCrew($crews[$_POST["selectedCrew"]]->getId());
+                                                for ($i = 0; $i < count($crewPlayer); $i++) {
+                                                    echo '<option value=' . $crewPlayer[$i]->getID() . '>' . $crewPlayer[$i]->getName() . '</option>';
+                                                }
+
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -480,9 +489,11 @@ $jobCrewProfit = 0;
                                         <div class="col-6 ">Wähle die Miningstation: </div>
                                         <div class="col-3 text-info jobSelectCrewOptions">
                                             <select class="form-select">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <?php
+                                                for ($i = 0; $i < count($_SESSION["refineryStations"]); $i++) {
+                                                    echo '<option value=' . $_SESSION["sellingStations"][$i]["id"] . '>' . $_SESSION["refineryStations"][$i]["name"] . '</option>';
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -512,9 +523,11 @@ $jobCrewProfit = 0;
                                             <div class="col-6 ">Wähle die Verkaufsstation: </div>
                                             <div class="col-3 text-info jobSelectCrewOptions">
                                                 <select class="form-select">
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <?php
+                                                    for ($i = 0; $i < count($_SESSION["sellingStations"]); $i++) {
+                                                        echo '<option value=' . $_SESSION["sellingStations"][$i]["id"] . '>' . $_SESSION["sellingStations"][$i]["name"] . '</option>';
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -557,9 +570,11 @@ $jobCrewProfit = 0;
                                         <div class="col-6 ">Wähle die Miningstation </div>
                                         <div class="col-3 text-info jobSelectCrewOptions">
                                             <select class="form-select">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <?php
+                                                for ($i = 0; $i < count($_SESSION["refineryStations"]); $i++) {
+                                                    echo '<option value=' . $_SESSION["sellingStations"][$i]["id"] . '>' . $_SESSION["refineryStations"][$i]["name"] . '</option>';
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -572,9 +587,14 @@ $jobCrewProfit = 0;
 
                                         <div class="col-3 text-info jobSelectCrewOptions">
                                             <select class="form-select">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <?php
+                                                for ($i = 0; $i < count($_SESSION['oreTypes']); $i++) {
+                                                    echo '<option value=' . $_SESSION['oreTypes'][$i]["id"] . '>';
+                                                    echo $_SESSION['oreTypes'][$i]["name"];
+                                                    echo '</option>';
+                                                }
+
+                                                ?>
                                             </select>
                                         </div>
 
@@ -748,8 +768,7 @@ $jobCrewProfit = 0;
                     </div>
 
                 <?php
-                }
-                else{
+                } else {
                     echo '<hr class="mt-4 mb-4">';
                 }
                 ?>

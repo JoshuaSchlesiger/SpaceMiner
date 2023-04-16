@@ -51,10 +51,17 @@ function login($conn, $username, $password)
   }
 }
 
-
-function getAllNameRefineryStations($conn)
+function getAllRefineryStations($conn)
 {
-  $stmt = $conn->prepare('SELECT name FROM refinery_station');
+  $stmt = $conn->prepare('SELECT id, name FROM refinery_station');
+  $stmt->execute();
+  $value = $stmt->fetchAll();
+  return $value;
+}
+
+function getAllSellingStations($conn)
+{
+  $stmt = $conn->prepare('SELECT id, name FROM selling_station');
   $stmt->execute();
   $value = $stmt->fetchAll();
   return $value;
@@ -285,4 +292,34 @@ function getPlayers($conn, $crewID){
 
   $crews = $stmt->fetchAll();
   return $crews;
+}
+
+function createTask($conn, $duration, $costs, $crewID, $refinery_station_id){
+  
+    $stmt = $conn->prepare("INSERT INTO task (duration, costs, crew_id, refinery_station_id) 
+                            VALUES (:duration, :costs, :crew_id, :refinery_station_id)");
+
+    $stmt->bindParam(':duration', $duration);
+    $stmt->bindParam(':costs', $costs);
+    $stmt->bindParam(':crew_id', $crewID);
+    $stmt->bindParam(':refinery_station_id', $refinery_station_id);
+
+    $stmt->execute();
+
+    $id = $conn->lastInsertId();
+    return $id;
+
+}
+
+function createTypeTask($conn, $type_id, $task_id, $mass){
+    $stmt = $conn->prepare("INSERT INTO type_task (type_id, task_id, mass) 
+    VALUES (:type_id ,:task_id ,:mass)");
+
+    $stmt->bindParam(':type_id', $type_id);
+    $stmt->bindParam(':task_id', $task_id);
+    $stmt->bindParam(':mass', $mass);
+
+    $stmt->execute();
+
+
 }

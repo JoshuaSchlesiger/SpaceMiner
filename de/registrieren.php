@@ -41,6 +41,10 @@ if(isset($_POST["sentRegister"])){
                 register($conn, $_POST["username"], $_POST["password"]);
                 $_SESSION["loggedIn"] = "true";
                 $_SESSION["username"] = $_POST["username"];
+
+                $_SESSION["refineryStations"] = getAllRefineryStations($conn);
+                $_SESSION["sellingStations"] = getAllSellingStations($conn);
+
                 unset($_POST["sentRegister"]);
                 header("Location: dashboard.php");
                 exit();
