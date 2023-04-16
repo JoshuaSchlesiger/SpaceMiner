@@ -70,7 +70,7 @@ function setSingleJobs_Session()
                 $dataPlayer = getPlayers($conn,$dataCrews[$y]["id"]);
     
                 for($x = 0; $x< count($dataPlayer); $x++){
-                    $player = new Player($dataPlayer[$x]["name"],$dataPlayer[$x]["id"], $dataCrews[$y]["id"], $dataPlayer[$x]["type"]);
+                    $player = new Player($dataPlayer[$x]["name"], $dataPlayer[$x]["id"], $dataCrews[$y]["id"], $dataPlayer[$x]["type"]);
                     array_push($players, $player);
                 }
 
