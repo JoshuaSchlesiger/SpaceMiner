@@ -75,13 +75,11 @@ function getOreTypes($conn)
   return $type;
 }
 
-
 function passwordHash($password)
 {
   $pass = password_hash($password, PASSWORD_DEFAULT);
   return $pass;
 }
-
 
 function createJob()
 {
@@ -320,6 +318,11 @@ function createTypeTask($conn, $type_id, $task_id, $mass){
     $stmt->bindParam(':mass', $mass);
 
     $stmt->execute();
+}
 
+function deleteJob($conn, $job_id){
+  $stmt = $conn->prepare("DELETE FROM job WHERE id = :job_id");
 
+  $stmt->bindParam(':job_id', $job_id);
+  $stmt->execute();
 }

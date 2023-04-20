@@ -639,3 +639,15 @@ body {
 
 /* #endregion */
 
+
+/* #region ToolTips */
+
+
+.warningIcon{
+  background: url("../images/icons/warning.png") no-repeat;
+  background-position: right 5px top 8px;
+  background-size: 20px;
+}
+
+
+/* #endregion */

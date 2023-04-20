@@ -52,9 +52,10 @@ function setSingleJobs_Session()
 
     $conn = connect();
 
-    $dataJobs = getLatestJob($conn);
-
     $numJobs = count($jobs);
+
+    if($numJobs != 0){
+        $dataJobs = getLatestJob($conn);
 
         if ($dataJobs["id"] != $jobs[$numJobs-1]->getid()) {
 
@@ -80,4 +81,64 @@ function setSingleJobs_Session()
             $_SESSION["crews"] = serialize($crews);
             $_SESSION["players"] = serialize($players);
         }
+    }else{
+
+        $dataJobs = getLatestJob($conn);
+
+            $job = new Job($dataJobs["id"], $dataJobs["number"], $dataJobs["time"]);
+            array_push($jobs, $job);
+
+            $dataCrews = getCrews($conn, $dataJobs["id"]);
+
+            for($y = 0; $y< count($dataCrews); $y++){
+                $crew = new Crew($dataJobs["id"], $dataCrews[$y]["name"], $dataCrews[$y]["id"]);
+                array_push($crews, $crew);
+    
+                $dataPlayer = getPlayers($conn,$dataCrews[$y]["id"]);
+    
+                for($x = 0; $x< count($dataPlayer); $x++){
+                    $player = new Player($dataPlayer[$x]["name"], $dataPlayer[$x]["id"], $dataCrews[$y]["id"], $dataPlayer[$x]["type"]);
+                    array_push($players, $player);
+                }
+
+            }
+            
+            $_SESSION["jobs"] = serialize($jobs);
+            $_SESSION["crews"] = serialize($crews);
+            $_SESSION["players"] = serialize($players);
+    }
+
+   
+}
+
+
+function deleteJob_Session($job_id){
+
+    $conn = connect();
+    deleteJob($conn, $job_id);
+
+    $jobs = unserialize($_SESSION["jobs"]);
+    $crews = unserialize($_SESSION["crews"]);
+    $players = unserialize($_SESSION["players"]);
+
+    for($i = 0; $i < count($jobs); $i++){
+        if($jobs[$i]->getID() == $job_id){
+            for($y = 0; $y < count($crews); $y++){
+                if($crews[$y]->getJobid() == $job_id){
+                    for($x = 0; $x < count($players); $x++){
+                        if($players[$x]->getCrewID() == $crews[$y]->getID()){
+                            array_splice($players, $x, 1);
+                        }
+                    }
+                    array_splice($crews, $y, 1);
+                }
+            }
+            array_splice($jobs, $i, 1);
+        }
+    }
+
+    $_SESSION["jobs"] = serialize($jobs);
+    $_SESSION["crews"] = serialize($crews);
+    $_SESSION["players"] = serialize($players);
+    
 }

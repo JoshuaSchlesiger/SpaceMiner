@@ -22,6 +22,8 @@ if (isset($_SESSION["alert"])) {
 }
 
 
+#region Login/Logout
+
 if (isset($_POST["logout"])) {
     $_SESSION["loggedIn"] = "false";
     session_destroy();
@@ -37,27 +39,31 @@ if (isset($_SESSION["loggedIn"])) {
     exit();
 }
 
+#endregion
 
 
-//$hello = unserialize($_SESSION["players"]);
-//print_r($hello);
+
+if (isset($_POST["delete"])) {
+
+    deleteJob_Session($_POST["delete"]); // Führt auch das SQL aus
+    unset($_SESSION["edit"]);
+}
+
 
 $jobs = unserialize($_SESSION["jobs"]);
 $crews = unserialize($_SESSION["crews"]);
 $players = unserialize($_SESSION["crews"]);
 
+#region EDIT JOB
 
 if (isset($_POST["edit"])) {
     $_SESSION["edit"] = $_POST["edit"];
 }
 
-
-
-
 if (isset($_SESSION["edit"])) {
-    echo '<script src="scripts/scrollView.js"></script>';
 
     $_SESSION["selectedJobID"] = $_SESSION["edit"];
+    echo '<script src="scripts/scrollView.js"></script>';
 
     $JobPosInArray = 0;
 
@@ -68,6 +74,8 @@ if (isset($_SESSION["edit"])) {
     }
 }
 
+
+#endregion
 
 
 //Statistiks
@@ -566,27 +574,12 @@ $jobCrewProfit = 0;
                                         <div class="h2 font jobDiv">Einlagern</div>
                                     </div>
 
-                                    <div class="row mt-5 mb-4 d-flex justify-content-center">
-                                        <div class="col-6 ">Wähle die Miningstation </div>
-                                        <div class="col-3 text-info jobSelectCrewOptions">
-                                            <select class="form-select">
-                                                <?php
-                                                for ($i = 0; $i < count($_SESSION["refineryStations"]); $i++) {
-                                                    echo '<option value=' . $_SESSION["sellingStations"][$i]["id"] . '>' . $_SESSION["refineryStations"][$i]["name"] . '</option>';
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
 
-                                    <hr>
-
-
-                                    <div class="row mt-4 d-flex justify-content-center">
+                                    <div class="row mt-5 d-flex justify-content-center">
                                         <div class="col-6">Steinart: </div>
 
                                         <div class="col-3 text-info jobSelectCrewOptions">
-                                            <select class="form-select">
+                                            <select class="form-select" id="oretype">
                                                 <?php
                                                 for ($i = 0; $i < count($_SESSION['oreTypes']); $i++) {
                                                     echo '<option value=' . $_SESSION['oreTypes'][$i]["id"] . '>';
@@ -599,18 +592,20 @@ $jobCrewProfit = 0;
                                         </div>
 
                                     </div>
-                                    <div class="row mt-4 d-flex justify-content-center">
+                                    <div class="row mt-4 d-flex justify-content-center ">
                                         <div class="col-6">Gewicht: </div>
-
                                         <div class="col-3 jobSelectCrewOptions">
-                                            <input type="text" class="form-control">
+                                            <input type="number" class="form-control" id="weight" placeholder="0 cSCU" min="1" max="99999" required>
                                         </div>
+
+
+
                                     </div>
-                                    <div class="row  mt-3 d-flex justify-content-center">
+                                    <div class="row mt-2 mb-4 d-flex justify-content-center">
                                         <div class="col-6"></div>
 
                                         <div class="col-3 jobSelectCrewOptions">
-                                            <button type="button" class="button btn btn-outline-success">ADD</button>
+                                            <button type="button" class="button btn btn-outline-success" onclick="addTypeWeight()" id="addTypeWeight">ADD</button>
                                         </div>
                                     </div>
                                     </form>
@@ -622,53 +617,66 @@ $jobCrewProfit = 0;
                                         <div class="col-6">Einlagerung bearbeiten: </div>
 
                                         <div class="col-3 text-info jobSelectCrewOptions">
-                                            <select class="form-select">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                            <select class="form-select" id="typeWeightList">
                                             </select>
                                         </div>
 
                                     </div>
-                                    <div class="row  mt-3 d-flex justify-content-center">
+                                    <div class="row mt-2 mb-4 d-flex justify-content-center">
                                         <div class="col-6"></div>
 
                                         <div class="col-3 jobSelectCrewOptions">
-                                            <button type="button" class="button btn btn-outline-danger">DEL</button>
-                                            <button type="button" class="button btn btn-outline-info">SEL</button>
+                                            <button type="button" class="button btn btn-outline-danger" onclick="deleteTypeWeight()" id="deleteTypeWeight">DEL</button>
                                         </div>
                                     </div>
+
+                                    <hr>
+
+                                    <div class="row mt-4 d-flex justify-content-center">
+                                        <div class="col-6 ">Wähle die Miningstation </div>
+                                        <div class="col-3 text-info jobSelectCrewOptions">
+                                            <select class="form-select" id="miningStation">
+                                                <?php
+                                                for ($i = 0; $i < count($_SESSION["refineryStations"]); $i++) {
+                                                    echo '<option value=' . $_SESSION["refineryStations"][$i]["id"] . '>' . $_SESSION["refineryStations"][$i]["name"] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
 
                                     <div class="row mt-5 d-flex justify-content-center">
                                         <div class="col-6">Dauer des Auftrags: </div>
 
                                         <div class="col-3 jobSelectCrewOptions">
                                             <div class="row">
-                                                <div class="col-5">
-                                                    <input type="text" placeholder="h" class="form-control">
+                                                <div class="col-6">
+                                                    <input type="number" placeholder="h" class="form-control" min="0" max="999" id="hours">
                                                 </div>
-                                                <div class="col-5">
-                                                    <input type="text" placeholder="min" class="form-control">
+                                                <div class="col-6">
+                                                    <input type="number" placeholder="min" class="form-control" min="0" max="59" id="minutes">
                                                 </div>
                                             </div>
 
                                         </div>
 
                                     </div>
+
                                     <div class="row mt-4 d-flex justify-content-center">
                                         <div class="col-6">Kosten: </div>
 
                                         <div class="col-3 jobSelectCrewOptions">
-                                            <input type="text" class="form-control">
+                                            <input type="number" class="form-control" min="0" max="999999" id="costs">
                                         </div>
                                     </div>
 
-                                    <hr class="mt-4">
+                                    <hr >
 
                                     <div class="d-flex justify-content-evenly mt-4 mb-4 jobCrewButtonstop">
 
-                                        <button class="btn btn-outline-success jobCrewButtons">Hinzufügen</button>
-                                        <button class="btn btn-outline-warning jobCrewButtons">Zurücksetzen</button>
+                                        <button class="btn btn-outline-success jobCrewButtons" onclick="saveTask()">Hinzufügen</button>
+                                        <button class="btn btn-outline-warning jobCrewButtons" onclick="resetTask()">Zurücksetzen</button>
 
                                     </div>
 
@@ -790,7 +798,9 @@ $jobCrewProfit = 0;
                             <button class="button form-control btn btn-outline-warning btn-lg">Bezahlungen löschen</button>
                         </div>
                         <div class="offset-xxl-2 col-xxl-4 mt-3">
-                            <button class="button form-control btn btn-outline-danger btn-lg">Löschen</button>
+                            <form method="POST">
+                                <button class="button form-control btn btn-outline-danger btn-lg" name="delete" value="<?= $jobs[$JobPosInArray]->getID(); ?>">Löschen</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -869,7 +879,7 @@ $jobCrewProfit = 0;
 
     <script src="scripts/add_crew.js"></script>
     <script src="scripts/add_crew_workers.js"></script>
-    <script src="scripts/yourJob.js"></script>
+    <script src="scripts/add_task.js"></script>
 
 </body>
 

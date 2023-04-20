@@ -27,7 +27,7 @@ if(isset($_POST["sentLogin"])){
     $_SESSION["end_time"] = time();
     $time_diff = $_SESSION["end_time"] - $_SESSION["start_time"];
     
-    if($time_diff > 1){
+    if($time_diff > 0.5){
 
         unset($_SESSION["start_time"]);
         unset($_SESSION["end_time"]);

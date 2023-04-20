@@ -49,7 +49,7 @@ function add_crew(){
         crews.push(crew);
 
         $.ajax({
-            url:'functions/add_crew.php',
+            url:'functions/new_crew.php',
             method: "POST",
             data: {
                 crewname: crewname,
