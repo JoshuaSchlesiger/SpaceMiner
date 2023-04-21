@@ -74,6 +74,10 @@ if (isset($_SESSION["edit"])) {
     }
 }
 
+if(isset($_POST["selectedCrew"])){
+    $_SESSION["selectedCrew"] = $_POST["selectedCrew"];
+}
+
 
 #endregion
 
@@ -434,7 +438,7 @@ $jobCrewProfit = 0;
                         <div class="dropdown">
                             <a class="btn btn-outline-warning btn-lg form-control job-editCrewButton" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
                                 <?php
-                                if (isset($_POST["selectedCrew"])) {
+                                if (isset($_POST["selectedCrew"])) { 
                                 ?>
                                     <i><?= $crews[$_POST["selectedCrew"]]->getName(); ?></i>
 
