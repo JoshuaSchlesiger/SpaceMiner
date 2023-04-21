@@ -119,7 +119,7 @@ window.addEventListener("load", (event) => {
               proportion3: proportion3,
             }
           })
-              .done(function(data) {
+              .success(function(data) {
                 
                 var json = JSON.parse(data);
                 setValues(json);

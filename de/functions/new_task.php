@@ -7,39 +7,45 @@ require "../objects/Task.php";
 
 session_start();
 
-if(isset($_POST["timeHours"]) && isset($_POST["timeMinutes"]) && isset($_POST["costs"]) && isset($_POST["typeWeightList"]) && isset($_POST["miningStation"])){
-    $timeHours = $_POST["timeHours"];
-    $timeMinutes = $_POST["timeMinutes"];
-    $costs = $_POST["costs"];
-    $typeWeightList = $_POST["typeWeightList"];
-    $miningStation = $_POST["miningStation"];
+
+if(isset($_POST["values"])){
+
+    $values = json_decode($_POST["values"]);
+
+    $timeHours = $values["timeHours"];
+    $timeMinutes = $values["timeMinutes"];
+    $costs = $values["costs"];
+    $typeWeightList = $values["typeWeightList"];
+    $miningStation = $values["miningStation"];
+
+    $data["Error"] = "";
 
     if($timeHours > 999){
-        echo("ERROR - Die Stundenanzahl ist höher als 999 und das ist etwas viel ^^");
+        $data["Error"] = "ERROR - Die Stundenanzahl ist mehr als 999 und das ist etwas viel ^^";
     }
     else if($timeHours < 0){
-        echo ("ERROR - Weniger als 0 Stunden, dein Ernst?!");
+        $data["Error"] ="ERROR - Weniger als 0 Stunden, dein Ernst?!";
     }
     else if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $timeHours)){
-        echo ("ERROR - Also Sonderzeichen als Zeit sind nicht geil");
+        $data["Error"] ="ERROR - Also Sonderzeichen als Zeit sind nicht geil";
     }
     else if($timeMinutes > 59){
-        echo ("ERROR - Die Minutenanzahl ist höher als 59, etwas sus oder nicht?");
+        $data["Error"] ="ERROR - Die Minutenanzahl ist mehr als 59, etwas sus oder nicht?";
     }
     else if($timeMinutes < 0){
-        echo ("ERROR - Weniger als 0 Minuten, dein Ernst?!");
+        $data["Error"] ="ERROR - Weniger als 0 Minuten, dein Ernst?!";
     }
     else if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $timeMinutes)){
-        echo ("ERROR - Also Sonderzeichen als Zeit sind nicht geil");
+        $data["Error"] ="ERROR - Also Sonderzeichen als Zeit sind nicht geil";
     }
     else if($costs < 0){
-        echo ("ERROR - Ich glaub dein Betrieb läuft gut, wenn du negative Kosten hast. Lass ich aber nicht gelten");
+        $data["Error"] ="ERROR - Ich glaub dein Betrieb geht gut, wenn du negative Kosten hast. Lass ich aber nicht gelten";
     }
     else if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $costs)){
-        echo ("ERROR - Also Sonderzeichen als Kosten sind nicht geil");
+        $data["Error"] ="ERROR - Also Sonderzeichen als Kosten sind nicht geil";
     }
     else if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $miningStation)){
-        echo ("ERROR - Was machst du hier mit den Stationen?! Da sollen keine Sonderzeichen stehen");
+        $data["Error"] ="ERROR - Was machst du hier mit den Stationen?! Da sollen keine Sonderzeichen stehen";
     }
     else{
         $checkSpecialChars = true;
@@ -54,7 +60,7 @@ if(isset($_POST["timeHours"]) && isset($_POST["timeMinutes"]) && isset($_POST["c
         }
 
         if(!$checkSpecialChars){
-            echo ("ERROR - Was machst du hier mit den Gewichten und Typen?! Da sollen keine Sonderzeichen stehen");
+            $data["Error"] = "ERROR - Was machst du hier mit den Gewichten und Typen?! Da sollen keine Sonderzeichen stehen";
         }
         else{
             $conn = connect();
@@ -64,11 +70,18 @@ if(isset($_POST["timeHours"]) && isset($_POST["timeMinutes"]) && isset($_POST["c
             $crews = unserialize($_SESSION["crews"]);
             $crewID = $crews[$_SESSION["selectedCrew"]]->getID();
             
-            createTask($conn, $duration, $costs, $crewID, $refinery_station_id);
+            //$taskid = createTask($conn, $duration, $costs, $crewID, $refinery_station_id);
+
+            for($i = 0; $i < count($typeWeightList); $i++){
+                //createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
+            }
+            //$data["Error"] = count($typeWeightList);
         }
     }
-}
 
+    echo json_encode($data);
+
+}
 
 
 

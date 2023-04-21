@@ -91,22 +91,31 @@ function saveTask(){
             i++;
         }
 
+        const values = {
+            timeHours: timeHours.value,
+            timeMinutes: timeMinutes.value,
+            costs: costs.value,
+            typeWeightList: varTypeWeightList,
+            miningStation: miningStation.value
+        }
 
         $.ajax({
             url:'functions/new_task.php',
             method: "POST",
             data: {
-                timeHours: timeHours.value,
-                timeMinutes: timeMinutes.value,
-                costs: costs.value,
-                typeWeightList: varTypeWeightList,
-                miningStation: miningStation.value
+                values: JSON.stringify(values)
             },  
             success: function (data) {
-                resetTask();
-                if(data != ""){
-                    alert(data);
+
+                informations = JSON.parse(data);
+                if(informations["Error"] != undefined){
+                    alert(informations["Error"]);
+                    resetTask();
                 }
+                else{
+                    resetTask();
+                }
+
             }
     
         })
