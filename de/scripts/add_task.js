@@ -75,6 +75,7 @@ function saveTask(){
         }
 
         varTypeWeightList = new Array();
+        i = 0;
 
         for (const child of typeWeightList.children) {
             searchTerm = "-";
@@ -84,7 +85,6 @@ function saveTask(){
             id = childText.substring(0, indexOf);
             mass = childText.substring(indexOf+1);
 
-            i = 0;
             varTypeWeightList[i] = new Array(2);
             varTypeWeightList[i][0] = id;
             varTypeWeightList[i][1] = mass;
@@ -113,6 +113,7 @@ function saveTask(){
                     resetTask();
                 }
                 else{
+                    informations["Error"];
                     resetTask();
                 }
 

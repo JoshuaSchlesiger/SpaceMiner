@@ -10,15 +10,17 @@ session_start();
 
 if(isset($_POST["values"])){
 
-    $values = json_decode($_POST["values"]);
+    $buffer = $_POST["values"];
 
-    $timeHours = $values["timeHours"];
-    $timeMinutes = $values["timeMinutes"];
-    $costs = $values["costs"];
-    $typeWeightList = $values["typeWeightList"];
-    $miningStation = $values["miningStation"];
+    $values = json_decode($buffer);
 
-    $data["Error"] = "";
+    $timeHours = $values->timeHours;
+    $timeMinutes = $values->timeMinutes;
+    $costs = $values->costs;
+    $typeWeightList = $values->typeWeightList;
+    $miningStation = $values->miningStation;
+
+    $data["Error"] = null;
 
     if($timeHours > 999){
         $data["Error"] = "ERROR - Die Stundenanzahl ist mehr als 999 und das ist etwas viel ^^";
@@ -75,7 +77,7 @@ if(isset($_POST["values"])){
             for($i = 0; $i < count($typeWeightList); $i++){
                 //createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
             }
-            //$data["Error"] = count($typeWeightList);
+            $data["Error"] = count($typeWeightList);
         }
     }
 
