@@ -72,12 +72,11 @@ if(isset($_POST["values"])){
             $crews = unserialize($_SESSION["crews"]);
             $crewID = $crews[$_SESSION["selectedCrew"]]->getID();
             
-            //$taskid = createTask($conn, $duration, $costs, $crewID, $refinery_station_id);
+            $taskid = createTask($conn, $duration, $costs, $crewID, $refinery_station_id);
 
             for($i = 0; $i < count($typeWeightList); $i++){
-                //createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
+                createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
             }
-            $data["Error"] = count($typeWeightList);
         }
     }
 

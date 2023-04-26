@@ -4,12 +4,39 @@ function addTypeWeight(){
     oretype = document.getElementById("oretype");
     weight = document.getElementById("weight");
 
+    check = false;
+    i = 0;
+
+    for (const child of typeWeightList.children) {
+        searchTerm = "-";
+        indexOf = child.id.indexOf(searchTerm);
+        childText = child.id;
+
+        id = childText.substring(0, indexOf);
+        mass = childText.substring(indexOf+1);
+
+        if(mass == weight.value && id == oretype.value ){
+            check = true;
+        }
+
+    }
+
     if(weight.value <= 0){
         weight.style.borderColor = "Crimson";
         weight.classList.add('warningIcon');
-    }else{
+        weight.title = "Kleiner als null geht nicht";
+    }
+    else if(check){
+        weight.style.borderColor = "Crimson";
+        weight.classList.add('warningIcon');
+        weight.title = "Der gleicher Wert und Typ ist nicht erlaubt";
+    }
+    else{
         weight.style.borderColor = "";
         weight.classList.remove('warningIcon');
+        weight.title = "";
+        typeWeightList.style.borderColor = "";
+        typeWeightList.classList.remove('warningIcon');
 
         element = document.createElement("option");
         text = oretype.value + "-" + weight.value; 
@@ -45,16 +72,25 @@ function saveTask(){
         timeMinutes.classList.add('warningIcon');
         typeWeightList.style.borderColor = "Crimson";
         typeWeightList.classList.add('warningIcon');
+
+        timeHours.title = "Es fehlt eine Zeit";
+        timeMinutes.title = "Es fehlt eine Zeit";
+        typeWeightList.title = "Es fehlt eine Einlagerung";
     }
     else if(timeHours.value == 0 && timeMinutes.value == 0){
         timeHours.style.borderColor = "Crimson";
         timeHours.classList.add('warningIcon');
         timeMinutes.style.borderColor = "Crimson";
         timeMinutes.classList.add('warningIcon');
+
+        timeHours.title = "Es fehlt eine Zeit";
+        timeMinutes.title = "Es fehlt eine Zeit";
     }
     else if(typeWeightList.value == 0){
         typeWeightList.style.borderColor = "Crimson";
         typeWeightList.classList.add('warningIcon');
+
+        typeWeightList.title = "Es fehlt eine Einlagerung";
     }
     else{
         typeWeightList.style.borderColor = "";
@@ -63,6 +99,10 @@ function saveTask(){
         timeHours.classList.remove('warningIcon');
         timeMinutes.style.borderColor = "";
         timeMinutes.classList.remove('warningIcon');
+
+        timeHours.title = "";
+        timeMinutes.title = "";
+        typeWeightList.title = "";
 
         if(costs.value == 0){
             costs.value = 0;
