@@ -293,13 +293,15 @@ function getPlayers($conn, $crewID){
 }
 
 function createTask($conn, $duration, $costs, $crewID, $refinery_station_id){
+
+    $time = time();
   
     $stmt = $conn->prepare("INSERT INTO task (duration, costs, create_time, crew_id, refinery_station_id) 
-                            VALUES (:duration, :costs, :crew_id, :refinery_station_id)");
+                            VALUES (:duration, :costs, :create_time, :crew_id, :refinery_station_id)");
 
     $stmt->bindParam(':duration', $duration);
     $stmt->bindParam(':costs', $costs);
-    $stmt->bindParam(':create_time', time());
+    $stmt->bindParam(':create_time', $time);
     $stmt->bindParam(':crew_id', $crewID);
     $stmt->bindParam(':refinery_station_id', $refinery_station_id);
 

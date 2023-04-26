@@ -20,6 +20,8 @@ if(isset($_POST["values"])){
     $typeWeightList = $values->typeWeightList;
     $miningStation = $values->miningStation;
 
+    
+
     $data["Error"] = null;
 
     if($timeHours > 999){
@@ -42,6 +44,9 @@ if(isset($_POST["values"])){
     }
     else if($costs < 0){
         $data["Error"] ="ERROR - Ich glaub dein Betrieb geht gut, wenn du negative Kosten hast. Lass ich aber nicht gelten";
+    }
+    else if($costs > 9999999){
+        $data["Error"] ="ERROR - Ich glaub du gehts Bankrott";
     }
     else if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $costs)){
         $data["Error"] ="ERROR - Also Sonderzeichen als Kosten sind nicht geil";
@@ -78,12 +83,12 @@ if(isset($_POST["values"])){
 
             $crews = unserialize($_SESSION["crews"]);
             $crewID = $crews[$_SESSION["selectedCrew"]]->getID();
+
             
             $taskid = createTask($conn, $duration, $costs, $crewID, $refinery_station_id);
-            $data["Error"] = $taskid;
 
             for($i = 0; $i < count($typeWeightList); $i++){
-                //createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
+                createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
             }
         }
     }

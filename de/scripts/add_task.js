@@ -91,11 +91,30 @@ function saveTask(){
         timeHours.title = "Es fehlt eine Zeit";
         timeMinutes.title = "Es fehlt eine Zeit";
     }
+    else if(timeHours.value > 999){
+        timeHours.style.borderColor = "Crimson";
+        timeHours.classList.add('warningIcon');
+
+        timeHours.title = "Mehr als 999 Stunden ist doch etwas viel";
+    }
+    else if(timeMinutes.value > 59){
+        timeMinutes.style.borderColor = "Crimson";
+        timeMinutes.classList.add('warningIcon');
+
+        timeMinutes.title = "Mehr als 59 Minuten sind sus";
+    }
     else if(typeWeightList.value == 0){
         typeWeightList.style.borderColor = "Crimson";
         typeWeightList.classList.add('warningIcon');
 
         typeWeightList.title = "Es fehlt eine Einlagerung";
+    }
+    else if(costs.value > 9999999){
+        costs.style.borderColor = "Crimson";
+        costs.classList.add('warningIcon');
+
+        costs.title = "Die Kosten sind schon sehr sus";
+
     }
     else{
         typeWeightList.style.borderColor = "";
@@ -104,6 +123,8 @@ function saveTask(){
         timeHours.classList.remove('warningIcon');
         timeMinutes.style.borderColor = "";
         timeMinutes.classList.remove('warningIcon');
+        costs.style.borderColor = "";
+        costs.classList.remove('warningIcon');
 
         timeHours.title = "";
         timeMinutes.title = "";
