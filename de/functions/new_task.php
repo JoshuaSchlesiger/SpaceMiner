@@ -51,6 +51,7 @@ if(isset($_POST["values"])){
     }
     else{
         $checkSpecialChars = true;
+        $checkWeight = true;
 
         for($i = 0; $i < count($typeWeightList); $i++){
             if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',$typeWeightList[$i][0])){
@@ -59,10 +60,16 @@ if(isset($_POST["values"])){
             if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',$typeWeightList[$i][1])){
                 $checkSpecialChars = false;
             }
+            if($typeWeightList[$i][1] > 99999){
+                $checkWeight = false;
+            }
         }
 
         if(!$checkSpecialChars){
             $data["Error"] = "ERROR - Was machst du hier mit den Gewichten und Typen?! Da sollen keine Sonderzeichen stehen";
+        }
+        if(!$checkWeight){
+            $data["Error"] = "ERROR - Das Gewicht ist ja mal etwas zu hoch oder nicht?!";
         }
         else{
             $conn = connect();
@@ -73,9 +80,10 @@ if(isset($_POST["values"])){
             $crewID = $crews[$_SESSION["selectedCrew"]]->getID();
             
             $taskid = createTask($conn, $duration, $costs, $crewID, $refinery_station_id);
+            $data["Error"] = $taskid;
 
             for($i = 0; $i < count($typeWeightList); $i++){
-                createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
+                //createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
             }
         }
     }

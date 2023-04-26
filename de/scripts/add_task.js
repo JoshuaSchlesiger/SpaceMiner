@@ -26,6 +26,11 @@ function addTypeWeight(){
         weight.classList.add('warningIcon');
         weight.title = "Kleiner als null geht nicht";
     }
+    else if(weight.value > 99999){
+        weight.style.borderColor = "Crimson";
+        weight.classList.add('warningIcon');
+        weight.title = "Das Gewicht ist etwas zu hoch";
+    }
     else if(check){
         weight.style.borderColor = "Crimson";
         weight.classList.add('warningIcon');
