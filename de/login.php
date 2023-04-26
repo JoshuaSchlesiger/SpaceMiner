@@ -7,6 +7,8 @@ require "functions/handleJobs.php";
 require "objects/Crew.php";
 require "objects/Job.php";
 require "objects/Player.php";
+require "objects/Task.php";
+
 
 session_start();
 

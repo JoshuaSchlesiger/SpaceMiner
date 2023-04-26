@@ -323,6 +323,31 @@ function createTypeTask($conn, $type_id, $task_id, $mass){
     $stmt->execute();
 }
 
+function getTask($conn, $crew_id){
+  $stmt = $conn->prepare('SELECT *
+                          FROM task
+                          WHERE crew_id = :crew_id');
+
+  $stmt->bindParam(':crew_id', $crew_id);
+  $stmt->execute();
+
+  $task = $stmt->fetchAll();
+  return $task;
+}
+
+function getTypeTask($conn, $task_id){
+  $stmt = $conn->prepare('SELECT mass, t.id as type_id
+                          FROM type_task as tt
+                          JOIN type as t ON t.id = tt.type_id
+                          WHERE task_id = :task_id');
+
+  $stmt->bindParam(':task_id', $task_id);
+  $stmt->execute();
+
+  $typeTask = $stmt->fetchAll();
+  return $typeTask;
+}
+
 function deleteJob($conn, $job_id){
   $stmt = $conn->prepare("DELETE FROM job WHERE id = :job_id");
 

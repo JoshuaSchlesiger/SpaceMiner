@@ -8,10 +8,11 @@ class Task{
     private $crewid = 0;
     private $selling_stationid = 0;
     private $refinery_stationid = 0;
-    private $mass = 0;
-    private $typeid = 0;
+    private $mass = [];
+    private $typeid = [];
+    private $create_time = 0;
 
-    function __construct(int $id, int $duration, int $crewid, int $refinery_stationid, int $mass, int $typeid, int $costs) {
+    function __construct(int $id, int $duration, int $crewid, int $refinery_stationid, $mass, $typeid, int $costs, int $create_time) {
         $this->id = $id;
         $this->duration = $duration;
         $this->crewid = $crewid;
@@ -19,6 +20,7 @@ class Task{
         $this->mass = $mass;
         $this->typeid = $typeid;
         $this->costs = $costs;
+        $this->create_time = $create_time;
     }
 
     function getId(): int {
@@ -51,6 +53,10 @@ class Task{
 
     function setSellingStationId(int $selling_stationid){
         $this->selling_stationid = $selling_stationid;
+    }
+
+    function getCreateTime(){
+        return $this->create_time;
     }
 
 }

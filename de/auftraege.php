@@ -8,12 +8,14 @@ require "functions/handleSession.php";
 require "objects/Crew.php";
 require "objects/Job.php";
 require "objects/Player.php";
+require "objects/Task.php";
+
 
 session_start();
 
+$conn = connect();
 
-//$conn = connect();
-//echo createTask($conn, 100, 200, 81659, 1);
+
 
 if (isset($_SESSION["alert"])) {
     $msg = $_SESSION['alert'];
@@ -53,6 +55,9 @@ if (isset($_POST["delete"])) {
 $jobs = unserialize($_SESSION["jobs"]);
 $crews = unserialize($_SESSION["crews"]);
 $players = unserialize($_SESSION["crews"]);
+$tasks = unserialize($_SESSION["tasks"]);
+
+var_dump($tasks);
 
 #region EDIT JOB
 
@@ -81,17 +86,6 @@ if(isset($_POST["selectedCrew"])){
 
 #endregion
 
-
-//Statistiks
-$totalProfit = 0;
-$numberToClaim = 0;
-$totalToClaim = 0;
-$bestSpots = "Aberdeen";
-$bestFriend = "DochSergeantTV";
-$numberCrashes = 0;
-$numberJobs = 0;
-$totalSCU = 0;
-$numberUserCount = 0;
 
 //Varuables per job
 $jobNumber = 0;
