@@ -12,7 +12,7 @@ class Task{
     private $typeid = [];
     private $create_time = 0;
 
-    function __construct(int $id, int $duration, int $crewid, int $refinery_stationid, $mass, $typeid, int $costs, int $create_time) {
+    function __construct(int $id, int $duration, int $crewid, int $refinery_stationid, array $mass, array $typeid, int $costs, int $create_time) {
         $this->id = $id;
         $this->duration = $duration;
         $this->crewid = $crewid;
@@ -39,11 +39,11 @@ class Task{
         return $this->refinery_stationid;
     }
 
-    function getMass(): int {
+    function getMass(){
         return $this->mass;
     }
 
-    function getTypeId(): int {
+    function getTypeId(){
         return $this->typeid;
     }
 

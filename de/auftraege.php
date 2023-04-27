@@ -58,9 +58,6 @@ $players = unserialize($_SESSION["players"]);
 $tasks = unserialize($_SESSION["tasks"]);
 
 
-var_dump($tasks);
-
-
 #region EDIT JOB
 
 if (isset($_POST["edit"])) {
@@ -83,10 +80,14 @@ if (isset($_SESSION["edit"])) {
 
 if(isset($_POST["selectedCrew"])){
     $_SESSION["selectedCrew"] = $_POST["selectedCrew"];
+
+
 }
 
 
+
 #endregion
+
 
 
 //Varuables per job
@@ -509,9 +510,21 @@ $jobCrewProfit = 0;
                                         <div class="col-6 ">Wähle den Auftrag: </div>
                                         <div class="col-3 text-info jobSelectCrewOptions">
                                             <select class="form-select">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <?php
+
+                                                $tasksCrew = getTasksOfCrew($crews[$_POST["selectedCrew"]]->getId());
+                                                for ($i = 0; $i < count($tasksCrew); $i++) {
+
+                                                    if(count($tasksCrew[$i]->getTypeId()) >= 2){
+                                                        echo '<option value=' . $tasksCrew[$i]->getID() . '>' . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] . "-" . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[1] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[1]. " ..." .  '</option>';
+                                                    }
+                                                    else{
+                                                        echo '<option value=' . $tasksCrew[$i]->getID() . '>' .  substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] .  '</option>';
+                                                    }
+
+
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -524,7 +537,6 @@ $jobCrewProfit = 0;
                                     </div>
 
                                     <hr>
-
 
                                     <div class="mt-5">
                                         <div class="row mt-4 d-flex justify-content-center">

@@ -44,7 +44,7 @@ function setJobs_Session()
                     array_push($types, $type);
                 }
 
-                $task = new Task($dataTasks[$u]["id"], $dataTasks[$u]["duration"], $dataCrews[$y]["id"], $dataTasks[$u]["refinery_station_id"], $masses, $type, $dataTasks[$u]["costs"], $dataTasks[$u]["create_time"]);
+                $task = new Task($dataTasks[$u]["id"], $dataTasks[$u]["duration"], $dataCrews[$y]["id"], $dataTasks[$u]["refinery_station_id"], $masses, $types, $dataTasks[$u]["costs"], $dataTasks[$u]["create_time"]);
                 array_push($tasks, $task);
             }
         }
@@ -150,7 +150,7 @@ function setSingleTask_Session($crew_id){
                     array_push($types, $type);
                 }
 
-                $task = new Task($dataTasks["id"], $dataTasks["duration"], $crew_id, $dataTasks["refinery_station_id"], $masses, $type, $dataTasks["costs"], $dataTasks["create_time"]);
+                $task = new Task($dataTasks["id"], $dataTasks["duration"], $crew_id, $dataTasks["refinery_station_id"], $masses, $types, $dataTasks["costs"], $dataTasks["create_time"]);
                 array_push($tasks, $task);
 
 

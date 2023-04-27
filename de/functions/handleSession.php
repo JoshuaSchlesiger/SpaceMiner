@@ -38,6 +38,18 @@ function getPeoplenOfCrew(int $crewID){
     return $player;
 }
 
+function getTasksOfCrew(int $crewID){
+    $tasks = unserialize($_SESSION["tasks"]);
+    $task = [];
+
+    for($y = 0; $y < count($tasks); $y++){
+        if($tasks[$y]->getCrewid() == $crewID){
+            array_push($task, $tasks[$y]);
+        }
+    }
+    return $task;
+}
+
 function getDateofJob(int $jobInArray){
     $jobs = unserialize($_SESSION["jobs"]);
     $jobID = $jobs[$jobInArray]->getID();
