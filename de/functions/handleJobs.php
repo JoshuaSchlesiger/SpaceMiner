@@ -28,24 +28,24 @@ function setJobs_Session()
             for ($x = 0; $x < count($dataPlayer); $x++) {
                 $player = new Player($dataPlayer[$x]["name"], $dataPlayer[$x]["id"], $dataCrews[$y]["id"], $dataPlayer[$x]["type"]);
                 array_push($players, $player);
+            }
 
-                $dataTasks = getTask($conn, $dataCrews[$y]["id"]);
-                for ($u = 0; $u < count($dataTasks); $u++) {
+            $dataTasks = getTask($conn, $dataCrews[$y]["id"]);
+            for ($u = 0; $u < count($dataTasks); $u++) {
 
-                    $dataTypeTask = getTypeTask($conn, $dataTasks[$u]["id"]);
-                    $masses = [];
-                    $types = [];
-                    for ($q = 0; $q < count($dataTypeTask); $q++) {
-                        $mass = $dataTypeTask[$q]["mass"];
-                        array_push($masses, $mass);
+                $dataTypeTask = getTypeTask($conn, $dataTasks[$u]["id"]);
+                $masses = [];
+                $types = [];
+                for ($q = 0; $q < count($dataTypeTask); $q++) {
+                    $mass = $dataTypeTask[$q]["mass"];
+                    array_push($masses, $mass);
 
-                        $type = $dataTypeTask[$q]["type_id"];
-                        array_push($types, $type);
-                    }
-
-                    $task = new Task($dataTasks[$u]["id"], $dataTasks[$u]["duration"], $dataCrews[$y]["id"], $dataTasks[$u]["refinery_station_id"], $masses, $type, $dataTasks[$u]["costs"], $dataTasks[$u]["create_time"]);
-                    array_push($tasks, $task);
+                    $type = $dataTypeTask[$q]["type_id"];
+                    array_push($types, $type);
                 }
+
+                $task = new Task($dataTasks[$u]["id"], $dataTasks[$u]["duration"], $dataCrews[$y]["id"], $dataTasks[$u]["refinery_station_id"], $masses, $type, $dataTasks[$u]["costs"], $dataTasks[$u]["create_time"]);
+                array_push($tasks, $task);
             }
         }
     }
@@ -64,7 +64,6 @@ function setJobs_Session()
 
 function setSingleJobs_Session()
 {
-
 
     $jobs = unserialize($_SESSION["jobs"]);
     $crews = unserialize($_SESSION["crews"]);
@@ -127,6 +126,60 @@ function setSingleJobs_Session()
     }
 }
 
+function setSingleTask_Session($crew_id){
+    $tasks = unserialize($_SESSION["tasks"]);
+
+    $conn = connect();
+
+    $numTasks = count($tasks);
+
+    if ($numTasks != 0) {
+        $dataTasks = getLatestTask($conn, $crew_id);
+
+        if ($dataTasks["id"] != $tasks[$numTasks - 1]->getId()) {
+
+
+                $dataTypeTask = getTypeTask($conn, $dataTasks["id"]);
+                $masses = [];
+                $types = [];
+                for ($q = 0; $q < count($dataTypeTask); $q++) {
+                    $mass = $dataTypeTask[$q]["mass"];
+                    array_push($masses, $mass);
+
+                    $type = $dataTypeTask[$q]["type_id"];
+                    array_push($types, $type);
+                }
+
+                $task = new Task($dataTasks["id"], $dataTasks["duration"], $crew_id, $dataTasks["refinery_station_id"], $masses, $type, $dataTasks["costs"], $dataTasks["create_time"]);
+                array_push($tasks, $task);
+
+
+            $_SESSION["tasks"] = serialize($tasks);
+        }
+    } else {
+
+        $dataTasks = getLatestTask($conn, $crew_id);
+
+            $dataTypeTask = getTypeTask($conn, $dataTasks["id"]);
+            $masses = [];
+            $types = [];
+            for ($q = 0; $q < count($dataTypeTask); $q++) {
+                $mass = $dataTypeTask[$q]["mass"];
+                array_push($masses, $mass);
+
+                $type = $dataTypeTask[$q]["type_id"];
+                array_push($types, $type);
+            }
+
+            $task = new Task($dataTasks["id"], $dataTasks["duration"], $crew_id, $dataTasks["refinery_station_id"], $masses, $type, $dataTasks["costs"], $dataTasks["create_time"]);
+            array_push($tasks, $task);
+
+
+
+        $_SESSION["tasks"] = serialize($tasks);
+    }
+
+}
 
 function deleteJob_Session($job_id)
 {
@@ -137,14 +190,23 @@ function deleteJob_Session($job_id)
     $jobs = unserialize($_SESSION["jobs"]);
     $crews = unserialize($_SESSION["crews"]);
     $players = unserialize($_SESSION["players"]);
+    $tasks = unserialize($_SESSION["tasks"]);
 
     for ($i = 0; $i < count($jobs); $i++) {
+
         if ($jobs[$i]->getID() == $job_id) {
             for ($y = 0; $y < count($crews); $y++) {
+
                 if ($crews[$y]->getJobid() == $job_id) {
                     for ($x = 0; $x < count($players); $x++) {
+
                         if ($players[$x]->getCrewID() == $crews[$y]->getID()) {
                             array_splice($players, $x, 1);
+                        }
+                    }
+                    for($x = 0; $x < count($tasks); $x++){
+                        if($tasks[$x]->getCrewid() == $crews[$y]->getID()){
+                            array_splice($tasks, $x, 1);
                         }
                     }
                     array_splice($crews, $y, 1);
@@ -157,4 +219,5 @@ function deleteJob_Session($job_id)
     $_SESSION["jobs"] = serialize($jobs);
     $_SESSION["crews"] = serialize($crews);
     $_SESSION["players"] = serialize($players);
+    $_SESSION["tasks"] = serialize($tasks);
 }

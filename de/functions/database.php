@@ -242,7 +242,7 @@ function getLatestJob($conn){
                           FROM job
                           WHERE id = :id');
 
-  $stmt->bindParam(':id', $jobID);+
+  $stmt->bindParam(':id', $jobID);
   $stmt->execute();
 
   $jobs = $stmt->fetch();
@@ -258,7 +258,7 @@ function getIDofLatestJob($conn){
                           WHERE j.website_user_id = :id 
                           AND number = (SELECT MAX(number) FROM job)');
 
-  $stmt->bindParam(':id', $userID);+
+  $stmt->bindParam(':id', $userID);
   $stmt->execute();
 
   $jobs = $stmt->fetch();
@@ -346,6 +346,36 @@ function getTypeTask($conn, $task_id){
 
   $typeTask = $stmt->fetchAll();
   return $typeTask;
+}
+
+function getLatestTask($conn, $crew_id){
+
+  $taskID = getIDofLatestTask($conn, $crew_id);
+
+  $stmt = $conn->prepare('SELECT *
+                          FROM task
+                          WHERE id = :id');
+
+  $stmt->bindParam(':id', $taskID);
+  $stmt->execute();
+
+  $task = $stmt->fetch();
+  return $task;
+
+}
+
+function getIDofLatestTask($conn, $crew_id){
+
+  $stmt = $conn->prepare('SELECT id
+                          FROM task t
+                          WHERE t.crew_id = :crew_id
+                          AND id = (SELECT MAX(id) FROM task)');
+
+  $stmt->bindParam(':crew_id', $crew_id);
+  $stmt->execute();
+
+  $task = $stmt->fetch();
+  return $task["id"];
 }
 
 function deleteJob($conn, $job_id){

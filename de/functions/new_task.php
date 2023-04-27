@@ -11,7 +11,6 @@ session_start();
 if(isset($_POST["values"])){
 
     $buffer = $_POST["values"];
-
     $values = json_decode($buffer);
 
     $timeHours = $values->timeHours;
@@ -19,6 +18,16 @@ if(isset($_POST["values"])){
     $costs = $values->costs;
     $typeWeightList = $values->typeWeightList;
     $miningStation = $values->miningStation;
+
+    // $timeHours = 1;
+    // $timeMinutes = 2;
+    // $costs = 2;
+    // $typeWeightList = array(array(), array());
+    // $typeWeightList[0][0] = "1";
+    // $typeWeightList[0][1] = "100";
+    // $typeWeightList[1][0] = "2";
+    // $typeWeightList[1][1] = "100";
+    // $miningStation = 1;
 
     
 
@@ -90,6 +99,7 @@ if(isset($_POST["values"])){
             for($i = 0; $i < count($typeWeightList); $i++){
                 createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
             }
+            setSingleTask_Session($crewID);
         }
     }
 
