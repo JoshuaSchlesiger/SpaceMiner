@@ -51,19 +51,15 @@ if (isset($_POST["delete"])) {
     unset($_SESSION["edit"]);
 }
 
-//setSingleTask_Session(81665);
-//var_dump(getIDofLatestTask($conn, 81665 ))
-//var_dump(setSingleTask_Session(81664));
-//$conn = connect();
-//var_dump(getLatestTask($conn, 81664));
 
 $jobs = unserialize($_SESSION["jobs"]);
 $crews = unserialize($_SESSION["crews"]);
-$players = unserialize($_SESSION["crews"]);
+$players = unserialize($_SESSION["players"]);
 $tasks = unserialize($_SESSION["tasks"]);
 
 
 var_dump($tasks);
+
 
 #region EDIT JOB
 

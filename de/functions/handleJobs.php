@@ -192,27 +192,33 @@ function deleteJob_Session($job_id)
     $players = unserialize($_SESSION["players"]);
     $tasks = unserialize($_SESSION["tasks"]);
 
+
+
     for ($i = 0; $i < count($jobs); $i++) {
 
         if ($jobs[$i]->getID() == $job_id) {
             for ($y = 0; $y < count($crews); $y++) {
 
                 if ($crews[$y]->getJobid() == $job_id) {
+
                     for ($x = 0; $x < count($players); $x++) {
 
                         if ($players[$x]->getCrewID() == $crews[$y]->getID()) {
-                            array_splice($players, $x, 1);
+                            array_splice($players, $x);
                         }
                     }
-                    for($x = 0; $x < count($tasks); $x++){
-                        if($tasks[$x]->getCrewid() == $crews[$y]->getID()){
-                            array_splice($tasks, $x, 1);
+
+
+                    for($u = 0; $u < count($tasks); $u++){
+
+                        if ($tasks[$u]->getCrewid() == $crews[$y]->getID()){
+                            array_splice($tasks, $u);
                         }
                     }
-                    array_splice($crews, $y, 1);
+                    array_splice($crews, $y);
                 }
             }
-            array_splice($jobs, $i, 1);
+            array_splice($jobs, $i);
         }
     }
 
