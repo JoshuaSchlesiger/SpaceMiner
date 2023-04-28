@@ -509,14 +509,14 @@ $jobCrewProfit = 0;
                                     <div class="row mt-4 d-flex justify-content-center">
                                         <div class="col-6 ">Wähle den Auftrag: </div>
                                         <div class="col-3 text-info jobSelectCrewOptions">
-                                            <select class="form-select">
+                                            <select class="form-select" onchange="getTimeOfTask()" id="selectTask">
                                                 <?php
 
                                                 $tasksCrew = getTasksOfCrew($crews[$_POST["selectedCrew"]]->getId());
                                                 for ($i = 0; $i < count($tasksCrew); $i++) {
 
                                                     if(count($tasksCrew[$i]->getTypeId()) >= 2){
-                                                        echo '<option value=' . $tasksCrew[$i]->getID() . '>' . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] . "-" . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[1] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[1]. " ..." .  '</option>';
+                                                        echo '<option value=' . $tasksCrew[$i]->getID() . '>' . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] . ", " . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[1] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[1]. " ..." .  '</option>';
                                                     }
                                                     else{
                                                         echo '<option value=' . $tasksCrew[$i]->getID() . '>' .  substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] .  '</option>';
@@ -529,11 +529,72 @@ $jobCrewProfit = 0;
                                         </div>
                                     </div>
 
+                                    <?php
 
-                                    <div class="progress crew mb-5">
-                                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:45%">
-                                            40%
+                                    $taskThere = false;
+
+                                    if(count($tasksCrew) >= 1){
+
+                                        $duration = $tasksCrew[0]->getDuration() * 60;
+                                        $createTime = $tasksCrew[0]->getCreateTime();
+                                        $currentTime = time();
+                                            
+                                        $remainingTime = $duration - ($currentTime - $createTime);
+
+                                        $taskThere = true;
+                                                
+                                    }
+
+                                    ?>
+
+
+                                    <div class="progress crew mb-3">
+                                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar"  id="progressBarTask" aria-valuemin="0" aria-valuemax="100" style="width:                                            <?php
+                                                if($taskThere){
+                                                    if($remainingTime <= 0){
+                                                        echo ("100");
+                                                    } else{
+                                                        echo (round($duration/$remainingTime *10));
+                                                    }
+
+                                                }
+                                                else{
+                                                    echo ("0");
+                                                }
+                                            ?>%">
+                                            
+                                            <?php
+                                                if($taskThere){
+                                                    if($remainingTime <= 0){
+                                                        echo ("100%");
+                                                    } else{
+                                                        echo (round($duration/$remainingTime *10) . "%");
+                                                    }
+                                                }
+                                                else{
+                                                    echo ("0%");
+                                                }
+                                            ?>
                                         </div>
+                                    </div>
+
+                                    <div class="text-center h6 text-info mb-3" id="duration">
+                                        <?php 
+
+                                        if($taskThere){
+                                                if($remainingTime<=0){
+                                                    echo("Der Shit ist durch!");
+                                                }else{
+                                                    $minuten = floor(($remainingTime/60));
+
+                                                    $stunden = floor($minuten / 60); 
+                                                    $restminuten = $minuten % 60; 
+                                                    echo("Restzeit: ");
+                                                    echo($stunden . "h ");
+                                                    echo($restminuten . "min");
+                                                }
+                                        }
+                                        ?>
                                     </div>
 
                                     <hr>

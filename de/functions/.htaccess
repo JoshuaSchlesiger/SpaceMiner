@@ -1,6 +1,8 @@
 order deny,allow
 deny from all
 allow from 127.0.0.1
+Allow from localhost
+
 
 <Files "calculator.php">
     Allow from all
@@ -12,5 +14,8 @@ allow from 127.0.0.1
     Allow from all
 </Files>
 <Files "new_task.php">
+    Allow from all
+</Files>
+<Files "getTimeOfTask.php">
     Allow from all
 </Files>

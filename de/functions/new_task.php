@@ -100,6 +100,8 @@ if(isset($_POST["values"])){
                 createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
             }
             setSingleTask_Session($crewID);
+            
+            $data["Task"] = ["duration" => $duration, "typeWeightList" => $typeWeightList];
         }
     }
 
