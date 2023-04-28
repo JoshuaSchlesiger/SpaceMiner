@@ -160,21 +160,19 @@ function setSingleTask_Session($crew_id){
 
         $dataTasks = getLatestTask($conn, $crew_id);
 
-            $dataTypeTask = getTypeTask($conn, $dataTasks["id"]);
-            $masses = [];
-            $types = [];
-            for ($q = 0; $q < count($dataTypeTask); $q++) {
-                $mass = $dataTypeTask[$q]["mass"];
-                array_push($masses, $mass);
+        $dataTypeTask = getTypeTask($conn, $dataTasks["id"]);
+        $masses = [];
+        $types = [];
+        for ($q = 0; $q < count($dataTypeTask); $q++) {
+            $mass = $dataTypeTask[$q]["mass"];
+            array_push($masses, $mass);
 
-                $type = $dataTypeTask[$q]["type_id"];
-                array_push($types, $type);
-            }
+            $type = $dataTypeTask[$q]["type_id"];
+            array_push($types, $type);
+        }
 
-            $task = new Task($dataTasks["id"], $dataTasks["duration"], $crew_id, $dataTasks["refinery_station_id"], $masses, $type, $dataTasks["costs"], $dataTasks["create_time"]);
-            array_push($tasks, $task);
-
-
+        $task = new Task($dataTasks["id"], $dataTasks["duration"], $crew_id, $dataTasks["refinery_station_id"], $masses, $types, $dataTasks["costs"], $dataTasks["create_time"]);
+        array_push($tasks, $task);
 
         $_SESSION["tasks"] = serialize($tasks);
     }

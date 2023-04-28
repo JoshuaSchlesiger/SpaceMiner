@@ -554,7 +554,7 @@ $jobCrewProfit = 0;
                                                     if($remainingTime <= 0){
                                                         echo ("100");
                                                     } else{
-                                                        echo (round($duration/$remainingTime *10));
+                                                        echo (round(($duration - $remainingTime)/$duration * 100));
                                                     }
 
                                                 }
@@ -568,7 +568,7 @@ $jobCrewProfit = 0;
                                                     if($remainingTime <= 0){
                                                         echo ("100%");
                                                     } else{
-                                                        echo (round($duration/$remainingTime *10) . "%");
+                                                        echo (round(($duration - $remainingTime)/$duration * 100) . "%");
                                                     }
                                                 }
                                                 else{

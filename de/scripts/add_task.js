@@ -237,14 +237,14 @@ function getTimeOfTask() {
 
             remainingTime = duration - (currentTime - createTime);
             
-            if(remainingTime >= 0){
-                let minuten = Math.floor((remainingTime/60)); 
+            if(remainingTime > 0){
+                let minuten = Math.floor(remainingTime/60); 
                 let stunden = Math.floor(minuten / 60); 
                 let restminuten = minuten % 60; 
                 element.textContent = "Restzeit: " + stunden + "h " + restminuten + "min";
 
-                progessBar.textContent = Math.round(duration/remainingTime *10) + "%";
-                progessBar.style.width = Math.round(duration/remainingTime *10) + "%";
+                progessBar.textContent = Math.round((duration - remainingTime)/duration * 100) + "%";
+                progessBar.style.width = Math.round((duration - remainingTime)/duration * 100) + "%";
             }
             else{
                 element.textContent = "Der Shit ist durch!";
