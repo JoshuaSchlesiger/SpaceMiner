@@ -19,19 +19,8 @@ if(isset($_POST["values"])){
     $typeWeightList = $values->typeWeightList;
     $miningStation = $values->miningStation;
 
-    // $timeHours = 1;
-    // $timeMinutes = 2;
-    // $costs = 2;
-    // $typeWeightList = array(array(), array());
-    // $typeWeightList[0][0] = "1";
-    // $typeWeightList[0][1] = "100";
-    // $typeWeightList[1][0] = "2";
-    // $typeWeightList[1][1] = "100";
-    // $miningStation = 1;
-
-    
-
     $data["Error"] = null;
+    $data["Task"] = null;
 
     if($timeHours > 999){
         $data["Error"] = "ERROR - Die Stundenanzahl ist mehr als 999 und das ist etwas viel ^^";
@@ -96,12 +85,15 @@ if(isset($_POST["values"])){
             
             $taskid = createTask($conn, $duration, $costs, $crewID, $refinery_station_id);
 
+            $editTypeWeightList = $typeWeightList;
             for($i = 0; $i < count($typeWeightList); $i++){
                 createTypeTask($conn, $typeWeightList[$i][0], $taskid, $typeWeightList[$i][1]);
+                $editTypeWeightList[$i][0] =  $_SESSION['oreTypes'][$editTypeWeightList[$i][0]-1]["name"];
             }
             setSingleTask_Session($crewID);
-            
-            $data["Task"] = ["duration" => $duration, "typeWeightList" => $typeWeightList];
+
+
+            $data["Task"] = ["taskid" => $taskid , "editTypeWeightList" => $editTypeWeightList];
         }
     }
 

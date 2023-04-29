@@ -47,7 +47,7 @@ function addTypeWeight() {
         text = oretype.value + "-" + weight.value;
         element.setAttribute("id", text);
 
-        text = $('#oretype').find(":selected").text().substring(0, 2) + " - " + weight.value;
+        text = $('#oretype').find(":selected").text().substring(0, 2) + ": " + weight.value;
         element.textContent = text;
         document.getElementById("typeWeightList").appendChild(element);
         weight.value = "";
@@ -183,6 +183,22 @@ function saveTask() {
                 else {
                     informations["Error"];
                     resetTask();
+                }
+
+                if(informations["Task"] != undefined){
+
+                    element = document.createElement("option");
+                    id = informations["Task"]["taskid"];
+                    element.setAttribute("value", id);
+            
+                    if(informations["Task"]["editTypeWeightList"][0].length >= 2){
+                        text = informations["Task"]["editTypeWeightList"][0][0].substring(0, 2) + ": " + informations["Task"]["editTypeWeightList"][0][1] + ", "  + informations["Task"]["editTypeWeightList"][1][0].substring(0, 2) + ": " + informations["Task"]["editTypeWeightList"][1][1];
+                    }else{
+                        text = informations["Task"]["editTypeWeightList"][0][0].substring(0, 2) + ": " + informations["Task"]["editTypeWeightList"][0][1];
+                    }
+                    element.textContent = text;
+                    document.getElementById("selectTask").appendChild(element);
+
                 }
 
             }

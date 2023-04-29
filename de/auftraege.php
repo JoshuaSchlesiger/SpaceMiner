@@ -516,7 +516,7 @@ $jobCrewProfit = 0;
                                                 for ($i = 0; $i < count($tasksCrew); $i++) {
 
                                                     if(count($tasksCrew[$i]->getTypeId()) >= 2){
-                                                        echo '<option value=' . $tasksCrew[$i]->getID() . '>' . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] . ", " . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[1] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[1]. " ..." .  '</option>';
+                                                        echo '<option value=' . $tasksCrew[$i]->getID() . '>' . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] . ", " . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[1] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[1] .  '</option>';
                                                     }
                                                     else{
                                                         echo '<option value=' . $tasksCrew[$i]->getID() . '>' .  substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] .  '</option>';
