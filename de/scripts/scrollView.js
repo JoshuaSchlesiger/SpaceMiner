@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const y = document.getElementById( 'yourJob' ).getBoundingClientRect().top + window.scrollY;
         window.scroll({
             top: y - 90,
-            behavior: 'smooth'
+            behavior: 'instant'
           });
-    }, 200);
+    }, 0);
 }, false);

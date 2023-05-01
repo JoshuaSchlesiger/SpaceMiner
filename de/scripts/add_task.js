@@ -7,61 +7,90 @@ function addTypeWeight() {
     check = false;
     i = 0;
 
-    for (const child of typeWeightList.children) {
-        searchTerm = "-";
-        indexOf = child.id.indexOf(searchTerm);
-        childText = child.id;
-
-        id = childText.substring(0, indexOf);
-        mass = childText.substring(indexOf + 1);
-
-        if (mass == weight.value && id == oretype.value) {
-            check = true;
-        }
-
-    }
 
     if (weight.value <= 0) {
         weight.style.borderColor = "Crimson";
         weight.classList.add('warningIcon');
         weight.title = "Kleiner als null geht nicht";
+
+        check = true;
     }
     else if (weight.value > 99999) {
         weight.style.borderColor = "Crimson";
         weight.classList.add('warningIcon');
         weight.title = "Das Gewicht ist etwas zu hoch";
+
+        check = true;
     }
-    else if (check) {
-        weight.style.borderColor = "Crimson";
-        weight.classList.add('warningIcon');
-        weight.title = "Der gleicher Wert und Typ ist nicht erlaubt";
-    }
-    else {
-        weight.style.borderColor = "";
-        weight.classList.remove('warningIcon');
-        weight.title = "";
-        typeWeightList.style.borderColor = "";
-        typeWeightList.classList.remove('warningIcon');
-
-        element = document.createElement("option");
-        text = oretype.value + "-" + weight.value;
-        element.setAttribute("id", text);
-
-        text = $('#oretype').find(":selected").text().substring(0, 2) + ": " + weight.value;
-        element.textContent = text;
-        document.getElementById("typeWeightList").appendChild(element);
-        weight.value = "";
 
 
-        numberOfChildren = document.getElementById('typeWeightList').childElementCount;
-        document.getElementById("typeWeightList").selectedIndex = numberOfChildren - 1;
+    if (!check) {
+
+        check2 = false;
+        check3 = false;
+
+        for (const child of typeWeightList.children) {
+            searchTerm = "-";
+            indexOf = child.id.indexOf(searchTerm);
+            childText = child.id;
+    
+            id = childText.substring(0, indexOf);
+            mass = childText.substring(indexOf + 1);
+    
+            if (id == oretype.value) {
+
+                if(parseInt(mass) + parseInt(weight.value) > 99999){
+                    check3 = true;
+                }
+                else{
+                
+                    child.text = $('#oretype').find(":selected").text().substring(0, 2) + ": " + (parseInt(mass) + parseInt(weight.value));
+                    check2 = true;
+                    weight.value = "";
+                }
+
+            }
+    
+        }
+
+        if(check2){
+            weight.style.borderColor = "Green";
+            weight.classList.add('warningIcon');
+            weight.title = "Achtung es wurde hier addiert zum anderen Erztyp";
+        }
+        else if(check3){
+            weight.style.borderColor = "Crimson";
+            weight.classList.add('warningIcon');
+            weight.title = "Das zusammengerechnete Gewicht ist zu hoch";
+        }
+        else{
+            weight.style.borderColor = "";
+            weight.classList.remove('warningIcon');
+            weight.title = "";
+            typeWeightList.style.borderColor = "";
+            typeWeightList.classList.remove('warningIcon');
+    
+            element = document.createElement("option");
+            text = oretype.value + "-" + weight.value;
+            element.setAttribute("id", text);
+    
+            text = $('#oretype').find(":selected").text().substring(0, 2) + ": " + weight.value;
+            element.textContent = text;
+            document.getElementById("typeWeightList").appendChild(element);
+            weight.value = "";
+    
+    
+            numberOfChildren = document.getElementById('typeWeightList').childElementCount;
+            document.getElementById("typeWeightList").selectedIndex = numberOfChildren - 1;
+        }
+
     }
 }
 
 function deleteTypeWeight() {
 
-    select = document.getElementById("typeWeightList").value;
-    document.getElementById(select).remove();
+    select = $('#typeWeightList').find(":selected");
+    select.remove();
 
 }
 
@@ -190,14 +219,17 @@ function saveTask() {
                     element = document.createElement("option");
                     id = informations["Task"]["taskid"];
                     element.setAttribute("value", id);
+
             
-                    if(informations["Task"]["editTypeWeightList"][0].length >= 2){
+                    if(informations["Task"]["editTypeWeightList"].length >= 2){
                         text = informations["Task"]["editTypeWeightList"][0][0].substring(0, 2) + ": " + informations["Task"]["editTypeWeightList"][0][1] + ", "  + informations["Task"]["editTypeWeightList"][1][0].substring(0, 2) + ": " + informations["Task"]["editTypeWeightList"][1][1];
                     }else{
                         text = informations["Task"]["editTypeWeightList"][0][0].substring(0, 2) + ": " + informations["Task"]["editTypeWeightList"][0][1];
                     }
                     element.textContent = text;
                     document.getElementById("selectTask").appendChild(element);
+
+                    getTimeOfTask();
 
                 }
 
@@ -246,10 +278,14 @@ function getTimeOfTask() {
             data = JSON.parse(data);
             element = document.getElementById("duration");
             progessBar = document.getElementById("progressBarTask");
+            refineryStationElement = document.getElementById("refineryStationTask");
 
             duration = data[0] * 60;
             createTime = data[1];
             currentTime = data[2];
+
+            refineryStation = data[3]; //Beinhaltet die RefineryStation des jeweiligen Auftrages
+            refineryStationElement.value = refineryStation;
 
             remainingTime = duration - (currentTime - createTime);
             

@@ -13,9 +13,6 @@ require "objects/Task.php";
 
 session_start();
 
-$conn = connect();
-
-
 
 if (isset($_SESSION["alert"])) {
     $msg = $_SESSION['alert'];
@@ -42,7 +39,6 @@ if (isset($_SESSION["loggedIn"])) {
 }
 
 #endregion
-
 
 
 if (isset($_POST["delete"])) {
@@ -495,23 +491,11 @@ $jobCrewProfit = 0;
                                     </div>
                                     <hr>
                                     <div class="row mt-4 d-flex justify-content-center">
-                                        <div class="col-6 ">Wähle die Miningstation: </div>
-                                        <div class="col-3 text-info jobSelectCrewOptions">
-                                            <select class="form-select">
-                                                <?php
-                                                for ($i = 0; $i < count($_SESSION["refineryStations"]); $i++) {
-                                                    echo '<option value=' . $_SESSION["sellingStations"][$i]["id"] . '>' . $_SESSION["refineryStations"][$i]["name"] . '</option>';
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-4 d-flex justify-content-center">
                                         <div class="col-6 ">Wähle den Auftrag: </div>
                                         <div class="col-3 text-info jobSelectCrewOptions">
                                             <select class="form-select" onchange="getTimeOfTask()" id="selectTask">
                                                 <?php
-
+                                                $tasksCrewNumber = -1;
                                                 $tasksCrew = getTasksOfCrew($crews[$_POST["selectedCrew"]]->getId());
                                                 for ($i = 0; $i < count($tasksCrew); $i++) {
 
@@ -521,11 +505,17 @@ $jobCrewProfit = 0;
                                                     else{
                                                         echo '<option value=' . $tasksCrew[$i]->getID() . '>' .  substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] .  '</option>';
                                                     }
-
-
+                                                    $tasksCrewNumber = $i;
                                                 }
                                                 ?>
                                             </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4 d-flex justify-content-center">
+                                        <div class="col-6 ">Dein Auftrag liegt bei: </div>
+                                        <div class="col-3 text-info jobSelectCrewOptions">
+                                            <input class="form-control text-info" type="text" value="<?php if($tasksCrewNumber > -1){echo($_SESSION["refineryStations"][$tasks[$tasksCrewNumber]->getRefineryStationId() - 1]["name"]); } ?>" id="refineryStationTask" readonly>
                                         </div>
                                     </div>
 
@@ -740,7 +730,7 @@ $jobCrewProfit = 0;
                                         <div class="col-6">Kosten: </div>
 
                                         <div class="col-3 jobSelectCrewOptions">
-                                            <input type="number" class="form-control" min="0" max="999999" id="costs">
+                                            <input type="number" class="form-control" min="0" max="999999" id="costs" placeholder="0 aUEC">
                                         </div>
                                     </div>
 
