@@ -45,8 +45,8 @@ if (isset($_POST["delete"])) {
 
     $jobs = unserialize($_SESSION["jobs"]);
     $foundJob = false;
-    for($i = 0; $i < count($jobs); $i++){
-        if($_POST["delete"] == $jobs[$i]->getID()){
+    for ($i = 0; $i < count($jobs); $i++) {
+        if ($_POST["delete"] == $jobs[$i]->getID()) {
             deleteJob_Session($_POST["delete"]); // Führt auch das SQL aus
             $foundJob = true;
             break;
@@ -54,10 +54,9 @@ if (isset($_POST["delete"])) {
     }
     unset($_SESSION["edit"]);
 
-    if(!$foundJob){
-        echo("Dieser Job existiert nicht");
+    if (!$foundJob) {
+        echo ("Dieser Job existiert nicht");
     }
-
 }
 
 
@@ -72,8 +71,8 @@ $tasks = unserialize($_SESSION["tasks"]);
 if (isset($_POST["edit"])) {
 
     $foundJob = false;
-    for($i = 0; $i < count($jobs); $i++){
-        if($_POST["edit"] == $jobs[$i]->getID()){
+    for ($i = 0; $i < count($jobs); $i++) {
+        if ($_POST["edit"] == $jobs[$i]->getID()) {
             $_SESSION["edit"] = $_POST["edit"];
             $foundJob = true;
             break;
@@ -81,15 +80,15 @@ if (isset($_POST["edit"])) {
     }
     unset($_POST["edit"]);
 
-    if(!$foundJob){
-        echo("Dieser Job existiert nicht");
+    if (!$foundJob) {
+        echo ("Dieser Job existiert nicht");
         unset($_SESSION["edit"]);
     }
 }
 
 if (isset($_SESSION["edit"])) {
 
-    if(isset($_SESSION["selectedCrew"])){
+    if (isset($_SESSION["selectedCrew"])) {
         unset($_SESSION["selectedCrew"]);
     }
 
@@ -105,16 +104,14 @@ if (isset($_SESSION["edit"])) {
     }
 }
 
-if(isset($_POST["selectedCrew"])){
+if (isset($_POST["selectedCrew"])) {
 
-    if($crews[$_POST["selectedCrew"]]->getJobid() == $_SESSION["selectedJobID"]){
-        $_SESSION["selectedCrew"] = $_POST["selectedCrew"]; 
-    }
-    else{
-        echo("Dieser Crew gehört nicht dem Job an");
+    if ($crews[$_POST["selectedCrew"]]->getJobid() == $_SESSION["selectedJobID"]) {
+        $_SESSION["selectedCrew"] = $_POST["selectedCrew"];
+    } else {
+        echo ("Dieser Crew gehört nicht dem Job an");
         unset($_SESSION["edit"]);
     }
-
 }
 
 
@@ -331,10 +328,14 @@ $jobCrewProfit = 0;
                 <div class="container">
                     <div class="row ">
                         <div class="offset-xxl-2 col-xxl-4 mt-3">
-                            <button class="job-addcrew buttonForm btn btn-outline-light" onclick="save()"><span>SAVE</span></button>
+                            <form method="POST">
+                                <button class="job-addcrew buttonForm btn btn-outline-light" name="save"><span>SAVE</span></button>
+                            </form>
                         </div>
                         <div class="col-xxl-4 mt-3">
-                            <button class="job-addcrew buttonForm btn btn-outline-warning" onclick="reset()"><span>RESET</span></button>
+                            <form method="POST">
+                                <button class="job-addcrew buttonForm btn btn-outline-warning" name="reset" onclick="reset()"><span>RESET</span></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -468,7 +469,7 @@ $jobCrewProfit = 0;
                         <div class="dropdown">
                             <a class="btn btn-outline-warning btn-lg form-control job-editCrewButton" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
                                 <?php
-                                if (isset($_SESSION["selectedCrew"])) { 
+                                if (isset($_SESSION["selectedCrew"])) {
                                 ?>
                                     <i><?= $crews[$_SESSION["selectedCrew"]]->getName(); ?></i>
 
@@ -536,10 +537,9 @@ $jobCrewProfit = 0;
                                                 $tasksCrew = getTasksOfCrew($crews[$_POST["selectedCrew"]]->getId());
                                                 for ($i = 0; $i < count($tasksCrew); $i++) {
 
-                                                    if(count($tasksCrew[$i]->getTypeId()) >= 2){
+                                                    if (count($tasksCrew[$i]->getTypeId()) >= 2) {
                                                         echo '<option value=' . $tasksCrew[$i]->getID() . '>' . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] . ", " . substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[1] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[1] .  '</option>';
-                                                    }
-                                                    else{
+                                                    } else {
                                                         echo '<option value=' . $tasksCrew[$i]->getID() . '>' .  substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] .  '</option>';
                                                     }
                                                     $tasksCrewNumber = 0;
@@ -552,7 +552,9 @@ $jobCrewProfit = 0;
                                     <div class="row mt-4 d-flex justify-content-center">
                                         <div class="col-6 ">Dein Auftrag liegt bei: </div>
                                         <div class="col-3 text-info jobSelectCrewOptions">
-                                            <input class="form-control text-info" type="text" value="<?php if($tasksCrewNumber > -1){echo($_SESSION["refineryStations"][$tasks[$tasksCrewNumber]->getRefineryStationId() - 1]["name"]); } ?>" id="refineryStationTask" readonly>
+                                            <input class="form-control text-info" type="text" value="<?php if ($tasksCrewNumber > -1) {
+                                                                                                            echo ($_SESSION["refineryStations"][$tasks[$tasksCrewNumber]->getRefineryStationId() - 1]["name"]);
+                                                                                                        } ?>" id="refineryStationTask" readonly>
                                         </div>
                                     </div>
 
@@ -560,66 +562,62 @@ $jobCrewProfit = 0;
 
                                     $taskThere = false;
 
-                                    if(count($tasksCrew) >= 1){
+                                    if (count($tasksCrew) >= 1) {
 
                                         $duration = $tasksCrew[0]->getDuration() * 60;
                                         $createTime = $tasksCrew[0]->getCreateTime();
                                         $currentTime = time();
-                                            
+
                                         $remainingTime = $duration - ($currentTime - $createTime);
 
                                         $taskThere = true;
-                                                
                                     }
 
                                     ?>
 
 
                                     <div class="progress crew mb-3">
-                                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar"  id="progressBarTask" aria-valuemin="0" aria-valuemax="100" style="width:                                            <?php
-                                                if($taskThere){
-                                                    if($remainingTime <= 0){
-                                                        echo ("100");
-                                                    } else{
-                                                        echo (round(($duration - $remainingTime)/$duration * 100));
-                                                    }
+                                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" id="progressBarTask" aria-valuemin="0" aria-valuemax="100" style="width:                                            <?php
+                                                                                                                                                                                                                                                    if ($taskThere) {
+                                                                                                                                                                                                                                                        if ($remainingTime <= 0) {
+                                                                                                                                                                                                                                                            echo ("100");
+                                                                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                                                                            echo (round(($duration - $remainingTime) / $duration * 100));
+                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                        echo ("0");
+                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                    ?>%">
 
-                                                }
-                                                else{
-                                                    echo ("0");
-                                                }
-                                            ?>%">
-                                            
                                             <?php
-                                                if($taskThere){
-                                                    if($remainingTime <= 0){
-                                                        echo ("100%");
-                                                    } else{
-                                                        echo (round(($duration - $remainingTime)/$duration * 100) . "%");
-                                                    }
+                                            if ($taskThere) {
+                                                if ($remainingTime <= 0) {
+                                                    echo ("100%");
+                                                } else {
+                                                    echo (round(($duration - $remainingTime) / $duration * 100) . "%");
                                                 }
-                                                else{
-                                                    echo ("0%");
-                                                }
+                                            } else {
+                                                echo ("0%");
+                                            }
                                             ?>
                                         </div>
                                     </div>
 
                                     <div class="text-center h6 text-info mb-3" id="duration">
-                                        <?php 
+                                        <?php
 
-                                        if($taskThere){
-                                                if($remainingTime<=0){
-                                                    echo("Der Shit ist durch!");
-                                                }else{
-                                                    $minuten = floor(($remainingTime/60));
+                                        if ($taskThere) {
+                                            if ($remainingTime <= 0) {
+                                                echo ("Der Shit ist durch!");
+                                            } else {
+                                                $minuten = floor(($remainingTime / 60));
 
-                                                    $stunden = floor($minuten / 60); 
-                                                    $restminuten = $minuten % 60; 
-                                                    echo("Restzeit: ");
-                                                    echo($stunden . "h ");
-                                                    echo($restminuten . "min");
-                                                }
+                                                $stunden = floor($minuten / 60);
+                                                $restminuten = $minuten % 60;
+                                                echo ("Restzeit: ");
+                                                echo ($stunden . "h ");
+                                                echo ($restminuten . "min");
+                                            }
                                         }
                                         ?>
                                     </div>
@@ -771,7 +769,7 @@ $jobCrewProfit = 0;
                                         </div>
                                     </div>
 
-                                    <hr >
+                                    <hr>
 
                                     <div class="d-flex justify-content-evenly mt-4 mb-4 jobCrewButtonstop">
 
@@ -981,6 +979,20 @@ $jobCrewProfit = 0;
     <script src="scripts/add_crew_workers.js"></script>
     <script src="scripts/add_task.js"></script>
 
+    <?php
+    if (isset($_POST["save"])) {
+
+        echo '<script type="text/javascript">',
+        'save();',
+        '</script>';
+
+        if (isset($_SESSION["edit"])) {
+            unset($_SESSION["edit"]);
+        }
+        unset($_POST["save"]);
+    }
+
+    ?>
 </body>
 
 </html>
