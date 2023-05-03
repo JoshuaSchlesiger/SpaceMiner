@@ -43,8 +43,9 @@ function addTypeWeight() {
                     check3 = true;
                 }
                 else{
-                
-                    child.text = $('#oretype').find(":selected").text().substring(0, 2) + ": " + (parseInt(mass) + parseInt(weight.value));
+                    AddedWeight = parseInt(mass) + parseInt(weight.value)
+                    child.text = $('#oretype').find(":selected").text().substring(0, 2) + ": " + AddedWeight;
+                    child.id = oretype.value + "-" + AddedWeight;
                     check2 = true;
                     weight.value = "";
                 }
@@ -100,6 +101,7 @@ function saveTask() {
     costs = document.getElementById("costs");
     miningStation = document.getElementById("miningStation");
     typeWeightList = document.getElementById("typeWeightList");
+    weight = document.getElementById("weight");
 
     if (timeHours.value == 0 && timeMinutes.value == 0 && typeWeightList.value == 0) {
         timeHours.style.borderColor = "Crimson";
@@ -156,6 +158,8 @@ function saveTask() {
         timeMinutes.classList.remove('warningIcon');
         costs.style.borderColor = "";
         costs.classList.remove('warningIcon');
+        weight.style.borderColor = "";
+        weight.classList.remove('warningIcon');
 
         timeHours.title = "";
         timeMinutes.title = "";

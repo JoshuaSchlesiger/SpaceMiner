@@ -43,8 +43,21 @@ if (isset($_SESSION["loggedIn"])) {
 
 if (isset($_POST["delete"])) {
 
-    deleteJob_Session($_POST["delete"]); // Führt auch das SQL aus
+    $jobs = unserialize($_SESSION["jobs"]);
+    $foundJob = false;
+    for($i = 0; $i < count($jobs); $i++){
+        if($_POST["delete"] == $jobs[$i]->getID()){
+            deleteJob_Session($_POST["delete"]); // Führt auch das SQL aus
+            $foundJob = true;
+            break;
+        }
+    }
     unset($_SESSION["edit"]);
+
+    if(!$foundJob){
+        echo("Dieser Job existiert nicht");
+    }
+
 }
 
 
@@ -57,10 +70,28 @@ $tasks = unserialize($_SESSION["tasks"]);
 #region EDIT JOB
 
 if (isset($_POST["edit"])) {
-    $_SESSION["edit"] = $_POST["edit"];
+
+    $foundJob = false;
+    for($i = 0; $i < count($jobs); $i++){
+        if($_POST["edit"] == $jobs[$i]->getID()){
+            $_SESSION["edit"] = $_POST["edit"];
+            $foundJob = true;
+            break;
+        }
+    }
+    unset($_POST["edit"]);
+
+    if(!$foundJob){
+        echo("Dieser Job existiert nicht");
+        unset($_SESSION["edit"]);
+    }
 }
 
 if (isset($_SESSION["edit"])) {
+
+    if(isset($_SESSION["selectedCrew"])){
+        unset($_SESSION["selectedCrew"]);
+    }
 
     $_SESSION["selectedJobID"] = $_SESSION["edit"];
     echo '<script src="scripts/scrollView.js"></script>';
@@ -75,8 +106,14 @@ if (isset($_SESSION["edit"])) {
 }
 
 if(isset($_POST["selectedCrew"])){
-    $_SESSION["selectedCrew"] = $_POST["selectedCrew"];
 
+    if($crews[$_POST["selectedCrew"]]->getJobid() == $_SESSION["selectedJobID"]){
+        $_SESSION["selectedCrew"] = $_POST["selectedCrew"]; 
+    }
+    else{
+        echo("Dieser Crew gehört nicht dem Job an");
+        unset($_SESSION["edit"]);
+    }
 
 }
 
@@ -431,9 +468,9 @@ $jobCrewProfit = 0;
                         <div class="dropdown">
                             <a class="btn btn-outline-warning btn-lg form-control job-editCrewButton" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
                                 <?php
-                                if (isset($_POST["selectedCrew"])) { 
+                                if (isset($_SESSION["selectedCrew"])) { 
                                 ?>
-                                    <i><?= $crews[$_POST["selectedCrew"]]->getName(); ?></i>
+                                    <i><?= $crews[$_SESSION["selectedCrew"]]->getName(); ?></i>
 
                                 <?php
                                 } else {
@@ -505,7 +542,7 @@ $jobCrewProfit = 0;
                                                     else{
                                                         echo '<option value=' . $tasksCrew[$i]->getID() . '>' .  substr($_SESSION['oreTypes'][$tasksCrew[$i]->getTypeId()[0] - 1]["name"], 0, 2) . ": " . $tasksCrew[$i]->getMass()[0] .  '</option>';
                                                     }
-                                                    $tasksCrewNumber = $i;
+                                                    $tasksCrewNumber = 0;
                                                 }
                                                 ?>
                                             </select>
