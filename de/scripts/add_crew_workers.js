@@ -317,7 +317,7 @@ function save(){
                 crews: JSON.stringify(crews),
             }
         }).done(function() {
-            //location.reload();
+            location.reload();
           });
     }
 
@@ -326,5 +326,5 @@ function save(){
 
 function reset(){
     crews = [];
-    //location.reload();
+    location.reload();
 }

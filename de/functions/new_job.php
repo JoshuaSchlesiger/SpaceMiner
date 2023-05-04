@@ -55,7 +55,10 @@ if(isset($_POST["crews"])){
 
 
     if($scan && $missingPlayer){
+        session_start();
         $_SESSION["crews2"] = $crews;
+        $_SESSION["stopSCROLL"] = 0;
+        unset($_SESSION["edit"]);
         createJob();
         setSingleJobs_Session();
     } elseif(!$missingPlayer){

@@ -74,6 +74,7 @@ if (isset($_POST["edit"])) {
     for ($i = 0; $i < count($jobs); $i++) {
         if ($_POST["edit"] == $jobs[$i]->getID()) {
             $_SESSION["edit"] = $_POST["edit"];
+            $_SESSION["stopSCROLL"] = 1;
             $foundJob = true;
             break;
         }
@@ -93,7 +94,10 @@ if (isset($_SESSION["edit"])) {
     }
 
     $_SESSION["selectedJobID"] = $_SESSION["edit"];
-    echo '<script src="scripts/scrollView.js"></script>';
+    if($_SESSION["stopSCROLL"] === 1){
+        echo '<script src="scripts/scrollView.js"></script>';
+        echo $_SESSION["stopSCROLL"];
+    }
 
     $JobPosInArray = 0;
 
@@ -328,14 +332,10 @@ $jobCrewProfit = 0;
                 <div class="container">
                     <div class="row ">
                         <div class="offset-xxl-2 col-xxl-4 mt-3">
-                            <form method="POST">
-                                <button class="job-addcrew buttonForm btn btn-outline-light" name="save"><span>SAVE</span></button>
-                            </form>
+                            <button class="job-addcrew buttonForm btn btn-outline-light" onclick="save()"><span>SAVE</span></button>
                         </div>
                         <div class="col-xxl-4 mt-3">
-                            <form method="POST">
-                                <button class="job-addcrew buttonForm btn btn-outline-warning" name="reset" onclick="reset()"><span>RESET</span></button>
-                            </form>
+                            <button class="job-addcrew buttonForm btn btn-outline-warning" onclick="reset()"><span>RESET</span></button>
                         </div>
                     </div>
                 </div>
@@ -978,21 +978,6 @@ $jobCrewProfit = 0;
     <script src="scripts/add_crew.js"></script>
     <script src="scripts/add_crew_workers.js"></script>
     <script src="scripts/add_task.js"></script>
-
-    <?php
-    if (isset($_POST["save"])) {
-
-        echo '<script type="text/javascript">',
-        'save();',
-        '</script>';
-
-        if (isset($_SESSION["edit"])) {
-            unset($_SESSION["edit"]);
-        }
-        unset($_POST["save"]);
-    }
-
-    ?>
 </body>
 
 </html>
