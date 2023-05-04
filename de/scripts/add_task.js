@@ -237,6 +237,11 @@ function saveTask() {
 
                 }
 
+                if(informations["jobWeight"] != 0){
+                    weightElement = document.getElementById("jobWeightEdit");
+                    weightElement.textContent = informations["jobWeight"] + " SCU";
+                }
+
             }
 
         })

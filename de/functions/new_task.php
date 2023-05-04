@@ -1,12 +1,13 @@
 <?php
 require "database.php";
 require "handleJobs.php";
+require "handleSession.php";
 
+require "../objects/Job.php";
 require "../objects/Crew.php";
 require "../objects/Task.php";
 
 session_start();
-
 
 if(isset($_POST["values"])){
 
@@ -94,6 +95,9 @@ if(isset($_POST["values"])){
 
 
             $data["Task"] = ["taskid" => $taskid , "editTypeWeightList" => $editTypeWeightList];
+
+            $data["jobWeight"] = getJobWeight($_SESSION["JobPosInArray"]);
+
         }
     }
 

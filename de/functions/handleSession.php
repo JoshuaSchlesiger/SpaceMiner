@@ -1,6 +1,5 @@
 <?php
 
-
 function getPeopleCount(int $jobInArray){
     $jobs = unserialize($_SESSION["jobs"]);
     $crews = unserialize($_SESSION["crews"]);
@@ -87,5 +86,33 @@ function getCrewCount(int $jobInArray){
 
     return $number;
 }
+
+function getJobWeight(int $jobInArray){
+    $jobs = unserialize($_SESSION["jobs"]);
+    $crews = unserialize($_SESSION["crews"]);
+    $tasks = unserialize($_SESSION["tasks"]);
+
+    $jobID = $jobs[$jobInArray]->getID();
+
+    $number = 0;
+
+    $_SESSION["jobWeight"] = 0;
+
+    for($y = 0; $y < count($crews); $y++){
+        if($jobID == $crews[$y]->getJobid()){
+           for($z = 0; $z < count($tasks); $z++) {
+                if($crews[$y]->getID() == $tasks[$z]->getCrewId()){
+                    for($x = 0; $x < count($tasks[$z]->getMass()); $x++){
+                        $number += ($tasks[$z]->getMass()[$x])/100;
+                    }
+                }
+           }
+        }
+    }
+    $number = round($number, 2);
+    $_SESSION["jobWeight"] = $number;
+    return $number;
+}
+
 
 ?>

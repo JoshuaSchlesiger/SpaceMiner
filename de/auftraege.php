@@ -96,7 +96,6 @@ if (isset($_SESSION["edit"])) {
     $_SESSION["selectedJobID"] = $_SESSION["edit"];
     if($_SESSION["stopSCROLL"] === 1){
         echo '<script src="scripts/scrollView.js"></script>';
-        echo $_SESSION["stopSCROLL"];
     }
 
     $JobPosInArray = 0;
@@ -104,6 +103,7 @@ if (isset($_SESSION["edit"])) {
     for ($i = 0; $i < count($jobs); $i++) {
         if ($jobs[$i]->getID() == $_SESSION["selectedJobID"]) {
             $JobPosInArray = $i;
+            $_SESSION["JobPosInArray"] = $JobPosInArray;
         }
     }
 }
@@ -377,7 +377,7 @@ $jobCrewProfit = 0;
                                 <div class="col-md  mb-1">
                                     <div class="row mt-2">
                                         <div class="col-md-5">Gewicht: </div>
-                                        <div class="col-md-6"><span class="text-info"><?= $jobTotalSCU ?> SCU </span>
+                                        <div class="col-md-6"><span class="text-info"><?php echo (getJobWeight($i));  ?> SCU </span>
                                         </div>
                                     </div>
                                 </div>
@@ -431,7 +431,7 @@ $jobCrewProfit = 0;
                     <div class="col"><span class="text-info"><?= getCrewCount($JobPosInArray) ?></div>
 
                     <div class="col">Gesamtgewicht:</div>
-                    <div class="col"><span class="text-info"><?= $jobCargoWeight ?> SCU</div>
+                    <div class="col"><span class="text-info" id="jobWeightEdit"><?php if(isset($_SESSION["jobWeight"])){echo $_SESSION["jobWeight"];}else{ getJobWeight($jobInArray);} ?> SCU</div>
                 </div>
 
                 <hr>
