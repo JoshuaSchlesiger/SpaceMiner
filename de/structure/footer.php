@@ -127,8 +127,9 @@
     <a class="hyperlink text-reset" href="datenschutz.php">Datenschutz | Cookie-Nutzung </a>
 
     <div> 
-      <a class="hyperlink font text-reset" href="http://www.subatomicglue.com"> Font</a>|
-      <a class="hyperlink font text-reset" href="https://www.flaticon.com/"> Icon</a>
+      <a class="hyperlink font text-reset" href="http://www.subatomicglue.com"> Font</a> |
+      <a class="hyperlink font text-reset" href="https://www.flaticon.com/"> Icon</a> |
+      <a class="hyperlink font text-reset" href="https://github.com/sweetalert2/sweetalert2/"> Alert</a>
     </div>
 
     <div class="form-switch">
@@ -149,6 +150,8 @@
 
 <script type="module" src="https://cookieconsent.popupsmart.com/js/CookieConsent.js" ></script>
 <script type="text/javascript" src="https://cookieconsent.popupsmart.com/js/App.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     popupsmartCookieConsentPopup({
         "siteName" : "SpaceMiner" ,

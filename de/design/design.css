@@ -557,7 +557,7 @@ body {
 
  @media screen and (min-width: 1400px) {
  .jobCrewButtons{
-  width: 35%;
+  min-width: 35%;
   min-height: 70px ;
   line-height: 60px;
 

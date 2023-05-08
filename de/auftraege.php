@@ -106,6 +106,9 @@ if (isset($_SESSION["edit"])) {
             $_SESSION["JobPosInArray"] = $JobPosInArray;
         }
     }
+
+
+      $_SESSION["jobWeight"] = getJobWeight($JobPosInArray);
 }
 
 if (isset($_POST["selectedCrew"])) {
@@ -431,7 +434,7 @@ $jobCrewProfit = 0;
                     <div class="col"><span class="text-info"><?= getCrewCount($JobPosInArray) ?></div>
 
                     <div class="col">Gesamtgewicht:</div>
-                    <div class="col"><span class="text-info" id="jobWeightEdit"><?php if(isset($_SESSION["jobWeight"])){echo $_SESSION["jobWeight"];}else{ getJobWeight($jobInArray);} ?> SCU</div>
+                    <div class="col"><span class="text-info" id="jobWeightEdit"><?php echo ($_SESSION["jobWeight"]); ?> SCU</div>
                 </div>
 
                 <hr>
@@ -577,18 +580,18 @@ $jobCrewProfit = 0;
 
 
                                     <div class="progress crew mb-3">
-                                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" id="progressBarTask" aria-valuemin="0" aria-valuemax="100" style="width:                                            <?php
-                                                                                                                                                                                                                                                    if ($taskThere) {
-                                                                                                                                                                                                                                                        if ($remainingTime <= 0) {
-                                                                                                                                                                                                                                                            echo ("100");
-                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                            echo (round(($duration - $remainingTime) / $duration * 100));
-                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                        echo ("0");
-                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                    ?>%">
-
+                                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" id="progressBarTask" aria-valuemin="0" aria-valuemax="100" style="width:       
+                                        <?php
+                                            if ($taskThere) {
+                                                if ($remainingTime <= 0) {
+                                                    echo ("100");
+                                                } else {
+                                                    echo (round(($duration - $remainingTime) / $duration * 100));
+                                                }
+                                            } else {
+                                                echo ("0");
+                                            }
+                                        ?>%">
                                             <?php
                                             if ($taskThere) {
                                                 if ($remainingTime <= 0) {
@@ -640,10 +643,8 @@ $jobCrewProfit = 0;
                                     </div>
 
                                     <div class="d-flex justify-content-evenly mt-5 mb-5 jobCrewButtonstop">
-
-                                        <a href="#" type="button" class="btn btn-outline-success jobCrewButtons">Abschließen</a>
-                                        <a href="#" type="button" class="btn btn-outline-danger jobCrewButtons">Löschen</a>
-
+                                    <button class="btn btn-outline-success jobCrewButtons" onclick="soldTask()">Abschließen</button>
+                                        <button class="btn btn-outline-danger jobCrewButtons" onclick="delTask()">Löschen</button>
                                     </div>
 
 
@@ -881,7 +882,7 @@ $jobCrewProfit = 0;
 
 
 
-                <div class="container mb-4">
+                <div class="container mb-4 mt-4">
                     <div class="row ">
                         <div class="offset-xxl-1 col-xxl-4 mt-3">
                             <button class="button form-control btn btn-outline-success btn-lg">Abschließen</button>

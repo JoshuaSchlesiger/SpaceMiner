@@ -19,3 +19,6 @@ Allow from localhost
 <Files "getTimeOfTask.php">
     Allow from all
 </Files>
+<Files "deleteTask.php">
+    Allow from all
+</Files>

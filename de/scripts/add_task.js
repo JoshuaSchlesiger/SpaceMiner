@@ -272,7 +272,6 @@ function resetTask() {
     }
 }
 
-
 function getTimeOfTask() {
 
     id = document.getElementById("selectTask");
@@ -316,5 +315,50 @@ function getTimeOfTask() {
         }
 
     })
+
+}
+
+function delTask(){
+
+    Swal.fire({
+        title: 'Bist du sicher?',
+        text: "Die Task ist dann weg!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Löschen',
+        cancelButtonText: 'Abbruch'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            taskId = document.getElementById("selectTask").value;
+
+            $.ajax({
+                url: 'functions/deleteTask.php',
+                method: "POST",
+                data: {
+                    values: JSON.stringify(taskId)
+                },
+                success: function (data) {
+
+                    informations = JSON.parse(data);
+                    if (informations["Error"] != undefined) {
+                        alert(informations["Error"]);
+                    }
+        
+                }
+            });
+
+        }
+      })
+
+
+
+    
+    
+
+}
+
+function soldTask(){
 
 }

@@ -96,8 +96,6 @@ function getJobWeight(int $jobInArray){
 
     $number = 0;
 
-    $_SESSION["jobWeight"] = 0;
-
     for($y = 0; $y < count($crews); $y++){
         if($jobID == $crews[$y]->getJobid()){
            for($z = 0; $z < count($tasks); $z++) {
@@ -110,7 +108,6 @@ function getJobWeight(int $jobInArray){
         }
     }
     $number = round($number, 2);
-    $_SESSION["jobWeight"] = $number;
     return $number;
 }
 
