@@ -112,4 +112,46 @@ function getJobWeight(int $jobInArray){
 }
 
 
+function getMAXTimeOfJobPercent($JobPosInArray){
+    $jobs = unserialize($_SESSION["jobs"]);
+    $crews = unserialize($_SESSION["crews"]);
+    $tasks = unserialize($_SESSION["tasks"]);
+
+    $jobID = $jobs[$JobPosInArray]->getID();
+
+    $number = 0;
+    $currentTime = time();
+    $remainingTime = 0;
+    $duration2 = 0;
+
+
+    for($y = 0; $y < count($crews); $y++){
+        if($jobID == $crews[$y]->getJobid()){
+           for($z = 0; $z < count($tasks); $z++) {
+                if($crews[$y]->getID() == $tasks[$z]->getCrewId()){
+
+                    $duration = $tasks[$z]->getDuration() *60;
+                    $createTime = $tasks[$z]->getCreateTime();
+
+                    $remainingTime = $duration - ($currentTime - $createTime);
+
+
+                    if($number < $remainingTime){
+                        $number = $remainingTime;
+                        $duration2 = $tasks[$z]->getDuration() *60;
+                    }
+                }
+           }
+        }
+    }
+
+    if ($number <= 0) {
+        $number = 100;
+    } else {
+        $number = round(($duration2 - $number) / $duration2 * 100);
+    }
+
+    return $number;
+}
+
 ?>
