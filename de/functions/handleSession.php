@@ -119,39 +119,34 @@ function getMAXTimeOfJobPercent($JobPosInArray){
 
     $jobID = $jobs[$JobPosInArray]->getID();
 
-    $number = 0;
-    $currentTime = time();
     $remainingTime = 0;
-    $duration2 = 0;
+    $maxDuration = 0;
+    $remainingTime = 0;
 
+    foreach ($crews as $crew) {
+        if ($jobID == $crew->getJobid()) {
+            foreach ($tasks as $task) {
+                if ($crew->getID() == $task->getCrewId()) {
+                    $duration = $task->getDuration() * 60;
+                    $createTime = $task->getCreateTime();
 
-    for($y = 0; $y < count($crews); $y++){
-        if($jobID == $crews[$y]->getJobid()){
-           for($z = 0; $z < count($tasks); $z++) {
-                if($crews[$y]->getID() == $tasks[$z]->getCrewId()){
+                    $currentTime = time();
+                    $remainingTime += $duration - ($currentTime - $createTime);
 
-                    $duration = $tasks[$z]->getDuration() *60;
-                    $createTime = $tasks[$z]->getCreateTime();
+                    $maxDuration += $duration;
 
-                    $remainingTime = $duration - ($currentTime - $createTime);
-
-
-                    if($number < $remainingTime){
-                        $number = $remainingTime;
-                        $duration2 = $tasks[$z]->getDuration() *60;
-                    }
                 }
-           }
+            }
         }
     }
 
-    if ($number <= 0) {
-        $number = 100;
+    if ($maxDuration <= 0) {
+        $percentage = 100;
     } else {
-        $number = round(($duration2 - $number) / $duration2 * 100);
+        $percentage = round(($maxDuration - $remainingTime) / $maxDuration * 100);
     }
 
-    return $number;
+    return $percentage;
 }
 
 ?>

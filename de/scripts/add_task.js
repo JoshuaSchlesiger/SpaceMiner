@@ -348,6 +348,7 @@ function delTask(){
                     else{
                         selectedTask = $('#selectTask').find(":selected");
                         selectedTask.remove();
+                        getTimeOfTask();
                     }
         
                 }
