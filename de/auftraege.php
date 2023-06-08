@@ -648,7 +648,7 @@ $jobCrewProfit = 0;
                                     </div>
 
                                     <div class="d-flex justify-content-evenly mt-5 mb-5 jobCrewButtonstop">
-                                    <button class="btn btn-outline-success jobCrewButtons" onclick="soldTask()">Abschließen</button>
+                                        <button class="btn btn-outline-success jobCrewButtons" onclick="soldTask()">Abschließen</button>
                                         <button class="btn btn-outline-danger jobCrewButtons" onclick="delTask()">Löschen</button>
                                     </div>
 

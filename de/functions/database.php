@@ -388,6 +388,6 @@ function deleteJob($conn, $job_id){
 function deleteTask($conn, $task_id){
   $stmt = $conn->prepare("DELETE FROM task WHERE id = :task_id");
 
-  $stmt->bindParam(':job_id', $task_id);
+  $stmt->bindParam(':task_id', $task_id);
   $stmt->execute();
 }

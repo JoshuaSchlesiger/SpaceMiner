@@ -337,13 +337,17 @@ function delTask(){
                 url: 'functions/deleteTask.php',
                 method: "POST",
                 data: {
-                    values: JSON.stringify(taskId)
+                    value: JSON.stringify(taskId)
                 },
                 success: function (data) {
 
                     informations = JSON.parse(data);
                     if (informations["Error"] != undefined) {
                         alert(informations["Error"]);
+                    }
+                    else{
+                        selectedTask = $('#selectTask').find(":selected");
+                        selectedTask.remove();
                     }
         
                 }

@@ -74,6 +74,13 @@ window.addEventListener("load", (event) => {
           alert("Masse des Steins darf nicht höher als 10000 sein");
           setEndValues();
         }
+        else if(massStone == ""){
+          document.getElementById("massStone").value = 0;
+          document.getElementById("mass1").value = 0;
+          document.getElementById("mass2").value = 0;
+          document.getElementById("mass3").value = 0;
+          setEndValues();
+        }
         else if(parseFloat(proportion1) > 100){
           alert("Mehr als 100% sind nicht möglich");
           document.getElementById("proportion1").value = 0;
@@ -117,16 +124,14 @@ window.addEventListener("load", (event) => {
               proportion1: proportion1,
               proportion2: proportion2,
               proportion3: proportion3,
+            },
+
+            success: function (data) {
+              var json = JSON.parse(data);
+              setValues(json);
+              calculate(json);
             }
           })
-              .success(function(data) {
-                
-                var json = JSON.parse(data);
-                setValues(json);
-                calculate(json);
-  
-            });
-  
   
         }
 
