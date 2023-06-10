@@ -121,7 +121,7 @@ function getMAXTimeOfJobPercent($JobPosInArray){
 
     $remainingTime = 0;
     $maxDuration = 0;
-    $remainingTime = 0;
+    $maxremainingTime = 0;
 
     foreach ($crews as $crew) {
         if ($jobID == $crew->getJobid()) {
@@ -131,7 +131,10 @@ function getMAXTimeOfJobPercent($JobPosInArray){
                     $createTime = $task->getCreateTime();
 
                     $currentTime = time();
-                    $remainingTime += $duration - ($currentTime - $createTime);
+                    $remainingTime = $duration - ($currentTime - $createTime);
+                    if($remainingTime > 0){
+                        $maxremainingTime += $remainingTime;
+                    }
 
                     $maxDuration += $duration;
 
@@ -143,8 +146,9 @@ function getMAXTimeOfJobPercent($JobPosInArray){
     if ($maxDuration <= 0) {
         $percentage = 100;
     } else {
-        $percentage = round(($maxDuration - $remainingTime) / $maxDuration * 100);
+        $percentage = round(($maxDuration - $maxremainingTime) / $maxDuration * 100);
     }
+    
 
     return $percentage;
 }
