@@ -13,9 +13,8 @@ $("#btnAddPartRock").on("click", function () {
     percentageElements.each(function() {
         orePercentage.push($(this).val());
     });
-    
-    calResults( $("#massStone").val() , oreTypes, orePercentage);
 });
+
 $("#btnAddPartShip").on("click", function () {
     appendPart("inputTableBodyShip"); 
 });
@@ -55,8 +54,52 @@ function appendPart(tablename, select) {
 
 }
 
-function calResults(mass = null, oreType, orePercentage = null, oreParts = null){
-    //console.log(oreType);
-    //console.log(orePercentage);
-}
+function getAllInputs(){
+
+    const inputsShipDiv = $("#inputsShip");
+    const inputsRockDiv = $('#inputsRock');
+
+    let returnArray = {};
+    
+    if (inputsShipDiv.is("[hidden]")) {
+        let oreTypes = inputsShipDiv.find(".oreTypeRock");
+        let massInput = inputsShipDiv.find(".inputMass");
+
+        returnArray.type = "ship";
+        returnArray.oreTypes = [];
+
+        oreTypes.each(function() {
+            returnArray.oreTypes.push($(this).val());
+        });
+
+        returnArray.oreInput = [];
+        massInput.each(function() {
+            returnArray.oreInput.push($(this).val());
+        });
+
+
+    } else if (inputsRockDiv.is("[hidden]")) {
+        let oreTypes = inputsRockDiv.find(".oreTypeRock");
+        let massInput = inputsRockDiv.find(".inputMass");
+        returnArray.massStone = $('#massStone').val();
+
+        returnArray.type = "rock";
+        returnArray.oreTypes = [];
+
+        oreTypes.each(function() {
+            returnArray.oreTypes.push($(this).val());
+        });
+
+        returnArray.oreInput = [];
+        massInput.each(function() {
+            returnArray.oreInput.push($(this).val());
+        });
+    }
+
+    returnArray.refineryMethod = $("#refineryMethod").val();
+    returnArray.station = $("#station").val();
+
+    return returnArray;
+    
+} 
 

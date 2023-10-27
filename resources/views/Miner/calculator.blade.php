@@ -55,16 +55,16 @@
                                                 <select class="form-select text-center w-75 fs-5 oreTypeRock">
                                                     @foreach ($ores as $ore)
                                                         @if ($loop->index < 1)
-                                                            <option id={{ $ore->id }} class="text-success">
+                                                            <option value={{ $ore->id }} class="text-success">
                                                                 {{ $ore->name }}</option>
                                                         @elseif ($loop->index < 4)
-                                                            <option id={{ $ore->id }} class="text-primary">
+                                                            <option value={{ $ore->id }} class="text-primary">
                                                                 {{ $ore->name }}</option>
                                                         @elseif ($loop->index < 10)
-                                                            <option id={{ $ore->id }} class="text-warning">
+                                                            <option value={{ $ore->id }} class="text-warning">
                                                                 {{ $ore->name }}</option>
                                                         @else
-                                                            <option id={{ $ore->id }} class="text-danger">
+                                                            <option value={{ $ore->id }} class="text-danger">
                                                                 {{ $ore->name }}</option>
                                                         @endif
                                                     @endforeach
@@ -74,8 +74,7 @@
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <div class="w-75">
-                                                    <input type="number" class="form-control fs-5" name=""
-                                                        id="" aria-describedby="helpId" placeholder="">
+                                                    <input type="number" class="form-control fs-5 inputMass" placeholder="">
                                                 </div>
                                             </div>
                                         </td>
@@ -106,19 +105,19 @@
                                     <tr>
                                         <th scope="row" class="w-50">
                                             <div class="d-flex justify-content-center">
-                                                <select class="form-select text-center w-75 fs-5 oreType">
+                                                <select class="form-select text-center w-75 fs-5 oreTypeRock">
                                                     @foreach ($ores as $ore)
                                                         @if ($loop->index < 1)
-                                                            <option id={{ $ore->id }} class="text-success">
+                                                            <option value={{ $ore->id }} class="text-success">
                                                                 {{ $ore->name }}</option>
                                                         @elseif ($loop->index < 4)
-                                                            <option id={{ $ore->id }} class="text-primary">
+                                                            <option value={{ $ore->id }} class="text-primary">
                                                                 {{ $ore->name }}</option>
                                                         @elseif ($loop->index < 10)
-                                                            <option id={{ $ore->id }} class="text-warning">
+                                                            <option value={{ $ore->id }} class="text-warning">
                                                                 {{ $ore->name }}</option>
                                                         @else
-                                                            <option id={{ $ore->id }} class="text-danger">
+                                                            <option value={{ $ore->id }} class="text-danger">
                                                                 {{ $ore->name }}</option>
                                                         @endif
                                                     @endforeach
@@ -128,9 +127,7 @@
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <div class="w-75">
-                                                    <input type="number" class="form-control fs-5 orePercentage"
-                                                        name="" id="" aria-describedby="helpId"
-                                                        placeholder="">
+                                                    <input type="number" class="form-control fs-5 inputMass" placeholder="">
                                                 </div>
                                             </div>
                                         </td>
@@ -195,11 +192,11 @@
                         </div>
                         <div class="row justify-content-center text-center mt-3">
                             <div class="col-5 fs-5 mt-1">
-                                <label for="refineryMethod" class="text-white-50">Station:</label>
+                                <label for="station" class="text-white-50">Station:</label>
                             </div>
                             <div class="col-5">
                                 <div class="d-flex justify-content-center">
-                                    <select class="form-select text-center w-75" id="refineryMethod">
+                                    <select class="form-select text-center w-75" id="station">
                                         @foreach ($stations as $station)
                                             <option id={{ $station->id }}>{{ $station->name }}
                                             </option>

@@ -6,7 +6,7 @@
         <span>Schau doch mal auf meinen Sozial Media Platformen vorbei:</span>
       </div>
       <div>
-        <a href="https://www.twitch.tv/dochsergeanttv" target="_blank" class="hyperlink me-4 link-secondary">
+        {{-- <a href="https://www.twitch.tv/dochsergeanttv" target="_blank" class="hyperlink me-4 link-secondary">
           <img src="/de/images/icons/twitch.png" alt="Twitch" class="icon_footer">
         </a>
         <a href="https://twitter.com/DochSergeant" target="_blank" class="hyperlink me-4 link-secondary">
@@ -23,7 +23,7 @@
         </a>
         <a href="https://github.com/DochSergeantTV" target="_blank" class="hyperlink me-4 link-secondary">
           <img src="/de/images/icons/github.png" alt="Twitch" class="icon_footer">
-        </a>
+        </a> --}}
       </div>
     </section>
     <section class="">
