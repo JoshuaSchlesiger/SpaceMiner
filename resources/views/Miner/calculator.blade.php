@@ -53,6 +53,8 @@
                                         <th scope="row" class="w-50">
                                             <div class="d-flex justify-content-center">
                                                 <select class="form-select text-center w-75 fs-5 oreTypeRock">
+                                                    <option value="" class="" hidden selected disabled>
+                                                        Bitte wählen</option>
                                                     @foreach ($ores as $ore)
                                                         @if ($loop->index < 1)
                                                             <option value={{ $ore->id }} class="text-success">
@@ -106,6 +108,8 @@
                                         <th scope="row" class="w-50">
                                             <div class="d-flex justify-content-center">
                                                 <select class="form-select text-center w-75 fs-5 oreTypeRock">
+                                                    <option value="" class="" hidden selected disabled>
+                                                        Bitte wählen</option>
                                                     @foreach ($ores as $ore)
                                                         @if ($loop->index < 1)
                                                             <option value={{ $ore->id }} class="text-success">
