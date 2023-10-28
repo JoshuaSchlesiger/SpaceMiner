@@ -22,4 +22,5 @@ Route::get('/', function () {
 
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/calculator', [CalculatorController::class, 'index'])->name('calculator');
+Route::get('calculator', [CalculatorController::class, 'index'])->name('calculator');
+Route::post('calculator', [CalculatorController::class, 'calculate'])->name('calculator.calculate');

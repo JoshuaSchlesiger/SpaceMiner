@@ -2,9 +2,9 @@
 
 
 @section('content')
+    <input type="hidden" id="calculateRoute" value="{{ route('calculator.calculate') }}">
     <div class="container mt-5">
         <div class="row">
-
             <div class="col">
                 <div class="card">
                     <div class="header-text card-header">
@@ -76,7 +76,8 @@
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <div class="w-75">
-                                                    <input type="number" class="form-control fs-5 inputMass" placeholder="">
+                                                    <input type="number" class="form-control fs-5 inputMass"
+                                                        placeholder="">
                                                 </div>
                                             </div>
                                         </td>
@@ -131,7 +132,8 @@
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <div class="w-75">
-                                                    <input type="number" class="form-control fs-5 inputMass" placeholder="">
+                                                    <input type="number" class="form-control fs-5 inputMass"
+                                                        placeholder="">
                                                 </div>
                                             </div>
                                         </td>
@@ -179,17 +181,17 @@
                                 <div class="d-flex justify-content-center">
                                     <select class="form-select text-center w-75" id="refineryMethod">
                                         @foreach ($methods as $method)
-                                        @if ($loop->index < 1)
-                                            <option id={{ $method->id }} class="text-success">
-                                                {{ $method->name }}</option>
-                                        @elseif ($loop->index < 4)
-                                            <option id={{ $method->id }} class="text-warning">
-                                                {{ $method->name }}</option>
-                                        @else 
-                                            <option id={{ $method->id }} class="text-danger">
-                                                {{ $method->name }}</option>
-                                        @endif
-                                    @endforeach
+                                            @if ($loop->index < 1)
+                                                <option id={{ $method->id }} class="text-success">
+                                                    {{ $method->name }}</option>
+                                            @elseif ($loop->index < 4)
+                                                <option id={{ $method->id }} class="text-warning">
+                                                    {{ $method->name }}</option>
+                                            @else
+                                                <option id={{ $method->id }} class="text-danger">
+                                                    {{ $method->name }}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

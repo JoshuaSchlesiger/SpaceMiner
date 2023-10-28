@@ -14,7 +14,8 @@ $("#btnAddPartRock").on("click", function () {
         orePercentage.push($(this).val());
     });
 
-    getAllInputs()
+
+    sendDataAndShow(getAllInputs());
 });
 
 $("#btnAddPartShip").on("click", function () {
@@ -107,5 +108,31 @@ function getAllInputs() {
 
     return returnArray;
 
+}
+
+function sendDataAndShow(dataObject) {
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        }
+    });
+
+
+    $.ajax({
+        type: "POST",
+        url: $('#calculateRoute').val(), // Hier stimmt der Name der Route überein
+        data: {
+            "data": JSON.stringify(dataObject),
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (data) {
+            const errors = data.responseJSON.errors;
+            console.log(errors);
+        }
+    });
 }
 
