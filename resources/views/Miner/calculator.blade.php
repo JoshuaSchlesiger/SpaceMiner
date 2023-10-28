@@ -14,10 +14,10 @@
                             </div>
                             <div class="col-4 d-flex justify-content-end">
                                 <div class="form-check form-switch d-flex">
-                                    <div class="switchGem"><label for="inputSwitch"><i class="bi bi-gem"></i></label></div>
+                                    <div class="switchGem"><label for="inputSwitch"><i class="bi bi-gem" alt="rock"></i></label></div>
                                     <div><input class="form-check-input switch" type="checkbox" role="switch"
                                             id="inputSwitch"></div>
-                                    <div class="switchRocket"><label for="inputSwitch"><i class="bi bi-rocket"></i></label>
+                                    <div class="switchRocket"><label for="inputSwitch"><i class="bi bi-rocket" alt="ship"></i></label>
                                     </div>
                                 </div>
                             </div>
