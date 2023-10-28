@@ -20,13 +20,13 @@ $("#btnAddPartRock").on("click", function () {
 
 $("#btnAddPartShip").on("click", function () {
     appendPart("inputTableBodyShip");
-    getAllInputs()
+    sendDataAndShow(getAllInputs());
 });
 
 $("#inputTableBodyRock").on("click", ".deletePart", function () {
     if ($(this).closest("tr").attr("id") === undefined) {
         $(this).closest("tr").remove();
-        getAllInputs();
+        sendDataAndShow(getAllInputs());
     } else {
         alert("Es kann nur gelöscht werden, wenn mehr als eine Zeile vorhanden ist.");
     }
@@ -35,18 +35,32 @@ $("#inputTableBodyRock").on("click", ".deletePart", function () {
 
 $("#inputTableBodyShip").on("click", ".deletePart", function () {
     $(this).closest("tr").remove();
-    getAllInputs();
+    sendDataAndShow(getAllInputs());
 });
 
 $(document).on('change', 'select', function () {
-    getAllInputs();
+    sendDataAndShow(getAllInputs());
 });
 
-$('input').on('input', function () {
-    if ($(this).attr('id') !== "inputSwitch") {
-        getAllInputs();
+$(document).on('input', function (e) {
+    
+    if ($(e.target).attr('id') !== "inputSwitch") {
+        sendDataAndShow(getAllInputs());
+    }
+});
+
+$("#inputSwitch").on("change",function() {
+    if ($(this).is(":checked")) {
+        //Ship
+        $("#inputsShip").removeAttr("hidden");
+        $("#inputsRock").attr("hidden", true);
+    } else {
+        //Rock
+        $("#inputsRock").removeAttr("hidden");
+        $("#inputsShip").attr("hidden", true);
     }
 
+    sendDataAndShow(getAllInputs());
 });
 
 function appendPart(tablename) {
@@ -87,6 +101,7 @@ function getAllInputs() {
     } else if (inputsRockDiv.is("[hidden]")) {
         let oreTypes = inputsShipDiv.find(".oreTypeRock");
         let massInput = inputsShipDiv.find(".inputMass");
+        returnArray.massStone = 0;
 
         returnArray.type = "ship";
         returnArray.oreTypes = [];
@@ -104,30 +119,42 @@ function getAllInputs() {
     returnArray.refineryMethod = $("#refineryMethod").val();
     returnArray.station = $("#station").val();
 
-    console.log(returnArray);
-
     return returnArray;
 
 }
 
 function sendDataAndShow(dataObject) {
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
         }
     });
 
+    if(dataObject.massStone === ""){
+        dataObject.massStone = 0;
+    }
 
     $.ajax({
         type: "POST",
         url: $('#calculateRoute').val(), // Hier stimmt der Name der Route überein
         data: {
-            "data": JSON.stringify(dataObject),
+            "type": dataObject.type,
+            "massStone": parseInt(dataObject.massStone),
+            "oreTypes": dataObject.oreTypes,
+            "oreInput": dataObject.oreInput,
+            "refineryMethod": parseInt(dataObject.refineryMethod),
+            "station": parseInt(dataObject.station)
         },
-        dataType: 'json',
         success: function (data) {
-            console.log(data);
+            data = data.success;
+
+            $("#costs").text(formatNumber(Math.round(data.costs)));
+            $("#refinedProfit").text(formatNumber(Math.round(data.refinedProfit)));
+            $("#duration").text(formatMinToMinAndHorus(Math.round(data.duration)));
+            $("#unitCount").text(formatNumber(Math.round(data.unitCount)));
+            $("#valuableMass").text(formatNumber(Math.round(data.valuableMass)));
+            $("#rawProfit").text(formatNumber(Math.round(data.rawProfit)));
+
         },
         error: function (data) {
             const errors = data.responseJSON.errors;
@@ -136,3 +163,17 @@ function sendDataAndShow(dataObject) {
     });
 }
 
+function formatNumber(zahl) {
+    
+    return new Intl.NumberFormat().format(zahl);
+}
+
+function formatMinToMinAndHorus(minuten) {
+    const hours = Math.floor(minuten / 60);
+    const minutesLeft = minuten % 60;
+    
+    const stundenString = hours < 10 ? `0${hours}` : hours.toString();
+    const minutenString = minutesLeft < 10 ? `0${minutesLeft}` : minutesLeft.toString();
+    
+    return `${stundenString}:${minutenString}`;
+}

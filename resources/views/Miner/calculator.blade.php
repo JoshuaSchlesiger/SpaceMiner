@@ -65,7 +65,7 @@
                                                         @elseif ($loop->index < 10)
                                                             <option value={{ $ore->id }} class="text-warning">
                                                                 {{ $ore->name }}</option>
-                                                        @else
+                                                        @elseif($loop->index < 17)
                                                             <option value={{ $ore->id }} class="text-danger">
                                                                 {{ $ore->name }}</option>
                                                         @endif
@@ -163,7 +163,7 @@
                     <div class="card-body">
                         <div class="row justify-content-center text-center">
                             <div class="col-5"><span class="fs-5 text-white-50">Wertvolles Gestein: </span> <span
-                                    class="text-info fs-5" id="valuableRock">0</span> <span class="">SCU</span>
+                                    class="text-info fs-5" id="valuableMass">0</span> <span class="">SCU</span>
                             </div>
                             <div class="col-5"><span class="fs-5 text-white-50">Rohgewinn: </span><span
                                     class="text-info fs-5" id="rawProfit">0</span> <span class="-">aUEC</span></div>
@@ -182,13 +182,13 @@
                                     <select class="form-select text-center w-75" id="refineryMethod">
                                         @foreach ($methods as $method)
                                             @if ($loop->index < 1)
-                                                <option id={{ $method->id }} class="text-success">
+                                                <option value={{ $method->id }} class="text-success">
                                                     {{ $method->name }}</option>
                                             @elseif ($loop->index < 4)
-                                                <option id={{ $method->id }} class="text-warning">
+                                                <option value={{ $method->id }} class="text-warning">
                                                     {{ $method->name }}</option>
                                             @else
-                                                <option id={{ $method->id }} class="text-danger">
+                                                <option value={{ $method->id }} class="text-danger">
                                                     {{ $method->name }}</option>
                                             @endif
                                         @endforeach
@@ -204,7 +204,7 @@
                                 <div class="d-flex justify-content-center">
                                     <select class="form-select text-center w-75" id="station">
                                         @foreach ($stations as $station)
-                                            <option id={{ $station->id }}>{{ $station->name }}
+                                            <option value={{ $station->id }}>{{ $station->name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -214,18 +214,18 @@
                         <hr>
                         <div class="row justify-content-center text-center">
                             <div class="col-5"><span class="fs-5 text-white-50">Kosten: </span> <span
-                                    class="text-danger fs-5" id="valuableRock">0</span> <span class="">aUEC</span>
+                                    class="text-danger fs-5" id="costs">0</span> <span class="">aUEC</span>
                             </div>
                             <div class="col-5"><span class="fs-5 text-white-50">Gewinn: </span><span
-                                    class="text-success fs-5" id="rawProfit">0</span> <span class="-">aUEC</span>
+                                    class="text-success fs-5" id="refinedProfit">0</span> <span class="-">aUEC</span>
                             </div>
                         </div>
                         <div class="row justify-content-center text-center mt-2">
                             <div class="col-5"><span class="fs-5 text-white-50">Dauer: </span> <span
-                                    class="text-danger fs-5" id="valuableRock">0</span> <span class="">HH:MM</span>
+                                    class="text-danger fs-5" id="duration">00:00</span> <span class="">HH:MM</span>
                             </div>
                             <div class="col-5"><span class="fs-5 text-white-50">Einheiten: </span><span
-                                    class="text-success fs-5" id="rawProfit">0</span> <span class="-">units</span>
+                                    class="text-success fs-5" id="unitCount">0</span> <span class="-">units</span>
                             </div>
                         </div>
                     </div>

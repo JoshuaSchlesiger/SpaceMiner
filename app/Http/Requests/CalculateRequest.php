@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CalculateRequest extends FormRequest
 {
@@ -22,19 +23,12 @@ class CalculateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'data' => 'required'
-        ];
-    }
-
-    /**
-     * Custom message for validation
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'data.required' => 'Es wurden keine Daten gesendet',
+            "type" => ['string', Rule::in(['rock', 'ship'])],
+            "massStone" => "integer",
+            "oreTypes"  => "array",
+            "oreInput" => "array",
+            "refineryMethod" => "integer",
+            "station" => "integer",
         ];
     }
 }
