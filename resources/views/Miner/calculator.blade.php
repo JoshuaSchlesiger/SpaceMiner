@@ -1,8 +1,11 @@
-@extends('\layouts/base')
+@extends('layouts/base')
 
 
 @section('content')
     <input type="hidden" id="calculateRoute" value="{{ route('calculator.calculate') }}">
+
+
+
     <div class="container mt-5">
         <div class="row">
             <div class="col">
@@ -14,10 +17,12 @@
                             </div>
                             <div class="col-4 d-flex justify-content-end">
                                 <div class="form-check form-switch d-flex">
-                                    <div class="switchGem"><label for="inputSwitch"><i class="bi bi-gem" alt="rock"></i></label></div>
+                                    <div class="switchGem"><label for="inputSwitch"><i class="bi bi-gem"
+                                                alt="rock"></i></label></div>
                                     <div><input class="form-check-input switch" type="checkbox" role="switch"
                                             id="inputSwitch"></div>
-                                    <div class="switchRocket"><label for="inputSwitch"><i class="bi bi-rocket" alt="ship"></i></label>
+                                    <div class="switchRocket"><label for="inputSwitch"><i class="bi bi-rocket"
+                                                alt="ship"></i></label>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +144,8 @@
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <button type="button" class="btn btn-outline-danger deletePart">X</button>
+                                                <button type="button"
+                                                    class="btn btn-outline-danger deletePart">X</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -213,18 +219,20 @@
                         </div>
                         <hr>
                         <div class="row justify-content-center text-center">
-                            <div class="col-5"><span class="fs-5 text-white-50">Kosten: </span> <span
+                            <div class="col-5"><span class="fs-5 text-white-50">Kosten (ca.): </span> <span
                                     class="text-danger fs-5" id="costs">0</span> <span class="">aUEC</span>
                             </div>
-                            <div class="col-5"><span class="fs-5 text-white-50">Gewinn: </span><span
-                                    class="text-success fs-5" id="refinedProfit">0</span> <span class="-">aUEC</span>
+                            <div class="col-5"><span class="fs-5 text-white-50">Gewinn (ca.): </span><span
+                                    class="text-success fs-5" id="refinedProfit">0</span> <span
+                                    class="-">aUEC</span>
                             </div>
                         </div>
                         <div class="row justify-content-center text-center mt-2">
-                            <div class="col-5"><span class="fs-5 text-white-50">Dauer: </span> <span
-                                    class="text-danger fs-5" id="duration">00:00</span> <span class="">HH:MM</span>
+                            <div class="col-5"><span class="fs-5 text-white-50">Dauer (ca.): </span> <span
+                                    class="text-danger fs-5" id="duration">00:00</span> <span
+                                    class="">HH:MM</span>
                             </div>
-                            <div class="col-5"><span class="fs-5 text-white-50">Einheiten: </span><span
+                            <div class="col-5"><span class="fs-5 text-white-50">Einheiten (ca.): </span><span
                                     class="text-success fs-5" id="unitCount">0</span> <span class="-">units</span>
                             </div>
                         </div>

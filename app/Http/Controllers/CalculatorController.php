@@ -45,7 +45,7 @@ class CalculatorController extends Controller
             ->select('id', 'name')
             ->get();
 
-        return view('Miner/Calculator', ["ores" => $ores, 'stations' => $stations, 'methods' => $methods]);
+        return view('Miner/calculator', ["ores" => $ores, 'stations' => $stations, 'methods' => $methods]);
     }
 
     public function calculate(CalculateRequest $request)
@@ -63,21 +63,21 @@ class CalculatorController extends Controller
                 if(empty($value) || empty($data["oreInput"][$key])){
                     continue;
                 }
-                
+
                 $oreValue = Ores::where("id", $value)->select("rawValue", "refinedValue")->get()->first();
                 $returnArray["rawProfit"] += ($oreValue["rawValue"] * ($data["massStone"] * ($data["oreInput"][$key] / 100)));
 
                 $returnArray["valuableMass"] += ($data["massStone"] * ($data["oreInput"][$key] / 100));
 
-                
+
                 $refinements = Refinements::where("ore_id", $value)->where("station_id", $data["station"])
                                             ->select("factorTime", "factorCosts", "factorYield")->get()->first();
-                
+
                 $methods = Methods::where("id", $data["refineryMethod"])
                                             ->select("factorTime", "factorCosts", "factorYield")->get()->first();
-                                                                       
+
                 $returnArray["refinedProfit"] += ($oreValue["refinedValue"] * ($data["massStone"] * ($data["oreInput"][$key] / 100)) * ($refinements["factorYield"] / 100) * $methods["factorYield"]);
-                
+
                 $unit = (($data["massStone"] * ($data["oreInput"][$key])) * ($refinements["factorYield"] / 100) * $methods["factorYield"]);
                                               //cSCU vom ERZ
                 $returnArray["unitCount"] += $unit;
@@ -92,21 +92,21 @@ class CalculatorController extends Controller
                 if(empty($value) || empty($data["oreInput"][$key])){
                     continue;
                 }
-                
+
                 $oreValue = Ores::where("id", $value)->select("rawValue", "refinedValue")->get()->first();
                 $returnArray["rawProfit"] += ($oreValue["rawValue"] * ($data["oreInput"][$key]));
 
                 $returnArray["valuableMass"] += $data["oreInput"][$key];
 
-                
+
                 $refinements = Refinements::where("ore_id", $value)->where("station_id", $data["station"])
                                             ->select("factorTime", "factorCosts", "factorYield")->get()->first();
-                
+
                 $methods = Methods::where("id", $data["refineryMethod"])
                                             ->select("factorTime", "factorCosts", "factorYield")->get()->first();
-                                                                       
+
                 $returnArray["refinedProfit"] += ($oreValue["refinedValue"] * ($data["oreInput"][$key]) * ($refinements["factorYield"] / 100) * $methods["factorYield"]);
-                
+
                 $unit = ((($data["oreInput"][$key]*100)) * ($refinements["factorYield"] / 100) * $methods["factorYield"]);
 
                                               //cSCU vom ERZ
