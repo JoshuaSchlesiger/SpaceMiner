@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalculatorController;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,5 @@ Route::get('/', function () {
 
 Route::get('calculator', [CalculatorController::class, 'index'])->name('calculator');
 Route::post('calculator', [CalculatorController::class, 'calculate'])->name('calculator.calculate');
+
+Route::get('task', [TasksController::class, 'index'])->name('task');

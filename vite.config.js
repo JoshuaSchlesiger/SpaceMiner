@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/calculator.js',
                 'resources/css/calculator.css',
+                'resources/js/task.js',
             ],
             refresh: true,
         }),
