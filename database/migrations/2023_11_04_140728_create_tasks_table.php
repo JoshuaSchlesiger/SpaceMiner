@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer("calculatedProceeds");
             $table->integer("actualProceeds");
             $table->integer("minerRation");
+            $table->boolean("visible");
 
             $table->unsignedBigInteger("station_id");
             $table->foreign('station_id')->references('id')->on('stations');
