@@ -26,6 +26,18 @@
                         </div>
                         <div class="row justify-content-center text-center mt-3">
                             <div class="col-5 fs-5 mt-1">
+                                <label for="method" class="text-white-50">Methode:</label>
+                            </div>
+                            <div class="col-5">
+                                <div class="d-flex justify-content-center">
+                                    <select class="form-select text-center w-100" id="method">
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center text-center mt-3">
+                            <div class="col-5 fs-5 mt-1">
                                 <label for="costs" class="text-white-50">Kosten:</label>
                             </div>
                             <div class="col-5">
@@ -55,7 +67,7 @@
                                 Mitspieler
                             </div>
                             <div class="col-4 d-flex justify-content-end">
-                                <button type="button" class="btn btn-outline-secondary">alte Gruppe</button>
+                                <button type="button" class="btn btn-outline-secondary">Alte Gruppe</button>
                             </div>
                         </div>
                     </div>
