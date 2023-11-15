@@ -43,7 +43,7 @@ $(document).on('change', 'select', function () {
 });
 
 $(document).on('input', function (e) {
-    
+
     if ($(e.target).attr('id') !== "inputSwitch") {
         sendDataAndShow(getAllInputs());
     }
@@ -164,16 +164,16 @@ function sendDataAndShow(dataObject) {
 }
 
 function formatNumber(zahl) {
-    
+
     return new Intl.NumberFormat().format(zahl);
 }
 
 function formatMinToMinAndHorus(minuten) {
     const hours = Math.floor(minuten / 60);
     const minutesLeft = minuten % 60;
-    
+
     const stundenString = hours < 10 ? `0${hours}` : hours.toString();
     const minutenString = minutesLeft < 10 ? `0${minutesLeft}` : minutesLeft.toString();
-    
+
     return `${stundenString}:${minutenString}`;
 }

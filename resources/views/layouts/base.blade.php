@@ -8,7 +8,7 @@
     <title>SpaceMiner</title>
 
         <!-- Scripts -->
-        @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/calculator.js', 'resources/js/task.js', 'resources/css/calculator.css'])
+        @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/calculator.css'])
 </head>
 <body>
     @yield('content')
