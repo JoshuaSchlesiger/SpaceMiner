@@ -2,6 +2,8 @@
 
 
 @section('content')
+
+
     <div class="container mt-5">
         <div class="row">
             <div class="col">
@@ -67,7 +69,8 @@
                                 Mitspieler
                             </div>
                             <div class="col-4 d-flex justify-content-end">
-                                <button type="button" class="btn btn-outline-secondary" id="btnOnlGroup">Alte Gruppe</button>
+                                <button type="button" class="btn btn-outline-secondary" id="btnOnlGroup">Alte
+                                    Gruppe</button>
                             </div>
                         </div>
                     </div>
@@ -94,13 +97,15 @@
                         <div class="row justify-content-center text-center mt-1">
                             <div class="offset-xxl-3 col-4">
                                 <div class="d-flex justify-content-end">
-                                    <div> <button type="button" class="btn btn-outline-success btn-sm" id="addMiner">ADD</button></div>
+                                    <div> <button type="button" class="btn btn-outline-success btn-sm"
+                                            id="addMiner">ADD</button></div>
                                 </div>
 
                             </div>
                             <div class="col-4">
                                 <div class="d-flex justify-content-end">
-                                    <div> <button type="button" class="btn btn-outline-danger btn-sm" id="delMiner">DEL</button></div>
+                                    <div> <button type="button" class="btn btn-outline-danger btn-sm"
+                                            id="delMiner">DEL</button></div>
                                 </div>
                             </div>
                         </div>
@@ -125,13 +130,15 @@
                         <div class="row justify-content-center text-center mt-1">
                             <div class="offset-xxl-3 col-4">
                                 <div class="d-flex justify-content-end">
-                                    <div> <button type="button" class="btn btn-outline-success btn-sm" id="addScouts">ADD</button></div>
+                                    <div> <button type="button" class="btn btn-outline-success btn-sm"
+                                            id="addScouts">ADD</button></div>
                                 </div>
 
                             </div>
                             <div class="col-4">
                                 <div class="d-flex justify-content-end">
-                                    <div> <button type="button" class="btn btn-outline-danger btn-sm" id="delScouts">DEL</button></div>
+                                    <div> <button type="button" class="btn btn-outline-danger btn-sm"
+                                            id="delScouts">DEL</button></div>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +156,8 @@
                             </div>
                         </div>
 
-                        <input type="range" class="form-range" min="0" max="100" step="1" id="payoutRatio">
+                        <input type="range" class="form-range" min="0" max="100" step="1"
+                            id="payoutRatio">
                     </div>
                 </div>
             </div>
@@ -171,7 +179,7 @@
                                 </tr>
                             </thead>
                             <tbody id="oreTableEntries">
-                                <tr>
+                                <tr id="oreTableEntry">
                                     <th scope="row" class="w-50">
                                         <div class="d-flex justify-content-center">
                                             <select class="form-select text-center w-75 text-white-50" id=selectOretype>
@@ -190,7 +198,8 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <button type="button" class="btn btn-outline-danger deletePart btn-sm">X</button>
+                                            <button type="button"
+                                                class="btn btn-outline-danger deletePart btn-sm">X</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -198,7 +207,8 @@
                         </table>
 
                         <div class="d-flex flex-row-reverse me-2 mt-4 mb-1">
-                            <button type="button" class="btn btn-outline-success" id="btnAddOrePart">Weiterer Anteil</button>
+                            <button type="button" class="btn btn-outline-success" id="btnAddOrePart">Weiterer
+                                Anteil</button>
                         </div>
                     </div>
 
@@ -207,15 +217,25 @@
         </div>
 
         <div class="d-flex justify-content-center mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row ">
-                            <div class="col-4"><div class="d-flex justify-content-center"><button type="button" class="btn btn-outline-success btn-lg" id="btnSave">Speichern</button></div></div>
-                            <div class="col-4"><div class="d-flex justify-content-center"><button type="button" class="btn btn-outline-info btn-lg" id="btnSaveToDashboard">Speichern und zum Dashboard</button></div></div>
-                            <div class="col-4"><div class="d-flex justify-content-center"><button type="button" class="btn btn-outline-warning btn-lg" id="btnReset">Zurücksetzen</button></div></div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row ">
+                        <div class="col-4">
+                            <div class="d-flex justify-content-center"><button type="button"
+                                    class="btn btn-outline-success btn-lg" id="btnSave">Speichern</button></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex justify-content-center"><button type="button"
+                                    class="btn btn-outline-info btn-lg" id="btnSaveToDashboard">Speichern und zum
+                                    Dashboard</button></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex justify-content-center"><button type="button"
+                                    class="btn btn-outline-warning btn-lg" id="btnReset">Zurücksetzen</button></div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 
