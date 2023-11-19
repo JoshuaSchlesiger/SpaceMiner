@@ -59,7 +59,25 @@ $('#btnAddOrePart').on('click', function () {
 
 });
 
+//#endregion
 
+//#region Auszahlungsverhältnis
+
+$("#payoutRatio").on("input", function () {
+    // Aktualisiere die Werte basierend auf dem Range-Wert
+    const rangeValue = $(this).val();
+    const scoutValue = 100 - rangeValue;
+    const minerValue = rangeValue;
+
+    // Rufe die Funktion auf, um die Anzeige zu aktualisieren
+    updateRatioValues(scoutValue, minerValue);
+});
+
+// Funktion zum Aktualisieren der Anzeige
+function updateRatioValues(scoutValue, minerValue) {
+    $("#ratioScouts").text(scoutValue + "%");
+    $("#ratioMiner").text(minerValue + "%");
+}
 
 //#endregion
 

@@ -2,8 +2,6 @@
 
 
 @section('content')
-
-
     <div class="container mt-5">
         <div class="row">
             <div class="col">
@@ -148,16 +146,15 @@
                                 <div class="text-white-50">Scout:</div>
                                 <div id="ratioScouts">50%</div>
                             </div>
-                            <div><label for="customRange3"
+                            <div><label for="payoutRatio"
                                     class="form-label text-white-50 fs-5">Auszahlungsverhältis</label></div>
                             <div class="mt-1">
                                 <div class="text-white-50">Miner:</div>
                                 <div id="ratioMiner">50%</div>
                             </div>
                         </div>
+                        <input type="range" class="form-range" min="0" max="100" step="1"id="payoutRatio">
 
-                        <input type="range" class="form-range" min="0" max="100" step="1"
-                            id="payoutRatio">
                     </div>
                 </div>
             </div>
