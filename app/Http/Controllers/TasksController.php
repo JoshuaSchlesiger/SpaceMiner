@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ores;
+use App\Models\Stations;
+use App\Models\Methods;
+
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
@@ -23,6 +27,19 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return view('Miner/task');
+        $ores = Ores::orderByDesc('refinedValue')
+            ->select('id', 'name')
+            ->get();
+
+        $stations = Stations::orderBy('name')
+            ->select('id', 'name')
+            ->get();
+
+        $methods = Methods::orderBy('factorYield', 'desc')
+            ->orderBy('factorCosts')
+            ->select('id', 'name')
+            ->get();
+
+        return view('Miner/task', ["ores" => $ores, 'stations' => $stations, 'methods' => $methods]);
     }
 }

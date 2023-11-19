@@ -19,7 +19,10 @@
                             <div class="col-5">
                                 <div class="d-flex justify-content-center">
                                     <select class="form-select text-center w-100" id="refineryStaion">
-
+                                        @foreach ($stations as $station)
+                                        <option value={{ $station->id }}>{{ $station->name }}
+                                        </option>
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -31,7 +34,18 @@
                             <div class="col-5">
                                 <div class="d-flex justify-content-center">
                                     <select class="form-select text-center w-100" id="method">
-
+                                        @foreach ($methods as $method)
+                                            @if ($loop->index < 1)
+                                                <option value={{ $method->id }} class="text-success">
+                                                    {{ $method->name }}</option>
+                                            @elseif ($loop->index < 4)
+                                                <option value={{ $method->id }} class="text-warning">
+                                                    {{ $method->name }}</option>
+                                            @else
+                                                <option value={{ $method->id }} class="text-danger">
+                                                    {{ $method->name }}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -153,7 +167,8 @@
                                 <div id="ratioMiner">50%</div>
                             </div>
                         </div>
-                        <input type="range" class="form-range" min="0" max="100" step="1"id="payoutRatio">
+                        <input type="range" class="form-range" min="0" max="100"
+                            step="1"id="payoutRatio">
 
                     </div>
                 </div>
@@ -182,7 +197,21 @@
                                             <select class="form-select text-center w-75 text-white-50" id=selectOretype>
                                                 <option value="" class="" hidden selected disabled>
                                                     Bitte wählen</option>
-
+                                                @foreach ($ores as $ore)
+                                                    @if ($loop->index < 1)
+                                                        <option value={{ $ore->id }} class="text-success">
+                                                            {{ $ore->name }}</option>
+                                                    @elseif ($loop->index < 4)
+                                                        <option value={{ $ore->id }} class="text-primary">
+                                                            {{ $ore->name }}</option>
+                                                    @elseif ($loop->index < 10)
+                                                        <option value={{ $ore->id }} class="text-warning">
+                                                            {{ $ore->name }}</option>
+                                                    @elseif($loop->index < 17)
+                                                        <option value={{ $ore->id }} class="text-danger">
+                                                            {{ $ore->name }}</option>
+                                                    @endif
+                                                @endforeach
                                             </select>
                                         </div>
                                     </th>
