@@ -1,7 +1,20 @@
-//#region Mitspieler
-
 const selectMiner = $('#selectMiner');
 const selectScouts = $('#selectScouts');
+const refineryStaion = $('#refineryStaion');
+const method = $('#method');
+const costs = $('#costs');
+const duration = $('#duration');
+const oreTableEntry = $('#oreTableEntry');
+const oreTypes = $('.oreType');
+const oreUnits = $('.oreUnit');
+
+const btnSave = $('#btnSave');
+const btnSaveToDashboard = $('#btnSaveToDashboard');
+const btnReset = $('#btnReset');
+
+//#region Mitspieler
+
+
 
 $('#addMiner').on("click", function () {
     const miner = $('#miner');
@@ -81,4 +94,22 @@ function updateRatioValues(scoutValue, minerValue) {
 
 //#endregion
 
+//#region Abschlussbuttons
 
+btnReset.on("click", function(){
+    resetForm();
+});
+
+function resetForm(){
+    refineryStaion.prop("selectedIndex", 0);
+    method.prop("selectedIndex", 0);
+    costs.val("");
+    duration.val("");
+}
+
+btnSave.on("click", function(){
+
+
+});
+
+//#endregion

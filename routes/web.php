@@ -27,5 +27,6 @@ Route::get('calculator', [CalculatorController::class, 'index'])->name('calculat
 Route::post('calculator', [CalculatorController::class, 'calculate'])->name('calculator.calculate');
 
 Route::get('task', [TasksController::class, 'index'])->name('task');
+Route::post('task', [TasksController::class, 'save'])->name('task.save');
 
 

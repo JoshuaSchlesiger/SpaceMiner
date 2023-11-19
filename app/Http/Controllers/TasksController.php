@@ -7,6 +7,7 @@ use App\Models\Stations;
 use App\Models\Methods;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTasksRequest;
 
 class TasksController extends Controller
 {
@@ -41,5 +42,11 @@ class TasksController extends Controller
             ->get();
 
         return view('Miner/task', ["ores" => $ores, 'stations' => $stations, 'methods' => $methods]);
+    }
+
+    public function save(StoreTasksRequest $request){
+        $request->validate();
+
+        return redirect()->route('task');
     }
 }
