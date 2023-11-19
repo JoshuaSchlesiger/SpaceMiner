@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Auth::routes();
+Auth::routes();
 
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -27,3 +27,5 @@ Route::get('calculator', [CalculatorController::class, 'index'])->name('calculat
 Route::post('calculator', [CalculatorController::class, 'calculate'])->name('calculator.calculate');
 
 Route::get('task', [TasksController::class, 'index'])->name('task');
+
+

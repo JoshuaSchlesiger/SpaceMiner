@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="container mt-5">
+        <div class="container mt-5">
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -20,9 +20,9 @@
                                 <div class="d-flex justify-content-center">
                                     <select class="form-select text-center w-100" id="refineryStaion">
                                         @foreach ($stations as $station)
-                                        <option value={{ $station->id }}>{{ $station->name }}
-                                        </option>
-                                    @endforeach
+                                            <option value={{ $station->id }}>{{ $station->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

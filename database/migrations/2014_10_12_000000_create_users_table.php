@@ -20,8 +20,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->boolean("show_external_tasks");
-            $table->json("whitelisted_player");
+            $table->boolean("show_external_tasks")->default(true);
+            $table->json("whitelisted_player")->nullable();
         });
     }
 

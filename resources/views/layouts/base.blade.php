@@ -11,6 +11,9 @@
         @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/calculator.css'])
 </head>
 <body>
+    @include('layouts.nav')
+    @yield('nav')
+
     @yield('content')
 
     @include('layouts.footer')
