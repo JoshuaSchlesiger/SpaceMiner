@@ -45,7 +45,12 @@ class TasksController extends Controller
     }
 
     public function save(StoreTasksRequest $request){
-        Info($request);
+        Info($request->all());
+
+        if ($request->has('action') && $request->input('action') == 'saveToDashboard') {
+
+            return redirect()->route('dashboard');
+        }
 
         return redirect()->route('task');
     }

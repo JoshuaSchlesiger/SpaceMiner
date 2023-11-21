@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <form method="POST" action="{{ route('task') }}">
+        <form method="POST" action="{{ route('task') }}" id="form">
             @csrf
             <div class="row">
                 <div class="col">
@@ -25,7 +25,9 @@
                                             <option value="" class="" hidden selected disabled>
                                                 Bitte wählen</option>
                                             @foreach ($stations as $station)
-                                                <option value={{ $station->id }}>{{ $station->name }}
+                                                <option value={{ $station->id }}
+                                                    {{ old('refineryStation') == $station->id ? 'selected' : '' }}>
+                                                    {{ $station->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -47,16 +49,11 @@
                                             <option value="" class="" hidden selected disabled>
                                                 Bitte wählen</option>
                                             @foreach ($methods as $method)
-                                                @if ($loop->index < 1)
-                                                    <option value={{ $method->id }} class="text-success">
-                                                        {{ $method->name }}</option>
-                                                @elseif ($loop->index < 4)
-                                                    <option value={{ $method->id }} class="text-warning">
-                                                        {{ $method->name }}</option>
-                                                @else
-                                                    <option value={{ $method->id }} class="text-danger">
-                                                        {{ $method->name }}</option>
-                                                @endif
+                                                <option value="{{ $method->id }}"
+                                                    {{ old('method') == $method->id ? 'selected' : '' }}
+                                                    class="{{ $loop->index < 1 ? 'text-success' : ($loop->index < 4 ? 'text-warning' : 'text-danger') }}">
+                                                    {{ $method->name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -74,7 +71,7 @@
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
                                         <input type="number" class="form-control" placeholder="aUEC" id="costs"
-                                            name="costs">
+                                            value="{{ old('costs') }}" name="costs">
                                     </div>
                                     @error('costs')
                                         <span class="fst-italic text-danger" role="alert">
@@ -90,7 +87,7 @@
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
                                         <input type="text" class="form-control" placeholder="HH:MM" id="duration"
-                                            name="duration">
+                                            value="{{ old('duration') }}" name="duration">
                                     </div>
                                     @error('duration')
                                         <span class="fst-italic text-danger" role="alert">
@@ -129,10 +126,19 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center text-white-50" id="selectMiner" name="selectMiner[]">
+                                        <select class="form-select text-center text-white-50 multiple" id="selectMiner"
+                                            name="selectMiner[]" multiple>
+                                            @if( null !== old('selectMiner'))
+                                                @foreach (old('selectMiner') as $miner)
+                                                    <option value="{{ $miner }}">
+                                                        {{ $miner }}
+                                                    </option>
+                                                @endforeach
+                                            @endisset
                                         </select>
                                     </div>
                                 </div>
+
                                 @error('selectMiner')
                                     <span class="fst-italic text-danger" role="alert">
                                         {{ $message }}
@@ -165,9 +171,16 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center text-white-50" id="selectScouts" name="selectScouts[]"
-                                            >
+                                        <select class="form-select text-center text-white-50 multiple" id="selectScouts"
+                                            name="selectScout[]" multiple>
 
+                                            @if( null !== old('selectScout'))
+                                            @foreach (old('selectScout') as $scout)
+                                                <option value="{{ $scout }}">
+                                                    {{ $scout }}
+                                                </option>
+                                            @endforeach
+                                        @endisset
                                         </select>
                                     </div>
                                 </div>
@@ -258,7 +271,8 @@
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <div class="w-75">
-                                                    <input type="number" class="form-control oreUnit" placeholder="" name="oreUnits[]">
+                                                    <input type="number" class="form-control oreUnit" placeholder=""
+                                                        name="oreUnits[]">
                                                 </div>
                                             </div>
                                         </td>
@@ -276,12 +290,14 @@
                                 <span class="fst-italic text-danger" role="alert">
                                     {{ $message }}
                                 </span>
+                                <br>
                             @enderror
                             @error('oreUnits')
                                 <span class="fst-italic text-danger" role="alert">
                                     {{ $message }}
                                 </span>
                             @enderror
+
 
                             <div class="d-flex flex-row-reverse me-2 mt-4 mb-1">
                                 <button type="button" class="btn btn-outline-success" id="btnAddOrePart">Weiterer
@@ -298,12 +314,13 @@
                     <div class="card-body">
                         <div class="row ">
                             <div class="col-4">
-                                <div class="d-flex justify-content-center"><button type="submit"
+                                <div class="d-flex justify-content-center"><button type="button"
                                         class="btn btn-outline-success btn-lg" id="btnSave">Speichern</button></div>
                             </div>
                             <div class="col-4">
-                                <div class="d-flex justify-content-center"><button type="submit"
-                                        class="btn btn-outline-info btn-lg" id="btnSaveToDashboard">Speichern und zum
+                                <div class="d-flex justify-content-center"><button type="button" name="action"
+                                        value="saveToDashboard" class="btn btn-outline-info btn-lg"
+                                        id="btnSaveToDashboard">Speichern und zum
                                         Dashboard</button></div>
                             </div>
                             <div class="col-4">

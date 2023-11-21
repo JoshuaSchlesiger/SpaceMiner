@@ -30,7 +30,18 @@ class StoreTasksRequest extends FormRequest
             'selectScouts' => 'sometimes|required|array',
             'payoutRatio' => 'required|numeric|min:0|max:100',
             'oreTypes' => 'required|exists:ores,id|array|min:1',
-            'oreUnits' => 'required|array|min:1',
+            'oreUnits' => [
+                'required',
+                'array',
+                'min:1',
+                function ($attribute, $value, $fail) {
+                    foreach ($value as $index => $item) {
+                        if ($item === null) {
+                            $fail("The element on postion $index must not be null");
+                        }
+                    }
+                },
+            ],
         ];
     }
 

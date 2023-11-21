@@ -12,9 +12,14 @@ const btnSave = $('#btnSave');
 const btnSaveToDashboard = $('#btnSaveToDashboard');
 const btnReset = $('#btnReset');
 
+
+
+$(document).on("load", function() {
+    $('#selectMiner option').prop('selected', false);
+    $('#selectScout option').prop('selected', false);
+});
+
 //#region Mitspieler
-
-
 
 $('#addMiner').on("click", function () {
     const miner = $('#miner');
@@ -108,8 +113,13 @@ function resetForm(){
 }
 
 btnSave.on("click", function(){
+    $('#selectMiner option').prop('selected', true);
+    $('#selectScouts option').prop('selected', true);
+    $('#form').trigger( "submit" );
+});
 
-
+btnSaveToDashboard.on("click", function(){
+    $('#form').trigger( "submit" );
 });
 
 //#endregion
