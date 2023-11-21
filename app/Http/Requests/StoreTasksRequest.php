@@ -29,8 +29,8 @@ class StoreTasksRequest extends FormRequest
             'selectMiner' => 'required|array|min:1',
             'selectScouts' => 'sometimes|required|array',
             'payoutRatio' => 'required|numeric|min:0|max:100',
-            'oreParts.*.oreType' => 'required|exists:ores,id',
-            'oreParts.*.oreUnit' => 'required|numeric'
+            'oreTypes' => 'required|exists:ores,id|array|min:1',
+            'oreUnits' => 'required|array|min:1',
         ];
     }
 
@@ -49,9 +49,9 @@ class StoreTasksRequest extends FormRequest
             'duration.required' => 'The duration field is required.',
             'duration.regex' => 'The duration must be in the format HH::MM or HHH::MM.',
 
-            'selectMiner.required' => 'At least one miner must be selected.',
+            'selectMiner.required' => 'At least one miner must be inputed.',
             'selectMiner.array' => 'The selected miners must be in an array.',
-            'selectMiner.min' => 'At least one miner must be selected.',
+            'selectMiner.min' => 'At least one miner must be inputed.',
             'selectMiner.exists' => 'One or more selected miners are invalid.',
 
             'selectScout.required' => 'The scout field is required.',
@@ -63,11 +63,10 @@ class StoreTasksRequest extends FormRequest
             'payoutRatio.min' => 'The payout ratio must be at least 0.',
             'payoutRatio.max' => 'The payout ratio must be at most 100.',
 
-            'oreParts.*.oreType.required' => 'The ore type field in ore parts is required.',
-            'oreParts.*.oreType.exists' => 'One or more selected ore types in ore parts are invalid.',
-
-            'oreParts.*.oreUnit.required' => 'The ore unit field in ore parts is required.',
-            'oreParts.*.oreUnit.numeric' => 'The ore unit in ore parts must be a number.',
+            'oreTypes.required' => 'The ore type field in ore types is required.',
+            'oreTypes.exists' => 'One or more selected ore types are invalid.',
+            'oreUnits.required' => 'The ore unit field in ore types is required.',
+            'oreUnits.numeric' => 'The ore unit in ore types must be a number.',
         ];
     }
 }

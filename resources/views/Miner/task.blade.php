@@ -20,7 +20,8 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center w-100" id="refineryStaion" name="refineryStation">
+                                        <select class="form-select text-center w-100" id="refineryStaion"
+                                            name="refineryStation">
                                             <option value="" class="" hidden selected disabled>
                                                 Bitte wählen</option>
                                             @foreach ($stations as $station)
@@ -30,9 +31,9 @@
                                         </select>
                                     </div>
                                     @error('refineryStation')
-                                    <span class="fst-italic text-danger" role="alert">
-                                        {{ $message }}
-                                    </span>
+                                        <span class="fst-italic text-danger" role="alert">
+                                            {{ $message }}
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -60,9 +61,9 @@
                                         </select>
                                     </div>
                                     @error('method')
-                                    <span class="fst-italic text-danger" role="alert">
-                                        {{ $message }}
-                                    </span>
+                                        <span class="fst-italic text-danger" role="alert">
+                                            {{ $message }}
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -72,12 +73,13 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" class="form-control" placeholder="aUEC" id="costs" name="costs">
+                                        <input type="number" class="form-control" placeholder="aUEC" id="costs"
+                                            name="costs">
                                     </div>
                                     @error('costs')
-                                    <span class="fst-italic text-danger" role="alert">
-                                        {{ $message }}
-                                    </span>
+                                        <span class="fst-italic text-danger" role="alert">
+                                            {{ $message }}
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -87,12 +89,13 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <input type="text" class="form-control" placeholder="HH:MM" id="duration" name="duration">
+                                        <input type="text" class="form-control" placeholder="HH:MM" id="duration"
+                                            name="duration">
                                     </div>
                                     @error('duration')
-                                    <span class="fst-italic text-danger" role="alert">
-                                        {{ $message }}
-                                    </span>
+                                        <span class="fst-italic text-danger" role="alert">
+                                            {{ $message }}
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -126,11 +129,15 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center text-white-50" id="selectMiner" name="selectMiner">
-
+                                        <select class="form-select text-center text-white-50" id="selectMiner" name="selectMiner[]">
                                         </select>
                                     </div>
                                 </div>
+                                @error('selectMiner')
+                                    <span class="fst-italic text-danger" role="alert">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                             <div class="row justify-content-center text-center mt-1">
                                 <div class="offset-xxl-3 col-4">
@@ -138,7 +145,6 @@
                                         <div> <button type="button" class="btn btn-outline-success btn-sm"
                                                 id="addMiner">ADD</button></div>
                                     </div>
-
                                 </div>
                                 <div class="col-4">
                                     <div class="d-flex justify-content-end">
@@ -159,11 +165,18 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center text-white-50" id="selectScouts" name="selectScouts">
+                                        <select class="form-select text-center text-white-50" id="selectScouts" name="selectScouts[]"
+                                            >
 
                                         </select>
                                     </div>
                                 </div>
+
+                                @error('selectScout')
+                                    <span class="fst-italic text-danger" role="alert">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                             <div class="row justify-content-center text-center mt-1">
                                 <div class="offset-xxl-3 col-4">
@@ -193,8 +206,8 @@
                                     <div id="ratioMiner">50%</div>
                                 </div>
                             </div>
-                            <input type="range" class="form-range" min="0" max="100"
-                                step="1" id="payoutRatio" name="payoutRatio">
+                            <input type="range" class="form-range" min="0" max="100" step="1"
+                                id="payoutRatio" name="payoutRatio">
 
                         </div>
                     </div>
@@ -221,7 +234,7 @@
                                         <th scope="row" class="w-50">
                                             <div class="d-flex justify-content-center">
                                                 <select class="form-select text-center w-75 text-white-50 oreType"
-                                                    id=selectOretype>
+                                                    id=selectOretype name="oreTypes[]">
                                                     <option value="" class="" hidden selected disabled>
                                                         Bitte wählen</option>
                                                     @foreach ($ores as $ore)
@@ -245,7 +258,7 @@
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <div class="w-75">
-                                                    <input type="number" class="form-control oreUnit" placeholder="">
+                                                    <input type="number" class="form-control oreUnit" placeholder="" name="oreUnits[]">
                                                 </div>
                                             </div>
                                         </td>
@@ -256,8 +269,19 @@
                                             </div>
                                         </td>
                                     </tr>
+
                                 </tbody>
                             </table>
+                            @error('oreTypes')
+                                <span class="fst-italic text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                            @error('oreUnits')
+                                <span class="fst-italic text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
 
                             <div class="d-flex flex-row-reverse me-2 mt-4 mb-1">
                                 <button type="button" class="btn btn-outline-success" id="btnAddOrePart">Weiterer

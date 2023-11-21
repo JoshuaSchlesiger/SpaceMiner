@@ -45,7 +45,7 @@ class TasksController extends Controller
     }
 
     public function save(StoreTasksRequest $request){
-        $request->validate();
+        Info($request);
 
         return redirect()->route('task');
     }
