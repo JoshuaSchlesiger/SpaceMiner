@@ -3,6 +3,12 @@
 
 @section('content')
     <div class="container mt-5">
+        @if (session('success'))
+            <div class="alert alert-success text-center" id="successMessage">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('task') }}" id="form">
             @csrf
             <div class="row">
@@ -128,211 +134,211 @@
                                     <div class="d-flex justify-content-center">
                                         <select class="form-select text-center text-white-50 multiple" id="selectMiner"
                                             name="selectMiner[]" multiple>
-                                            @if( null !== old('selectMiner'))
+                                            @if (null !== old('selectMiner'))
                                                 @foreach (old('selectMiner') as $miner)
                                                     <option value="{{ $miner }}">
                                                         {{ $miner }}
                                                     </option>
                                                 @endforeach
                                             @endisset
-                                        </select>
-                                    </div>
-                                </div>
-
-                                @error('selectMiner')
-                                    <span class="fst-italic text-danger" role="alert">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="row justify-content-center text-center mt-1">
-                                <div class="offset-xxl-3 col-4">
-                                    <div class="d-flex justify-content-end">
-                                        <div> <button type="button" class="btn btn-outline-success btn-sm"
-                                                id="addMiner">ADD</button></div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="d-flex justify-content-end">
-                                        <div> <button type="button" class="btn btn-outline-danger btn-sm"
-                                                id="delMiner">DEL</button></div>
-                                    </div>
+                                    </select>
                                 </div>
                             </div>
 
-                            <div class="row justify-content-center text-center mt-3">
-                                <div class="col-3 fs-5 mt-1">
-                                    <label for="scouts" class="text-white-50">Scouts:</label>
+                            @error('selectMiner')
+                                <span class="fst-italic text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="row justify-content-center text-center mt-1">
+                            <div class="offset-xxl-3 col-4">
+                                <div class="d-flex justify-content-end">
+                                    <div> <button type="button" class="btn btn-outline-success btn-sm"
+                                            id="addMiner">ADD</button></div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="d-flex justify-content-center">
-                                        <input type="text" class="form-control" placeholder="" id="scouts">
-                                    </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex justify-content-end">
+                                    <div> <button type="button" class="btn btn-outline-danger btn-sm"
+                                            id="delMiner">DEL</button></div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center text-white-50 multiple" id="selectScouts"
-                                            name="selectScout[]" multiple>
+                            </div>
+                        </div>
 
-                                            @if( null !== old('selectScout'))
+                        <div class="row justify-content-center text-center mt-3">
+                            <div class="col-3 fs-5 mt-1">
+                                <label for="scouts" class="text-white-50">Scouts:</label>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex justify-content-center">
+                                    <input type="text" class="form-control" placeholder="" id="scouts">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex justify-content-center">
+                                    <select class="form-select text-center text-white-50 multiple" id="selectScouts"
+                                        name="selectScout[]" multiple>
+
+                                        @if (null !== old('selectScout'))
                                             @foreach (old('selectScout') as $scout)
                                                 <option value="{{ $scout }}">
                                                     {{ $scout }}
                                                 </option>
                                             @endforeach
                                         @endisset
+                                </select>
+                            </div>
+                        </div>
+
+                        @error('selectScout')
+                            <span class="fst-italic text-danger" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="row justify-content-center text-center mt-1">
+                        <div class="offset-xxl-3 col-4">
+                            <div class="d-flex justify-content-end">
+                                <div> <button type="button" class="btn btn-outline-success btn-sm"
+                                        id="addScouts">ADD</button></div>
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex justify-content-end">
+                                <div> <button type="button" class="btn btn-outline-danger btn-sm"
+                                        id="delScouts">DEL</button></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <div class="mt-1">
+                            <div class="text-white-50">Scout:</div>
+                            <div id="ratioScouts">50%</div>
+                        </div>
+                        <div><label for="payoutRatio"
+                                class="form-label text-white-50 fs-5">Auszahlungsverhältis</label></div>
+                        <div class="mt-1">
+                            <div class="text-white-50">Miner:</div>
+                            <div id="ratioMiner">50%</div>
+                        </div>
+                    </div>
+                    <input type="range" class="form-range" min="0" max="100" step="1"
+                        id="payoutRatio" name="payoutRatio">
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="header-text card-header">
+                    <div class="text-center fs-4">
+                        Erze
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <table class="table table-dark table-striped text-center">
+                        <thead>
+                            <tr class="fs-5">
+                                <th scope="col" class="text-white-50">Erztyp</th>
+                                <th scope="col" class="text-white-50">Units</th>
+                                <th scope="col" class="text-white-50"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="oreTableEntries">
+                            <tr id="oreTableEntry">
+                                <th scope="row" class="w-50">
+                                    <div class="d-flex justify-content-center">
+                                        <select class="form-select text-center w-75 text-white-50 oreType"
+                                            id=selectOretype name="oreTypes[]">
+                                            <option value="" class="" hidden selected disabled>
+                                                Bitte wählen</option>
+                                            @foreach ($ores as $ore)
+                                                @if ($loop->index < 1)
+                                                    <option value={{ $ore->id }} class="text-success">
+                                                        {{ $ore->name }}</option>
+                                                @elseif ($loop->index < 4)
+                                                    <option value={{ $ore->id }} class="text-primary">
+                                                        {{ $ore->name }}</option>
+                                                @elseif ($loop->index < 10)
+                                                    <option value={{ $ore->id }} class="text-warning">
+                                                        {{ $ore->name }}</option>
+                                                @elseif($loop->index < 17)
+                                                    <option value={{ $ore->id }} class="text-danger">
+                                                        {{ $ore->name }}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
-                                </div>
-
-                                @error('selectScout')
-                                    <span class="fst-italic text-danger" role="alert">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="row justify-content-center text-center mt-1">
-                                <div class="offset-xxl-3 col-4">
-                                    <div class="d-flex justify-content-end">
-                                        <div> <button type="button" class="btn btn-outline-success btn-sm"
-                                                id="addScouts">ADD</button></div>
+                                </th>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="w-75">
+                                            <input type="number" class="form-control oreUnit" placeholder=""
+                                                name="oreUnits[]">
+                                        </div>
                                     </div>
-
-                                </div>
-                                <div class="col-4">
-                                    <div class="d-flex justify-content-end">
-                                        <div> <button type="button" class="btn btn-outline-danger btn-sm"
-                                                id="delScouts">DEL</button></div>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="button"
+                                            class="btn btn-outline-danger deletePart btn-sm">X</button>
                                     </div>
-                                </div>
-                            </div>
+                                </td>
+                            </tr>
 
-                            <div class="d-flex justify-content-between mt-3">
-                                <div class="mt-1">
-                                    <div class="text-white-50">Scout:</div>
-                                    <div id="ratioScouts">50%</div>
-                                </div>
-                                <div><label for="payoutRatio"
-                                        class="form-label text-white-50 fs-5">Auszahlungsverhältis</label></div>
-                                <div class="mt-1">
-                                    <div class="text-white-50">Miner:</div>
-                                    <div id="ratioMiner">50%</div>
-                                </div>
-                            </div>
-                            <input type="range" class="form-range" min="0" max="100" step="1"
-                                id="payoutRatio" name="payoutRatio">
+                        </tbody>
+                    </table>
+                    @error('oreTypes')
+                        <span class="fst-italic text-danger" role="alert">
+                            {{ $message }}
+                        </span>
+                        <br>
+                    @enderror
+                    @error('oreUnits')
+                        <span class="fst-italic text-danger" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
 
-                        </div>
+
+                    <div class="d-flex flex-row-reverse me-2 mt-4 mb-1">
+                        <button type="button" class="btn btn-outline-success" id="btnAddOrePart">Weiterer
+                            Anteil</button>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="header-text card-header">
-                            <div class="text-center fs-4">
-                                Erze
-                            </div>
-                        </div>
 
-                        <div class="card-body">
-                            <table class="table table-dark table-striped text-center">
-                                <thead>
-                                    <tr class="fs-5">
-                                        <th scope="col" class="text-white-50">Erztyp</th>
-                                        <th scope="col" class="text-white-50">Units</th>
-                                        <th scope="col" class="text-white-50"></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="oreTableEntries">
-                                    <tr id="oreTableEntry">
-                                        <th scope="row" class="w-50">
-                                            <div class="d-flex justify-content-center">
-                                                <select class="form-select text-center w-75 text-white-50 oreType"
-                                                    id=selectOretype name="oreTypes[]">
-                                                    <option value="" class="" hidden selected disabled>
-                                                        Bitte wählen</option>
-                                                    @foreach ($ores as $ore)
-                                                        @if ($loop->index < 1)
-                                                            <option value={{ $ore->id }} class="text-success">
-                                                                {{ $ore->name }}</option>
-                                                        @elseif ($loop->index < 4)
-                                                            <option value={{ $ore->id }} class="text-primary">
-                                                                {{ $ore->name }}</option>
-                                                        @elseif ($loop->index < 10)
-                                                            <option value={{ $ore->id }} class="text-warning">
-                                                                {{ $ore->name }}</option>
-                                                        @elseif($loop->index < 17)
-                                                            <option value={{ $ore->id }} class="text-danger">
-                                                                {{ $ore->name }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </th>
-                                        <td>
-                                            <div class="d-flex justify-content-center">
-                                                <div class="w-75">
-                                                    <input type="number" class="form-control oreUnit" placeholder=""
-                                                        name="oreUnits[]">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex justify-content-center">
-                                                <button type="button"
-                                                    class="btn btn-outline-danger deletePart btn-sm">X</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                            @error('oreTypes')
-                                <span class="fst-italic text-danger" role="alert">
-                                    {{ $message }}
-                                </span>
-                                <br>
-                            @enderror
-                            @error('oreUnits')
-                                <span class="fst-italic text-danger" role="alert">
-                                    {{ $message }}
-                                </span>
-                            @enderror
-
-
-                            <div class="d-flex flex-row-reverse me-2 mt-4 mb-1">
-                                <button type="button" class="btn btn-outline-success" id="btnAddOrePart">Weiterer
-                                    Anteil</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
             </div>
-
-            <div class="d-flex justify-content-center mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row ">
-                            <div class="col-4">
-                                <div class="d-flex justify-content-center"><button type="button"
-                                        class="btn btn-outline-success btn-lg" id="btnSave">Speichern</button></div>
-                            </div>
-                            <div class="col-4">
-                                <div class="d-flex justify-content-center"><button type="button" name="action"
-                                        value="saveToDashboard" class="btn btn-outline-info btn-lg"
-                                        id="btnSaveToDashboard">Speichern und zum
-                                        Dashboard</button></div>
-                            </div>
-                            <div class="col-4">
-                                <div class="d-flex justify-content-center"><button type="button"
-                                        class="btn btn-outline-warning btn-lg" id="btnReset">Zurücksetzen</button></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 
-    @vite('resources/js/task.js')
+    <div class="d-flex justify-content-center mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="row ">
+                    <div class="col-4">
+                        <div class="d-flex justify-content-center"><button type="button"
+                                class="btn btn-outline-success btn-lg" id="btnSave">Speichern</button></div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-center"><button type="button" name="action"
+                                value="saveToDashboard" class="btn btn-outline-info btn-lg"
+                                id="btnSaveToDashboard">Speichern und zum
+                                Dashboard</button></div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-center"><button type="button"
+                                class="btn btn-outline-warning btn-lg" id="btnReset">Zurücksetzen</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+
+@vite('resources/js/task.js')
 @endsection

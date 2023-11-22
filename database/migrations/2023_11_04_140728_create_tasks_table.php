@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->time("calculatedDuration");
-            $table->time("actualDuration");
+            $table->dateTime("calculatedCompletionDate");
+            $table->dateTime("actualCompletionDate");
             $table->integer("calculatedCosts");
             $table->integer("actualCosts");
             $table->integer("calculatedProceeds");
-            $table->integer("actualProceeds");
+            $table->integer("actualProceeds")->nullable();
             $table->integer("minerRation");
             $table->boolean("visible");
 

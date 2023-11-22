@@ -19,6 +19,11 @@ $(document).on("load", function() {
     $('#selectScout option').prop('selected', false);
 });
 
+$(function ($) {
+    $("#successMessage").delay(2000).fadeOut(800);
+});
+
+
 //#region Mitspieler
 
 $('#addMiner').on("click", function () {
