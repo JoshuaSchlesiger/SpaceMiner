@@ -6,11 +6,14 @@ use App\Models\Ores;
 use App\Models\Stations;
 use App\Models\Methods;
 use App\Models\Refinements;
+use App\Models\TasksOres;
 use Illuminate\Support\Carbon;
 use App\Models\Tasks;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTasksRequest;
+use App\Models\TasksUsers;
+use Ramsey\Uuid\Type\Integer;
 
 class TasksController extends Controller
 {
@@ -53,12 +56,35 @@ class TasksController extends Controller
 
         $userInputs = $request->all();
 
-
         $task = $this->calTaskValues($userInputs);
         $task["user_id"] = $request->user()->id;
-        Tasks::create($task);
+        $neueTaskId = Tasks::create($task)->id;
 
+        $combination["OresUnits"] = $this->combineTaskOresUnits($userInputs, $neueTaskId);
+        $tasks_ores["task_id"] = $neueTaskId;
+        foreach ($combination["OresUnits"] as $type => $units) {
+            $tasks_ores["units"] = $units;
+            $tasks_ores["ore_id"] = $type;
+            TasksOres::create($tasks_ores);
+        }
 
+        $taskUsers["task_id"] = $neueTaskId;
+        $taskUsers["paid"] = false;
+        $taskUsers["visability"] = true;
+
+        foreach ($userInputs["selectMiner"] as $key => $name) {
+            $taskUsers["username"] = $name;
+            $taskUsers["type"] = "miner";
+            TasksUsers::create($taskUsers);
+        }
+
+        if(isset($userInputs["selectScout"])){
+            foreach ($userInputs["selectScout"] as $key => $name) {
+                $taskUsers["username"] = $name;
+                $taskUsers["type"] = "scout";
+                TasksUsers::create($taskUsers);
+            }
+        }
 
         if ($request->has('action') && $request->input('action') == 'saveToDashboard') {
 
@@ -68,6 +94,9 @@ class TasksController extends Controller
         return redirect()->route('task')->with('success', 'Das Formular wurde erfolgreich gesendet!');;
     }
 
+    /**
+     * Berechnet die Werte für die Task. Dazu gilt Zuweisung der Inputs und Berechnung durch Formeln
+     */
     private function calTaskValues(array $userInputs): array
     {
         $task = [];
@@ -105,5 +134,28 @@ class TasksController extends Controller
         $task['calculatedCompletionDate'] = $currentTime->toDateTime();
 
         return $task;
+    }
+
+    private function combineTaskOresUnits(array $userInputs, int $taskID): array
+    {
+
+        $combinedArray = array();
+
+        // Kombiniere die Werte von oreTypes und oreUnits
+        for ($i = 0; $i < count($userInputs['oreTypes']); $i++) {
+            $oreType = $userInputs['oreTypes'][$i];
+            $oreUnit = $userInputs['oreUnits'][$i];
+
+            // Überprüfe, ob der Erztyp bereits im kombinierten Array existiert
+            if (array_key_exists($oreType, $combinedArray)) {
+                // Wenn ja, addiere die Einheiten
+                $combinedArray[$oreType] += $oreUnit;
+            } else {
+                // Wenn nicht, füge den Erztyp mit den Einheiten hinzu
+                $combinedArray[$oreType] = $oreUnit;
+            }
+        }
+
+        return $combinedArray;
     }
 }

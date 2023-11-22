@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('tasks_users', function (Blueprint $table) {
             $table->id();
-            $table->string("username")->unique();
+            $table->string("username");
             $table->timestamps();
             $table->boolean("visability");
+            $table->enum('type', ['miner', 'scout']);
             $table->boolean("paid");
 
-            $table->unsignedBigInteger("user_id");
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger("user_id")->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('task_id');
-            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
         });
     }
 

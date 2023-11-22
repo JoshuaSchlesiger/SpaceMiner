@@ -16,10 +16,10 @@ return new class extends Migration
             $table->integer("units");
 
             $table->unsignedBigInteger('ore_id');
-            $table->foreign('ore_id')->references('id')->on('ores');
+            $table->foreign('ore_id')->references('id')->on('ores')->onDelete('cascade');
 
             $table->unsignedBigInteger('task_id');
-            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
 
         });
     }
