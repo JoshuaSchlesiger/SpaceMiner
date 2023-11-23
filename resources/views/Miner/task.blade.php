@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center w-100" id="refineryStaion"
+                                        <select class="form-select text-center w-100 @error('refineryStation') is-invalid @enderror" id="refineryStaion"
                                             name="refineryStation">
                                             <option value="" class="" hidden selected disabled>
                                                 Bitte wählen</option>
@@ -38,11 +38,11 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @error('refineryStation')
+                                    {{-- @error('refineryStation')
                                         <span class="fst-italic text-danger" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror
+                                    @enderror --}}
                                 </div>
                             </div>
                             <div class="row justify-content-center text-center mt-3">
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center w-100" id="method" name="method">
+                                        <select class="form-select text-center w-100 @error('method') is-invalid @enderror" id="method" name="method">
                                             <option value="" class="" hidden selected disabled>
                                                 Bitte wählen</option>
                                             @foreach ($methods as $method)
@@ -63,11 +63,11 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @error('method')
+                                    {{-- @error('method')
                                         <span class="fst-italic text-danger" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror
+                                    @enderror --}}
                                 </div>
                             </div>
                             <div class="row justify-content-center text-center mt-3">
@@ -76,14 +76,14 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" class="form-control" placeholder="aUEC" id="costs"
+                                        <input type="number" class="form-control @error('method') is-invalid @enderror" placeholder="aUEC" id="costs"
                                             value="{{ old('costs') }}" name="costs">
                                     </div>
-                                    @error('costs')
+                                    {{-- @error('costs')
                                         <span class="fst-italic text-danger" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror
+                                    @enderror --}}
                                 </div>
                             </div>
                             <div class="row justify-content-center text-center mt-3">
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <input type="text" class="form-control" placeholder="HH:MM" id="duration"
+                                        <input type="text" class="form-control @error('duration') is-invalid @enderror" placeholder="HH:MM" id="duration"
                                             value="{{ old('duration') }}" name="duration">
                                     </div>
                                     @error('duration')
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center text-white-50 multiple" id="selectMiner"
+                                        <select class="form-select text-center text-white-50 multiple  @error('selectMiner') is-invalid @enderror" id="selectMiner"
                                             name="selectMiner[]" multiple>
                                             @if (null !== old('selectMiner'))
                                                 @foreach (old('selectMiner') as $miner)
