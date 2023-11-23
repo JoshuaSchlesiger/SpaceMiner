@@ -9,6 +9,7 @@
 
         <!-- Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/calculator.css', 'resources/css/task.css'])
+        @livewireStyles
 </head>
 <body>
     @include('layouts.nav')
@@ -18,6 +19,6 @@
 
     @include('layouts.footer')
     @yield('footer')
-
+    @livewireScripts
 </body>
 </html>

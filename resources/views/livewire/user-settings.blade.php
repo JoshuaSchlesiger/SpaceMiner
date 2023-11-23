@@ -1,0 +1,58 @@
+<div>
+    <div class="row ms-3 mb-3 mt-3">
+        <div class="col-md-6 col-6">
+            <label for="visibility" class="fs-4">Sichtbarkeit von fremden
+                Aufträgen:</label>
+        </div>
+        <div class="col-md-6 col-6">
+            <div class="form-check form-switch ms-2">
+                <input class="form-check-input switch" type="checkbox" role="switch" id="visibility"
+                    @if ($visibility) checked @endif>
+            </div>
+        </div>
+    </div>
+
+    <div class="row ms-3 mb-3 mt-3">
+        <div class="col-md-6 col-6">
+            <label for="whitelistedPlayerInput" class="fs-4">Whitelisted Player:</label>
+        </div>
+        <div class="col-md-3 col-3">
+            <div class="form-outline">
+                <input id="massStone" type="text" class="form-control" placeholder="">
+            </div>
+        </div>
+        <div class="col-md-3 col-3">
+            <button type="button" class="btn btn-outline-success" id="btnAddPartRock">ADD</button>
+        </div>
+    </div>
+
+    <div class="row ms-3 mb-3 mt-3">
+        <div class="col-md-3 offset-xxl-6 col-xxl-4">
+            <table class="table table-dark table-striped text-center">
+                <thead>
+                    <tr class="fs-5">
+                        <th scope="col" class="text-white-50">Name</th>
+                        <th scope="col" class="text-white-50"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="w-75">
+                            <div class="d-flex justify-content-center">
+                                <span class="fs-4 text-break">asdsad</span>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-outline-danger deletePart2">X</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>

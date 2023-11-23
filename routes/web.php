@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\UserSettings;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +29,7 @@ Route::post('calculator', [CalculatorController::class, 'calculate'])->name('cal
 
 Route::get('task', [TasksController::class, 'index'])->name('task');
 Route::post('task', [TasksController::class, 'save'])->name('task.save');
+
+Route::get('userSettings', [UserSettings::class, "index"])->name('userSettings');
 
 

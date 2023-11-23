@@ -31,5 +31,12 @@
     border-radius: 50%;
 }
 
+.deletePart2 {
+    display: block;
+    border-radius: 50%;
+    scale: 1;
+}
+
+
 /*#endregion */
 
