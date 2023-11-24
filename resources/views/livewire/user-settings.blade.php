@@ -7,7 +7,7 @@
         <div class="col-md-6 col-6">
             <div class="form-check form-switch ms-2">
                 <input class="form-check-input switch" type="checkbox" role="switch" id="visibility"
-                    @if ($visibility) checked @endif>
+                    wire:change="visibilityChange" @if ($visibility) checked @endif>
             </div>
         </div>
     </div>
@@ -18,11 +18,20 @@
         </div>
         <div class="col-md-3 col-3">
             <div class="form-outline">
-                <input id="massStone" type="text" class="form-control" placeholder="">
+                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
+                    placeholder="" wire:model="username">
             </div>
+            @error('username')
+                @if ($message !== 'null')
+                    <span class="fst-italic text-danger" role="alert">
+                        {{ $message }}
+                    </span>
+                @endif
+
+            @enderror
         </div>
         <div class="col-md-3 col-3">
-            <button type="button" class="btn btn-outline-success" id="btnAddPartRock">ADD</button>
+            <button type="button" class="btn btn-outline-success" id="btnAddPlayer" wire:click='addPlayer'>ADD</button>
         </div>
     </div>
 
@@ -36,18 +45,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row" class="w-75">
-                            <div class="d-flex justify-content-center">
-                                <span class="fs-4 text-break">asdsad</span>
-                            </div>
-                        </th>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <button type="button" class="btn btn-outline-danger deletePart2">X</button>
-                            </div>
-                        </td>
-                    </tr>
+                    @isset($whitelist)
+                        @if ($whitelist !== null)
+                            @foreach ($whitelist["username"] as $index => $player)
+                                <tr>
+                                    <th scope="row" class="w-75">
+                                        <div class="d-flex justify-content-center">
+                                            <span class="fs-4 text-break">{{$player}}</span>
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button" class="btn btn-outline-danger deletePart2" wire:click="deletePlayer({{ $index }})">X</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    @endisset
+
                 </tbody>
             </table>
         </div>
