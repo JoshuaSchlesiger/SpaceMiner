@@ -13,6 +13,7 @@ use App\Models\Tasks;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTasksRequest;
 use App\Models\TasksUsers;
+use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Type\Integer;
 
 class TasksController extends Controller
@@ -52,8 +53,6 @@ class TasksController extends Controller
 
     public function save(StoreTasksRequest $request)
     {
-        Info($request->all());
-
         $userInputs = $request->all();
 
         $task = $this->calTaskValues($userInputs);
@@ -78,7 +77,7 @@ class TasksController extends Controller
             TasksUsers::create($taskUsers);
         }
 
-        if(isset($userInputs["selectScout"])){
+        if (isset($userInputs["selectScout"])) {
             foreach ($userInputs["selectScout"] as $key => $name) {
                 $taskUsers["username"] = $name;
                 $taskUsers["type"] = "scout";
@@ -92,6 +91,25 @@ class TasksController extends Controller
         }
 
         return redirect()->route('task')->with('success', 'Das Formular wurde erfolgreich gesendet!');;
+    }
+
+    public function ajaxFunction(Request $request)
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $userId = $user->id;
+
+            $lastTask = Tasks::select("id")->where("user_id", $userId)->orderBy("created_at", "DESC")->first();
+
+            $miner = TasksUsers::where("task_id", $lastTask->id)->where("type", "miner")->pluck("username")->toArray();
+            $scouts = TasksUsers::where("task_id", $lastTask->id)->where("type", "scout")->pluck("username")->toArray();
+
+            // Gib eine JSON-Antwort zurück
+            return response()->json([
+                'miner' => $miner,
+                'scouts' => $scouts
+            ]);
+        }
     }
 
     /**

@@ -29,6 +29,7 @@ Route::post('calculator', [CalculatorController::class, 'calculate'])->name('cal
 
 Route::get('task', [TasksController::class, 'index'])->name('task');
 Route::post('task', [TasksController::class, 'save'])->name('task.save');
+Route::get('ajax-task', [TasksController::class, 'ajaxFunction'])->name('ajax.task');
 
 Route::get('userSettings', [UserSettings::class, "index"])->name('userSettings');
 

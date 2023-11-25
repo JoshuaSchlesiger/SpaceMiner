@@ -13,8 +13,7 @@ const btnSaveToDashboard = $('#btnSaveToDashboard');
 const btnReset = $('#btnReset');
 
 
-
-$(document).on("load", function() {
+$(document).on("load", function () {
     $('#selectMiner option').prop('selected', false);
     $('#selectScout option').prop('selected', false);
 });
@@ -46,6 +45,32 @@ $('#addScouts').on("click", function () {
 $('#delScouts').on('click', function () {
     const selectedOption = selectScouts.find('option:selected');
     selectedOption.remove();
+});
+
+$('#btnOnldGroup').on('click', function () {
+
+    const ajaxUrl = $(this).data('ajax-url');
+
+    $.ajax({
+        url: ajaxUrl,
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            const miner = response.miner;
+            const scouts = response.scouts;
+
+            miner.forEach(element => {
+                selectMiner.append(createOption(element));
+            });
+
+            scouts.forEach(element => {
+                selectScouts.append(createOption(element));
+            });
+        },
+        error: function (error) {
+            console.error("Fehler beim AJAX-Aufruf:", error);
+        }
+    });
 });
 
 
@@ -106,25 +131,25 @@ function updateRatioValues(scoutValue, minerValue) {
 
 //#region Abschlussbuttons
 
-btnReset.on("click", function(){
+btnReset.on("click", function () {
     resetForm();
 });
 
-function resetForm(){
+function resetForm() {
     refineryStaion.prop("selectedIndex", 0);
     method.prop("selectedIndex", 0);
     costs.val("");
     duration.val("");
 }
 
-btnSave.on("click", function(){
+btnSave.on("click", function () {
     $('#selectMiner option').prop('selected', true);
     $('#selectScouts option').prop('selected', true);
-    $('#form').trigger( "submit" );
+    $('#form').trigger("submit");
 });
 
-btnSaveToDashboard.on("click", function(){
-    $('#form').trigger( "submit" );
+btnSaveToDashboard.on("click", function () {
+    $('#form').trigger("submit");
 });
 
 //#endregion

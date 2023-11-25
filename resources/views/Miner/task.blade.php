@@ -121,7 +121,7 @@
                                     Mitspieler
                                 </div>
                                 <div class="col-4 d-flex justify-content-end">
-                                    <button type="button" class="btn btn-outline-secondary" id="btnOnlGroup">Alte
+                                    <button type="button" class="btn btn-outline-secondary" id="btnOnldGroup" data-ajax-url="{{ route('ajax.task') }}"> Alte
                                         Gruppe</button>
                                 </div>
                             </div>
