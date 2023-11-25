@@ -8,7 +8,7 @@
     <title>SpaceMiner</title>
 
         <!-- Scripts -->
-        @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/calculator.css', 'resources/css/task.css'])
+        @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/calculator.css', 'resources/css/task.css', 'resources/css/dashboard.css'])
         @livewireStyles
 </head>
 <body>

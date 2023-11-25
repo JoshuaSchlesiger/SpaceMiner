@@ -4,8 +4,6 @@
 @section('content')
     <input type="hidden" id="calculateRoute" value="{{ route('calculator.calculate') }}">
 
-
-
     <div class="container mt-5">
         <div class="row">
             <div class="col">

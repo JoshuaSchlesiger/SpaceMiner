@@ -13,7 +13,7 @@
                 <ul class="navbar-nav me-auto">
                     @if (Auth::check())
                         <li class="nav-item">
-                            <a class="nav-link fs-5" href="{{ route('login') }}">Dashboard</a>
+                            <a class="nav-link fs-5" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fs-5" href="{{ route('task') }}">Aufträge</a>

@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalculatorController;
+use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\UserSettings;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +34,5 @@ Route::post('task', [TasksController::class, 'save'])->name('task.save');
 Route::get('ajax-task', [TasksController::class, 'ajaxFunction'])->name('ajax.task');
 
 Route::get('userSettings', [UserSettings::class, "index"])->name('userSettings');
-
+Route::get('dashboard', [DashboardController::class, "index"])->name('dashboard');
 
