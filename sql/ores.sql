@@ -1,32 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Erstellungszeit: 25. Okt 2023 um 18:09
--- Server-Version: 11.1.2-MariaDB
--- PHP-Version: 8.2.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Datenbank: `laravel`
---
-
--- --------------------------------------------------------
-
-
---
--- Daten für Tabelle `ores`
---
 
 INSERT INTO `ores` (`id`, `name`, `rawValue`, `refinedValue`) VALUES
 (1, 'Quantainium', 10117.00, 24557.00),
@@ -48,27 +19,3 @@ INSERT INTO `ores` (`id`, `name`, `rawValue`, `refinedValue`) VALUES
 (17, 'Aluminum',  125.00, 337.00),
 (18, 'Inert',     0.00, 0.00);
 
---
--- Indizes der exportierten Tabellen
---
-
---
--- Indizes für die Tabelle `ores`
---
-ALTER TABLE `ores`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT für exportierte Tabellen
---
-
---
--- AUTO_INCREMENT für Tabelle `ores`
---
-ALTER TABLE `ores`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
