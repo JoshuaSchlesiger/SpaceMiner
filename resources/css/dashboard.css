@@ -1,11 +1,22 @@
-.completedTaskList{
+.finishedTaskList {
     min-height: 395px;
     max-height: 395px;
     overflow: auto;
 }
 
-.payablePlayerList{
+.payablePlayerList {
     min-height: 395px;
     max-height: 395px;
     overflow: auto;
+}
+
+.listItems {
+    min-height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.listItems:hover {
+    /* Füge die Styles für den Hover-Zustand hinzu */
+    background-color: rgb(47, 52, 77, 0.507)
 }

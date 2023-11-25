@@ -101,16 +101,10 @@
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.125);">
       © 2023 Copyright:
       <a class="text-reset fw-bold" href="">DochSergeantTV</a><br>
-      <a class="hyperlink text-reset" href="datenschutz.php">Datenschutz | Cookie-Nutzung </a> |
-  
-
-        <a class="hyperlink font text-reset" href="https://www.flaticon.com/"> Icon</a>
-
-  
-  
+      <a class="hyperlink text-reset" href="datenschutz.php">Datenschutz | Cookie-Nutzung </a>
     </div>
 
   </footer>
-    
-  
+
+
   @endsection
