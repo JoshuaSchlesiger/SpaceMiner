@@ -242,5 +242,5 @@
         </div>
     </div>
 
-    @vite('resources/js/calculator.js');
+    @vite('resources/js/calculator.js')
 @endsection

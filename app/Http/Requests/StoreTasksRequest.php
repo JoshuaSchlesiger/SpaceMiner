@@ -48,16 +48,16 @@ class StoreTasksRequest extends FormRequest
     public function messages()
     {
         return [
-            'refineryStation.required' => 'The refinery station field is required.',
+            'refineryStation.required' => 'null',
             'refineryStation.exists' => 'The selected refinery station is invalid.',
 
-            'method.required' => 'The method field is required.',
+            'method.required' => 'null',
             'method.exists' => 'The selected method is invalid.',
 
-            'costs.required' => 'The costs field is required.',
+            'costs.required' => 'null',
             'costs.numeric' => 'The costs must be a number.',
 
-            'duration.required' => 'The duration field is required.',
+            'duration.required' => 'null',
             'duration.regex' => 'The duration must be in the format HH::MM or HHH::MM.',
 
             'selectMiner.required' => 'At least one miner must be inputed.',

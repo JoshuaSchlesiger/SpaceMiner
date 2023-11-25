@@ -38,11 +38,13 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    {{-- @error('refineryStation')
-                                        <span class="fst-italic text-danger" role="alert">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror --}}
+                                    @error('refineryStation')
+                                        @if ($message !== 'null')
+                                            <span class="fst-italic text-danger" role="alert">
+                                                {{ $message }}
+                                            </span>
+                                        @endif
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row justify-content-center text-center mt-3">
@@ -63,11 +65,13 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    {{-- @error('method')
-                                        <span class="fst-italic text-danger" role="alert">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror --}}
+                                    @error('method')
+                                        @if ($message !== 'null')
+                                            <span class="fst-italic text-danger" role="alert">
+                                                {{ $message }}
+                                            </span>
+                                        @endif
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row justify-content-center text-center mt-3">
@@ -79,11 +83,13 @@
                                         <input type="number" class="form-control @error('method') is-invalid @enderror" placeholder="aUEC" id="costs"
                                             value="{{ old('costs') }}" name="costs">
                                     </div>
-                                    {{-- @error('costs')
-                                        <span class="fst-italic text-danger" role="alert">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror --}}
+                                    @error('costs')
+                                        @if ($message !== 'null')
+                                            <span class="fst-italic text-danger" role="alert">
+                                                {{ $message }}
+                                            </span>
+                                        @endif
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row justify-content-center text-center mt-3">
@@ -96,9 +102,11 @@
                                             value="{{ old('duration') }}" name="duration">
                                     </div>
                                     @error('duration')
-                                        <span class="fst-italic text-danger" role="alert">
-                                            {{ $message }}
-                                        </span>
+                                        @if ($message !== 'null')
+                                            <span class="fst-italic text-danger" role="alert">
+                                                {{ $message }}
+                                            </span>
+                                        @endif
                                     @enderror
                                 </div>
                             </div>
