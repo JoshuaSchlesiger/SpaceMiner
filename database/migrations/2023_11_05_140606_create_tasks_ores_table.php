@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('tasks_ores', function (Blueprint $table) {
             $table->id();
             $table->integer("units");
+            $table->integer("selling_value")->nullable();
+
+            $table->unsignedBigInteger('selling_station_id')->nullable();
+            $table->foreign('selling_station_id')->references('id')->on('selling_stations')->onDelete('set null');
 
             $table->unsignedBigInteger('ore_id');
             $table->foreign('ore_id')->references('id')->on('ores')->onDelete('cascade');
