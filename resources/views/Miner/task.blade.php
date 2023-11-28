@@ -26,8 +26,9 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center w-100 @error('refineryStation') is-invalid @enderror" id="refineryStaion"
-                                            name="refineryStation">
+                                        <select
+                                            class="form-select text-center w-100 @error('refineryStation') is-invalid @enderror"
+                                            id="refineryStaion" name="refineryStation">
                                             <option value="" class="" hidden selected disabled>
                                                 Bitte wählen</option>
                                             @foreach ($stations as $station)
@@ -53,7 +54,8 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center w-100 @error('method') is-invalid @enderror" id="method" name="method">
+                                        <select class="form-select text-center w-100 @error('method') is-invalid @enderror"
+                                            id="method" name="method">
                                             <option value="" class="" hidden selected disabled>
                                                 Bitte wählen</option>
                                             @foreach ($methods as $method)
@@ -80,8 +82,8 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" class="form-control @error('method') is-invalid @enderror" placeholder="aUEC" id="costs"
-                                            value="{{ old('costs') }}" name="costs">
+                                        <input type="number" class="form-control @error('method') is-invalid @enderror"
+                                            placeholder="aUEC" id="costs" value="{{ old('costs') }}" name="costs">
                                     </div>
                                     @error('costs')
                                         @if ($message !== 'null')
@@ -98,8 +100,9 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
-                                        <input type="text" class="form-control @error('duration') is-invalid @enderror" placeholder="HH:MM" id="duration"
-                                            value="{{ old('duration') }}" name="duration">
+                                        <input type="text" class="form-control @error('duration') is-invalid @enderror"
+                                            placeholder="HH:MM" id="duration" value="{{ old('duration') }}"
+                                            name="duration">
                                     </div>
                                     @error('duration')
                                         @if ($message !== 'null')
@@ -121,7 +124,8 @@
                                     Mitspieler
                                 </div>
                                 <div class="col-4 d-flex justify-content-end">
-                                    <button type="button" class="btn btn-outline-secondary" id="btnOnldGroup" data-ajax-url="{{ route('ajax.task') }}"> Alte
+                                    <button type="button" class="btn btn-outline-secondary" id="btnOnldGroup"
+                                        data-ajax-url="{{ route('ajax.task') }}"> Alte
                                         Gruppe</button>
                                 </div>
                             </div>
@@ -140,8 +144,9 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="d-flex justify-content-center">
-                                        <select class="form-select text-center text-white-50 multiple  @error('selectMiner') is-invalid @enderror" id="selectMiner"
-                                            name="selectMiner[]" multiple>
+                                        <select
+                                            class="form-select text-center text-white-50 multiple  @error('selectMiner') is-invalid @enderror"
+                                            id="selectMiner" name="selectMiner[]" multiple>
                                             @if (null !== old('selectMiner'))
                                                 @foreach (old('selectMiner') as $miner)
                                                     <option value="{{ $miner }}">

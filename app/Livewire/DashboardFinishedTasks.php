@@ -27,7 +27,6 @@ class DashboardFinishedTasks extends Component
                     $this->tasks_users[$task["id"]] = TasksUsers::where("task_id", $task["id"])->get();
                     $this->tasks_ores[$task["id"]] = TasksOres::join("ores", "ores.id" ,"=", "tasks_ores.ore_id")->select("ores.id", "units", "ores.name")->where("task_id", $task["id"])->get();
                     $this->stations[$task["id"]] = Stations::where("id", $task["station_id"])->get()->first();
-                    Info($this->tasks_ores);
                 }
 
         }
