@@ -83,7 +83,6 @@ class UserSettings extends Component
             $user = User::find(Auth::user()->id);
             $user->whitelisted_player = json_encode($this->whitelist);
             $user->save();
-            Info($this->whitelist);
         }
     }
 
