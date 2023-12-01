@@ -27,7 +27,17 @@ class StoreTasksRequest extends FormRequest
             'costs' => 'required|numeric',
             'duration' => 'required|regex:/^\d{1,3}:\d{2}$/',
             'selectMiner' => 'required|array|min:1',
+            function ($attribute, $value, $fail) {
+                if (count($value) !== count(array_unique($value))) {
+                    $fail("Die Miner dürfen keine doppelten Einträge enthalten.");
+                }
+            },
             'selectScouts' => 'sometimes|required|array',
+            function ($attribute, $value, $fail) {
+                if ($value && count($value) !== count(array_unique($value))) {
+                    $fail("Die Scouts dürfen keine doppelten Einträge enthalten.");
+                }
+            },
             'payoutRatio' => 'required|numeric|min:0|max:100',
             'oreTypes' => 'required|exists:ores,id|array|min:1',
             'oreUnits' => [
@@ -64,10 +74,12 @@ class StoreTasksRequest extends FormRequest
             'selectMiner.array' => 'The selected miners must be in an array.',
             'selectMiner.min' => 'At least one miner must be inputed.',
             'selectMiner.exists' => 'One or more selected miners are invalid.',
+            'selectMiner.unique' => 'The miners must not contain duplicate entries.',
 
             'selectScout.required' => 'The scout field is required.',
             'selectScout.array' => 'The selected scouts must be in an array.',
             'selectScout.exists' => 'One or more selected scouts are invalid.',
+            'selectScouts.unique' => 'The scouts must not contain duplicate entries.',
 
             'payoutRatio.required' => 'The payout ratio field is required.',
             'payoutRatio.numeric' => 'The payout ratio must be a number.',
