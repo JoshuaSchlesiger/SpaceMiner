@@ -26,18 +26,32 @@ class StoreTasksRequest extends FormRequest
             'method' => 'required|exists:methods,id',
             'costs' => 'required|numeric',
             'duration' => 'required|regex:/^\d{1,3}:\d{2}$/',
-            'selectMiner' => 'required|array|min:1',
-            function ($attribute, $value, $fail) {
-                if (count($value) !== count(array_unique($value))) {
-                    $fail("Die Miner dürfen keine doppelten Einträge enthalten.");
-                }
-            },
-            'selectScouts' => 'sometimes|required|array',
-            function ($attribute, $value, $fail) {
-                if ($value && count($value) !== count(array_unique($value))) {
-                    $fail("Die Scouts dürfen keine doppelten Einträge enthalten.");
-                }
-            },
+            'selectMiner' => [
+                'required',
+                'array',
+                'min:1',
+                function ($attribute, $value, $fail) {
+                    // Überprüfen auf doppelte Namen
+                    $uniqueNames = array_unique($value);
+                    if (count($value) !== count($uniqueNames)) {
+                        $fail("Die Miner dürfen keine doppelten Namen enthalten.");
+                    }
+                },
+            ],
+            'selectScouts' => [
+                'sometimes',
+                'required',
+                'array',
+                function ($attribute, $value, $fail) {
+                    // Überprüfen auf doppelte Namen
+                    if ($value) {
+                        $uniqueNames = array_unique($value);
+                        if (count($value) !== count($uniqueNames)) {
+                            $fail("Die Scouts dürfen keine doppelten Namen enthalten.");
+                        }
+                    }
+                },
+            ],
             'payoutRatio' => 'required|numeric|min:0|max:100',
             'oreTypes' => 'required|exists:ores,id|array|min:1',
             'oreUnits' => [
