@@ -31,8 +31,16 @@ $(function ($) {
 
 $('#addMiner').on("click", function () {
     const miner = $('#miner');
-    selectMiner.append(createOption(miner.val()));
-    selectMinerHidden.append(createOption(miner.val()));
+    const minerValue = miner.val();
+
+    if (!selectMiner.find(`option[value='${minerValue}']`).length) {
+        // Wert zum Dropdown hinzufügen
+        selectMiner.append(createOption(minerValue));
+        selectMinerHidden.append(createOption(minerValue));
+    } else {
+        showBootstrapAlert('danger', 'Miner bereits vorhanden!');
+    }
+
     miner.val("");
 });
 
@@ -46,8 +54,15 @@ $('#delMiner').on('click', function () {
 
 $('#addScouts').on("click", function () {
     const scouts = $('#scouts');
-    selectScouts.append(createOption(scouts.val()));
-    selectScoutsHidden.append(createOption(scouts.val()));
+    const scoutsValue = scouts.val();
+
+    if (!selectScouts.find(`option[value='${scoutsValue}']`).length) {
+        selectScouts.append(createOption(scoutsValue));
+        selectScoutsHidden.append(createOption(scoutsValue));
+    } else {
+        showBootstrapAlert('danger', 'Scout bereits vorhanden!');
+    }
+
     scouts.val("");
 });
 
@@ -68,18 +83,20 @@ $('#btnOnldGroup').on('click', function () {
         type: "GET",
         dataType: "json",
         success: function (response) {
-            const miner = response.miner;
-            const scouts = response.scouts;
+            if ($.isEmptyObject(response.error)) {
+                const miner = response.miner;
+                const scouts = response.scouts;
 
-            miner.forEach(element => {
-                selectMiner.append(createOption(element));
-                selectMinerHidden.append(createOption(element));
-            });
+                miner.forEach(element => {
+                    selectMiner.append(createOption(element));
+                    selectMinerHidden.append(createOption(element));
+                });
 
-            scouts.forEach(element => {
-                selectScouts.append(createOption(element));
-                selectScoutsHidden.append(createOption(element));
-            });
+                scouts.forEach(element => {
+                    selectScouts.append(createOption(element));
+                    selectScoutsHidden.append(createOption(element));
+                });
+            }
         },
         error: function (error) {
             console.error("Fehler beim AJAX-Aufruf:", error);
@@ -96,6 +113,25 @@ function createOption(name) {
 
     return neueOption;
 }
+
+function showBootstrapAlert(type, message) {
+    const alertContainer = $('.alert-container');
+    const alert = $('<div>', { class: `alert alert-${type} alert-dismissible fade show`, role: 'alert' })
+        .text(message);
+
+    // Alten Alert entfernen, falls vorhanden
+    alertContainer.empty();
+
+    // Alert dem Container hinzufügen
+    alertContainer.append(alert);
+
+    alertContainer.show();
+
+    setTimeout(function () {
+        alertContainer.hide();
+    }, 1500);
+}
+
 
 //#endregion
 

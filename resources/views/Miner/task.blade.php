@@ -133,6 +133,7 @@
 
 
                         <div class="card-body">
+                            <div class="alert-container text-center"></div>
                             <div class="row justify-content-center text-center">
                                 <div class="col-3 fs-5 mt-1">
                                     <label for="miner" class="text-white-50">Miner:</label>

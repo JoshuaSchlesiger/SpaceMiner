@@ -101,6 +101,12 @@ class TasksController extends Controller
 
             $lastTask = Tasks::select("id")->where("user_id", $userId)->orderBy("created_at", "DESC")->first();
 
+            if(empty($lastTask)){
+                return response()->json([
+                    'error' => ""
+                ]);
+            }
+
             $miner = TasksUsers::where("task_id", $lastTask->id)->where("type", "miner")->pluck("username")->toArray();
             $scouts = TasksUsers::where("task_id", $lastTask->id)->where("type", "scout")->pluck("username")->toArray();
 
