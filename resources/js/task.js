@@ -1,5 +1,9 @@
 const selectMiner = $('#selectMiner');
 const selectScouts = $('#selectScouts');
+
+const selectMinerHidden = $('#selectMinerHidden');
+const selectScoutsHidden = $('#selectScoutsHidden');
+
 const refineryStaion = $('#refineryStaion');
 const method = $('#method');
 const costs = $('#costs');
@@ -28,23 +32,31 @@ $(function ($) {
 $('#addMiner').on("click", function () {
     const miner = $('#miner');
     selectMiner.append(createOption(miner.val()));
+    selectMinerHidden.append(createOption(miner.val()));
     miner.val("");
 });
 
 $('#delMiner').on('click', function () {
     const selectedOption = selectMiner.find('option:selected');
     selectedOption.remove();
+
+    const selectedOption2 = selectMinerHidden.find(`option[value="${selectedOption.val()}"]`);
+    selectedOption2.remove();
 });
 
 $('#addScouts').on("click", function () {
     const scouts = $('#scouts');
     selectScouts.append(createOption(scouts.val()));
+    selectScoutsHidden.append(createOption(scouts.val()));
     scouts.val("");
 });
 
 $('#delScouts').on('click', function () {
     const selectedOption = selectScouts.find('option:selected');
     selectedOption.remove();
+
+    const selectedOption2 = selectScoutsHidden.find(`option[value="${selectedOption.val()}"]`);
+    selectedOption2.remove();
 });
 
 $('#btnOnldGroup').on('click', function () {
@@ -61,10 +73,12 @@ $('#btnOnldGroup').on('click', function () {
 
             miner.forEach(element => {
                 selectMiner.append(createOption(element));
+                selectMinerHidden.append(createOption(element));
             });
 
             scouts.forEach(element => {
                 selectScouts.append(createOption(element));
+                selectScoutsHidden.append(createOption(element));
             });
         },
         error: function (error) {
@@ -143,8 +157,8 @@ function resetForm() {
 }
 
 btnSave.on("click", function () {
-    $('#selectMiner option').prop('selected', true);
-    $('#selectScouts option').prop('selected', true);
+    $('#selectMinerHidden option').prop('selected', true);
+    $('#selectScoutsHidden option').prop('selected', true);
     $('#form').trigger("submit");
 });
 

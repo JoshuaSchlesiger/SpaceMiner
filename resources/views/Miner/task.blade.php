@@ -144,9 +144,18 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="d-flex justify-content-center">
-                                        <select
-                                            class="form-select text-center text-white-50 multiple  @error('selectMiner') is-invalid @enderror"
-                                            id="selectMiner" name="selectMiner[]" multiple>
+                                        <select class="form-select text-center text-white-50 multiple"
+                                            id="selectMinerHidden" name="selectMiner[]" multiple hidden>
+                                            @if (null !== old('selectMiner'))
+                                                @foreach (old('selectMiner') as $miner)
+                                                    <option value="{{ $miner }}">
+                                                        {{ $miner }}
+                                                    </option>
+                                                @endforeach
+                                            @endisset
+                                    </select>
+                                    <select class="form-select text-center text-white-50 multiple @error('selectMiner') is-invalid @enderror"
+                                            id="selectMiner">
                                             @if (null !== old('selectMiner'))
                                                 @foreach (old('selectMiner') as $miner)
                                                     <option value="{{ $miner }}">
@@ -190,8 +199,19 @@
                             </div>
                             <div class="col-4">
                                 <div class="d-flex justify-content-center">
-                                    <select class="form-select text-center text-white-50 multiple" id="selectScouts"
-                                        name="selectScout[]" multiple>
+                                    <select class="form-select text-center text-white-50 multiple" id="selectScoutsHidden"
+                                        name="selectScout[]" multiple hidden>
+
+                                        @if (null !== old('selectScout'))
+                                            @foreach (old('selectScout') as $scout)
+                                                <option value="{{ $scout }}">
+                                                    {{ $scout }}
+                                                </option>
+                                            @endforeach
+                                        @endisset
+                                </select>
+                                <select class="form-select text-center text-white-50 multiple" id="selectScouts"
+                                        >
 
                                         @if (null !== old('selectScout'))
                                             @foreach (old('selectScout') as $scout)
