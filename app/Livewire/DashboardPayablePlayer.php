@@ -34,11 +34,10 @@ class DashboardPayablePlayer extends Component
 
             foreach ($tasks as $task) {
                 $task_ores_values = TasksOres::where("task_id", $task["id"])
-                    ->whereNotNull("selling_value")
                     ->pluck("selling_value")
                     ->toArray();
 
-                if (in_array(null, $task_ores_values)) {
+                if (in_array(null, $task_ores_values) || empty($task_ores_values)) {
                     continue;
                 }
 
@@ -63,8 +62,6 @@ class DashboardPayablePlayer extends Component
                     $profitPerScout = 0;
                     $profitPerMiner = $profit / $payableMinerCount;
                 }
-
-
 
                 foreach ($payableTaskUsers as $player) {
 
@@ -104,9 +101,7 @@ class DashboardPayablePlayer extends Component
                 foreach ($tasksInformation as $table => $attributes) {
                     if ($table === "tasks_ores") {
                         foreach ($attributes as $tasks_oresAttributes) {
-                            $oreName = Ores::where("id", $tasks_oresAttributes["ore_id"])->pluck("name");
-
-                            $this->ores[$oreName[0]] = [
+                            $this->ores[$tasks_oresAttributes["name"]] = [
                                 "id" => [$tasks_oresAttributes["id"]],
                                 "units" => [$tasks_oresAttributes["units"]]
                             ];
@@ -125,7 +120,7 @@ class DashboardPayablePlayer extends Component
             if (!isset($this->ores[$this->selectedOre])) {
                 return;
             }
-
+            $this->selectedOreUnits = 0;
             foreach ($this->ores[$this->selectedOre]['units'] as $units) {
                 $this->selectedOreUnits += $units;
             }

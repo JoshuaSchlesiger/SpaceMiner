@@ -24,7 +24,6 @@ class DashboardFinishedTasks extends Component
             $user = Auth::user();
             $this->tasks = Tasks::where("user_id", $user->id)->where("actualCompletionDate", "<=", Carbon::now())->get()->toArray();
             foreach ($this->tasks as $task) {
-
                 $this->tasks_users[$task["id"]] = TasksUsers::where("task_id", $task["id"])->get();
                 $this->tasks_ores[$task["id"]] = TasksOres::join("ores", "ores.id", "=", "tasks_ores.ore_id")->select("ores.id", "units", "ores.name")->where("task_id", $task["id"])->get();
                 $this->stations[$task["id"]] = Stations::where("id", $task["station_id"])->get()->first();
@@ -45,7 +44,7 @@ class DashboardFinishedTasks extends Component
 
             $this->selectedFinishedTask[0] = [];
             $this->selectedFinishedTask[0]["task"] = Tasks::where("id", $taskID)->first();
-            $this->selectedFinishedTask[0]["tasks_ores"] = $this->tasks_ores[$taskID];
+            $this->selectedFinishedTask[0]["tasks_ores"] = TasksOres::join("ores", "ores.id", "=", "tasks_ores.ore_id")->select("ores.id", "units", "ores.name")->where("task_id", $taskID)->get();
 
             $this->dispatch('showInformationAboutTask', $this->selectedFinishedTask);
         }
