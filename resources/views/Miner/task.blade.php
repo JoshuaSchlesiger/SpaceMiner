@@ -358,8 +358,8 @@
                                 class="btn btn-outline-success btn-lg" id="btnSave">Speichern</button></div>
                     </div>
                     <div class="col-4">
-                        <div class="d-flex justify-content-center"><button type="button" name="action"
-                                value="saveToDashboard" class="btn btn-outline-info btn-lg"
+                        <div class="d-flex justify-content-center"><button type="button"
+                                 class="btn btn-outline-info btn-lg"
                                 id="btnSaveToDashboard">Speichern und zum
                                 Dashboard</button></div>
                     </div>

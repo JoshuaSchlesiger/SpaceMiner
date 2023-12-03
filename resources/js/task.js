@@ -199,6 +199,10 @@ btnSave.on("click", function () {
 });
 
 btnSaveToDashboard.on("click", function () {
+    $('#selectMinerHidden option').prop('selected', true);
+    $('#selectScoutsHidden option').prop('selected', true);
+
+    $('#form').append('<input type="hidden" name="action" value="saveToDashboard">');
     $('#form').trigger("submit");
 });
 
