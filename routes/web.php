@@ -35,5 +35,7 @@ Route::post('task', [TasksController::class, 'save'])->name('task.save');
 Route::get('ajax-task', [TasksController::class, 'ajaxFunction'])->name('ajax.task');
 
 Route::get('userSettings', [UserSettings::class, "index"])->name('userSettings');
+
 Route::get('dashboard', [DashboardController::class, "index"])->name('dashboard');
+Route::post('dashboard', [DashboardController::class, "index"])->name('dashboard');
 });

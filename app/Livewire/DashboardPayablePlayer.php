@@ -2,11 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Http\Requests\UpdateTasksOresRequest;
 use App\Models\Ores;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Tasks;
 use App\Models\TasksOres;
+use Livewire\Attributes\Validate;
 use App\Models\TasksUsers;
 use App\Livewire\DashboardFinishedTasks;
 use App\Models\Stations;
@@ -22,7 +25,15 @@ class DashboardPayablePlayer extends Component
     public $stations = [];
     public $ores = [];
 
+    public $successMessage = '';
+
+    #[Validate('required|numeric')]
+    public $sellingPrice = '';
+    #[Validate('required|exists:ores,name')]
     public $selectedOre;
+    #[Validate('required|exists:stations,id')]
+    public $sellingStation = '';
+
     public $selectedOreUnits = 0;
 
     public function render()
@@ -124,12 +135,66 @@ class DashboardPayablePlayer extends Component
             foreach ($this->ores[$this->selectedOre]['units'] as $units) {
                 $this->selectedOreUnits += $units;
             }
-
         }
     }
 
     public function hideInformationMode()
     {
         $this->changeMode = false;
+    }
+
+    public function sellTaskOres()
+    {
+        if (Auth::check()) {
+            $this->validate();
+            $selectedTaskOreArray = $this->ores[$this->selectedOre];
+
+            $allUnits = 0;
+            foreach ($selectedTaskOreArray["units"] as $units) {
+                $allUnits += $units;
+            }
+
+            foreach ($selectedTaskOreArray["id"] as $key => $id) {
+                $TaskOres = TasksOres::find($id);
+                $TaskOres->selling_value = $this->sellingPrice * ($selectedTaskOreArray["units"][$key] / $allUnits);
+                $TaskOres->selling_station_id = $this->sellingStation;
+                $TaskID = $TaskOres->task_id;
+                $TaskOres->save();
+
+                $Task = Tasks::find($TaskID);
+                $Task->actualProceeds += $TaskOres->selling_value;
+                $Task->save();
+            }
+
+            unset($this->ores[$this->selectedOre]);
+            if(empty($this->ores)){
+                $this->hideInformationMode();
+                $this->dispatch('renderFinisedTasks');
+            }
+
+            $this->successMessage = 'Ore sold successfully!';
+            $this->resetFormAfterDelay();
+        }
+    }
+
+    private function resetFormAfterDelay()
+    {
+        $this->resetForm();
+
+        // Reset success message after 5 seconds
+        $this->dispatch('resetSuccessMessage', ['delay' => 2500]);
+    }
+
+    private function resetForm()
+    {
+        // Hier setzt du die Formulardaten zurück
+        $this->sellingPrice = '';
+        $this->selectedOre = null;
+        $this->sellingStation = '';
+        $this->selectedOreUnits = 0;
+    }
+
+    public function resetSuccessMessage(){
+        $this->successMessage = '';
     }
 }

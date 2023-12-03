@@ -9,6 +9,7 @@ use App\Models\TasksUsers;
 use App\Models\Stations;
 use Livewire\Component;
 use Carbon\Carbon;
+use Livewire\Attributes\On;
 
 class DashboardFinishedTasks extends Component
 {
@@ -18,17 +19,35 @@ class DashboardFinishedTasks extends Component
     public $stations = [];
     private $selectedFinishedTask = [];
 
+    protected $listeners = ['renderFinisedTasks'];
+
+    #[On('renderFinisedTasks')]
     public function render()
     {
         if (Auth::check()) {
             $user = Auth::user();
             $this->tasks = Tasks::where("user_id", $user->id)->where("actualCompletionDate", "<=", Carbon::now())->get()->toArray();
-            foreach ($this->tasks as $task) {
+            foreach ($this->tasks as $key => $task) {
                 $this->tasks_users[$task["id"]] = TasksUsers::where("task_id", $task["id"])->get();
-                $this->tasks_ores[$task["id"]] = TasksOres::join("ores", "ores.id", "=", "tasks_ores.ore_id")->select("ores.id", "units", "ores.name")->where("task_id", $task["id"])->get();
+                $this->tasks_ores[$task["id"]] = TasksOres::join("ores", "ores.id", "=", "tasks_ores.ore_id")->select("tasks_ores.id", "units", "ores.name", "selling_value")->where("task_id", $task["id"])->get();
                 $this->stations[$task["id"]] = Stations::where("id", $task["station_id"])->get()->first();
+
+
+                $checkIfAllNotNull = false;
+                foreach ($this->tasks_ores[$task["id"]] as $value) {
+                    if($value->selling_value === null){
+                        $checkIfAllNotNull = true;
+                    }
+                }
+                if(!$checkIfAllNotNull){
+                    unset($this->tasks_users[$task["id"]]);
+                    unset($this->tasks_ores[$task["id"]]);
+                    unset($this->stations[$task["id"]]);
+                    unset($this->tasks[$key]);
+                }
             }
         }
+        Info($this->tasks);
 
         return view('livewire.dashboard-finished-tasks');
     }
@@ -44,7 +63,11 @@ class DashboardFinishedTasks extends Component
 
             $this->selectedFinishedTask[0] = [];
             $this->selectedFinishedTask[0]["task"] = Tasks::where("id", $taskID)->first();
-            $this->selectedFinishedTask[0]["tasks_ores"] = TasksOres::join("ores", "ores.id", "=", "tasks_ores.ore_id")->select("ores.id", "units", "ores.name")->where("task_id", $taskID)->get();
+            $this->selectedFinishedTask[0]["tasks_ores"] = TasksOres::join("ores", "ores.id", "=", "tasks_ores.ore_id")
+            ->select("tasks_ores.id", "units", "ores.name")
+            ->where("task_id", $taskID)
+            ->whereNull("tasks_ores.selling_value")
+            ->get();
 
             $this->dispatch('showInformationAboutTask', $this->selectedFinishedTask);
         }
