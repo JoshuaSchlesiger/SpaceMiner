@@ -47,8 +47,6 @@ class DashboardFinishedTasks extends Component
                 }
             }
         }
-        Info($this->tasks);
-
         return view('livewire.dashboard-finished-tasks');
     }
 

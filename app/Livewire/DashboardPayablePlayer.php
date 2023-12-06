@@ -33,8 +33,9 @@ class DashboardPayablePlayer extends Component
     public $selectedOre;
     #[Validate('required|exists:stations,id')]
     public $sellingStation = '';
-
     public $selectedOreUnits = 0;
+
+    private $tasksInformations;
 
     public function render()
     {
@@ -107,6 +108,8 @@ class DashboardPayablePlayer extends Component
             $this->ores = [];
             $this->selectedOreUnits = 0;
             $this->selectedOre = null;
+
+            $this->tasksInformations = $tasksInformations;
 
             foreach ($tasksInformations as $tasksInformation) {
                 foreach ($tasksInformation as $table => $attributes) {
@@ -196,5 +199,9 @@ class DashboardPayablePlayer extends Component
 
     public function resetSuccessMessage(){
         $this->successMessage = '';
+    }
+
+    public function combineTask(){
+
     }
 }

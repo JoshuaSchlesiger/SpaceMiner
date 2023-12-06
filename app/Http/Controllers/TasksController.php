@@ -84,7 +84,7 @@ class TasksController extends Controller
                 TasksUsers::create($taskUsers);
             }
         }
-        Info($request->input('action'));
+
         if ($request->has('action') && $request->input('action') == 'saveToDashboard') {
 
             return redirect()->route('dashboard');

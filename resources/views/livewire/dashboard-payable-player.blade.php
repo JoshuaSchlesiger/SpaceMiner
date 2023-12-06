@@ -9,7 +9,7 @@
                             Verkaufen
                         </div>
                         <div class="col-3 d-flex justify-content-end">
-                            <button type="button" class="btn btn-outline-warning">Kombinieren</button>
+                            <button type="button" class="btn btn-outline-warning" wire:click='combineTask()'>Kombinieren</button>
                         </div>
                     </div>
                 </div>
