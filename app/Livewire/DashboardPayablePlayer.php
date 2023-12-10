@@ -40,6 +40,7 @@ class DashboardPayablePlayer extends Component
     public function render()
     {
         if (Auth::check()) {
+
             $user = Auth::user();
             $tasks = Tasks::where("user_id", $user->id)->where("actualCompletionDate", "<=", Carbon::now())->get()->toArray();
             $this->stations = Stations::get()->toArray();
@@ -103,6 +104,9 @@ class DashboardPayablePlayer extends Component
     public function showInformationAboutTask($tasksInformations)
     {
         if (Auth::check()) {
+
+            $this->resetForm();
+            $this->resetErrorBag();
             $this->changeMode = true;
 
             $this->ores = [];
@@ -143,6 +147,7 @@ class DashboardPayablePlayer extends Component
 
     public function hideInformationMode()
     {
+        $this->dispatch('resetViewOfFinishedTasks');
         $this->changeMode = false;
     }
 
@@ -170,9 +175,9 @@ class DashboardPayablePlayer extends Component
             }
 
             unset($this->ores[$this->selectedOre]);
-            if(empty($this->ores)){
+            if (empty($this->ores)) {
                 $this->hideInformationMode();
-                $this->dispatch('renderFinisedTasks');
+                $this->dispatch('renderFinishedTasks');
             }
 
             $this->successMessage = 'Ore sold successfully!';
@@ -197,11 +202,13 @@ class DashboardPayablePlayer extends Component
         $this->selectedOreUnits = 0;
     }
 
-    public function resetSuccessMessage(){
+    public function resetSuccessMessage()
+    {
         $this->successMessage = '';
     }
 
-    public function combineTask(){
-
+    public function combineTask()
+    {
+        Info("lol");
     }
 }

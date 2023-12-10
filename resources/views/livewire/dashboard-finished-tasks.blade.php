@@ -7,7 +7,7 @@
         </div>
         <div class="card-body finishedTaskList">
             @foreach ($tasks as $task)
-                <div class="row listItems align-items-center ms-2 me-2" wire:click.prevent='showFinishedTaskInformation({{ $task['id'] }})'>
+                <div class="row listItems align-items-center ms-2 me-2 @if($task['id'] == $this->selectedFinishedTaskID) bg-info bg-opacity-25 @endif " wire:click.prevent='showFinishedTaskInformation({{ $task['id'] }})'>
                     <div class="col-4 fs-5 d-flex justify-content-evenly">
                         <div class="text-white-50">Station:</div>
                         <div class="ms-2 text-info text-center">{{ $stations[$task['id']]->name }}</div>
