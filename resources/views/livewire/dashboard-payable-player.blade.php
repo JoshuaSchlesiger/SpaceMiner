@@ -3,13 +3,20 @@
         <div>
             <form wire:submit="sellTaskOres">
                 @csrf
-                <div class="header-text card-header text-center fs-4">
+                <div class="header-text card-header text-center">
                     <div class="row">
-                        <div class="col-9 text-center fs-4 my-auto">
+                        <div class="col-8 text-center fs-4 my-auto">
                             Verkaufen
                         </div>
-                        <div class="col-3 d-flex justify-content-end">
-                            <button type="button" class="btn btn-outline-warning" wire:click='combineTask()'>Kombinieren</button>
+                        <div class="col-4 text-end  my-auto">
+                            @error('combinableTasks')
+                                <span class="fst-italic text-danger" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @else
+                                <button type="button" class="btn btn-outline-warning"
+                                    wire:click.prevent="sendTaskToCombine()">Kombinieren</button>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -103,11 +110,11 @@
                         <button type="button" class="btn btn-outline-danger btn-lg"
                             wire:click='hideInformationMode()'>Abbrechen</button>
                     </div>
-                    @if($successMessage)
-                    <div class="alert alert-success mt-3 text-center" wire:poll="resetSuccessMessage">
-                        {{ $successMessage }}
-                    </div>
-                @endif
+                    @if ($successMessage)
+                        <div class="alert alert-success mt-3 text-center" wire:poll="resetSuccessMessage">
+                            {{ $successMessage }}
+                        </div>
+                    @endif
                 </div>
             </form>
         </div>

@@ -6,8 +6,10 @@
             </div>
         </div>
         <div class="card-body finishedTaskList">
-            @foreach ($tasks as $task)
-                <div class="row listItems align-items-center ms-2 me-2 @if($task['id'] == $this->selectedFinishedTaskID) bg-info bg-opacity-25 @endif " wire:click.prevent='showFinishedTaskInformation({{ $task['id'] }})'>
+
+            @forelse ($combinableTasks as $task)
+                <div class="row listItems align-items-center ms-2 me-2 @if ($task['id'] == $selectedFinishedTaskID) bg-info bg-opacity-25 @endif "
+                    wire:click.prevent='combineTasks({{ $task['id'] }})'>
                     <div class="col-4 fs-5 d-flex justify-content-evenly">
                         <div class="text-white-50">Station:</div>
                         <div class="ms-2 text-info text-center">{{ $stations[$task['id']]->name }}</div>
@@ -22,7 +24,7 @@
                             <select class="form-select text-center form-select-sm">
                                 @foreach ($tasks_ores[$task['id']] as $task_ore)
                                     <option>
-                                        {{ $task_ore->name}}: {{ $task_ore->units}}
+                                        {{ $task_ore->name }}: {{ $task_ore->units }}
                                     </option>
                                 @endforeach
                             </select>
@@ -30,7 +32,36 @@
                     </div>
                 </div>
                 <hr>
-            @endforeach
+            @empty
+                @foreach ($tasks as $task)
+                    <div class="row listItems align-items-center ms-2 me-2 @if ($task['id'] == $selectedFinishedTaskID) bg-info bg-opacity-25 @endif "
+                        wire:click.prevent='showFinishedTaskInformation({{ $task['id'] }})'>
+                        <div class="col-4 fs-5 d-flex justify-content-evenly">
+                            <div class="text-white-50">Station:</div>
+                            <div class="ms-2 text-info text-center">{{ $stations[$task['id']]->name }}</div>
+                        </div>
+                        <div class="col-3 fs-5 d-flex justify-content-evenly">
+                            <div class="text-white-50">Spieleranzahl:</div>
+                            <div class="ms-2 text-info">{{ count($tasks_users[$task['id']]) }}</div>
+                        </div>
+                        <div class="col-5 fs-5 d-flex justify-content-evenly">
+                            <div class="text-white-50">Erze:</div>
+                            <div class="ms-2">
+                                <select class="form-select text-center form-select-sm">
+                                    @foreach ($tasks_ores[$task['id']] as $task_ore)
+                                        <option>
+                                            {{ $task_ore->name }}: {{ $task_ore->units }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                @endforeach
+            @endforelse
+
+
 
 
         </div>

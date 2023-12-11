@@ -17,7 +17,7 @@ use Carbon\Carbon;
 
 class DashboardPayablePlayer extends Component
 {
-    protected $listeners = ['showInformationAboutTask'];
+    protected $listeners = ['showInformationAboutTask', 'showMessageForNullCombine'];
 
     public $payablePlayer = [];
     public $playerValue = [];
@@ -35,7 +35,7 @@ class DashboardPayablePlayer extends Component
     public $sellingStation = '';
     public $selectedOreUnits = 0;
 
-    private $tasksInformations;
+    public $tasksInformations;
 
     public function render()
     {
@@ -113,22 +113,23 @@ class DashboardPayablePlayer extends Component
             $this->selectedOreUnits = 0;
             $this->selectedOre = null;
 
-            $this->tasksInformations = $tasksInformations;
-
             foreach ($tasksInformations as $tasksInformation) {
                 foreach ($tasksInformation as $table => $attributes) {
                     if ($table === "tasks_ores") {
                         foreach ($attributes as $tasks_oresAttributes) {
-                            $this->ores[$tasks_oresAttributes["name"]] = [
-                                "id" => [$tasks_oresAttributes["id"]],
-                                "units" => [$tasks_oresAttributes["units"]]
-                            ];
+                            if (!isset($this->ores[$tasks_oresAttributes["name"]])) {
+                                $this->ores[$tasks_oresAttributes["name"]] = [];
+                                $this->ores[$tasks_oresAttributes["name"]]["id"] = [];
+                                $this->ores[$tasks_oresAttributes["name"]]["units"] = [];
+                            }
+                            array_push($this->ores[$tasks_oresAttributes["name"]]["id"], $tasks_oresAttributes["id"]);
+                            array_push($this->ores[$tasks_oresAttributes["name"]]["units"], $tasks_oresAttributes["units"]);
                         }
-                    } else {
-                        // Handle other tables if needed
                     }
                 }
             }
+
+            Info($this->ores);
         }
     }
 
@@ -207,8 +208,13 @@ class DashboardPayablePlayer extends Component
         $this->successMessage = '';
     }
 
-    public function combineTask()
+    public function sendTaskToCombine()
     {
-        Info("lol");
+        $this->dispatch('getTasksToCombine');
+    }
+
+    public function showMessageForNullCombine()
+    {
+        $this->addError('combinableTasks', 'No tasks to combine found');
     }
 }
