@@ -22,7 +22,6 @@ class DashboardFinishedTasks extends Component
 
     public $combinableTasks = [];
 
-    protected $listeners = ['renderFinishedTasks', "resetViewOfFinishedTasks", "getTasksToCombine"];
 
     #[On('renderFinishedTasks')]
     public function render()
@@ -103,6 +102,7 @@ class DashboardFinishedTasks extends Component
         $this->dispatch('showInformationAboutTask', $this->selectedFinishedTask);
     }
 
+    #[On('getTasksToCombine')]
     public function getTasksToCombine()
     {
         $this->combinableTasks = [];
@@ -126,6 +126,7 @@ class DashboardFinishedTasks extends Component
         }
     }
 
+    #[On('resetViewOfFinishedTasks')]
     public function resetViewOfFinishedTasks()
     {
         $this->selectedFinishedTaskID = -1;

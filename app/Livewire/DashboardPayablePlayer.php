@@ -14,11 +14,10 @@ use App\Models\TasksUsers;
 use App\Livewire\DashboardFinishedTasks;
 use App\Models\Stations;
 use Carbon\Carbon;
+use Livewire\Attributes\On;
 
 class DashboardPayablePlayer extends Component
 {
-    protected $listeners = ['showInformationAboutTask', 'showMessageForNullCombine'];
-
     public $payablePlayer = [];
     public $playerValue = [];
     public $changeMode = false;
@@ -101,6 +100,7 @@ class DashboardPayablePlayer extends Component
         return view('livewire.dashboard-payable-player');
     }
 
+    #[On('showInformationAboutTask')]
     public function showInformationAboutTask($tasksInformations)
     {
         if (Auth::check()) {
@@ -213,6 +213,7 @@ class DashboardPayablePlayer extends Component
         $this->dispatch('getTasksToCombine');
     }
 
+    #[On('showMessageForNullCombine')]
     public function showMessageForNullCombine()
     {
         $this->addError('combinableTasks', 'No tasks to combine found');
