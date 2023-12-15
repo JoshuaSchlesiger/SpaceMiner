@@ -34,7 +34,7 @@ class StoreTasksRequest extends FormRequest
                     // Überprüfen auf doppelte Namen
                     $uniqueNames = array_unique($value);
                     if (count($value) !== count($uniqueNames)) {
-                        $fail("Die Miner dürfen keine doppelten Namen enthalten.");
+                        $fail("The miners must not contain any duplicate names.");
                     }
                 },
             ],
@@ -47,7 +47,7 @@ class StoreTasksRequest extends FormRequest
                     if ($value) {
                         $uniqueNames = array_unique($value);
                         if (count($value) !== count($uniqueNames)) {
-                            $fail("Die Scouts dürfen keine doppelten Namen enthalten.");
+                            $fail("The scouts must not contain any duplicate names.");
                         }
                     }
                 },
