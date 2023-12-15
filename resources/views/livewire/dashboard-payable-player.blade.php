@@ -139,15 +139,12 @@
                         </div>
                         <div class="col row fs-5 d-flex justify-content-evenly">
                             <div class="col-4 text-white-50 text-center">Betrag:</div>
-                            <div class="col"><span class="text-danger">{{ $playerValue[$username] }}</span><span>
+                            <div class="col"><span class="text-danger">{{ number_format(round($playerValue[$username]), 0, ',', '.') }}</span><span>
                                     aUEC</span></div>
                         </div>
                     </div>
                     <hr>
                 @endforeach
-
-
-
             </div>
         </div>
 
