@@ -2,17 +2,13 @@
 
 namespace App\Livewire;
 
-use App\Http\Requests\UpdateTasksOresRequest;
-use App\Models\Ores;
-use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Tasks;
 use App\Models\TasksOres;
 use Livewire\Attributes\Validate;
 use App\Models\TasksUsers;
-use App\Livewire\DashboardFinishedTasks;
-use App\Models\Stations;
+use App\Models\SellingStation;
 use Carbon\Carbon;
 use Livewire\Attributes\On;
 
@@ -31,7 +27,7 @@ class DashboardPayablePlayer extends Component
     public $sellingPrice = '';
     #[Validate('required|exists:ores,name')]
     public $selectedOre;
-    #[Validate('required|exists:stations,id')]
+    #[Validate('required|exists:selling_stations,id')]
     public $sellingStation = '';
     public $selectedOreUnits = 0;
 
@@ -40,10 +36,9 @@ class DashboardPayablePlayer extends Component
     public function render()
     {
         if (Auth::check()) {
-
             $user = Auth::user();
             $tasks = Tasks::where("user_id", $user->id)->where("actualCompletionDate", "<=", Carbon::now())->get()->toArray();
-            $this->stations = Stations::get()->toArray();
+            $this->stations = SellingStation::get()->toArray();
 
             foreach ($tasks as $task) {
                 $task_ores_values = TasksOres::where("task_id", $task["id"])
@@ -129,6 +124,8 @@ class DashboardPayablePlayer extends Component
                     }
                 }
             }
+
+            Info(($this->ores));
         }
     }
 
