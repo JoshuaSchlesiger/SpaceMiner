@@ -21,6 +21,7 @@ class DashboardPayablePlayer extends Component
     public $payablePlayer = [];
     public $playerValue = [];
     public $changeMode = false;
+    public $showCombineButton = false;
     public $stations = [];
     public $ores = [];
 
@@ -104,10 +105,10 @@ class DashboardPayablePlayer extends Component
     public function showInformationAboutTask($tasksInformations)
     {
         if (Auth::check()) {
-
             $this->resetForm();
             $this->resetErrorBag();
             $this->changeMode = true;
+            $this->showCombineButton = false; // Wird direkt danach wieder geprüft, ist also zum zurücksetzen
 
             $this->ores = [];
             $this->selectedOreUnits = 0;
@@ -215,5 +216,10 @@ class DashboardPayablePlayer extends Component
     public function showMessageForNullCombine()
     {
         $this->addError('combinableTasks', 'No tasks to combine found');
+    }
+
+    #[On('updateShowCombineButton')]
+    public function updateShowCombineButton($bool){
+        $this->showCombineButton = $bool;
     }
 }

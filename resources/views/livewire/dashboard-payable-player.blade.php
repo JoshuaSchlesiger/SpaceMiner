@@ -5,19 +5,26 @@
                 @csrf
                 <div class="header-text card-header text-center">
                     <div class="row">
-                        <div class="col-8 text-center fs-4 my-auto">
-                            Verkaufen
-                        </div>
-                        <div class="col-4 text-end  my-auto">
-                            @error('combinableTasks')
-                                <span class="fst-italic text-danger" role="alert">
-                                    {{ $message }}
-                                </span>
-                            @else
-                                <button type="button" class="btn btn-outline-warning"
-                                    wire:click.prevent="sendTaskToCombine()">Kombinieren</button>
-                            @enderror
-                        </div>
+
+                        @if ($showCombineButton)
+                            <div class="col-8 text-center fs-4 my-auto">
+                                Verkaufen
+                            </div>
+                            <div class="col-4 text-end  my-auto">
+                                @error('combinableTasks')
+                                    <span class="fst-italic text-danger" role="alert">
+                                        {{ $message }}
+                                    </span>
+                                @else
+                                    <button type="button" class="btn btn-outline-warning"
+                                        wire:click.prevent="sendTaskToCombine()">Kombinieren</button>
+                                @enderror
+                            </div>
+                        @else
+                            <div class="col text-center fs-4 my-auto">
+                                Verkaufen
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">

@@ -61,7 +61,6 @@ class DashboardFinishedTasks extends Component
             }
 
             $this->selectedFinishedTaskID = $taskID;
-
             $this->selectedFinishedTask[0] = [];
             $this->selectedFinishedTask[0]["task"] = Tasks::where("id", $taskID)->first()->toArray();
             $this->selectedFinishedTask[0]["tasks_ores"] = TasksOres::join("ores", "ores.id", "=", "tasks_ores.ore_id")
@@ -72,6 +71,14 @@ class DashboardFinishedTasks extends Component
                 ->toArray();
 
             $this->sendTaskToEdit();
+
+            $refineryStation = $this->selectedFinishedTask[0]["task"]["station_id"];
+            $matchingKeys = array_keys(array_filter($this->stations, function ($item) use ($refineryStation) {
+                return $item["id"] === $refineryStation;
+            }));
+            if(count($matchingKeys) > 1){
+                $this->dispatch('updateShowCombineButton', true);
+            }
         }
     }
 
@@ -85,10 +92,10 @@ class DashboardFinishedTasks extends Component
             $taskAlreadyExists = array_reduce($this->selectedFinishedTask, function ($carry, $value) use ($taskID) {
                 return $carry || (isset($value['task']['id']) && $value['task']['id'] === $taskID);
             }, false);
-
             if ($taskAlreadyExists) {
                 return;
             }
+
 
             $buffer = [];
             $task = Tasks::where("id", $taskID)->first();
@@ -121,13 +128,14 @@ class DashboardFinishedTasks extends Component
             $index = array_search($taskID, $this->combinableTasksIDs);
             if ($index === false) {
                 return;
-            } 
+            }
             unset($this->combinableTasksIDs[$index]);
 
             $this->selectedFinishedTask = array_filter($this->selectedFinishedTask, function ($value) use ($taskID) {
                 return $value['task']['id'] !== $taskID;
             });
 
+            $this->sendTaskToEdit();
         }
     }
 
