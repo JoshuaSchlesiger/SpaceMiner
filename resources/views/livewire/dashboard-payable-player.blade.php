@@ -11,14 +11,8 @@
                                 Verkaufen
                             </div>
                             <div class="col-4 text-end  my-auto">
-                                @error('combinableTasks')
-                                    <span class="fst-italic text-danger" role="alert">
-                                        {{ $message }}
-                                    </span>
-                                @else
-                                    <button type="button" class="btn btn-outline-warning"
-                                        wire:click.prevent="sendTaskToCombine()">Kombinieren</button>
-                                @enderror
+                                <button type="button" class="btn btn-outline-warning"
+                                    wire:click.prevent="sendTaskToCombine()">Kombinieren</button>
                             </div>
                         @else
                             <div class="col text-center fs-4 my-auto">
@@ -139,7 +133,8 @@
                         </div>
                         <div class="col row fs-5 d-flex justify-content-evenly">
                             <div class="col-4 text-white-50 text-center">Betrag:</div>
-                            <div class="col"><span class="text-danger">{{ number_format(round($playerValue[$username]), 0, ',', '.') }}</span><span>
+                            <div class="col"><span
+                                    class="text-danger">{{ number_format(round($playerValue[$username]), 0, ',', '.') }}</span><span>
                                     aUEC</span></div>
                         </div>
                     </div>
@@ -147,7 +142,5 @@
                 @endforeach
             </div>
         </div>
-
-
     @endif
 </div>

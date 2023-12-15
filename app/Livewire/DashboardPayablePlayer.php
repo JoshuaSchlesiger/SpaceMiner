@@ -109,6 +109,7 @@ class DashboardPayablePlayer extends Component
             $this->selectedOreUnits = 0;
             $this->selectedOre = null;
 
+
             foreach ($tasksInformations as $tasksInformation) {
                 foreach ($tasksInformation as $table => $attributes) {
                     if ($table === "tasks_ores") {
@@ -124,8 +125,6 @@ class DashboardPayablePlayer extends Component
                     }
                 }
             }
-
-            Info(($this->ores));
         }
     }
 
@@ -159,11 +158,15 @@ class DashboardPayablePlayer extends Component
                 $allUnits += $units;
             }
 
+            $taskIDs = [];
             foreach ($selectedTaskOreArray["id"] as $key => $id) {
                 $TaskOres = TasksOres::find($id);
                 $TaskOres->selling_value = $this->sellingPrice * ($selectedTaskOreArray["units"][$key] / $allUnits);
                 $TaskOres->selling_station_id = $this->sellingStation;
                 $TaskID = $TaskOres->task_id;
+                if (!in_array($TaskID, $taskIDs)) {
+                    $taskIDs[] = $TaskID;
+                }
                 $TaskOres->save();
 
                 $Task = Tasks::find($TaskID);
@@ -171,8 +174,14 @@ class DashboardPayablePlayer extends Component
                 $Task->save();
             }
 
+            //Prüfen ob im Combine-mode, da mehrere TasksOres mit der selben ID
+            if (count($selectedTaskOreArray["id"]) > 1) {
+                $this->dispatch('blockCombination', $taskIDs);
+            }
+
             unset($this->ores[$this->selectedOre]);
             if (empty($this->ores)) {
+                Info("Empty this->ores");
                 $this->hideInformationMode();
                 $this->dispatch('renderFinishedTasks');
             }
@@ -209,14 +218,9 @@ class DashboardPayablePlayer extends Component
         $this->dispatch('getTasksToCombine');
     }
 
-    #[On('showMessageForNullCombine')]
-    public function showMessageForNullCombine()
-    {
-        $this->addError('combinableTasks', 'No tasks to combine found');
-    }
-
     #[On('updateShowCombineButton')]
-    public function updateShowCombineButton($bool){
+    public function updateShowCombineButton($bool)
+    {
         $this->showCombineButton = $bool;
     }
 }

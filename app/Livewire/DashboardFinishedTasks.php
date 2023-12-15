@@ -19,10 +19,10 @@ class DashboardFinishedTasks extends Component
     public $stations = [];
     public $selectedFinishedTask = [];
     public $selectedFinishedTaskID = -1;
+    public $combinationMode = false;
 
     public $combinableTasks = [];
     public $combinableTasksIDs = [];
-
 
     #[On('renderFinishedTasks')]
     public function render()
@@ -35,17 +35,19 @@ class DashboardFinishedTasks extends Component
                 $this->tasks_ores[$key] = TasksOres::join("ores", "ores.id", "=", "tasks_ores.ore_id")->select("tasks_ores.id", "units", "ores.name", "selling_value")->where("task_id", $task["id"])->get();
                 $this->stations[$key] = Stations::where("id", $task["station_id"])->get()->first();
 
-                $checkIfAllNotNull = false;
-                foreach ($this->tasks_ores[$key] as $value) {
-                    if ($value->selling_value === null) {
-                        $checkIfAllNotNull = true;
+                if (!$this->combinationMode) {
+                    $checkIfAllNotNull = false;
+                    foreach ($this->tasks_ores[$key] as $value) {
+                        if ($value->selling_value === null) {
+                            $checkIfAllNotNull = true;
+                        }
                     }
-                }
-                if (!$checkIfAllNotNull) {
-                    unset($this->tasks_users[$key]);
-                    unset($this->tasks_ores[$key]);
-                    unset($this->stations[$key]);
-                    unset($this->tasks[$key]);
+                    if (!$checkIfAllNotNull) {
+                        unset($this->tasks_users[$key]);
+                        unset($this->tasks_ores[$key]);
+                        unset($this->stations[$key]);
+                        unset($this->tasks[$key]);
+                    }
                 }
             }
         }
@@ -56,6 +58,7 @@ class DashboardFinishedTasks extends Component
     public function showFinishedTaskInformation(int $taskID)
     {
         if (Auth::check()) {
+
             if (!isset($this->tasks[$taskID])) {
                 return;
             }
@@ -76,7 +79,7 @@ class DashboardFinishedTasks extends Component
             $matchingKeys = array_keys(array_filter($this->stations, function ($item) use ($refineryStation) {
                 return $item["id"] === $refineryStation;
             }));
-            if(count($matchingKeys) > 1){
+            if (count($matchingKeys) > 1) {
                 $this->dispatch('updateShowCombineButton', true);
             }
         }
@@ -95,7 +98,6 @@ class DashboardFinishedTasks extends Component
             if ($taskAlreadyExists) {
                 return;
             }
-
 
             $buffer = [];
             $task = Tasks::where("id", $taskID)->first();
@@ -148,6 +150,7 @@ class DashboardFinishedTasks extends Component
     public function getTasksToCombine()
     {
         $this->combinableTasks = [];
+        $this->combinationMode = true;
 
         $refineryStation = $this->selectedFinishedTask[0]["task"]["station_id"];
 
@@ -160,7 +163,7 @@ class DashboardFinishedTasks extends Component
         }
 
         if (empty($this->combinableTasks)) {
-            $this->dispatch('showMessageForNullCombine');
+            return;
         }
     }
 
@@ -171,5 +174,18 @@ class DashboardFinishedTasks extends Component
         $this->combinableTasksIDs = [];
         $this->combinableTasks = [];
         $this->selectedFinishedTask = [];
+        $this->combinationMode = false;
+    }
+
+    #[On('blockCombination')]
+    public function blockCombination($selectedCombinationTaskIDs)
+    {
+        $this->combinationMode = true;
+        $newArray = [];
+        foreach ($selectedCombinationTaskIDs as $id) {
+            $newArray[] = $this->combinableTasks[$id];
+        }
+        $this->combinableTasks = $newArray;
+        Info($this->stations);
     }
 }
