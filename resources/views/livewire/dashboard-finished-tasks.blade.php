@@ -2,14 +2,19 @@
     <div>
         <div class="header-text card-header">
             <div class="text-center fs-4">
+                @empty($combinableTasks)
                 Fertige Aufträge
+                @else
+                Kombinierbare Aufträge
+                @endif
             </div>
         </div>
         <div class="card-body finishedTaskList">
-
             @forelse ($combinableTasks as $task)
-                <div class="row listItems align-items-center ms-2 me-2 @if ($task['id'] == $selectedFinishedTaskID) bg-info bg-opacity-25 @endif "
-                    wire:click.prevent='combineTasks({{ $task['id'] }})'>
+                <div class="row listItems align-items-center ms-2 me-2  @if ($task['id'] === $selectedFinishedTaskID) bg-info bg-opacity-25"
+                @elseif (in_array($task['id'], $combinableTasksIDs)) bg-success bg-opacity-25 no-pulse"  wire:click.prevent='deselectTask({{ $task['id'] }})'
+                @else pulse " wire:click.prevent='combineTasks({{ $task['id'] }})' @endif
+                    >
                     <div class="col-4 fs-5 d-flex justify-content-evenly">
                         <div class="text-white-50">Station:</div>
                         <div class="ms-2 text-info text-center">{{ $stations[$task['id']]->name }}</div>
@@ -21,7 +26,7 @@
                     <div class="col-5 fs-5 d-flex justify-content-evenly">
                         <div class="text-white-50">Erze:</div>
                         <div class="ms-2">
-                            <select class="form-select text-center form-select-sm">
+                            <select class="form-select text-center form-select-sm" onclick="event.stopPropagation()">
                                 @foreach ($tasks_ores[$task['id']] as $task_ore)
                                     <option>
                                         {{ $task_ore->name }}: {{ $task_ore->units }}
@@ -34,8 +39,8 @@
                 <hr>
             @empty
                 @foreach ($tasks as $task)
-                    <div class="row listItems align-items-center ms-2 me-2 @if ($task['id'] == $selectedFinishedTaskID) bg-info bg-opacity-25 @endif "
-                        wire:click.prevent='showFinishedTaskInformation({{ $task['id'] }})'>
+                    <div class="row listItems align-items-center ms-2 me-2 @if ($task['id'] == $selectedFinishedTaskID) bg-info bg-opacity-25"  @else " wire:click.prevent='showFinishedTaskInformation({{ $task['id'] }})' @endif
+                        >
                         <div class="col-4 fs-5 d-flex justify-content-evenly">
                             <div class="text-white-50">Station:</div>
                             <div class="ms-2 text-info text-center">{{ $stations[$task['id']]->name }}</div>
@@ -47,7 +52,7 @@
                         <div class="col-5 fs-5 d-flex justify-content-evenly">
                             <div class="text-white-50">Erze:</div>
                             <div class="ms-2">
-                                <select class="form-select text-center form-select-sm">
+                                <select class="form-select text-center form-select-sm" onclick="event.stopPropagation()">
                                     @foreach ($tasks_ores[$task['id']] as $task_ore)
                                         <option>
                                             {{ $task_ore->name }}: {{ $task_ore->units }}

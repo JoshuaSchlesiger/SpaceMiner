@@ -21,6 +21,7 @@ class DashboardFinishedTasks extends Component
     public $selectedFinishedTaskID = -1;
 
     public $combinableTasks = [];
+    public $combinableTasksIDs = [];
 
 
     #[On('renderFinishedTasks')]
@@ -81,8 +82,22 @@ class DashboardFinishedTasks extends Component
                 return;
             }
 
+            $taskAlreadyExists = array_reduce($this->selectedFinishedTask, function ($carry, $value) use ($taskID) {
+                return $carry || (isset($value['task']['id']) && $value['task']['id'] === $taskID);
+            }, false);
+
+            if ($taskAlreadyExists) {
+                return;
+            }
+
             $buffer = [];
-            $buffer["task"] = Tasks::where("id", $taskID)->first()->toArray();
+            $task = Tasks::where("id", $taskID)->first();
+            if (!$task) {
+                return;
+            }
+
+            $this->combinableTasksIDs[] = $taskID;
+            $buffer["task"] = $task->toArray();
             $buffer["tasks_ores"] = TasksOres::join("ores", "ores.id", "=", "tasks_ores.ore_id")
                 ->select("tasks_ores.id", "units", "ores.name")
                 ->where("task_id", $taskID)
@@ -96,9 +111,28 @@ class DashboardFinishedTasks extends Component
         }
     }
 
+    public function deselectTask($taskID)
+    {
+        if (Auth::check()) {
+            if (!in_array($taskID, $this->combinableTasksIDs)) {
+                return;
+            }
+
+            $index = array_search($taskID, $this->combinableTasksIDs);
+            if ($index === false) {
+                return;
+            } 
+            unset($this->combinableTasksIDs[$index]);
+
+            $this->selectedFinishedTask = array_filter($this->selectedFinishedTask, function ($value) use ($taskID) {
+                return $value['task']['id'] !== $taskID;
+            });
+
+        }
+    }
+
     private function sendTaskToEdit()
     {
-        // Info($this->selectedFinishedTask);
         $this->dispatch('showInformationAboutTask', $this->selectedFinishedTask);
     }
 
@@ -114,10 +148,6 @@ class DashboardFinishedTasks extends Component
         }));
 
         foreach ($matchingKeys as $taskID) {
-            if ($taskID === $this->selectedFinishedTask[0]["task"]["id"]) {
-                continue;
-            }
-
             $this->combinableTasks[$taskID] = $this->tasks[$taskID];
         }
 
@@ -130,6 +160,7 @@ class DashboardFinishedTasks extends Component
     public function resetViewOfFinishedTasks()
     {
         $this->selectedFinishedTaskID = -1;
+        $this->combinableTasksIDs = [];
         $this->combinableTasks = [];
         $this->selectedFinishedTask = [];
     }

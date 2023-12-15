@@ -27,7 +27,6 @@
                         {{ $message }}
                     </span>
                 @endif
-
             @enderror
         </div>
         <div class="col-md-3 col-3">

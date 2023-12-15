@@ -128,8 +128,6 @@ class DashboardPayablePlayer extends Component
                     }
                 }
             }
-
-            Info($this->ores);
         }
     }
 
