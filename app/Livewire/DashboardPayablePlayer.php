@@ -96,32 +96,30 @@ class DashboardPayablePlayer extends Component
         return view('livewire.dashboard-payable-player');
     }
 
+    #region Taskarea
     #[On('showInformationAboutTask')]
     public function showInformationAboutTask($tasksInformations)
     {
-        if (Auth::check()) {
-            $this->resetForm();
-            $this->resetErrorBag();
-            $this->changeMode = true;
-            $this->showCombineButton = false; // Wird direkt danach wieder geprüft, ist also zum zurücksetzen
+        $this->resetForm();
+        $this->resetErrorBag();
+        $this->changeMode = true;
+        $this->showCombineButton = false; // Wird direkt danach wieder geprüft, ist also zum zurücksetzen
 
-            $this->ores = [];
-            $this->selectedOreUnits = 0;
-            $this->selectedOre = null;
+        $this->ores = [];
+        $this->selectedOreUnits = 0;
+        $this->selectedOre = null;
 
-
-            foreach ($tasksInformations as $tasksInformation) {
-                foreach ($tasksInformation as $table => $attributes) {
-                    if ($table === "tasks_ores") {
-                        foreach ($attributes as $tasks_oresAttributes) {
-                            if (!isset($this->ores[$tasks_oresAttributes["name"]])) {
-                                $this->ores[$tasks_oresAttributes["name"]] = [];
-                                $this->ores[$tasks_oresAttributes["name"]]["id"] = [];
-                                $this->ores[$tasks_oresAttributes["name"]]["units"] = [];
-                            }
-                            array_push($this->ores[$tasks_oresAttributes["name"]]["id"], $tasks_oresAttributes["id"]);
-                            array_push($this->ores[$tasks_oresAttributes["name"]]["units"], $tasks_oresAttributes["units"]);
+        foreach ($tasksInformations as $tasksInformation) {
+            foreach ($tasksInformation as $table => $attributes) {
+                if ($table === "tasks_ores") {
+                    foreach ($attributes as $tasks_oresAttributes) {
+                        if (!isset($this->ores[$tasks_oresAttributes["name"]])) {
+                            $this->ores[$tasks_oresAttributes["name"]] = [];
+                            $this->ores[$tasks_oresAttributes["name"]]["id"] = [];
+                            $this->ores[$tasks_oresAttributes["name"]]["units"] = [];
                         }
+                        array_push($this->ores[$tasks_oresAttributes["name"]]["id"], $tasks_oresAttributes["id"]);
+                        array_push($this->ores[$tasks_oresAttributes["name"]]["units"], $tasks_oresAttributes["units"]);
                     }
                 }
             }
@@ -130,14 +128,12 @@ class DashboardPayablePlayer extends Component
 
     public function getSelectedOreUnits()
     {
-        if (Auth::check()) {
-            if (!isset($this->ores[$this->selectedOre])) {
-                return;
-            }
-            $this->selectedOreUnits = 0;
-            foreach ($this->ores[$this->selectedOre]['units'] as $units) {
-                $this->selectedOreUnits += $units;
-            }
+        if (!isset($this->ores[$this->selectedOre])) {
+            return;
+        }
+        $this->selectedOreUnits = 0;
+        foreach ($this->ores[$this->selectedOre]['units'] as $units) {
+            $this->selectedOreUnits += $units;
         }
     }
 
@@ -149,46 +145,43 @@ class DashboardPayablePlayer extends Component
 
     public function sellTaskOres()
     {
-        if (Auth::check()) {
-            $this->validate();
-            $selectedTaskOreArray = $this->ores[$this->selectedOre];
+        $this->validate();
+        $selectedTaskOreArray = $this->ores[$this->selectedOre];
 
-            $allUnits = 0;
-            foreach ($selectedTaskOreArray["units"] as $units) {
-                $allUnits += $units;
-            }
-
-            $taskIDs = [];
-            foreach ($selectedTaskOreArray["id"] as $key => $id) {
-                $TaskOres = TasksOres::find($id);
-                $TaskOres->selling_value = $this->sellingPrice * ($selectedTaskOreArray["units"][$key] / $allUnits);
-                $TaskOres->selling_station_id = $this->sellingStation;
-                $TaskID = $TaskOres->task_id;
-                if (!in_array($TaskID, $taskIDs)) {
-                    $taskIDs[] = $TaskID;
-                }
-                $TaskOres->save();
-
-                $Task = Tasks::find($TaskID);
-                $Task->actualProceeds += $TaskOres->selling_value;
-                $Task->save();
-            }
-
-            //Prüfen ob im Combine-mode, da mehrere TasksOres mit der selben ID
-            if (count($selectedTaskOreArray["id"]) > 1) {
-                $this->dispatch('blockCombination', $taskIDs);
-            }
-
-            unset($this->ores[$this->selectedOre]);
-            if (empty($this->ores)) {
-                Info("Empty this->ores");
-                $this->hideInformationMode();
-                $this->dispatch('renderFinishedTasks');
-            }
-
-            $this->successMessage = 'Ore sold successfully!';
-            $this->resetFormAfterDelay();
+        $allUnits = 0;
+        foreach ($selectedTaskOreArray["units"] as $units) {
+            $allUnits += $units;
         }
+
+        $taskIDs = [];
+        foreach ($selectedTaskOreArray["id"] as $key => $id) {
+            $TaskOres = TasksOres::find($id);
+            $TaskOres->selling_value = $this->sellingPrice * ($selectedTaskOreArray["units"][$key] / $allUnits);
+            $TaskOres->selling_station_id = $this->sellingStation;
+            $TaskID = $TaskOres->task_id;
+            if (!in_array($TaskID, $taskIDs)) {
+                $taskIDs[] = $TaskID;
+            }
+            $TaskOres->save();
+
+            $Task = Tasks::find($TaskID);
+            $Task->actualProceeds += $TaskOres->selling_value;
+            $Task->save();
+        }
+
+        //Wird immer ausgeführt, aber bricht in der Funktion dann ab wenn combine leer
+        if (count($selectedTaskOreArray["id"]) > 0) {
+            $this->dispatch('blockCombination', $taskIDs);
+        }
+
+        unset($this->ores[$this->selectedOre]);
+        if (empty($this->ores)) {
+            $this->hideInformationMode();
+            $this->dispatch('renderFinishedTasks');
+        }
+
+        $this->successMessage = 'Ore sold successfully!';
+        $this->resetFormAfterDelay();
     }
 
     private function resetFormAfterDelay()
@@ -215,6 +208,7 @@ class DashboardPayablePlayer extends Component
 
     public function sendTaskToCombine()
     {
+        $this->showCombineButton = false;
         $this->dispatch('getTasksToCombine');
     }
 
@@ -223,4 +217,6 @@ class DashboardPayablePlayer extends Component
     {
         $this->showCombineButton = $bool;
     }
+
+    #endregion
 }

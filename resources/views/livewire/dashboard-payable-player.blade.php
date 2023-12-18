@@ -96,7 +96,7 @@
                         </div>
                         <div class="col-lg-4 col-6">
                             <div class="ms-2 ">
-                                <input id="massStone" type="text" class="form-control text-center"
+                                <input id="massStone" type="number" class="form-control text-center"
                                     placeholder="69420 aUEC" wire:model="sellingPrice" />
                                 @error('sellingPrice')
                                     <span class="fst-italic text-danger" role="alert">

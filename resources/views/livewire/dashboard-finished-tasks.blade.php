@@ -11,8 +11,10 @@
         </div>
         <div class="card-body finishedTaskList">
             @forelse ($combinableTasks as $task)
-                <div class="row listItems align-items-center ms-2 me-2  @if ($task['id'] === $selectedFinishedTaskID) bg-info bg-opacity-25"
-                @elseif (in_array($task['id'], $combinableTasksIDs)) bg-success bg-opacity-25 no-pulse"  wire:click.prevent='deselectTask({{ $task['id'] }})'
+                <div class="row listItems align-items-center ms-2 me-2  
+                @if ($task['id'] === $selectedFinishedTaskID) bg-info bg-opacity-25"
+                @elseif (in_array($task['id'], $combinableTasksIDs) && !$blockSelect) bg-success bg-opacity-25 no-pulse"  wire:click.prevent='deselectTask({{ $task['id'] }})'
+                @elseif ($blockSelect) bg-success bg-opacity-25 "
                 @else pulse " wire:click.prevent='combineTasks({{ $task['id'] }})' @endif
                     >
                     <div class="col-4 fs-5 d-flex justify-content-evenly">
