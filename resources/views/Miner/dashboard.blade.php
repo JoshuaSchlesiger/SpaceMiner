@@ -4,12 +4,6 @@
 @section('content')
     <input type="hidden" id="calculateRoute" value="{{ route('calculator.calculate') }}">
 
-    @if (session('success'))
-        <div class="alert alert-success text-center" id="successMessage">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="container mt-5">
         <div class="row">
             <div class="col">
@@ -37,7 +31,7 @@
         </div>
     </div>
 
-    @livewire('dashboard-elements-modal')
+    @livewire('dashboard-modal')
 
     @vite('resources/js/dashboard.js')
 @endsection

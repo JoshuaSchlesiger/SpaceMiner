@@ -9,6 +9,7 @@ use App\Models\TasksOres;
 use App\Models\TasksUsers;
 use App\Models\Stations;
 use Carbon\Carbon;
+use Livewire\Attributes\On;
 
 class DashboardRunningTasks extends Component
 {
@@ -17,6 +18,8 @@ class DashboardRunningTasks extends Component
     public $tasks_ores = [];
     public $stations = [];
     public $percentageCompletion = [];
+
+    public $successMessage = '';
 
     public function render()
     {
@@ -36,9 +39,15 @@ class DashboardRunningTasks extends Component
     }
 
     public function showModal($taskID){
+        $this->successMessage = '';
         if(!array_key_exists($taskID, $this->percentageCompletion)){
             return;
         }
         $this->dispatch('showModal', $taskID);
+    }
+    
+    #[On('showInfoMessage')]
+    public function showInfoMessage($info){
+        $this->successMessage = $info;
     }
 }

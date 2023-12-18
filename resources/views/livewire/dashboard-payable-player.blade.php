@@ -9,7 +9,8 @@
                         <div class="row">
                             <div class="col text-start">
                                 <button type="button" id="deleteTask"
-                                class="btn btn-outline-danger trash-button btn-sm"><i class="bi bi-trash h5"></i></button>
+                                    class="btn btn-outline-danger trash-button btn-sm"><i
+                                        class="bi bi-trash h5"></i></button>
                             </div>
                             <div class="col fs-4 my-auto">
                                 Verkaufen
@@ -21,21 +22,20 @@
                             </div>
                         </div>
                     @else
-                    <div class="row">
-                        <div class="col text-start">
-                            <button type="button"
-                            class="btn btn-outline-danger trash-button btn-sm"><i class="bi bi-trash h5"></i></button>
-                        </div>
-                    
-                        <div class="col text-center fs-4 my-auto">
-                            Verkaufen
-                        </div>
+                        <div class="row">
+                            <div class="col text-start">
+                                <button type="button" class="btn btn-outline-danger trash-button btn-sm"><i
+                                        class="bi bi-trash h5"></i></button>
+                            </div>
 
-                        <div class="col">
+                            <div class="col text-center fs-4 my-auto">
+                                Verkaufen
+                            </div>
 
+                            <div class="col">
+
+                            </div>
                         </div>
-                    </div>
-
                     @endif
                 </div>
                 <div class="card-body">
@@ -124,12 +124,12 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-evenly mt-3">
-                        <button type="submit" class="btn btn-outline-success btn-lg">Speichern</button>
+                        <button type="submit" class="btn btn-outline-success btn-lg message">Speichern</button>
                         <button type="button" class="btn btn-outline-danger btn-lg"
                             wire:click='hideInformationMode()'>Abbrechen</button>
                     </div>
                     @if ($successMessage)
-                        <div class="alert alert-success mt-3 text-center" wire:poll="resetSuccessMessage">
+                        <div class="alert alert-success text-center mt-3" id="successMessage">
                             {{ $successMessage }}
                         </div>
                     @endif
@@ -160,5 +160,5 @@
             </div>
         </div>
     @endif
-  
+
 </div>

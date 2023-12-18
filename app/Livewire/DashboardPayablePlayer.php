@@ -128,6 +128,7 @@ class DashboardPayablePlayer extends Component
 
     public function getSelectedOreUnits()
     {
+        $this->successMessage = '';
         if (!isset($this->ores[$this->selectedOre])) {
             return;
         }
@@ -181,15 +182,7 @@ class DashboardPayablePlayer extends Component
         }
 
         $this->successMessage = 'Ore sold successfully!';
-        $this->resetFormAfterDelay();
-    }
-
-    private function resetFormAfterDelay()
-    {
         $this->resetForm();
-
-        // Reset success message after 5 seconds
-        $this->dispatch('resetSuccessMessage', ['delay' => 2500]);
     }
 
     private function resetForm()
@@ -199,11 +192,6 @@ class DashboardPayablePlayer extends Component
         $this->selectedOre = null;
         $this->sellingStation = '';
         $this->selectedOreUnits = 0;
-    }
-
-    public function resetSuccessMessage()
-    {
-        $this->successMessage = '';
     }
 
     public function sendTaskToCombine()

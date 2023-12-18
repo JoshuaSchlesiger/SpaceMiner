@@ -10,7 +10,14 @@ $('.listItems').on('click', function () {
     $('body').addClass("modal-open");
 });
 
+$(document).on('click', '.message', function () {
+    setTimeout(function () {
+        $("#successMessage").delay(1500).fadeOut(800);
+    }, 500);
+
+});
 
 $(document).on('click', '.modalClose', function () {
     $('body').removeClass("modal-open");
 });
+

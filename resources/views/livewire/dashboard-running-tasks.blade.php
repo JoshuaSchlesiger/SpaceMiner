@@ -1,4 +1,9 @@
 <div>
+    @if ($successMessage)
+        <div class="alert alert-success text-center" id="successMessage">
+            {{ $successMessage }}
+        </div>
+    @endif
     <div>
         @foreach ($tasks as $task)
             <div class="listItems" wire:click.prevent='showModal({{ $task['id'] }})'>
@@ -32,11 +37,14 @@
                 <div class="mt-3 ms-5 me-4">
                     <div class="progress">
                         @if ($percentageCompletion[$task['id']] <= 33)
-                            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:{{$percentageCompletion[$task['id']]}}%"></div>
+                            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                                style="width:{{ $percentageCompletion[$task['id']] }}%"></div>
                         @elseif ($percentageCompletion[$task['id']] <= 66)
-                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width:{{$percentageCompletion[$task['id']]}}%"></div>
+                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                                style="width:{{ $percentageCompletion[$task['id']] }}%"></div>
                         @else
-                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width:{{$percentageCompletion[$task['id']]}}%"></div>
+                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                style="width:{{ $percentageCompletion[$task['id']] }}%"></div>
                         @endif
                     </div>
                 </div>

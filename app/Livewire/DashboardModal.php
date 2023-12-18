@@ -38,10 +38,10 @@ class DashboardModal extends Component
             // Überprüfe, ob der Benutzer die Berechtigung zum Löschen der Aufgabe hat
             if ($this->authorize('delete', $task)) {
                 // Führe hier den Löschvorgang durch
-                // $task->delete();
-                session()->flash('success', 'Aufgabe erfolgreich gelöscht!');
+                $task->delete();
+                $this->dispatch('showInfoMessage', 'Auftrag erfolgreich gelöscht!');
             } else {
-                session()->flash('danger', 'Du hast keine Berechtigung, diese Aufgabe zu löschen.');
+                $this->dispatch('showInfoMessage', 'Du hast keine Berechtigung, diese Auftrag zu löschen.');
             }
         }
     
