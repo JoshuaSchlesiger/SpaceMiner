@@ -53,10 +53,19 @@ class TasksController extends Controller
 
     public function save(StoreTasksRequest $request)
     {
-        $userInputs = $request->all();
+        
+        $lastTask = Tasks::where('user_id', $request->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->first();
 
+        if ($lastTask && now()->diffInSeconds($lastTask->created_at) < 30) {
+            return redirect()->back()->with('error', 'Sie können nur alle 30 Sekunden eine Aufgabe erstellen.');
+        }
+
+        $userInputs = $request->all();
         $task = $this->calTaskValues($userInputs);
         $task["user_id"] = $request->user()->id;
+
         $neueTaskId = Tasks::create($task)->id;
 
         $combination["OresUnits"] = $this->combineTaskOresUnits($userInputs, $neueTaskId);
@@ -93,6 +102,7 @@ class TasksController extends Controller
         return redirect()->route('task')->with('success', 'Das Formular wurde erfolgreich gesendet!');
     }
 
+    //GEt old group
     public function ajaxFunction(Request $request)
     {
         if (Auth::check()) {
@@ -101,7 +111,7 @@ class TasksController extends Controller
 
             $lastTask = Tasks::select("id")->where("user_id", $userId)->orderBy("created_at", "DESC")->first();
 
-            if(empty($lastTask)){
+            if (empty($lastTask)) {
                 return response()->json([
                     'error' => ""
                 ]);
