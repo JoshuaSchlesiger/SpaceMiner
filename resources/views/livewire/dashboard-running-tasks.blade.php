@@ -14,7 +14,7 @@
                     </div>
                     <div class="col fs-5 d-flex justify-content-evenly">
                         <div class="text-white-50">Erze:</div>
-                        <div class="ms-2 ">
+                        <div class="ms-2" onclick="event.stopPropagation()">
                             <select class="form-select text-center form-select-sm">
                                 @foreach ($tasks_ores[$task['id']] as $task_ore)
                                     <option>
@@ -30,7 +30,6 @@
                     </div>
                     <div class="col fs-5 d-flex justify-content-evenly">
                         <div class="text-white-50">Fertig am:</div>
-                        {{-- <div class="ms-2 ">10.10.2023 22:20</div> --}}
                         <div class="ms-2 ">{{ date('d.m.Y H:i', strtotime($task['actualCompletionDate'])) }}</div>
                     </div>
                 </div>

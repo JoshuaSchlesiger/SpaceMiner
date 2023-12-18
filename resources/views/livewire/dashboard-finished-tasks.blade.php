@@ -1,5 +1,5 @@
 <div>
-    <div>
+    {{-- <div>
         <div class="header-text card-header">
             <div class="text-center fs-4">
                 @empty($combinableTasks)
@@ -68,9 +68,9 @@
                 @endforeach
             @endforelse
         </div>
-    </div>
+    </div> --}}
 
-    {{-- <div>
+    <div>
         <div class="header-text card-header text-center fs-4">
             <div class="text-center fs-4 my-auto">
                 Spieler bezahlen
@@ -83,17 +83,17 @@
                 <div class="col-lg-4 col-6 fs-4">
                     <div class="text-white-50">Spielername:</div>
                 </div>
-                <div class="col-lg-4 col-6 fs-4 text-info">
+                <div class="col-xxl-4 col-6 fs-4 text-info">
                     DochSergeantTV
                 </div>
             </div>
 
             <div class="row align-items-center ms-2 me-2 mt-2">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-4 col-6 fs-4">
+                <div class="col-xxl-2"></div>
+                <div class="col-xxl-4 col-6 fs-4">
                     <div class="text-white-50">Gesamtbetrag:</div>
                 </div>
-                <div class="col-lg-4 col-6">
+                <div class="col-xxl-4 col-6">
                     <div class="ms-2 fs-4 text-center">
                         <span class="text-danger">23422</span> <span class="text-white-50">aUEC</span>
                     </div>
@@ -101,11 +101,11 @@
             </div>
             <hr>
             <div class="row align-items-center ms-2 me-2 mt-2">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-4 col-6 fs-4">
+                <div class="col-xxl-2"></div>
+                <div class="col-xxl-4 col-6 fs-4">
                     <div class="text-white-50">Teilzahlung:</div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-xxl-4 col-6">
                     <div class="ms-2">
                         <select class="form-select text-center">
                             <option value="" class="" hidden selected disabled>
@@ -113,11 +113,14 @@
                             <option value="1">
                                234234 aUEC
                             </option>
+                            <option value="2">
+                                2342344 aUEC
+                             </option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-1 col-6">
-                    <button type="button" class="btn btn-outline-warning btn-sm">Teilzahlen</button>
+                    <button type="button" class="btn btn-outline-warning ">Teilzahlen</button>
                 </div>
             </div>
 
@@ -126,5 +129,5 @@
                 <button type="button" class="btn btn-outline-danger btn-lg">Abbrechen</button>
             </div>
         </div>
-    </div> --}}
+    </div>
 </div>
