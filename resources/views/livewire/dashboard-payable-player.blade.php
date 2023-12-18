@@ -4,22 +4,39 @@
             <form wire:submit="sellTaskOres">
                 @csrf
                 <div class="header-text card-header text-center">
-                    <div class="row">
 
-                        @if ($showCombineButton)
-                            <div class="col-8 text-center fs-4 my-auto">
+                    @if ($showCombineButton)
+                        <div class="row">
+                            <div class="col text-start">
+                                <button type="button" id="deleteTask"
+                                class="btn btn-outline-danger trash-button btn-sm"><i class="bi bi-trash h5"></i></button>
+                            </div>
+                            <div class="col fs-4 my-auto">
                                 Verkaufen
                             </div>
-                            <div class="col-4 text-end  my-auto">
+
+                            <div class="col text-end">
                                 <button type="button" class="btn btn-outline-warning"
                                     wire:click.prevent="sendTaskToCombine()">Kombinieren</button>
                             </div>
-                        @else
-                            <div class="col text-center fs-4 my-auto">
-                                Verkaufen
-                            </div>
-                        @endif
+                        </div>
+                    @else
+                    <div class="row">
+                        <div class="col text-start">
+                            <button type="button"
+                            class="btn btn-outline-danger trash-button btn-sm"><i class="bi bi-trash h5"></i></button>
+                        </div>
+                    
+                        <div class="col text-center fs-4 my-auto">
+                            Verkaufen
+                        </div>
+
+                        <div class="col">
+
+                        </div>
                     </div>
+
+                    @endif
                 </div>
                 <div class="card-body">
                     <div class="row align-items-center ms-2 me-2 mt-2" id="successMessage23">
@@ -143,4 +160,5 @@
             </div>
         </div>
     @endif
+  
 </div>

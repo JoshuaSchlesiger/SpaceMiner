@@ -1,7 +1,7 @@
 <div>
     <div>
         @foreach ($tasks as $task)
-            <div class="listItems">
+            <div class="listItems" wire:click.prevent='showModal({{ $task['id'] }})'>
                 <div class="row align-items-center ms-2 me-2">
                     <div class="col fs-5 d-flex justify-content-evenly">
                         <div class="text-white-50">Station:</div>

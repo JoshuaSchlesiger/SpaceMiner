@@ -34,4 +34,11 @@ class DashboardRunningTasks extends Component
 
         return view('livewire.dashboard-running-tasks');
     }
+
+    public function showModal($taskID){
+        if(!array_key_exists($taskID, $this->percentageCompletion)){
+            return;
+        }
+        $this->dispatch('showModal', $taskID);
+    }
 }

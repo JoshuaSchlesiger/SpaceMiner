@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-5 fs-5 d-flex justify-content-evenly">
                         <div class="text-white-50">Erze:</div>
-                        <div class="ms-2">
+                        <div class="ms-2 w-100">
                             <select class="form-select text-center form-select-sm" onclick="event.stopPropagation()">
                                 @foreach ($tasks_ores[$task['id']] as $task_ore)
                                     <option>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-5 fs-5 d-flex justify-content-evenly">
                             <div class="text-white-50">Erze:</div>
-                            <div class="ms-2">
+                            <div class="ms-2 w-100">
                                 <select class="form-select text-center form-select-sm" onclick="event.stopPropagation()">
                                     @foreach ($tasks_ores[$task['id']] as $task_ore)
                                         <option>
@@ -67,10 +67,6 @@
                     <hr>
                 @endforeach
             @endforelse
-
-
-
-
         </div>
     </div>
 

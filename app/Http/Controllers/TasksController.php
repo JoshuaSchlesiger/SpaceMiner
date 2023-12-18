@@ -90,7 +90,7 @@ class TasksController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return redirect()->route('task')->with('success', 'Das Formular wurde erfolgreich gesendet!');;
+        return redirect()->route('task')->with('success', 'Das Formular wurde erfolgreich gesendet!');
     }
 
     public function ajaxFunction(Request $request)

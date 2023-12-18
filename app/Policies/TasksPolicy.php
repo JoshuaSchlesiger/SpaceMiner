@@ -43,9 +43,9 @@ class TasksPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Tasks $tasks): bool
+    public function delete(User $user, Tasks $task): bool
     {
-        //
+        return $user->id === $task->user_id;
     }
 
     /**
