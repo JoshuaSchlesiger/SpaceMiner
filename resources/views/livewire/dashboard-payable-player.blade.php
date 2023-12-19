@@ -8,7 +8,7 @@
                     @if ($showCombineButton)
                         <div class="row">
                             <div class="col text-start">
-                                <button type="button" id="deleteTask"
+                                <button type="button" id="deleteTask" wire:click.prevent="deleteTask('payablePlayer')"
                                     class="btn btn-outline-danger trash-button btn-sm"><i
                                         class="bi bi-trash h5"></i></button>
                             </div>
@@ -24,7 +24,7 @@
                     @else
                         <div class="row">
                             <div class="col text-start">
-                                <button type="button" class="btn btn-outline-danger trash-button btn-sm"><i
+                                <button type="button" id="deleteTask" wire:click.prevent="deleteTask('payablePlayer')" class="btn btn-outline-danger trash-button btn-sm"><i
                                         class="bi bi-trash h5"></i></button>
                             </div>
 

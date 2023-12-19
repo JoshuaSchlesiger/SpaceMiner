@@ -61,10 +61,9 @@ class DashboardFinishedTasks extends Component
                 }
             }
         }
-
         return view('livewire.dashboard-finished-tasks');
     }
-
+    #region Playerarea
     #[On('setToUserPayMode')]
     public function setToUserPayMode($username, $userInformation)
     {
@@ -125,6 +124,8 @@ class DashboardFinishedTasks extends Component
             $this->dispatch('showInfoMessageUser', 'Du hast keine Berechtigung, diesen User zu bezahlen.');
         }
     }
+
+    #endregion
 
     #region Taskarea
     public function showFinishedTaskInformation(int $taskID)

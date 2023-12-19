@@ -32,6 +32,7 @@ class DashboardPayablePlayer extends Component
     public $selectedOreUnits = 0;
 
     public $tasksInformations;
+    public $selectedTaskID = null;
 
     public $selectedPlayer = null;
 
@@ -100,6 +101,7 @@ class DashboardPayablePlayer extends Component
         return view('livewire.dashboard-payable-player');
     }
 
+    #region Userarea
     public function setToUserPayMode($username){
         if(!array_key_exists($username, $this->payablePlayer)){
             return;
@@ -113,12 +115,13 @@ class DashboardPayablePlayer extends Component
     public function resetSelectedPlayer(){
         $this->selectedPlayer = null;
     }
-
+   
     
     #[On('showInfoMessageUser')]
     public function showInfoMessageUser($successMessage){
         $this->successMessage = $successMessage;
-    }
+    } 
+    #endregion
 
     #region Taskarea
     #[On('showInformationAboutTask')]
@@ -128,10 +131,15 @@ class DashboardPayablePlayer extends Component
         $this->resetErrorBag();
         $this->changeMode = true;
         $this->showCombineButton = false; // Wird direkt danach wieder geprüft, ist also zum zurücksetzen
+        $this->successMessage = '';
 
         $this->ores = [];
         $this->selectedOreUnits = 0;
         $this->selectedOre = null;
+
+        if(!empty($tasksInformations[0])){
+            $this->selectedTaskID = $tasksInformations[0]["task"]["id"];
+        }
 
         foreach ($tasksInformations as $tasksInformation) {
             foreach ($tasksInformation as $table => $attributes) {
@@ -228,6 +236,12 @@ class DashboardPayablePlayer extends Component
     public function updateShowCombineButton($bool)
     {
         $this->showCombineButton = $bool;
+    }
+
+    public function deleteTask($actionType)
+    {
+        $this->dispatch('showModal', $this->selectedTaskID, $actionType);
+        $this->hideInformationMode();
     }
 
     #endregion

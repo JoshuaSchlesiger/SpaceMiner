@@ -11,6 +11,7 @@ class DashboardModal extends Component
 {
     public $show = false;
     public $selectedTaskID = -1;
+    public $actionType = null;
 
     public function render()
     {
@@ -18,10 +19,11 @@ class DashboardModal extends Component
     }
 
     #[On('showModal')]
-    public function showModal($selectedTaskID)
+    public function showModal($selectedTaskID, $actionType)
     {
         $this->selectedTaskID = $selectedTaskID;
         $this->show = true;
+        $this->actionType = $actionType;
     }
 
     public function closeModal()
@@ -31,20 +33,29 @@ class DashboardModal extends Component
 
     public function deleteTask()
     {
-        if (Auth::check()) {  
+        if (Auth::check()) {
             // Holen Sie die Aufgabe basierend auf der übergebenen ID
             $task = Tasks::find($this->selectedTaskID);
-    
+
             // Überprüfe, ob der Benutzer die Berechtigung zum Löschen der Aufgabe hat
             if ($this->authorize('delete', $task)) {
                 // Führe hier den Löschvorgang durch
                 $task->delete();
-                $this->dispatch('showInfoMessage', 'Auftrag erfolgreich gelöscht!');
+                if ($this->actionType === "runningTask") {
+                    $this->dispatch('showInfoMessage', 'Auftrag erfolgreich gelöscht!');
+                } elseif ($this->actionType === "payablePlayer") {
+                    $this->dispatch('showInfoMessageUser', 'Auftrag erfolgreich gelöscht!');
+                    $this->dispatch('renderFinishedTasks');
+                }
             } else {
-                $this->dispatch('showInfoMessage', 'Du hast keine Berechtigung, diese Auftrag zu löschen.');
+                if ($this->actionType === "runningTask") {
+                    $this->dispatch('showInfoMessage', 'Du hast keine Berechtigung, diese Auftrag zu löschen.');
+                } elseif ($this->actionType === "payablePlayer") {
+                    $this->dispatch('showInfoMessageUser', 'Du hast keine Berechtigung, diese Auftrag zu löschen.');
+                }
             }
         }
-    
+
         // Schließe das Modal
         $this->closeModal();
     }
