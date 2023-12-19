@@ -226,6 +226,7 @@ class DashboardFinishedTasks extends Component
     public function getTasksToCombine()
     {
         $this->combinableTasks = [];
+        $this->combinableTasksIDs = [];
         $this->combinationMode = true;
 
         $refineryStation = $this->selectedFinishedTask[0]["task"]["station_id"];

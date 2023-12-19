@@ -32,6 +32,11 @@ $('#addMiner').on("click", function () {
     const miner = $('#miner');
     const minerValue = miner.val();
 
+    if(minerValue == ""){
+        showBootstrapAlert('danger', 'Miner feld darf nicht leer sein!');
+        return;
+    }
+
     if (!selectMiner.find(`option[value='${minerValue}']`).length) {
         // Wert zum Dropdown hinzufügen
         selectMiner.append(createOption(minerValue));
@@ -54,6 +59,11 @@ $('#delMiner').on('click', function () {
 $('#addScouts').on("click", function () {
     const scouts = $('#scouts');
     const scoutsValue = scouts.val();
+
+    if(scoutsValue == ""){
+        showBootstrapAlert('danger', 'Scout feld darf nicht leer sein!');
+        return;
+    }
 
     if (!selectScouts.find(`option[value='${scoutsValue}']`).length) {
         selectScouts.append(createOption(scoutsValue));
@@ -83,9 +93,13 @@ $('#btnOnldGroup').on('click', function () {
         dataType: "json",
         success: function (response) {
             if ($.isEmptyObject(response.error)) {
-                console.log("lol2");
                 const miner = response.miner;
                 const scouts = response.scouts;
+
+                selectMiner.empty();
+                selectMinerHidden.empty();
+                selectScouts.empty();
+                selectScoutsHidden.empty();
 
                 miner.forEach(element => {
                     selectMiner.append(createOption(element));
@@ -98,7 +112,6 @@ $('#btnOnldGroup').on('click', function () {
                 });
             }
             else{
-                console.log(response.error);
                 $("#messageOldGroup").text(response.error);
             }
         },

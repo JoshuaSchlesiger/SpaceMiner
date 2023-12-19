@@ -125,7 +125,7 @@
                     </div>
                     <div class="d-flex justify-content-evenly mt-3">
                         <button type="submit" class="btn btn-outline-success btn-lg message">Speichern</button>
-                        <button type="button" class="btn btn-outline-danger btn-lg"
+                        <button type="button" class="btn btn-outline-danger btn-lg message"
                             wire:click='hideInformationMode()'>Abbrechen</button>
                     </div>
                     @if ($successMessage)
@@ -149,7 +149,7 @@
                 @endif
                 @foreach ($payablePlayer as $username => $player)
                     <div class="row listItems align-items-center ms-2 me-2 @if ($selectedPlayer === $username) bg-info bg-opacity-25 @endif"
-                        wire:click.prevent="setToUserPayMode({{ $username }})">
+                        wire:click.prevent="setToUserPayMode('{{ $username }}')">
                         <div class="col row fs-5 d-flex justify-content-evenly">
                             <div class="col-6 text-white-50 text-center">Spielername:</div>
                             <div class="col text-info text-center">{{ $username }}</div>

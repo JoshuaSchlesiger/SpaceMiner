@@ -112,7 +112,6 @@ class TasksController extends Controller
         $maxAttempts = 2;
         $decaySeconds = 30;
 
-        // Aktualisiere die Rate-Limit-Zähler
         $rateLimiter->hit($key, $decaySeconds);
 
         // Überprüfe, ob die Rate-Limit überschritten wurde
@@ -129,7 +128,7 @@ class TasksController extends Controller
 
             if (empty($lastTask)) {
                 return response()->json([
-                    'error' => "No tasks"
+                    'error' => "No old tasks"
                 ]);
             }
 
