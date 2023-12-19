@@ -78,7 +78,9 @@ class DashboardFinishedTasks extends Component
         $this->userPayMode = false;
         $this->selectedUserName = null;
         $this->selectedUserTotalAmount = 0;
+        $this->selectedAmountID = null;
         $this->selectedUserPartAmountArray = [];
+        $this->resetErrorBag('selectedAmountID');
         $this->dispatch('resetSelectedPlayer');
     }
 
