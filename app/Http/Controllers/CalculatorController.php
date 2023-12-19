@@ -120,6 +120,6 @@ class CalculatorController extends Controller
             return response()->json(['error' => 'Konnte den Typ nicht identifizieren']);
         }
 
-        return response()->json(['success' => 'Abigail']);
+        return response()->json(['error' => 'ara ara']);
     }
 }

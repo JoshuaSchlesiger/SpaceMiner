@@ -49,7 +49,7 @@ $(document).on('input', function (e) {
     }
 });
 
-$("#inputSwitch").on("change",function() {
+$("#inputSwitch").on("change", function () {
     if ($(this).is(":checked")) {
         //Ship
         $("#inputsShip").removeAttr("hidden");
@@ -85,6 +85,18 @@ function getAllInputs() {
         let massInput = inputsRockDiv.find(".inputMass");
         returnArray.massStone = $('#massStone').val();
 
+        if (returnArray.massStone === "") {
+            returnArray.massStone = 0;
+        }
+
+        if (returnArray.massStone > 99999) {
+            returnArray.massStone = 99999;
+            $("#massStone").val(99999);
+        } else if (returnArray.massStone < 0) {
+            returnArray.massStone = 0;
+            $("#massStone").val(0);
+        }
+
 
         returnArray.type = "rock";
         returnArray.oreTypes = [];
@@ -95,7 +107,16 @@ function getAllInputs() {
 
         returnArray.oreInput = [];
         massInput.each(function () {
-            returnArray.oreInput.push($(this).val());
+            if ($(this).val() > 100) {
+                $(this).val(100);
+                returnArray.oreInput.push(100);
+            } else if ($(this).val() < 0) {
+                $(this).val(0);
+                returnArray.oreInput.push(0);
+            } else {
+                returnArray.oreInput.push($(this).val());
+            }
+
         });
 
     } else if (inputsRockDiv.is("[hidden]")) {
@@ -112,7 +133,15 @@ function getAllInputs() {
 
         returnArray.oreInput = [];
         massInput.each(function () {
-            returnArray.oreInput.push($(this).val());
+            if ($(this).val() > 100) {
+                $(this).val(100);
+                returnArray.oreInput.push(100);
+            } else if ($(this).val() < 0) {
+                $(this).val(0);
+                returnArray.oreInput.push(0);
+            } else {
+                returnArray.oreInput.push($(this).val());
+            }
         });
     }
 
@@ -130,9 +159,7 @@ function sendDataAndShow(dataObject) {
         }
     });
 
-    if(dataObject.massStone === ""){
-        dataObject.massStone = 0;
-    }
+
 
     $.ajax({
         type: "POST",

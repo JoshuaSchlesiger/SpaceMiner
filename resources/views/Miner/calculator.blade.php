@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-outline">
-                                        <input id="massStone" type="text" class="form-control" placeholder="69 SCU" />
+                                        <input id="massStone" type="number" class="form-control" placeholder="69 SCU" max="99999" min="0"/>
                                     </div>
                                     <div class="form-text">
                                         Masse in SCU
