@@ -10,11 +10,12 @@ use App\Models\TasksOres;
 use Illuminate\Support\Carbon;
 use App\Models\Tasks;
 
+use Illuminate\Cache\RateLimiter;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTasksRequest;
 use App\Models\TasksUsers;
 use Illuminate\Support\Facades\Auth;
-use Ramsey\Uuid\Type\Integer;
 
 class TasksController extends Controller
 {
@@ -53,7 +54,7 @@ class TasksController extends Controller
 
     public function save(StoreTasksRequest $request)
     {
-        
+
         $lastTask = Tasks::where('user_id', $request->user()->id)
             ->orderBy('created_at', 'desc')
             ->first();
@@ -102,9 +103,24 @@ class TasksController extends Controller
         return redirect()->route('task')->with('success', 'Das Formular wurde erfolgreich gesendet!');
     }
 
-    //GEt old group
+    //Get old group
     public function ajaxFunction(Request $request)
     {
+        $key = $request->ip(); // Verwende die IP-Adresse des Benutzers als Schlüssel
+
+        $rateLimiter = app(RateLimiter::class);
+        $maxAttempts = 2;
+        $decaySeconds = 30;
+
+        // Aktualisiere die Rate-Limit-Zähler
+        $rateLimiter->hit($key, $decaySeconds);
+
+        // Überprüfe, ob die Rate-Limit überschritten wurde
+        if ($rateLimiter->tooManyAttempts($key, $maxAttempts)) {
+            return response()->json(['error' => 'Rate limit exceeded, just chill']);
+        }
+
+
         if (Auth::check()) {
             $user = Auth::user();
             $userId = $user->id;
@@ -113,7 +129,7 @@ class TasksController extends Controller
 
             if (empty($lastTask)) {
                 return response()->json([
-                    'error' => ""
+                    'error' => "No tasks"
                 ]);
             }
 

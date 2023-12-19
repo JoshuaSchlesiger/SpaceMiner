@@ -26,7 +26,6 @@ $(function ($) {
     $("#successMessage").delay(2000).fadeOut(800);
 });
 
-
 //#region Mitspieler
 
 $('#addMiner').on("click", function () {
@@ -84,6 +83,7 @@ $('#btnOnldGroup').on('click', function () {
         dataType: "json",
         success: function (response) {
             if ($.isEmptyObject(response.error)) {
+                console.log("lol2");
                 const miner = response.miner;
                 const scouts = response.scouts;
 
@@ -97,9 +97,13 @@ $('#btnOnldGroup').on('click', function () {
                     selectScoutsHidden.append(createOption(element));
                 });
             }
+            else{
+                console.log(response.error);
+                $("#messageOldGroup").text(response.error);
+            }
         },
         error: function (error) {
-            console.error("Fehler beim AJAX-Aufruf:", error);
+            console.error("Error at the AJAX-Call:", error);
         }
     });
 });
