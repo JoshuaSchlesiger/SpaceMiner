@@ -142,8 +142,14 @@
                 Zu bezahlende Spieler
             </div>
             <div class="card-body payablePlayerList">
+                @if ($successMessage)
+                    <div class="alert alert-success text-center" id="successMessage">
+                        {{ $successMessage }}
+                    </div>
+                @endif
                 @foreach ($payablePlayer as $username => $player)
-                    <div class="row listItems align-items-center ms-2 me-2">
+                    <div class="row listItems align-items-center ms-2 me-2 @if ($selectedPlayer === $username) bg-info bg-opacity-25 @endif"
+                        wire:click.prevent="setToUserPayMode({{ $username }})">
                         <div class="col row fs-5 d-flex justify-content-evenly">
                             <div class="col-6 text-white-50 text-center">Spielername:</div>
                             <div class="col text-info text-center">{{ $username }}</div>

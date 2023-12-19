@@ -2,7 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Tasks_User;
+use App\Models\TasksUsers;
+use App\Models\Tasks;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -19,7 +20,7 @@ class TasksUserPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Tasks_User $tasksUser): bool
+    public function view(User $user, TasksUsers $tasksUser): bool
     {
         //
     }
@@ -35,15 +36,16 @@ class TasksUserPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Tasks_User $tasksUser): bool
+    public function update(User $user, TasksUsers $tasksUser): bool
     {
-        //
+        $task = Tasks::find($tasksUser->task_id);
+        return $user->id === $task->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Tasks_User $tasksUser): bool
+    public function delete(User $user, TasksUsers $tasksUser): bool
     {
         //
     }
@@ -51,7 +53,7 @@ class TasksUserPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Tasks_User $tasksUser): bool
+    public function restore(User $user, TasksUsers $tasksUser): bool
     {
         //
     }
@@ -59,7 +61,7 @@ class TasksUserPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Tasks_User $tasksUser): bool
+    public function forceDelete(User $user, TasksUsers $tasksUser): bool
     {
         //
     }

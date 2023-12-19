@@ -60,7 +60,7 @@ class StoreTasksRequest extends FormRequest
                 'min:1',
                 function ($attribute, $value, $fail) {
                     foreach ($value as $index => $item) {
-                        if($item <= 1){
+                        if($item < 1){
                             $fail("The element on postion $index must not be smaller then 1");
                         }
                         if ($item === null) {

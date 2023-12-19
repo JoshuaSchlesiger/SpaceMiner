@@ -17,7 +17,7 @@
 
                 <div class="modal-footer d-flex justify-content-evenly">
                     <div>
-                        <button type="button" class="btn btn-lg btn-danger modalClose message" wire:click.prevent='deleteTask()'>Löschen</button>
+                        <button type="button" class="btn btn-lg btn-danger message modalClose message" wire:click.prevent='deleteTask()'>Löschen</button>
                     </div>
                     <div>
                         <button type="button" class="btn btn-lg btn-secondary modalClose" wire:click.prevent='closeModal()'>Abbrechen</button>

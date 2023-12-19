@@ -33,9 +33,14 @@ class DashboardPayablePlayer extends Component
 
     public $tasksInformations;
 
+    public $selectedPlayer = null;
+
     public function render()
     {
         if (Auth::check()) {
+            $this->payablePlayer = [];
+            $this->playerValue = [];
+
             $user = Auth::user();
             $tasks = Tasks::where("user_id", $user->id)->where("actualCompletionDate", "<=", Carbon::now())->get()->toArray();
             $this->stations = SellingStation::get()->toArray();
@@ -84,16 +89,35 @@ class DashboardPayablePlayer extends Component
 
                     if ($player->type === "miner") {
                         $this->playerValue[$player->username] += $profitPerMiner;
-                        array_push($this->payablePlayer[$player->username], [$player->id => $profitPerMiner]);
+                        $this->payablePlayer[$player->username][$player->id] = $profitPerMiner;
                     } else {
                         $this->playerValue[$player->username] += $profitPerScout;
-                        array_push($this->payablePlayer[$player->username], [$player->id => $profitPerScout]);
+                        $this->payablePlayer[$player->username][$player->id] =  $profitPerScout;
                     }
                 }
-                // ["username" => ["10 (task_user_id)" => 234234("value"), "20 (task_user_id)" => 32423("value")]]
             }
         }
         return view('livewire.dashboard-payable-player');
+    }
+
+    public function setToUserPayMode($username){
+        if(!array_key_exists($username, $this->payablePlayer)){
+            return;
+        }
+        $this->selectedPlayer = $username;
+        $this->successMessage = '';
+        $this->dispatch('setToUserPayMode', $username, $this->payablePlayer[$username]);
+    }
+
+    #[On('resetSelectedPlayer')]
+    public function resetSelectedPlayer(){
+        $this->selectedPlayer = null;
+    }
+
+    
+    #[On('showInfoMessageUser')]
+    public function showInfoMessageUser($successMessage){
+        $this->successMessage = $successMessage;
     }
 
     #region Taskarea

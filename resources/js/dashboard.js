@@ -6,7 +6,7 @@ $(document).on('click', '.no-pulse', function () {
     $(this).removeClass("no-pulse").addClass("pulse");
 });
 
-$('.listItems').on('click', function () {
+$('.listItems.deletable').on('click', function () {
     $('body').addClass("modal-open");
 });
 

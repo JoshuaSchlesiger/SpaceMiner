@@ -9,6 +9,7 @@ use App\Models\TasksUsers;
 use App\Models\Stations;
 use Livewire\Component;
 use Carbon\Carbon;
+use Livewire\Attributes\Validate;
 use Livewire\Attributes\On;
 
 class DashboardFinishedTasks extends Component
@@ -24,6 +25,14 @@ class DashboardFinishedTasks extends Component
     public $blockSelect = false;
     public $combinableTasks = [];
     public $combinableTasksIDs = [];
+
+
+    public $userPayMode = false;
+    public $selectedUserName = null;
+    public $selectedUserTotalAmount = 0;
+    public $selectedUserPartAmountArray = [];
+
+    public $selectedAmountID = null;
 
     #[On('renderFinishedTasks')]
     public function render()
@@ -54,6 +63,67 @@ class DashboardFinishedTasks extends Component
         }
 
         return view('livewire.dashboard-finished-tasks');
+    }
+
+    #[On('setToUserPayMode')]
+    public function setToUserPayMode($username, $userInformation)
+    {
+        $this->userPayMode = true;
+        $this->selectedUserName = $username;
+        $this->selectedUserTotalAmount = array_sum($userInformation);
+        $this->selectedUserPartAmountArray = $userInformation;
+    }
+
+    public function resetUserPayMode()
+    {
+        $this->userPayMode = false;
+        $this->selectedUserName = null;
+        $this->selectedUserTotalAmount = 0;
+        $this->selectedUserPartAmountArray = [];
+        $this->dispatch('resetSelectedPlayer');
+    }
+
+    public function fullpayUser()
+    {
+        foreach ($this->selectedUserPartAmountArray as $id => $amount) {
+            $tasksUser = TasksUsers::find($id);
+            if ($this->authorize('update', $tasksUser)) {
+                $tasksUser->paid = true;
+                $tasksUser->save();
+                $this->dispatch('showInfoMessageUser', 'User erfolgreich bezahlt!');
+                $this->resetUserPayMode();
+            } else {
+                $this->dispatch('showInfoMessageUser', 'Du hast keine Berechtigung, diesen User zu bezahlen.');
+            }
+        }
+    }
+
+    public function selectedAmountPay()
+    {
+        if($this->selectedAmountID === null){
+            $this->addError('selectedAmountID', 'Please select an option');
+            return;
+        }
+
+        $tasksUser = TasksUsers::find($this->selectedAmountID);
+        if ($this->authorize('update', $tasksUser)) {
+            $tasksUser->paid = true;
+            $tasksUser->save();
+
+            $this->selectedUserTotalAmount -= $this->selectedUserPartAmountArray[$this->selectedAmountID];
+            unset($this->selectedUserPartAmountArray[$this->selectedAmountID]);
+            $this->selectedAmountID = null;
+
+            if(empty($this->selectedUserPartAmountArray)){
+                $this->resetUserPayMode();
+                $this->dispatch('showInfoMessageUser', 'User erfolgreich bezahlt!');
+                return;
+            }
+            
+            $this->dispatch('showInfoMessageUser', 'User teilweise erfolgreich bezahlt!');
+        } else {
+            $this->dispatch('showInfoMessageUser', 'Du hast keine Berechtigung, diesen User zu bezahlen.');
+        }
     }
 
     #region Taskarea
@@ -185,7 +255,7 @@ class DashboardFinishedTasks extends Component
     #[On('blockCombination')]
     public function blockCombination()
     {
-        if(empty($this->combinableTasks)){
+        if (empty($this->combinableTasks)) {
             return;
         }
 
