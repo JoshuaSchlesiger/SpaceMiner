@@ -1,6 +1,12 @@
-
 $("#btnAddPartRock").on("click", function () {
     appendPart("inputTableBodyRock");
+
+    let inputTableBodyRock = $("#inputTableBodyRock");
+    let childCount = inputTableBodyRock.children().length;
+    if(childCount > 4){
+        $('#btnAddPartRock').prop("disabled", true);
+        return;
+    }
 
     const oreTypes = [];
     const typeElements = $('.oreType');
@@ -20,10 +26,22 @@ $("#btnAddPartRock").on("click", function () {
 
 $("#btnAddPartShip").on("click", function () {
     appendPart("inputTableBodyShip");
+    let inputTableBodyRock = $("#inputTableBodyShip");
+    let childCount = inputTableBodyRock.children().length;
+    if(childCount > 4){
+        $('#btnAddPartShip').prop("disabled", true);
+        return;
+    }
     sendDataAndShow(getAllInputs());
 });
 
 $("#inputTableBodyRock").on("click", ".deletePart", function () {
+    let inputTableBodyRock = $("#inputTableBodyRock");
+    let childCount = inputTableBodyRock.children().length;
+    if(childCount <= 5){
+        $('#btnAddPartRock').prop("disabled", false);
+    }
+
     if ($(this).closest("tr").attr("id") === undefined) {
         $(this).closest("tr").remove();
         sendDataAndShow(getAllInputs());
@@ -34,6 +52,11 @@ $("#inputTableBodyRock").on("click", ".deletePart", function () {
 });
 
 $("#inputTableBodyShip").on("click", ".deletePart", function () {
+    let inputTableBodyRock = $("#inputTableBodyShip");
+    let childCount = inputTableBodyRock.children().length;
+    if(childCount <= 5){
+        $('#btnAddPartShip').prop("disabled", false);
+    }
     $(this).closest("tr").remove();
     sendDataAndShow(getAllInputs());
 });
@@ -153,6 +176,10 @@ function getAllInputs() {
 }
 
 function sendDataAndShow(dataObject) {
+    if(dataObject.oreTypes.length > 4){
+        return;
+    }
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),

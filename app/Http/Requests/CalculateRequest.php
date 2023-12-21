@@ -25,8 +25,8 @@ class CalculateRequest extends FormRequest
         return [
             "type" => ['string', Rule::in(['rock', 'ship'])],
             "massStone" => "integer",
-            "oreTypes"  => "array",
-            "oreInput" => "array",
+            "oreTypes"  => ["array", "max:5"],
+            "oreInput" => ["array", "max:5"],
             "refineryMethod" => "integer",
             "station" => "integer",
         ];
