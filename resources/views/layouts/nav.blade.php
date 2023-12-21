@@ -28,7 +28,7 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="uebermich.php">Über Mich</a>
+                        <a class="nav-link fs-5" href="{{ route('aboutme') }}">Über Mich</a>
                     </li>
                     @guest
                         @if (Route::has('login'))

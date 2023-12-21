@@ -58,7 +58,7 @@
                             <a href="{{ route('calculator') }}" class="hyperlink text-reset">Berechnungen</a>
                         </p>
                         <p>
-                            <a href="{{ route('login') }}" class="hyperlink text-reset">Über Mich</a>
+                            <a href="{{ route('aboutme') }}" class="hyperlink text-reset">Über Mich</a>
                         </p>
                         <p>
                             <a href="{{ route('login') }}" class="hyperlink text-reset">Login</a>
@@ -115,7 +115,7 @@
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.125);">
             © {{ now()->year }} Copyright:
             <span class="text-reset fw-bold">DochSergeantTV</span><br>
-            <a class="hyperlink text-reset" href="{{ route('login') }}">Datenschutz | Cookie-Nutzung </a>
+            <a class="hyperlink text-reset" href="{{ route('privacypolicy') }}">Datenschutz | Cookie-Nutzung </a>
         </div>
 
     </footer>
