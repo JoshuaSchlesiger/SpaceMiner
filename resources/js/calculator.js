@@ -176,9 +176,15 @@ function getAllInputs() {
 }
 
 function sendDataAndShow(dataObject) {
-    if(dataObject.oreTypes.length > 4){
+    if(dataObject.oreTypes.length > 5){
         return;
     }
+
+    if(dataObject.type == "rock" && dataObject.massStone == ""){
+        return;
+    }
+
+    console.log(dataObject);
 
     $.ajaxSetup({
         headers: {
