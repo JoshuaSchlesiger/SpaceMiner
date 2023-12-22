@@ -1,4 +1,5 @@
 @section('nav')
+
     <nav class="nv navbar navbar-expand-lg bg-body-tertiary shadow">
         <div class="container-fluid ps-4">
             <a class="navbar-brand nv-brand fs-3" href="{{ url('/') }}">
