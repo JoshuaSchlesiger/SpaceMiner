@@ -10,6 +10,7 @@
         <!-- Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/calculator.css', 'resources/css/task.css', 'resources/css/dashboard.css'])
         @livewireStyles
+        @cookieconsentscripts
 </head>
 <body>
     @include('layouts.nav')
@@ -20,5 +21,6 @@
     @include('layouts.footer')
     @yield('footer')
     @livewireScripts
+    @cookieconsentview
 </body>
 </html>

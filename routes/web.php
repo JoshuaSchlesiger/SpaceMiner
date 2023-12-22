@@ -3,7 +3,6 @@
 use App\Http\Controllers\AboutMeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalculatorController;
-use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\UserSettings;
 use App\Http\Controllers\DashboardController;
@@ -20,12 +19,10 @@ use App\Http\Controllers\WelcomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Auth::routes();
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/aboutme', [AboutMeController::class, 'index'])->name('aboutme');
 Route::get('/privacypolicy', [PrivacyPolicyController::class, 'index'])->name('privacypolicy');
-
-Auth::routes();
 
 Route::get('calculator', [CalculatorController::class, 'index'])->name('calculator');
 Route::post('calculator', [CalculatorController::class, 'calculate'])->name('calculator.calculate');
