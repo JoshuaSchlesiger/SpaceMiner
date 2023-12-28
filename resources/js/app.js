@@ -19,7 +19,6 @@ function getPreferredColorMode() {
 // Funktion, um den Farbmodus des Benutzers zu überprüfen und das Favicon entsprechend zu setzen
 function setFavicon() {
     var colorMode = getPreferredColorMode();
-    console.log(colorMode);
     var faviconPath = 'images/favicon/Icon' + colorMode + '192.png';
     // Setze das Favicon
     $('link[rel="icon"]').attr('href', faviconPath);

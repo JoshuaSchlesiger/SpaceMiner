@@ -1,5 +1,4 @@
 @section('nav')
-
     <nav class="nv navbar navbar-expand-lg bg-body-tertiary shadow">
         <div class="container-fluid ps-4">
             <a class="navbar-brand nv-brand fs-3" href="{{ url('/') }}">
@@ -66,9 +65,28 @@
                             </div>
                         </li>
                     @endguest
-                    <div class="d-flex" role="search">
-                        <button class="btn btn-outline-success language btn-sm h-75 mt-1">DE</button>
-                    </div>
+                    <form action="{{ url()->current() }}" method="GET">
+                        @if (Cookie::has('language'))
+                            <input type="hidden" name="language" value="{{ Cookie::get('language') }}">
+                            <div class="d-flex" role="search">
+                                <button class="btn @if (Cookie::get('language') === 'EN') btn-outline-danger @else btn-outline-success @endif  language btn-sm h-75 mt-1">
+                                    <?php echo Cookie::get('language'); ?>
+                                </button>
+                            </div>
+                        @elseif (Session::exists('language'))
+                            <input type="hidden" name="language" value="{{ Session::get('language') }}">
+                            <div class="d-flex" role="search">
+                                <button class="btn @if (Session::get('language') === 'EN') btn-outline-danger @else btn-outline-success @endif  language btn-sm h-75 mt-1">
+                                    <?php echo Session::get('language'); ?>
+                                </button>
+                            </div>
+                        @else
+                            <input type="hidden" name="language" value="EN">
+                            <div class="d-flex" role="search">
+                                <button class="btn btn-outline-danger language btn-sm h-75 mt-1">EN</button>
+                            </div>
+                        @endif
+                    </form>
 
                 </ul>
             </div>

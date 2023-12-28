@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use Whitecube\LaravelCookieConsent\Facades\Cookies;
 
+use App\Http\Controllers\CookieController;
+use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
@@ -11,9 +12,22 @@ class WelcomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        // app()->setLocale('de');
+        if ($request->has('language')) {
+
+            $language = $request->input('language');
+            if($language === "EN"){
+                CookieController::changeLanguage("de");
+            }else{
+                CookieController::changeLanguage("en");
+            }
+
+        }
+
+        if (!is_null(CookieController::language('Miner/welcome'))) {
+            return;
+        }
         return view('Miner/welcome');
     }
 }
