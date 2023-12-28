@@ -27,6 +27,7 @@ return [
             'title' => 'Optionale Cookies',
             'description' => 'Diese Cookies ermöglichen Funktionen, die Ihre Benutzererfahrung verbessern könnten, aber ihr Fehlen wird Ihre Fähigkeit, auf unserer Website zu surfen, nicht beeinträchtigen.',
             'password_remember' => 'Dieses Cookie hilft dir, dass du dein Passwort nicht wieder eintippen musst',
+            'language_remember' => 'Dieses Cookie hilft dir, dass die Website auf der Sprache bleibt, welche du kennst',
         ],
     ],
 

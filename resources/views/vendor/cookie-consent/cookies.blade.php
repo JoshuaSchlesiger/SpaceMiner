@@ -63,6 +63,16 @@
                                                         <p class="cookies__description">@lang('cookieConsent::cookies.categories.' . $category->key() . '.' . $cookie->name)</p>
                                                     @endif
                                                 </li>
+                                            @elseif ($cookie->name === 'language_remember')
+                                                <li class="cookies__cookie">
+                                                    <p class="cookies__name">{{ $cookie->name }}</p>
+                                                    <p class="cookies__duration">
+                                                        {{ \Carbon\CarbonInterval::minutes($cookie->duration)->cascade() }}
+                                                    </p>
+                                                    @if ($cookie->description)
+                                                        <p class="cookies__description">@lang('cookieConsent::cookies.categories.' . $category->key() . '.' . $cookie->name)</p>
+                                                    @endif
+                                                </li>
                                             @else
                                                 <li class="cookies__cookie">
                                                     <p class="cookies__name">{{ $cookie->name }}</p>
@@ -70,7 +80,8 @@
                                                         {{ \Carbon\CarbonInterval::minutes($cookie->duration)->cascade() }}
                                                     </p>
                                                     @if ($cookie->description)
-                                                        <p class="cookies__description">{{ $cookie->description }}</p>
+                                                        <p class="cookies__description">{{ $cookie->description }}
+                                                        </p>
                                                     @endif
                                                 </li>
                                             @endif

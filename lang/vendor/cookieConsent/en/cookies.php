@@ -27,6 +27,7 @@ return [
             'title' => 'Optional cookies',
             'description' => 'These cookies enable features that could improve your user experience, but their absence will not impact your ability to browse our website.',
             'password_remember' => 'This cookie helps you to avoid having to type in your password again',
+            'language_remember' => 'This cookie helps you to keep the website in the language you know',
         ],
     ],
 

@@ -27,6 +27,12 @@ class CookiesServiceProvider extends ServiceProvider
             ->name('password_remember')
             ->description('Dieses Cookie hilft dir, dass du dein Passwort nicht wieder eintippen musst')
             ->duration(43800)
-            ->accepted(fn(Consent $consent) => $consent->cookie(value: true));
+            ->accepted(fn (Consent $consent) => $consent->cookie(value: true));
+
+        Cookies::optional()
+            ->name('language_remember')
+            ->description('Dieses Cookie hilft dir, dass die Website auf der Sprache bleibt, welche du kennst')
+            ->duration(43800)
+            ->accepted(fn (Consent $consent) => $consent->cookie(value: true));
     }
 }
