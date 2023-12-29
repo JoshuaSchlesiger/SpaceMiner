@@ -25,8 +25,9 @@ class WelcomeController extends Controller
 
         }
 
-        if (!is_null(CookieController::language('Miner/welcome'))) {
-            return;
+        $language = CookieController::language('Miner/welcome');
+        if (!is_null($language)) {
+            return $language;
         }
         return view('Miner/welcome');
     }
