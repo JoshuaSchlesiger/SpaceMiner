@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class ConfirmPasswordController extends Controller
 {
@@ -37,4 +39,12 @@ class ConfirmPasswordController extends Controller
     {
         $this->middleware('auth');
     }
+
+    protected function showConfirmForm()
+    {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+        return view('auth.passwords.confirm');
+    }
+
 }

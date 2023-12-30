@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
@@ -40,6 +42,14 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
+    protected function showRegistrationForm()
+    {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+        return view('auth.register');
+    }
+
 
     /**
      * Get a validator for an incoming registration request.

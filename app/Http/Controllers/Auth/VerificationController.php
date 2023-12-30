@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class VerificationController extends Controller
 {

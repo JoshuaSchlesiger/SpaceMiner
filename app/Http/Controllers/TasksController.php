@@ -16,6 +16,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreTasksRequest;
 use App\Models\TasksUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Lang;
 
 class TasksController extends Controller
 {
@@ -36,6 +39,9 @@ class TasksController extends Controller
      */
     public function index()
     {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+
         $ores = Ores::orderByDesc('refinedValue')
             ->select('id', 'name')
             ->get();
@@ -54,7 +60,6 @@ class TasksController extends Controller
 
     public function save(StoreTasksRequest $request)
     {
-
         $lastTask = Tasks::where('user_id', $request->user()->id)
             ->orderBy('created_at', 'desc')
             ->first();
@@ -106,6 +111,9 @@ class TasksController extends Controller
     //Get old group
     public function ajaxFunction(Request $request)
     {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+
         $key = $request->ip(); // Verwende die IP-Adresse des Benutzers als Schlüssel
 
         $rateLimiter = app(RateLimiter::class);
@@ -116,7 +124,7 @@ class TasksController extends Controller
 
         // Überprüfe, ob die Rate-Limit überschritten wurde
         if ($rateLimiter->tooManyAttempts($key, $maxAttempts)) {
-            return response()->json(['error' => 'Rate limit exceeded, just chill']);
+            return response()->json(['error' => Lang::get('task.oldgroup.ratelimit')]);
         }
 
 
@@ -128,7 +136,7 @@ class TasksController extends Controller
 
             if (empty($lastTask)) {
                 return response()->json([
-                    'error' => "No old tasks"
+                    'error' => Lang::get('task.oldgroup.exists')
                 ]);
             }
 

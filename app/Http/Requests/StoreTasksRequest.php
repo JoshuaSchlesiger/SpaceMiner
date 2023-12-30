@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Lang;
 
 class StoreTasksRequest extends FormRequest
 {
@@ -34,7 +37,7 @@ class StoreTasksRequest extends FormRequest
                     // Überprüfen auf doppelte Namen
                     $uniqueNames = array_unique($value);
                     if (count($value) !== count($uniqueNames)) {
-                        $fail("The miners must not contain any duplicate names.");
+                        $fail(Lang::get('task.miner.dublicated'));
                     }
                 },
             ],
@@ -47,7 +50,7 @@ class StoreTasksRequest extends FormRequest
                     if ($value) {
                         $uniqueNames = array_unique($value);
                         if (count($value) !== count($uniqueNames)) {
-                            $fail("The scouts must not contain any duplicate names.");
+                            $fail(Lang::get('task.scout.dublicated'));
                         }
                     }
                 },
@@ -61,10 +64,10 @@ class StoreTasksRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     foreach ($value as $index => $item) {
                         if($item < 1){
-                            $fail("The element on postion $index must not be smaller then 1");
+                            $fail(Lang::get('task.oreUnits.min', ['index' => $index]));
                         }
                         if ($item === null) {
-                            $fail("The element on postion $index must not be null");
+                            $fail(Lang::get('task.oreUnits.null', ['index' => $index]));
                         }
                     }
                 },
@@ -74,39 +77,42 @@ class StoreTasksRequest extends FormRequest
 
     public function messages()
     {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+
         return [
-            'refineryStation.required' => 'null',
-            'refineryStation.exists' => 'The selected refinery station is invalid.',
+            'refineryStation.required' => Lang::get('task.refineryStation.required'),
+            'refineryStation.exists' => Lang::get('task.refineryStation.exists'),
 
-            'method.required' => 'null',
-            'method.exists' => 'The selected method is invalid.',
+            'method.required' => Lang::get('task.method.required'),
+            'method.exists' => Lang::get('task.method.exists'),
 
-            'costs.required' => 'null',
-            'costs.numeric' => 'The costs must be a number.',
+            'costs.required' => Lang::get('task.costs.required'),
+            'costs.numeric' => Lang::get('task.costs.numeric'),
 
-            'duration.required' => 'null',
-            'duration.regex' => 'The duration must be in the format HH::MM or HHH::MM.',
+            'duration.required' => Lang::get('task.duration.required'),
+            'duration.regex' => Lang::get('task.duration.regex'),
 
-            'selectMiner.required' => 'At least one miner must be inputed.',
-            'selectMiner.array' => 'The selected miners must be in an array.',
-            'selectMiner.min' => 'At least one miner must be inputed.',
-            'selectMiner.exists' => 'One or more selected miners are invalid.',
-            'selectMiner.unique' => 'The miners must not contain duplicate entries.',
+            'selectMiner.required' => Lang::get('task.selectMiner.required'),
+            'selectMiner.array' => Lang::get('task.selectMiner.array'),
+            'selectMiner.min' => Lang::get('task.selectMiner.min'),
+            'selectMiner.exists' => Lang::get('task.selectMiner.exists'),
+            'selectMiner.unique' => Lang::get('task.selectMiner.unique'),
 
-            'selectScout.required' => 'The scout field is required.',
-            'selectScout.array' => 'The selected scouts must be in an array.',
-            'selectScout.exists' => 'One or more selected scouts are invalid.',
-            'selectScouts.unique' => 'The scouts must not contain duplicate entries.',
+            'selectScout.required' => Lang::get('task.selectScout.required'),
+            'selectScout.array' => Lang::get('task.selectScout.array'),
+            'selectScout.exists' => Lang::get('task.selectScout.exists'),
+            'selectScouts.unique' => Lang::get('task.selectScouts.unique'),
 
-            'payoutRatio.required' => 'The payout ratio field is required.',
-            'payoutRatio.numeric' => 'The payout ratio must be a number.',
-            'payoutRatio.min' => 'The payout ratio must be at least 0.',
-            'payoutRatio.max' => 'The payout ratio must be at most 100.',
+            'payoutRatio.required' => Lang::get('task.payoutRatio.required'),
+            'payoutRatio.numeric' => Lang::get('task.payoutRatio.numeric'),
+            'payoutRatio.min' => Lang::get('task.payoutRatio.min'),
+            'payoutRatio.max' => Lang::get('task.payoutRatio.max'),
 
-            'oreTypes.required' => 'The ore type field in ore types is required.',
-            'oreTypes.exists' => 'One or more selected ore types are invalid.',
-            'oreUnits.required' => 'The ore unit field in ore types is required.',
-            'oreUnits.numeric' => 'The ore unit in ore types must be a number.',
+            'oreTypes.required' => Lang::get('task.oreTypes.required'),
+            'oreTypes.exists' => Lang::get('task.oreTypes.exists'),
+            'oreUnits.required' => Lang::get('task.oreUnits.required'),
+            'oreUnits.numeric' => Lang::get('task.oreUnits.numeric'),
         ];
     }
 }

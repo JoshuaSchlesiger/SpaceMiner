@@ -2,9 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Session;
+
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class LoginController extends Controller
 {
@@ -19,7 +28,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, ThrottlesLogins, AuthorizesRequests;
 
     /**
      * Where to redirect users after login.
@@ -36,5 +45,32 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function showLoginForm()
+    {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+        return view('auth.login');
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+
+        throw ValidationException::withMessages([
+            "password" => [Lang::get('auth.failed')],
+        ]);
+    }
+
+    protected function sendLockoutResponse(Request $request)
+    {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+
+        throw ValidationException::withMessages([
+            "password" => [Lang::get('auth.throttle', ['seconds' => $this->limiter()->availableIn($this->throttleKey($request))])],
+        ]);
     }
 }

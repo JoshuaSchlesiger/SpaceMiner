@@ -10,6 +10,8 @@ use App\Models\Refinements;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class CalculatorController extends Controller
 {
@@ -31,6 +33,8 @@ class CalculatorController extends Controller
      */
     public function index()
     {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
 
         $ores = Ores::orderByDesc('refinedValue')
             ->select('id', 'name')
