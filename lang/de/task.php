@@ -32,13 +32,34 @@ return [
     'payoutRatio.min' => 'Die Ausschüttungsquote muss mindestens 0 % betragen..',
     'payoutRatio.max' => 'Die Ausschüttungsquote muss maximal 100 % betragen.',
 
-    'oreTypes.required' => 'Das Feld Erzart in Erzarten ist erforderlich.',
-    'oreTypes.exists' => 'Ein oder mehrere ausgewählte Erztypen sind ungültig.',
-    'oreUnits.required' => 'Das Feld Erzeinheit in Erztypen ist erforderlich.',
-    'oreUnits.numeric' => 'Die Erzeinheit in den Erztypen muss eine Zahl sein.',
+    'oreTypes.required' => 'Das Feld Erzart in Erze ist erforderlich.',
+    'oreTypes.exists' => 'Ein oder mehrere ausgewählte Erze sind ungültig.',
+    'oreUnits.required' => 'Das Feld Einheiten in Erze ist erforderlich.',
+    'oreUnits.numeric' => 'Die Einheiten in den Erzen muss eine Zahl sein.',
     'oreUnits.min' => "Das Element auf Position :index darf nicht kleiner als 1 sein",
     'oreUnits.null' => "Das Element an der Position :index darf nicht null sein",
 
     'oldgroup.ratelimit' => 'Ratengrenze überschritten, einfach abwarten',
     'oldgroup.exists' => 'Es gibt keine alten Gruppen',
+
+    'view.refinery' => 'Raffinerie',
+    'view.refineryStation' => 'Raffineriestation',
+    'view.method' => 'Methode',
+    'view.costs' => 'Kosten',
+    'view.duration' => 'Dauer',
+    'view.duration' => 'Dauer',
+    'view.pleaseSelect' => 'Bitte auswählen',
+
+    'view.player' => 'Spieler',
+    'view.oldGroup' => 'Alte Gruppe',
+    'view.payoutRatio' => 'Auszahlungsverhältnis',
+
+    'view.ores' => 'Erze',
+    'view.oresType' => 'Erzart',
+    'view.units' => 'Einheiten',
+    'view.addPart' => 'Weiterer Anteil',
+
+    'view.save' => 'Speichern',
+    'view.saveToDashboard' => 'Speichern und zum Dashboard',
+    'view.reset' => 'Zurücksetzen',
 ];

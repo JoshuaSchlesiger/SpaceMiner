@@ -22,13 +22,13 @@
                     <div class="card">
                         <div class="header-text card-header">
                             <div class="text-center fs-4">
-                                Refinery
+                                @lang('task.view.refinery')
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="row justify-content-center text-center">
                                 <div class="col-5 fs-5 mt-1">
-                                    <label for="refineryStaion" class="text-white-50">Refinery Station:</label>
+                                    <label for="refineryStaion" class="text-white-50">@lang('task.view.refineryStation'):</label>
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
@@ -36,7 +36,7 @@
                                             class="form-select text-center w-100 @error('refineryStation') is-invalid @enderror"
                                             id="refineryStaion" name="refineryStation">
                                             <option value="" class="" hidden selected disabled>
-                                                Bitte wählen</option>
+                                                @lang('task.view.pleaseSelect')</option>
                                             @foreach ($stations as $station)
                                                 <option value={{ $station->id }}
                                                     {{ old('refineryStation') == $station->id ? 'selected' : '' }}>
@@ -56,14 +56,14 @@
                             </div>
                             <div class="row justify-content-center text-center mt-3">
                                 <div class="col-5 fs-5 mt-1">
-                                    <label for="method" class="text-white-50">Methode:</label>
+                                    <label for="method" class="text-white-50">@lang('task.view.method'):</label>
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
                                         <select class="form-select text-center w-100 @error('method') is-invalid @enderror"
                                             id="method" name="method">
                                             <option value="" class="" hidden selected disabled>
-                                                Bitte wählen</option>
+                                                @lang('task.view.pleaseSelect'):</option>
                                             @foreach ($methods as $method)
                                                 <option value="{{ $method->id }}"
                                                     {{ old('method') == $method->id ? 'selected' : '' }}
@@ -84,7 +84,7 @@
                             </div>
                             <div class="row justify-content-center text-center mt-3">
                                 <div class="col-5 fs-5 mt-1">
-                                    <label for="costs" class="text-white-50">Kosten:</label>
+                                    <label for="costs" class="text-white-50">@lang('task.view.costs'):</label>
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
@@ -102,7 +102,7 @@
                             </div>
                             <div class="row justify-content-center text-center mt-3">
                                 <div class="col-5 fs-5 mt-1">
-                                    <label for="duration" class="text-white-50">Dauer:</label>
+                                    <label for="duration" class="text-white-50">@lang('task.view.duration'):</label>
                                 </div>
                                 <div class="col-5">
                                     <div class="d-flex justify-content-center">
@@ -127,12 +127,11 @@
                         <div class="header-text card-header">
                             <div class="row">
                                 <div class="col-8 text-center fs-4">
-                                    Mitspieler
+                                    @lang('task.view.player')
                                 </div>
                                 <div class="col-4 text-end">
                                     <button type="button" class="btn btn-outline-secondary" id="btnOnldGroup"
-                                        data-ajax-url="{{ route('ajax.task') }}"> Alte
-                                        Gruppe</button>
+                                        data-ajax-url="{{ route('ajax.task') }}"> @lang('task.view.oldGroup')</button>
                                 </div>
                                 <div class="text-end">
                                     <span class="fst-italic text-danger" id="messageOldGroup" role="alert"><span>
@@ -262,7 +261,7 @@
                     <div id="ratioScouts">50%</div>
                 </div>
                 <div><label for="payoutRatio"
-                        class="form-label text-white-50 fs-5">Auszahlungsverhältis</label></div>
+                        class="form-label text-white-50 fs-5">@lang('task.view.payoutRatio')</label></div>
                 <div class="mt-1">
                     <div class="text-white-50">Miner:</div>
                     <div id="ratioMiner">50%</div>
@@ -278,7 +277,7 @@
     <div class="card">
         <div class="header-text card-header">
             <div class="text-center fs-4">
-                Erze
+                @lang('task.view.ores')
             </div>
         </div>
 
@@ -286,8 +285,8 @@
             <table class="table table-dark table-striped text-center">
                 <thead>
                     <tr class="fs-5">
-                        <th scope="col" class="text-white-50">Erztyp</th>
-                        <th scope="col" class="text-white-50">Units</th>
+                        <th scope="col" class="text-white-50">@lang('task.view.oresType')</th>
+                        <th scope="col" class="text-white-50">@lang('task.view.units')</th>
                         <th scope="col" class="text-white-50"></th>
                     </tr>
                 </thead>
@@ -298,7 +297,7 @@
                                 <select class="form-select text-center w-75 text-white-50 oreType"
                                     id=selectOretype name="oreTypes[]">
                                     <option value="" class="" hidden selected disabled>
-                                        Bitte wählen</option>
+                                        @lang('task.view.pleaseSelect')</option>
                                     @foreach ($ores as $ore)
                                         @if ($loop->index < 1)
                                             <option value={{ $ore->id }} class="text-success">
@@ -349,8 +348,7 @@
 
 
             <div class="d-flex flex-row-reverse me-2 mt-4 mb-1">
-                <button type="button" class="btn btn-outline-success" id="btnAddOrePart">Weiterer
-                    Anteil</button>
+                <button type="button" class="btn btn-outline-success" id="btnAddOrePart">@lang('task.view.addPart')</button>
             </div>
         </div>
 
@@ -364,16 +362,15 @@
         <div class="row ">
             <div class="col-4">
                 <div class="d-flex justify-content-center"><button type="button"
-                        class="btn btn-outline-success btn-lg" id="btnSave">Speichern</button></div>
+                        class="btn btn-outline-success btn-lg" id="btnSave">@lang('task.view.save')</button></div>
             </div>
             <div class="col-4">
                 <div class="d-flex justify-content-center"><button type="button"
-                        class="btn btn-outline-info btn-lg" id="btnSaveToDashboard">Speichern und zum
-                        Dashboard</button></div>
+                        class="btn btn-outline-info btn-lg" id="btnSaveToDashboard">@lang('task.view.saveToDashboard')</button></div>
             </div>
             <div class="col-4">
                 <div class="d-flex justify-content-center"><button type="button"
-                        class="btn btn-outline-warning btn-lg" id="btnReset">Zurücksetzen</button></div>
+                        class="btn btn-outline-warning btn-lg" id="btnReset">@lang('task.view.reset')</button></div>
             </div>
         </div>
     </div>

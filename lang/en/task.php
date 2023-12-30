@@ -41,4 +41,24 @@ return [
 
     'oldgroup.ratelimit' => 'Rate limit exceeded, just chill',
     'oldgroup.exists' => 'There are no old groups',
+
+    'view.refinery' => 'Refinery',
+    'view.refineryStation' => 'Refinery station',
+    'view.method' => 'Method',
+    'view.costs' => 'Costs',
+    'view.duration' => 'Duration',
+    'view.pleaseSelect' => 'Please select',
+
+    'view.player' => 'Player',
+    'view.oldGroup' => 'Old Group',
+    'view.payoutRatio' => 'Payout ratio',
+
+    'view.ores' => 'Ores',
+    'view.oresType' => 'Ore type',
+    'view.units' => 'Units',
+    'view.addPart' => 'Additional share',
+
+    'view.save' => 'Save',
+    'view.saveToDashboard' => 'Save to dashboard',
+    'view.reset' => 'Reset',
 ];
