@@ -10,7 +10,7 @@ function getPreferredColorMode() {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         return "Light";
     }
-    else{
+    else {
         return "Dark";
     }
 
@@ -24,8 +24,39 @@ function setFavicon() {
     $('link[rel="icon"]').attr('href', faviconPath);
 }
 
+$('#languageForm').on('submit', function (e) {
 
+    e.preventDefault();
+    let language = $('#language').val();
+    let view = $('#routeBasename').val();
 
-$(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        }
+    });
+
+    $.ajax({
+        url: '/change-language',
+        method: 'POST',
+        data: {
+            language: language,
+            view: view
+        },
+        success: function (data) {
+            if (data.redirect) {
+                document.cookie = 'language=' + data.cookie + '; path=/; expires=' + new Date(new Date().getTime() + 999999 * 1000).toUTCString();
+                window.location.href = data.redirect;
+            } else {
+                location.reload(true);
+            }
+        },
+        error: function () {
+            // Handle errors if necessary
+        }
+    });
+});
+
+$(function () {
     setFavicon();
 });

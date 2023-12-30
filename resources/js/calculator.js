@@ -185,8 +185,6 @@ function sendDataAndShow(dataObject) {
         return;
     }
 
-    console.log(dataObject);
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -197,7 +195,7 @@ function sendDataAndShow(dataObject) {
 
     $.ajax({
         type: "POST",
-        url: $('#calculateRoute').val(), // Hier stimmt der Name der Route überein
+        url: $('#route').val(), // Hier stimmt der Name der Route überein
         data: {
             "type": dataObject.type,
             "massStone": parseInt(dataObject.massStone),

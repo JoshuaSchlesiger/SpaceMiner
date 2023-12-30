@@ -1,4 +1,11 @@
 @section('nav')
+    <input type="hidden" id="route" value="{{ url()->current() }}">
+    @php
+        $urlParts = parse_url(url()->current());
+        $lastSegment = isset($urlParts['path']) ? basename($urlParts['path']) : 'welcome'; // 'default' als Standard, wenn kein Pfad vorhanden ist
+    @endphp
+
+    <input type="hidden" id="routeBasename" value="{{ $lastSegment }}">
     <nav class="nv navbar navbar-expand-lg bg-body-tertiary shadow">
         <div class="container-fluid ps-4">
             <a class="navbar-brand nv-brand fs-3" href="{{ url('/') }}">
@@ -65,23 +72,25 @@
                             </div>
                         </li>
                     @endguest
-                    <form action="{{ url()->current() }}" method="GET">
+                    <form id="languageForm">
                         @if (Cookie::has('language'))
-                            <input type="hidden" name="language" value="{{ Cookie::get('language') }}">
+                            <input type="hidden" name="language" id="language" value="{{ Cookie::get('language') }}">
                             <div class="d-flex" role="search">
-                                <button class="btn @if (Cookie::get('language') === 'EN') btn-outline-danger @else btn-outline-success @endif  language btn-sm h-75 mt-1">
+                                <button
+                                    class="btn @if (Cookie::get('language') === 'EN') btn-outline-danger @else btn-outline-success @endif  language btn-sm h-75 mt-1">
                                     <?php echo Cookie::get('language'); ?>
                                 </button>
                             </div>
                         @elseif (Session::exists('language'))
-                            <input type="hidden" name="language" value="{{ Session::get('language') }}">
+                            <input type="hidden" name="language" id="language" value="{{ Session::get('language') }}">
                             <div class="d-flex" role="search">
-                                <button class="btn @if (Session::get('language') === 'EN') btn-outline-danger @else btn-outline-success @endif  language btn-sm h-75 mt-1">
+                                <button
+                                    class="btn @if (Session::get('language') === 'EN') btn-outline-danger @else btn-outline-success @endif  language btn-sm h-75 mt-1">
                                     <?php echo Session::get('language'); ?>
                                 </button>
                             </div>
                         @else
-                            <input type="hidden" name="language" value="EN">
+                            <input type="hidden" name="language" id="language" value="EN">
                             <div class="d-flex" role="search">
                                 <button class="btn btn-outline-danger language btn-sm h-75 mt-1">EN</button>
                             </div>

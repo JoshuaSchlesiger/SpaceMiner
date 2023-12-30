@@ -6,6 +6,7 @@ use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\UserSettings;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\WelcomeController;
 
@@ -22,6 +23,7 @@ use App\Http\Controllers\WelcomeController;
 Auth::routes();
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/aboutme', [AboutMeController::class, 'index'])->name('aboutme');
+Route::post('/change-language', [LanguageController::class, 'changeLanguage'])->name('changeLanguage');
 Route::get('/privacypolicy', [PrivacyPolicyController::class, 'index'])->name('privacypolicy');
 
 Route::get('calculator', [CalculatorController::class, 'index'])->name('calculator');
