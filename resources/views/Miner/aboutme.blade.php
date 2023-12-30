@@ -25,7 +25,7 @@
         </div>
         <div class="mt-5 col-xxl-4 col-xl-5 col-sm-10">
             <div class="d-flex justify-content-center skin">
-                <img src="{{url('/images/skin.png')}}" class="" alt="me ^^">
+                <img src="{{url('/images/skin.png')}}" class="" alt="me ^^" title="Katzenich">
             </div>
         </div>
     </div>

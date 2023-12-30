@@ -8,7 +8,7 @@
             <p>Hier beginnt der Spaß, trust me :D</p>
         </div>
 
-        <img class="index-bg-image" src="{{url('/images/u-mining.png')}}" alt="Image"/>
+        <img class="index-bg-image" src="{{url('/images/u-mining.png')}}" alt="Miningbild" title="Miningbild" />
     </header>
 
     <div class="row">
@@ -34,7 +34,7 @@
         </div>
         <div class="col-sm-6">
             <div class=" d-flex justify-content-center ">
-                <img src="{{url('/images/t-stone.png')}}" class="index-ustone" alt="Geiler Quantaniumstein ^^">
+                <img src="{{url('/images/t-stone.png')}}" class="index-ustone" alt="Geiler Quantaniumstein ^^" title="Quantaniumstein">
             </div>
         </div>
     </div>
