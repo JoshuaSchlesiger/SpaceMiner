@@ -1,5 +1,4 @@
 $("#btnAddPartRock").on("click", function () {
-    setFavicon();
     appendPart("inputTableBodyRock");
 
     let inputTableBodyRock = $("#inputTableBodyRock");
