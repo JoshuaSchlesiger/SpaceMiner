@@ -19,11 +19,13 @@ return [
     'selectMiner.min' => 'Es muss mindestens ein Miner eingegeben werden.',
     'selectMiner.exists' => 'Ein oder mehrere ausgewählte Miner sind ungültig.',
     'selectMiner.unique' => 'Die Miner dürfen keine doppelten Einträge enthalten.',
+    'selectMiner.dublicated' => 'Die Miner dürfen keine doppelten Namen enthalten.',
 
     'selectScout.required' => 'Das Scout-Feld ist erforderlich.',
     'selectScout.array' => 'Die ausgewählten Scouts müssen sich in einer Reihe befinden.',
     'selectScout.exists' => 'Ein oder mehrere ausgewählte Scouts sind ungültig.',
-    'selectScouts.unique' => 'Die Scouts dürfen keine doppelten Einträge enthalten.',
+    'selectScout.unique' => 'Die Scouts dürfen keine doppelten Einträge enthalten.',
+    'selectScout.dublicated' => 'Die Scouts dürfen keine doppelten Namen enthalten.',
 
     'payoutRatio.required' => 'Das Feld Ausschüttungsquote ist erforderlich.',
     'payoutRatio.numeric' => 'Die Ausschüttungsquote muss eine Zahl sein.',
@@ -39,7 +41,4 @@ return [
 
     'oldgroup.ratelimit' => 'Ratengrenze überschritten, einfach abwarten',
     'oldgroup.exists' => 'Es gibt keine alten Gruppen',
-
-    'miner.dublicated' => 'Die Miner dürfen keine doppelten Namen enthalten.',
-    'scout.dublicated' => 'Die Scouts dürfen keine doppelten Namen enthalten.',
 ];

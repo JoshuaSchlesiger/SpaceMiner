@@ -37,7 +37,7 @@ class StoreTasksRequest extends FormRequest
                     // Überprüfen auf doppelte Namen
                     $uniqueNames = array_unique($value);
                     if (count($value) !== count($uniqueNames)) {
-                        $fail(Lang::get('task.miner.dublicated'));
+                        $fail(Lang::get('task.selectMiner.dublicated'));
                     }
                 },
             ],
@@ -50,7 +50,7 @@ class StoreTasksRequest extends FormRequest
                     if ($value) {
                         $uniqueNames = array_unique($value);
                         if (count($value) !== count($uniqueNames)) {
-                            $fail(Lang::get('task.scout.dublicated'));
+                            $fail(Lang::get('task.selectScout.dublicated'));
                         }
                     }
                 },
@@ -102,7 +102,7 @@ class StoreTasksRequest extends FormRequest
             'selectScout.required' => Lang::get('task.selectScout.required'),
             'selectScout.array' => Lang::get('task.selectScout.array'),
             'selectScout.exists' => Lang::get('task.selectScout.exists'),
-            'selectScouts.unique' => Lang::get('task.selectScouts.unique'),
+            'selectScout.unique' => Lang::get('task.selectScouts.unique'),
 
             'payoutRatio.required' => Lang::get('task.payoutRatio.required'),
             'payoutRatio.numeric' => Lang::get('task.payoutRatio.numeric'),

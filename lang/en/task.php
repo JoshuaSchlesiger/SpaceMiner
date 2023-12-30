@@ -19,11 +19,13 @@ return [
     'selectMiner.min' => 'At least one miner must be inputed.',
     'selectMiner.exists' => 'One or more selected miners are invalid.',
     'selectMiner.unique' => 'The miners must not contain duplicate entries.',
+    'selectMiner.dublicated' => 'The miners must not contain any duplicate names.',
 
     'selectScout.required' => 'The scout field is required.',
     'selectScout.array' => 'The selected scouts must be in an array.',
     'selectScout.exists' => 'One or more selected scouts are invalid.',
-    'selectScouts.unique' => 'The scouts must not contain duplicate entries.',
+    'selectScout.unique' => 'The scouts must not contain duplicate entries.',
+    'selectScout.dublicated' => 'The scouts must not contain any duplicate names.',
 
     'payoutRatio.required' => 'The payout ratio field is required.',
     'payoutRatio.numeric' => 'The payout ratio must be a number.',
@@ -39,8 +41,4 @@ return [
 
     'oldgroup.ratelimit' => 'Rate limit exceeded, just chill',
     'oldgroup.exists' => 'There are no old groups',
-
-    'miner.dublicated' => 'The miners must not contain any duplicate names.',
-    'scout.dublicated' => 'The scouts must not contain any duplicate names.',
-
 ];
