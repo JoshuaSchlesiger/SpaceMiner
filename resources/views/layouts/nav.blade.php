@@ -1,10 +1,5 @@
 @section('nav')
     <input type="hidden" id="route" value="{{ url()->current() }}">
-    @php
-        $urlParts = parse_url(url()->current());
-        $lastSegment = isset($urlParts['path']) ? basename($urlParts['path']) : 'welcome'; // 'default' als Standard, wenn kein Pfad vorhanden ist
-    @endphp
-
     <input type="hidden" id="routeBasename" value="{{ $lastSegment }}">
     <nav class="nv navbar navbar-expand-lg bg-body-tertiary shadow">
         <div class="container-fluid ps-4">

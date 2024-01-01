@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,24 @@
     <meta name="author" content="DochSergeantTV">
     <title>SpaceMiner | Calculate stone values and save orders</title>
 
-        <!-- Scripts -->
-        @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/calculator.css', 'resources/css/task.css', 'resources/css/dashboard.css'])
-        <link rel="icon" href="{{ url('images/favicon/IconDark192.png') }}">
-        <link rel="icon" href="{{ url('images/favicon/IconLight192.png') }}">
-        @livewireStyles
-        @cookieconsentscripts
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/calculator.css', 'resources/css/task.css', 'resources/css/dashboard.css'])
+    <link rel="icon" href="{{ url('images/favicon/IconDark192.png') }}">
+    <link rel="icon" href="{{ url('images/favicon/IconLight192.png') }}">
+
+    @php
+        $urlParts = parse_url(url()->current());
+        $lastSegment = isset($urlParts['path']) ? basename($urlParts['path']) : 'welcome';
+    @endphp
+
+    @if (!auth()->check() && ($lastSegment === 'dashboard ' || $lastSegment === 'tasks '))
+        <meta name="robots" content="noindex, nofollow">
+    @endif
+
+    @livewireStyles
+    @cookieconsentscripts
 </head>
+
 <body>
     @include('layouts.nav')
     @yield('nav')
@@ -28,4 +40,5 @@
     @livewireScripts
     @cookieconsentview
 </body>
+
 </html>
