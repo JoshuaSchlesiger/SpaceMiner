@@ -23,30 +23,30 @@
                             <a class="nav-link fs-5" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-5" href="{{ route('task') }}">Aufträge</a>
+                            <a class="nav-link fs-5" href="{{ route('task') }}">@lang('nav.view.tasks')</a>
                         </li>
                     @endif
 
 
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ route('calculator') }}">Berechnungen</a>
+                        <a class="nav-link fs-5" href="{{ route('calculator') }}">@lang('nav.view.calculator')</a>
                     </li>
 
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ route('aboutme') }}">Über Mich</a>
+                        <a class="nav-link fs-5" href="{{ route('aboutme') }}">@lang('nav.view.aboutMe')</a>
                     </li>
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link fs-5" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link fs-5" href="{{ route('login') }}">@lang('nav.view.login')</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link fs-5 me-2" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link fs-5 me-2" href="{{ route('register') }}">@lang('nav.view.register')</a>
                             </li>
                         @endif
                     @else
@@ -57,13 +57,13 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('userSettings') }}">Einstellungen
+                                <a class="dropdown-item" href="{{ route('userSettings') }}">@lang('nav.view.settings')
                                 </a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    @lang('nav.view.logout')
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
