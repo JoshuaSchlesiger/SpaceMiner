@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Mining tool for Star Citizen that remembers how much you have to pay your crew">
-    <link rel=“canonical“ href=“https://www.seite.de/dieine/“/>
+    <link rel=“canonical“ href="https://spaceminer.de"/>
     <meta name="author" content="DochSergeantTV">
     <title>SpaceMiner | Calculate stone values and save orders</title>
 
