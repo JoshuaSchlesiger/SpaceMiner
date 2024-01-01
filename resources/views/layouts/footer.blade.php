@@ -2,7 +2,7 @@
     <footer class="text-center text-lg-start text-muted mt-5">
         <section class="d-flex justify-content-center justify-content-lg-between ps-4 pt-4 pe-4 pb-3 border-bottom">
             <div class="me-5 d-none d-lg-block">
-                <span>Schau doch mal auf meinen Sozial Media Platformen vorbei:</span>
+                <span>@lang('footer.view.socialMedia')</span>
             </div>
             <div class="d-flex">
                 <a href="https://www.twitch.tv/dochsergeanttv" target="_blank" class="me-4 link-secondary">
@@ -34,12 +34,7 @@
                             DochSergeantTV
                         </h6>
                         <p>
-                            Ich bin leidenschaftlicher Star Citizen Spieler und ich bin der Typ der immer unterwegs ist mit
-                            seiner großen Crew,
-                            um die dicken fetten Brummer von Quantanium zu finden.
-                        </p>
-                        <p>
-                            Achja ich liebe es die Stationen mit meiner Prosi zu knutschen ^^
+                            @lang('footer.view.text')
                         </p>
                     </div>
 
@@ -52,22 +47,22 @@
                             <a href="{{ route('dashboard') }}" class="hyperlink text-reset">Dashboard</a>
                         </p>
                         <p>
-                            <a href="{{ route('task') }}" class="hyperlink text-reset">Aufträge</a>
+                            <a href="{{ route('task') }}" class="hyperlink text-reset">@lang('footer.view.tasks')</a>
                         </p>
                         <p>
-                            <a href="{{ route('calculator') }}" class="hyperlink text-reset">Berechnungen</a>
+                            <a href="{{ route('calculator') }}" class="hyperlink text-reset">@lang('footer.view.calculator')</a>
                         </p>
                         <p>
-                            <a href="{{ route('aboutme') }}" class="hyperlink text-reset">Über Mich</a>
+                            <a href="{{ route('aboutme') }}" class="hyperlink text-reset">@lang('footer.view.aboutMe')</a>
                         </p>
                         <p>
-                            <a href="{{ route('login') }}" class="hyperlink text-reset">Login</a>
+                            <a href="{{ route('login') }}" class="hyperlink text-reset">@lang('footer.view.login')</a>
                         </p>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                         <h6 class="text-uppercase fw-bold mb-4">
-                            Nützliche Links
+                            @lang('footer.view.usefulLinks')
                         </h6>
                         <p>
                             <a href="https://www.erkul.games/" target="_blank" class="hyperlink text-reset">DPS
@@ -88,7 +83,7 @@
                     </div>
 
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">Kontakt</h6>
+                        <h6 class="text-uppercase fw-bold mb-4">@lang('footer.view.contact')</h6>
                         <p>
                             <a href="https://discord.gg/uWQX5Zy8sT" target="_blank" class="hyperlink">
                                 <i class="bi bi-discord link-secondary h4 me-1"></i><span
@@ -115,7 +110,7 @@
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.125);">
             © {{ now()->year }} Copyright:
             <span class="text-reset fw-bold">DochSergeantTV</span><br>
-            <a class="hyperlink text-reset" href="{{ route('privacypolicy') }}">Datenschutz | Cookie-Nutzung </a>
+            <a class="hyperlink text-reset" href="{{ route('privacypolicy') }}">@lang('footer.view.dataProtection') </a>
         </div>
 
     </footer>
