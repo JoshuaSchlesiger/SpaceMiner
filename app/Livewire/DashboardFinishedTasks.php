@@ -120,7 +120,7 @@ class DashboardFinishedTasks extends Component
                 $this->dispatch('showInfoMessageUser', 'User erfolgreich bezahlt!');
                 return;
             }
-            
+
             $this->dispatch('showInfoMessageUser', 'User teilweise erfolgreich bezahlt!');
         } else {
             $this->dispatch('showInfoMessageUser', 'Du hast keine Berechtigung, diesen User zu bezahlen.');
@@ -254,6 +254,7 @@ class DashboardFinishedTasks extends Component
         $this->combinableTasks = [];
         $this->selectedFinishedTask = [];
         $this->combinationMode = false;
+        $this->blockSelect = false;
     }
 
     #[On('blockCombination')]

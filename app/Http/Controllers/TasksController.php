@@ -65,7 +65,7 @@ class TasksController extends Controller
             ->first();
 
         if ($lastTask && now()->diffInSeconds($lastTask->created_at) < 30) {
-            return redirect()->back()->with('error', 'Sie können nur alle 30 Sekunden eine Aufgabe erstellen.');
+            return redirect()->back()->withInput($request->except('password'))->with('error', 'Sie können nur alle 30 Sekunden eine Aufgabe erstellen.');
         }
 
         $userInputs = $request->all();
