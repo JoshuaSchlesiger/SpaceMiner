@@ -6,7 +6,7 @@
                     <div class="row w-100">
                         <div class="col-3"></div>
                         <div class="col-8">
-                            <h1 class="modal-title fs-4">Auftrag wirklich löschen?</h1>
+                            <h1 class="modal-title fs-4">@lang('dashboard.view.modal.header')</h1>
                         </div>
                         <div class="col-1 my-auto">
                            <button type="button" class="btn-close modalClose" wire:click.prevent='closeModal()'></button>
@@ -17,10 +17,10 @@
 
                 <div class="modal-footer d-flex justify-content-evenly">
                     <div>
-                        <button type="button" class="btn btn-lg btn-danger message modalClose message" wire:click.prevent='deleteTask()'>Löschen</button>
+                        <button type="button" class="btn btn-lg btn-danger message modalClose message" wire:click.prevent='deleteTask()'>@lang('dashboard.view.modal.delete')</button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-lg btn-secondary modalClose" wire:click.prevent='closeModal()'>Abbrechen</button>
+                        <button type="button" class="btn btn-lg btn-secondary modalClose" wire:click.prevent='closeModal()'>@lang('dashboard.view.modal.cancel')</button>
                     </div>
                 </div>
         </div>

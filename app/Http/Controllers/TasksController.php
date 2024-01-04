@@ -120,7 +120,7 @@ class TasksController extends Controller
         $key = $request->ip(); // Verwende die IP-Adresse des Benutzers als Schlüssel
 
         $rateLimiter = app(RateLimiter::class);
-        $maxAttempts = 2;
+        $maxAttempts = 3;
         $decaySeconds = 30;
 
         $rateLimiter->hit($key, $decaySeconds);

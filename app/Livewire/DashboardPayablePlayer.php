@@ -11,6 +11,10 @@ use App\Models\TasksUsers;
 use App\Models\SellingStation;
 use Carbon\Carbon;
 use Livewire\Attributes\On;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Lang;
+
 
 class DashboardPayablePlayer extends Component
 {
@@ -115,12 +119,12 @@ class DashboardPayablePlayer extends Component
     public function resetSelectedPlayer(){
         $this->selectedPlayer = null;
     }
-   
-    
+
+
     #[On('showInfoMessageUser')]
     public function showInfoMessageUser($successMessage){
         $this->successMessage = $successMessage;
-    } 
+    }
     #endregion
 
     #region Taskarea
@@ -181,6 +185,9 @@ class DashboardPayablePlayer extends Component
         $this->validate();
         $selectedTaskOreArray = $this->ores[$this->selectedOre];
 
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+
         $allUnits = 0;
         foreach ($selectedTaskOreArray["units"] as $units) {
             $allUnits += $units;
@@ -213,7 +220,7 @@ class DashboardPayablePlayer extends Component
             $this->dispatch('renderFinishedTasks');
         }
 
-        $this->successMessage = 'Ore sold successfully!';
+        $this->successMessage = Lang::get('dashboard.controller.soldOre.success');
         $this->resetForm();
     }
 

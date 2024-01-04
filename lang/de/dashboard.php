@@ -39,4 +39,15 @@ return [
     'view.runningTask.ores' => 'Erze',
     'view.runningTask.playercount' => 'Anzahl Spieler',
     'view.runningTask.finishedOn' => 'Fertig am',
+
+    'controller.showInfoMessageUser.success' => 'Spieler erfolgreich bezahlt!',
+    'controller.showInfoMessageUser.success.part' => 'Spieler teilweise erfolgreich bezahlt!',
+    'controller.showInfoMessageUser.insufficientPermission' => 'Spieler erfolgreich bezahlt!',
+    'controller.showInfoMessageUser.selectedAmountID.select' => 'Bitte wählen Sie eine Option',
+
+    'controller.showInfoMessage.task.deleted' => 'Auftrag erfolgreich gelöscht!',
+    'controller.showInfoMessage.task.insufficientPermission' => 'Sie sind nicht berechtigt, diesen Auftrag zu löschen.',
+
+    'controller.soldOre.success' => 'Erz erfolgreich verkauft!',
+
 ];

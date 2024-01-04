@@ -6,6 +6,10 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tasks;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Lang;
+
 
 class DashboardModal extends Component
 {
@@ -34,6 +38,9 @@ class DashboardModal extends Component
     public function deleteTask()
     {
         if (Auth::check()) {
+            $locale = Session::get('app_locale', 'en');
+            App::setLocale($locale);
+
             // Holen Sie die Aufgabe basierend auf der übergebenen ID
             $task = Tasks::find($this->selectedTaskID);
 
@@ -42,16 +49,16 @@ class DashboardModal extends Component
                 // Führe hier den Löschvorgang durch
                 $task->delete();
                 if ($this->actionType === "runningTask") {
-                    $this->dispatch('showInfoMessage', 'Auftrag erfolgreich gelöscht!');
+                    $this->dispatch('showInfoMessage', Lang::get('dashboard.controller.showInfoMessage.task.deleted'));
                 } elseif ($this->actionType === "payablePlayer") {
-                    $this->dispatch('showInfoMessageUser', 'Auftrag erfolgreich gelöscht!');
+                    $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessage.task.deleted'));
                     $this->dispatch('renderFinishedTasks');
                 }
             } else {
                 if ($this->actionType === "runningTask") {
-                    $this->dispatch('showInfoMessage', 'Du hast keine Berechtigung, diese Auftrag zu löschen.');
+                    $this->dispatch('showInfoMessage', Lang::get('dashboard.controller.showInfoMessage.task.insufficientPermission'));
                 } elseif ($this->actionType === "payablePlayer") {
-                    $this->dispatch('showInfoMessageUser', 'Du hast keine Berechtigung, diese Auftrag zu löschen.');
+                    $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessage.task.insufficientPermission'));
                 }
             }
         }

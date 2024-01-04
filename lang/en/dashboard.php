@@ -39,4 +39,14 @@ return [
     'view.runningTask.ores' => 'Ores',
     'view.runningTask.playercount' => 'Headcount',
     'view.runningTask.finishedOn' => 'Finished on',
+
+    'controller.showInfoMessageUser.success' => 'User successfully paid!',
+    'controller.showInfoMessageUser.success.part' => 'User partially paid successfully!',
+    'controller.showInfoMessageUser.insufficientPermission' => 'User successfully paid!',
+    'controller.showInfoMessageUser.selectedAmountID.select' => 'Please select an option',
+
+    'controller.showInfoMessage.task.deleted' => 'Task successfully deleted!',
+    'controller.showInfoMessage.task.insufficientPermission' => 'You are not authorized to delete this order.',
+
+    'controller.soldOre.success' => 'Ore sold successfully!',
 ];

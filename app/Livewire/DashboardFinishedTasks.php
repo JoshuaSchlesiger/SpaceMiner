@@ -11,6 +11,10 @@ use Livewire\Component;
 use Carbon\Carbon;
 use Livewire\Attributes\Validate;
 use Livewire\Attributes\On;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Lang;
+
 
 class DashboardFinishedTasks extends Component
 {
@@ -86,23 +90,29 @@ class DashboardFinishedTasks extends Component
 
     public function fullpayUser()
     {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+
         foreach ($this->selectedUserPartAmountArray as $id => $amount) {
             $tasksUser = TasksUsers::find($id);
             if ($this->authorize('update', $tasksUser)) {
                 $tasksUser->paid = true;
                 $tasksUser->save();
-                $this->dispatch('showInfoMessageUser', 'User erfolgreich bezahlt!');
+                $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessageUser.success'));
                 $this->resetUserPayMode();
             } else {
-                $this->dispatch('showInfoMessageUser', 'Du hast keine Berechtigung, diesen User zu bezahlen.');
+                $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessageUser.insufficientPermission'));
             }
         }
     }
 
     public function selectedAmountPay()
     {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+
         if($this->selectedAmountID === null){
-            $this->addError('selectedAmountID', 'Please select an option');
+            $this->addError('selectedAmountID', Lang::get('dashboard.controller.selectedAmountID.select'));
             return;
         }
 
@@ -117,13 +127,13 @@ class DashboardFinishedTasks extends Component
 
             if(empty($this->selectedUserPartAmountArray)){
                 $this->resetUserPayMode();
-                $this->dispatch('showInfoMessageUser', 'User erfolgreich bezahlt!');
+                $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessageUser.success'));
                 return;
             }
 
-            $this->dispatch('showInfoMessageUser', 'User teilweise erfolgreich bezahlt!');
+            $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessageUser.success.part'));
         } else {
-            $this->dispatch('showInfoMessageUser', 'Du hast keine Berechtigung, diesen User zu bezahlen.');
+            $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessageUser.insufficientPermission'));
         }
     }
 
