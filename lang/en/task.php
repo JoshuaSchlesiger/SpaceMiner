@@ -42,6 +42,9 @@ return [
     'oldgroup.ratelimit' => 'Rate limit exceeded, just chill',
     'oldgroup.exists' => 'There are no old groups',
 
+    'ratelimit.task.create' => 'You can only create a task every 30 seconds.',
+    'task.create' => 'Task successfully created',
+
     'view.refinery' => 'Refinery',
     'view.refineryStation' => 'Refinery station',
     'view.method' => 'Method',

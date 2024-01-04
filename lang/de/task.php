@@ -42,6 +42,9 @@ return [
     'oldgroup.ratelimit' => 'Ratengrenze überschritten, einfach abwarten',
     'oldgroup.exists' => 'Es gibt keine alten Gruppen',
 
+    'ratelimit.task.create' => 'Sie können nur alle 30 Sekunden eine Aufgabe erstellen.',
+    'task.create' => 'Auftrag erfolgreich erstellt',
+
     'view.refinery' => 'Raffinerie',
     'view.refineryStation' => 'Raffineriestation',
     'view.method' => 'Methode',

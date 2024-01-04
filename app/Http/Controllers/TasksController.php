@@ -60,12 +60,15 @@ class TasksController extends Controller
 
     public function save(StoreTasksRequest $request)
     {
+        $locale = Session::get('app_locale', 'en');
+        App::setLocale($locale);
+
         $lastTask = Tasks::where('user_id', $request->user()->id)
             ->orderBy('created_at', 'desc')
             ->first();
 
         if ($lastTask && now()->diffInSeconds($lastTask->created_at) < 30) {
-            return redirect()->back()->withInput($request->except('password'))->with('error', 'Sie können nur alle 30 Sekunden eine Aufgabe erstellen.');
+            return redirect()->back()->withInput($request->except('password'))->with('error', Lang::get('task.ratelimit.task.create'));
         }
 
         $userInputs = $request->all();
@@ -105,7 +108,7 @@ class TasksController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return redirect()->route('task')->with('success', 'Das Formular wurde erfolgreich gesendet!');
+        return redirect()->route('task')->with('success', Lang::get('task.task.create'));
     }
 
     //Get old group
