@@ -43,21 +43,33 @@
                         <h6 class="text-uppercase fw-bold mb-4">
                             Navigation
                         </h6>
-                        <p>
-                            <a href="{{ route('dashboard') }}" class="hyperlink text-reset">Dashboard</a>
-                        </p>
-                        <p>
-                            <a href="{{ route('task') }}" class="hyperlink text-reset">@lang('footer.view.tasks')</a>
-                        </p>
-                        <p>
-                            <a href="{{ route('calculator') }}" class="hyperlink text-reset">@lang('footer.view.calculator')</a>
-                        </p>
-                        <p>
-                            <a href="{{ route('aboutme') }}" class="hyperlink text-reset">@lang('footer.view.aboutMe')</a>
-                        </p>
-                        <p>
-                            <a href="{{ route('login') }}" class="hyperlink text-reset">@lang('footer.view.login')</a>
-                        </p>
+
+                        @if (auth()->check())
+                            <p>
+                                <a href="{{ route('dashboard') }}" class="hyperlink text-reset">Dashboard</a>
+                            </p>
+                            <p>
+                                <a href="{{ route('task') }}" class="hyperlink text-reset">@lang('footer.view.tasks')</a>
+                            </p>
+                            <p>
+                                <a href="{{ route('logout') }}" class="hyperlink text-reset">@lang('footer.view.logout')</a>
+                            </p>
+                        @endif
+
+                        @if (auth()->guest())
+                            <p>
+                                <a href="{{ route('calculator') }}" class="hyperlink text-reset">@lang('footer.view.calculator')</a>
+                            </p>
+                            <p>
+                                <a href="{{ route('login') }}" class="hyperlink text-reset">@lang('footer.view.login')</a>
+                            </p>
+                            <p>
+                                <a href="{{ route('register') }}" class="hyperlink text-reset">@lang('footer.view.register')</a>
+                            </p>
+                            <p>
+                                <a href="{{ route('aboutme') }}" class="hyperlink text-reset">@lang('footer.view.aboutMe')</a>
+                            </p>
+                        @endif
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
