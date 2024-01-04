@@ -13,12 +13,12 @@
                                         class="bi bi-trash h5"></i></button>
                             </div>
                             <div class="col fs-4 my-auto">
-                                Verkaufen
+                                @lang('dashboard.view.payablePlayer.header2')
                             </div>
 
                             <div class="col text-end">
                                 <button type="button" class="btn btn-outline-warning"
-                                    wire:click.prevent="sendTaskToCombine()">Kombinieren</button>
+                                    wire:click.prevent="sendTaskToCombine()">@lang('dashboard.view.payablePlayer.combine')</button>
                             </div>
                         </div>
                     @else
@@ -29,7 +29,7 @@
                             </div>
 
                             <div class="col text-center fs-4 my-auto">
-                                Verkaufen
+                                @lang('dashboard.view.payablePlayer.header2')
                             </div>
 
                             <div class="col">
@@ -42,7 +42,7 @@
                     <div class="row align-items-center ms-2 me-2 mt-2" id="successMessage23">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-4 col-6 fs-4">
-                            <div class="text-white-50">Erzmetall:</div>
+                            <div class="text-white-50">@lang('dashboard.view.payablePlayer.oreType'):</div>
                         </div>
                         <div class="col-lg-4 col-6">
                             <div class="ms-2">
@@ -50,7 +50,7 @@
                                     wire:change="getSelectedOreUnits">
                                     @if (empty($selectedOre))
                                         <option value="" class="" hidden selected>
-                                            Bitte wählen
+                                            @lang('dashboard.view.payablePlayer.pleaseSelect')
                                         </option>
                                     @endif
                                     @foreach ($ores as $oreName => $ore)
@@ -71,7 +71,7 @@
                     <div class="row align-items-center ms-2 me-2 mt-2">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-4 col-6 fs-4">
-                            <div class="text-white-50">Einheiten:</div>
+                            <div class="text-white-50">@lang('dashboard.view.payablePlayer.units'):</div>
                         </div>
                         <div class="col-lg-4 col-6">
                             <div class="ms-2 fs-4 text-center">
@@ -83,13 +83,13 @@
                     <div class="row align-items-center ms-2 me-2 mt-2">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-4 col-6 fs-4">
-                            <div class="text-white-50">Verkaufsstation:</div>
+                            <div class="text-white-50">@lang('dashboard.view.payablePlayer.sellingStation'):</div>
                         </div>
                         <div class="col-lg-4 col-6">
                             <div class="ms-2">
                                 <select class="form-select text-center" wire:model="sellingStation">
                                     <option value="" class="" hidden selected>
-                                        Bitte wählen
+                                        @lang('dashboard.view.payablePlayer.pleaseSelect')
                                     </option>
                                     @foreach ($stations as $station)
                                         <option value="{{ $station['id'] }}">
@@ -109,7 +109,7 @@
                     <div class="row align-items-center ms-2 me-2 mt-2">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-4 col-6 fs-4">
-                            <div class="text-white-50">Verkaufspreis:</div>
+                            <div class="text-white-50">@lang('dashboard.view.payablePlayer.sellingPrice'):</div>
                         </div>
                         <div class="col-lg-4 col-6">
                             <div class="ms-2 ">
@@ -124,9 +124,9 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-evenly mt-3">
-                        <button type="submit" class="btn btn-outline-success btn-lg message">Speichern</button>
+                        <button type="submit" class="btn btn-outline-success btn-lg message">@lang('dashboard.view.payablePlayer.save')</button>
                         <button type="button" class="btn btn-outline-danger btn-lg message"
-                            wire:click='hideInformationMode()'>Abbrechen</button>
+                            wire:click='hideInformationMode()'>@lang('dashboard.view.payablePlayer.cancel')</button>
                     </div>
                     @if ($successMessage)
                         <div class="alert alert-success text-center mt-3" id="successMessage">
@@ -139,7 +139,7 @@
     @else
         <div>
             <div class="header-text card-header text-center fs-4">
-                Zu bezahlende Spieler
+                @lang('dashboard.view.payablePlayer.header')
             </div>
             <div class="card-body payablePlayerList">
                 @if ($successMessage)
@@ -151,11 +151,11 @@
                     <div class="row listItems align-items-center ms-2 me-2 @if ($selectedPlayer === $username) bg-info bg-opacity-25 @endif"
                         wire:click.prevent="setToUserPayMode('{{ $username }}')">
                         <div class="col row fs-5 d-flex justify-content-evenly">
-                            <div class="col-6 text-white-50 text-center">Spielername:</div>
+                            <div class="col-6 text-white-50 text-center">@lang('dashboard.view.payablePlayer.playername'):</div>
                             <div class="col text-info text-center">{{ $username }}</div>
                         </div>
                         <div class="col row fs-5 d-flex justify-content-evenly">
-                            <div class="col-4 text-white-50 text-center">Betrag:</div>
+                            <div class="col-4 text-white-50 text-center">@lang('dashboard.view.payablePlayer.amount'):</div>
                             <div class="col"><span
                                     class="text-danger">{{ number_format(round($playerValue[$username]), 0, ',', '.') }}</span><span>
                                     aUEC</span></div>
