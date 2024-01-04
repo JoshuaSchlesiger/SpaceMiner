@@ -28,6 +28,12 @@ $(function ($) {
 
 //#region Mitspieler
 
+$("#miner").on("keypress",function(event){
+    if (event.which === 13) {
+        $("#addMiner").trigger("click");
+    }
+  });
+
 $('#addMiner').on("click", function () {
     const miner = $('#miner');
     const minerValue = miner.val();
@@ -55,6 +61,12 @@ $('#delMiner').on('click', function () {
     const selectedOption2 = selectMinerHidden.find(`option[value="${selectedOption.val()}"]`);
     selectedOption2.remove();
 });
+
+$("#scouts").on("keypress",function(event){
+    if (event.which === 13) {
+        $("#addScouts").trigger("click");
+    }
+  });
 
 $('#addScouts').on("click", function () {
     const scouts = $('#scouts');
