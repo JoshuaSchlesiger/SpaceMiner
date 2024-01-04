@@ -291,89 +291,206 @@
                     </tr>
                 </thead>
                 <tbody id="oreTableEntries">
-                    <tr id="oreTableEntry">
-                        <th scope="row" class="w-50">
-                            <div class="d-flex justify-content-center">
-                                <select class="form-select text-center w-75 text-white-50 oreType"
-                                    id=selectOretype name="oreTypes[]">
-                                    <option value="" class="" hidden selected disabled>
-                                        @lang('task.view.pleaseSelect')</option>
-                                    @foreach ($ores as $ore)
-                                        @if ($loop->index < 1)
-                                            <option value={{ $ore->id }} class="text-success">
-                                                {{ $ore->name }}</option>
-                                        @elseif ($loop->index < 4)
-                                            <option value={{ $ore->id }} class="text-primary">
-                                                {{ $ore->name }}</option>
-                                        @elseif ($loop->index < 10)
-                                            <option value={{ $ore->id }} class="text-warning">
-                                                {{ $ore->name }}</option>
-                                        @elseif($loop->index < 17)
-                                            <option value={{ $ore->id }} class="text-danger">
-                                                {{ $ore->name }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                        </th>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <div class="w-75">
-                                    <input type="number" class="form-control oreUnit" placeholder=""
-                                        name="oreUnits[]">
+                    @if (null !== old('oreTypes'))
+                        @foreach (old('oreTypes') as $index => $oreTypeID)
+                            @if ($index === 0)
+                                <tr id="oreTableEntry">
+                                    <th scope="row" class="w-50">
+                                        <div class="d-flex justify-content-center">
+                                            <?php $selectedOre = $ores->firstWhere('id', $oreTypeID); ?>
+                                            <select
+                                                class="form-select text-center w-75 text-white-50 oreType"
+                                                id=selectOretype name="oreTypes[]">
+
+                                                <option value={{ $oreTypeID }} selected hidden>
+                                                    {{ $selectedOre->name }}</option>
+                                                @foreach ($ores as $ore)
+                                                    @if ($loop->index < 1)
+                                                        <option value={{ $ore->id }}
+                                                            class="text-success">
+                                                            {{ $ore->name }}</option>
+                                                    @elseif ($loop->index < 4)
+                                                        <option value={{ $ore->id }}
+                                                            class="text-primary">
+                                                            {{ $ore->name }}</option>
+                                                    @elseif ($loop->index < 10)
+                                                        <option value={{ $ore->id }}
+                                                            class="text-warning">
+                                                            {{ $ore->name }}</option>
+                                                    @elseif($loop->index < 17)
+                                                        <option value={{ $ore->id }}
+                                                            class="text-danger">
+                                                            {{ $ore->name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @php $oreUnits = old('oreUnits'); @endphp
+                                    </th>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="w-75">
+                                                <input type="number" class="form-control oreUnit"
+                                                    placeholder=""
+                                                    value="@php
+                                                    if (null !== old('oreUnits')){
+                                                        echo $oreUnits[$index];
+                                                    } @endphp"
+                                                    name="oreUnits[]">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button"
+                                                class="btn btn-outline-danger deletePart btn-sm">X</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <th scope="row" class="w-50">
+                                        <div class="d-flex justify-content-center">
+                                            <?php $selectedOre = $ores->firstWhere('id', $oreTypeID); ?>
+                                            <select
+                                                class="form-select text-center w-75 text-white-50 oreType"
+                                                id=selectOretype name="oreTypes[]">
+
+                                                <option value={{ $oreTypeID }} selected hidden>
+                                                    {{ $selectedOre->name }}</option>
+                                                @foreach ($ores as $ore)
+                                                    @if ($loop->index < 1)
+                                                        <option value={{ $ore->id }}
+                                                            class="text-success">
+                                                            {{ $ore->name }}</option>
+                                                    @elseif ($loop->index < 4)
+                                                        <option value={{ $ore->id }}
+                                                            class="text-primary">
+                                                            {{ $ore->name }}</option>
+                                                    @elseif ($loop->index < 10)
+                                                        <option value={{ $ore->id }}
+                                                            class="text-warning">
+                                                            {{ $ore->name }}</option>
+                                                    @elseif($loop->index < 17)
+                                                        <option value={{ $ore->id }}
+                                                            class="text-danger">
+                                                            {{ $ore->name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="w-75">
+                                                <input type="number" class="form-control oreUnit"
+                                                    placeholder=""
+                                                    value="@php
+                                                    if (null !== old('oreUnits')){
+                                                        echo $oreUnits[$index];
+                                                    } @endphp"
+                                                    name="oreUnits[]">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button"
+                                                class="btn btn-outline-danger deletePart btn-sm">X</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    @else
+                        <tr id="oreTableEntry">
+                            <th scope="row" class="w-50">
+                                <div class="d-flex justify-content-center">
+                                    <select class="form-select text-center w-75 text-white-50 oreType"
+                                        id=selectOretype name="oreTypes[]">
+                                        <option value="" class="" hidden selected disabled>
+                                            @lang('task.view.pleaseSelect')</option>
+                                        @foreach ($ores as $ore)
+                                            @if ($loop->index < 1)
+                                                <option value={{ $ore->id }} class="text-success">
+                                                    {{ $ore->name }}</option>
+                                            @elseif ($loop->index < 4)
+                                                <option value={{ $ore->id }} class="text-primary">
+                                                    {{ $ore->name }}</option>
+                                            @elseif ($loop->index < 10)
+                                                <option value={{ $ore->id }} class="text-warning">
+                                                    {{ $ore->name }}</option>
+                                            @elseif($loop->index < 17)
+                                                <option value={{ $ore->id }} class="text-danger">
+                                                    {{ $ore->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <button type="button"
-                                    class="btn btn-outline-danger deletePart btn-sm">X</button>
-                            </div>
-                        </td>
-                    </tr>
+                            </th>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <div class="w-75">
+                                        <input type="number" class="form-control oreUnit" placeholder=""
+                                            name="oreUnits[]">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <button type="button"
+                                        class="btn btn-outline-danger deletePart btn-sm">X</button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endisset
 
-                </tbody>
-            </table>
-            @error('oreTypes')
-                <span class="fst-italic text-danger" role="alert">
-                    {{ $message }}
-                </span>
-                <br>
-            @enderror
-            @error('oreUnits')
-                <span class="fst-italic text-danger" role="alert">
-                    {{ $message }}
-                </span>
-            @enderror
+            </tbody>
+        </table>
+        @error('oreTypes')
+            <span class="fst-italic text-danger" role="alert">
+                {{ $message }}
+            </span>
+            <br>
+        @enderror
+        @error('oreUnits')
+            <span class="fst-italic text-danger" role="alert">
+                {{ $message }}
+            </span>
+        @enderror
 
 
-            <div class="d-flex flex-row-reverse me-2 mt-4 mb-1">
-                <button type="button" class="btn btn-outline-success" id="btnAddOrePart">@lang('task.view.addPart')</button>
-            </div>
+        <div class="d-flex flex-row-reverse me-2 mt-4 mb-1">
+            <button type="button" class="btn btn-outline-success"
+                id="btnAddOrePart">@lang('task.view.addPart')</button>
         </div>
-
     </div>
+
+</div>
 </div>
 </div>
 
 <div class="d-flex justify-content-center mt-5">
 <div class="card">
-    <div class="card-body">
-        <div class="row ">
-            <div class="col-4">
-                <div class="d-flex justify-content-center"><button type="button"
-                        class="btn btn-outline-success btn-lg" id="btnSave">@lang('task.view.save')</button></div>
+<div class="card-body">
+    <div class="row ">
+        <div class="col-4">
+            <div class="d-flex justify-content-center"><button type="button"
+                    class="btn btn-outline-success btn-lg" id="btnSave">@lang('task.view.save')</button>
             </div>
-            <div class="col-4">
-                <div class="d-flex justify-content-center"><button type="button"
-                        class="btn btn-outline-info btn-lg" id="btnSaveToDashboard">@lang('task.view.saveToDashboard')</button></div>
-            </div>
-            <div class="col-4">
-                <div class="d-flex justify-content-center"><button type="button"
-                        class="btn btn-outline-warning btn-lg" id="btnReset">@lang('task.view.reset')</button></div>
+        </div>
+        <div class="col-4">
+            <div class="d-flex justify-content-center"><button type="button"
+                    class="btn btn-outline-info btn-lg"
+                    id="btnSaveToDashboard">@lang('task.view.saveToDashboard')</button></div>
+        </div>
+        <div class="col-4">
+            <div class="d-flex justify-content-center"><button type="button"
+                    class="btn btn-outline-warning btn-lg" id="btnReset">@lang('task.view.reset')</button>
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 </form>
