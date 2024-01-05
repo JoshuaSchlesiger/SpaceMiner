@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div class="col-sm-5 col-md-3 fs-5 d-flex justify-content-evenly">
-                        <div class="text-white-50">Erstellername:</div>
+                        <div class="text-white-50">Auftragbesitzer:</div>
                         <div class="ms-2 ">{{ $task['taskInfoUser']->name }}</div>
                     </div>
                     <div class="col-sm-5 col-md-3 fs-5 d-flex justify-content-evenly">
