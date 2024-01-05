@@ -18,15 +18,15 @@
                             @elseif ($blockSelect) bg-success bg-opacity-25 "
                             @else pulse " wire:click.prevent='combineTasks({{ $task['id'] }})' @endif>
 
-                        <div class="col-4 fs-5 d-flex justify-content-evenly">
+                        <div class="col-sm-10 col-md-4 fs-5 d-flex justify-content-evenly">
                             <div class="text-white-50">@lang('dashboard.view.finishedTask.station'):</div>
                             <div class="ms-2 text-info text-center">{{ $stations[$task['id']]->name }}</div>
                         </div>
-                        <div class="col-3 fs-5 d-flex justify-content-evenly">
+                        <div class="col-sm-10 col-md-3 fs-5 d-flex justify-content-evenly">
                             <div class="text-white-50">@lang('dashboard.view.finishedTask.playercount'):</div>
                             <div class="ms-2 text-info">{{ count($tasks_users[$task['id']]) }}</div>
                         </div>
-                        <div class="col-5 fs-5 d-flex justify-content-evenly">
+                        <div class="col-sm-10 col-md-5 fs-5 d-flex justify-content-evenly">
                             <div class="text-white-50">@lang('dashboard.view.finishedTask.ores'):</div>
                             <div class="ms-2 w-100">
                                 <select class="form-select text-center form-select-sm" onclick="event.stopPropagation()">
@@ -46,15 +46,15 @@
                             @if ($task['id'] == $selectedFinishedTaskID) bg-info bg-opacity-25"
                             @else " wire:click.prevent='showFinishedTaskInformation({{ $task['id'] }})' @endif>
 
-                            <div class="col-4 fs-5 d-flex justify-content-evenly">
+                            <div class="col-sm-10 col-md-4 fs-5 d-flex justify-content-evenly">
                                 <div class="text-white-50">@lang('dashboard.view.finishedTask.station'):</div>
                                 <div class="ms-2 text-info text-center">{{ $stations[$task['id']]->name }}</div>
                             </div>
-                            <div class="col-3 fs-5 d-flex justify-content-evenly">
+                            <div class="col-sm-10 col-md-3 fs-5 d-flex justify-content-evenly">
                                 <div class="text-white-50">@lang('dashboard.view.finishedTask.playercount'):</div>
                                 <div class="ms-2 text-info">{{ count($tasks_users[$task['id']]) }}</div>
                             </div>
-                            <div class="col-5 fs-5 d-flex justify-content-evenly">
+                            <div class="col-sm-10 col-md-5 fs-5 d-flex justify-content-evenly">
                                 <div class="text-white-50">@lang('dashboard.view.finishedTask.ores'):</div>
                                 <div class="ms-2 w-100">
                                     <select class="form-select text-center form-select-sm" onclick="event.stopPropagation()">
