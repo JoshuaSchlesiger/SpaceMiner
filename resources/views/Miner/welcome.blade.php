@@ -3,12 +3,15 @@
 
 @section('content')
     <header>
-        <div class="index-bg-text ">
-            <h1>@lang('welcome.view.header')</h1>
-            <p>@lang('welcome.view.subHeader')</p>
+        <div class="index-bg">
+            <div class="index-bg-text">
+                <h1>@lang('welcome.view.header')</h1>
+                <p>@lang('welcome.view.subHeader')</p>
+            </div>
+
+            <img class="index-bg-image" src="{{ url('/images/u-mining.png') }}" alt="Miningbild" title="Miningbild" />
         </div>
 
-        <img class="index-bg-image" src="{{url('/images/u-mining.png')}}" alt="Miningbild" title="Miningbild" />
     </header>
 
     <div class="row">
@@ -25,7 +28,8 @@
         </div>
         <div class="col-sm-6">
             <div class=" d-flex justify-content-center ">
-                <img src="{{url('/images/t-stone.png')}}" class="index-ustone" alt="Geiler Quantaniumstein ^^" title="Quantaniumstein">
+                <img src="{{ url('/images/t-stone.png') }}" class="index-ustone" alt="Geiler Quantaniumstein ^^"
+                    title="Quantaniumstein">
             </div>
         </div>
     </div>
