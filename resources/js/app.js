@@ -60,3 +60,9 @@ $('#languageForm').on('submit', function (e) {
 $(function () {
     setFavicon();
 });
+
+$("#username").on("keypress",function(event){
+    if (event.which === 13) {
+        $("#btnAddPlayer").trigger("click");
+    }
+  });
