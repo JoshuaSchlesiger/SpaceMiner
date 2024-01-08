@@ -20,14 +20,7 @@
         </div>
 
         <div class="card mt-4">
-            <div class="header-text card-header">
-                <div class="text-center fs-4">
-                    Laufende Aufträge
-                </div>
-            </div>
-            <div class="card-body">
-                @livewire('dashboard-running-tasks')
-            </div>
+            @livewire('dashboard-running-tasks')
         </div>
     </div>
 

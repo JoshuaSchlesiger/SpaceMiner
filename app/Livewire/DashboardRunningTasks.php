@@ -24,6 +24,7 @@ class DashboardRunningTasks extends Component
 
     public $taskOfOtherUsers = [];
 
+    #[On('renderRunningTasks')]
     public function render()
     {
         if (Auth::check()) {
@@ -38,6 +39,7 @@ class DashboardRunningTasks extends Component
             }
 
             if ($user->show_external_tasks) {
+                $this->taskOfOtherUsers = [];
                 $tasksIDsOfOther = TasksUsers::where("tasks_users.user_id", $user->id)
                     ->where("visability", true)
                     ->where("paid", false)
@@ -45,19 +47,12 @@ class DashboardRunningTasks extends Component
                     ->where('tasks.actualCompletionDate', '>', Carbon::now())
                     ->pluck('tasks_users.task_id');
 
-                $userData = json_decode($user->whitelisted_player, true);
-                $names = $userData['username'];
-
                 foreach ($tasksIDsOfOther as $taskID) {
 
                     $taskInfo = Tasks::find($taskID);
                     $taskInfoStation = Stations::find($taskInfo->station_id);
                     $taskInfoTasks_Ores = TasksOres::where("task_id", $taskID)->join("ores", "tasks_ores.ore_id", "ores.id")->get(["tasks_ores.units", "ores.name"]);
                     $taskInfoUser = User::find($taskInfo->user_id);
-
-                    if (in_array($taskInfoUser->name, $names)) {
-                        continue;
-                    }
 
                     $buffer = [];
                     $buffer[$taskID] = [];
@@ -68,6 +63,40 @@ class DashboardRunningTasks extends Component
                     $buffer[$taskID]["percentageCompletion"] = number_format(min((strtotime(Carbon::now()->toDateTimeString()) - strtotime($taskInfo->created_at)) / (strtotime($taskInfo->actualCompletionDate) - strtotime($taskInfo->created_at)) * 100, 100));
                     $this->taskOfOtherUsers[$taskID] = $buffer[$taskID];
                 }
+            } else {
+                $this->taskOfOtherUsers = [];
+                $tasksIDsOfOther = TasksUsers::where("tasks_users.user_id", $user->id)
+                    ->where("visability", true)
+                    ->where("paid", false)
+                    ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
+                    ->where('tasks.actualCompletionDate', '>', Carbon::now())
+                    ->pluck('tasks_users.task_id');
+
+                $userData = json_decode($user->whitelisted_player, true);
+                if(!empty($userData)){
+                    $names = $userData['username'];
+
+                    foreach ($tasksIDsOfOther as $taskID) {
+
+                        $taskInfo = Tasks::find($taskID);
+                        $taskInfoStation = Stations::find($taskInfo->station_id);
+                        $taskInfoTasks_Ores = TasksOres::where("task_id", $taskID)->join("ores", "tasks_ores.ore_id", "ores.id")->get(["tasks_ores.units", "ores.name"]);
+                        $taskInfoUser = User::find($taskInfo->user_id);
+
+                        if (!in_array($taskInfoUser->name, $names)) {
+                            continue;
+                        }
+
+                        $buffer = [];
+                        $buffer[$taskID] = [];
+                        $buffer[$taskID]["taskInfo"] = $taskInfo;
+                        $buffer[$taskID]["taskInfoStation"] = $taskInfoStation;
+                        $buffer[$taskID]["taskInfoTasks_Ores"] = $taskInfoTasks_Ores;
+                        $buffer[$taskID]["taskInfoUser"] = $taskInfoUser;
+                        $buffer[$taskID]["percentageCompletion"] = number_format(min((strtotime(Carbon::now()->toDateTimeString()) - strtotime($taskInfo->created_at)) / (strtotime($taskInfo->actualCompletionDate) - strtotime($taskInfo->created_at)) * 100, 100));
+                        $this->taskOfOtherUsers[$taskID] = $buffer[$taskID];
+                    }
+                }
             }
         }
 
@@ -77,9 +106,12 @@ class DashboardRunningTasks extends Component
     public function showModal($taskID, $actionType)
     {
         $this->successMessage = '';
-        if (!array_key_exists($taskID, $this->percentageCompletion)) {
-            return;
+        if($actionType !=  "runningTaskOther") {
+            if (!array_key_exists($taskID, $this->percentageCompletion)) {
+                return;
+            }
         }
+
         $this->dispatch('showModal', $taskID, $actionType);
     }
 

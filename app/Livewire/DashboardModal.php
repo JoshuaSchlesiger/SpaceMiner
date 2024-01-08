@@ -9,6 +9,8 @@ use App\Models\Tasks;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Lang;
+use App\Models\TasksUsers;
+use Illuminate\Support\Facades\Gate;
 
 
 class DashboardModal extends Component
@@ -44,21 +46,26 @@ class DashboardModal extends Component
             // Holen Sie die Aufgabe basierend auf der übergebenen ID
             $task = Tasks::find($this->selectedTaskID);
 
-            // Überprüfe, ob der Benutzer die Berechtigung zum Löschen der Aufgabe hat
-            if ($this->authorize('delete', $task)) {
-                // Führe hier den Löschvorgang durch
-                $task->delete();
-                if ($this->actionType === "runningTask") {
-                    $this->dispatch('showInfoMessage', Lang::get('dashboard.controller.showInfoMessage.task.deleted'));
-                } elseif ($this->actionType === "payablePlayer") {
-                    $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessage.task.deleted'));
-                    $this->dispatch('renderFinishedTasks');
-                }
+            if ($this->actionType === "runningTaskOther") {
+                TasksUsers::where("username", Auth::user()->name)->where("task_id", $task->id)->update(['visability' => 0]);
+                $this->dispatch('renderRunningTasks');
             } else {
-                if ($this->actionType === "runningTask") {
-                    $this->dispatch('showInfoMessage', Lang::get('dashboard.controller.showInfoMessage.task.insufficientPermission'));
-                } elseif ($this->actionType === "payablePlayer") {
-                    $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessage.task.insufficientPermission'));
+                // Überprüfe, ob der Benutzer die Berechtigung zum Löschen der Aufgabe hat
+                if (!Gate::denies('delete', $task)) {
+                    // Führe hier den Löschvorgang durch
+                    $task->delete();
+                    if ($this->actionType === "runningTask") {
+                        $this->dispatch('showInfoMessage', Lang::get('dashboard.controller.showInfoMessage.task.deleted'));
+                    } elseif ($this->actionType === "payablePlayer") {
+                        $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessage.task.deleted'));
+                        $this->dispatch('renderFinishedTasks');
+                    }
+                } else {
+                    if ($this->actionType === "runningTask") {
+                        $this->dispatch('showInfoMessage', Lang::get('dashboard.controller.showInfoMessage.task.insufficientPermission'));
+                    } elseif ($this->actionType === "payablePlayer") {
+                        $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessage.task.insufficientPermission'));
+                    }
                 }
             }
         }

@@ -4,9 +4,9 @@
         <div class="modal-dialog modal-content">
                 <div class="modal-header bg-opacity-75 w-100">
                     <div class="row w-100">
-                        <div class="col-3"></div>
-                        <div class="col-8">
-                            <h1 class="modal-title fs-4">@lang('dashboard.view.modal.header')</h1>
+                        <div class="col-2"></div>
+                        <div class="col-9">
+                            <h1 class="modal-title fs-4 text-center">@lang('dashboard.view.modal.header')</h1>
                         </div>
                         <div class="col-1 my-auto">
                            <button type="button" class="btn-close modalClose" wire:click.prevent='closeModal()'></button>
