@@ -330,8 +330,8 @@
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <div class="w-75">
-                                                <input type="number" class="form-control oreUnit"
-                                                    placeholder=""
+                                                <input type="number" min="1" class="form-control oreUnit"
+                                                    placeholder="cSCU"
                                                     value="@php
                                                     if (null !== old('oreUnits')){
                                                         echo $oreUnits[$index];
@@ -383,8 +383,8 @@
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <div class="w-75">
-                                                <input type="number" class="form-control oreUnit"
-                                                    placeholder=""
+                                                <input min="1" type="number" class="form-control oreUnit"
+                                                    placeholder="cSCU"
                                                     value="@php
                                                     if (null !== old('oreUnits')){
                                                         echo $oreUnits[$index];
@@ -431,7 +431,7 @@
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <div class="w-75">
-                                        <input type="number" class="form-control oreUnit" placeholder=""
+                                        <input type="number" min="1" class="form-control oreUnit" placeholder="cSCU"
                                             name="oreUnits[]">
                                     </div>
                                 </div>

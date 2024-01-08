@@ -115,7 +115,6 @@ class DashboardPayablePlayer extends Component
         $this->dispatch('setToUserPayMode', $username, $this->payablePlayer[$username]);
     }
 
-    #[On('resetSelectedPlayer')]
     public function resetSelectedPlayer(){
         $this->selectedPlayer = null;
     }

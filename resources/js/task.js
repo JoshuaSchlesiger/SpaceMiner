@@ -170,7 +170,11 @@ $("#oreTableEntries").on("click", ".deletePart", function () {
     if ($(this).closest("tr").attr("id") === undefined) {
         $(this).closest("tr").remove();
     } else {
-        alert("Es muss mindestens ein Erz geben");
+        let select = $(this).closest("tr");
+        select.find("select:first option:disabled").prop("selected", true);
+
+        let input = $(this).closest("tr");
+        input.find("input:first").val("");
     }
 });
 
@@ -182,8 +186,6 @@ $('#btnAddOrePart').on('click', function () {
     copy.removeAttr("id");
 
     $("#oreTableEntries").append(copy);
-
-
 });
 
 //#endregion
@@ -215,10 +217,7 @@ btnReset.on("click", function () {
 });
 
 function resetForm() {
-    refineryStaion.prop("selectedIndex", 0);
-    method.prop("selectedIndex", 0);
-    costs.val("");
-    duration.val("");
+    location.reload();
 }
 
 btnSave.on("click", function () {
