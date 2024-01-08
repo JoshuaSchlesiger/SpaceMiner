@@ -1,0 +1,7 @@
+#passwordEye {
+    font-size: 14px;
+}
+
+#btnShowPassword:hover {
+    border-color: white !important;
+}

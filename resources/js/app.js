@@ -66,3 +66,18 @@ $("#username").on("keypress",function(event){
         $("#btnAddPlayer").trigger("click");
     }
   });
+
+let passwordSee = false;
+$('#btnShowPassword').on("click", function(event){
+    if(passwordSee) {
+        $('#passwordEye').css("color", "gray");
+        $('#password').prop('type', 'password');
+        this.style.backgroundColor = "transparent";
+        passwordSee = false;
+    }else {
+        $('#passwordEye').css("color", "white");
+        this.style.backgroundColor = "rgba(173, 181, 189, 0.3)";
+        $('#password').prop('type', 'text');
+        passwordSee = true;
+    }
+});

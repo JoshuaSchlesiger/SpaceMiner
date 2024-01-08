@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/calculator.js',
                 'resources/css/calculator.css',
+                'resources/css/auth.css',
                 'resources/css/dashboard.css',
                 'resources/css/welcome.css',
                 'resources/css/task.css',

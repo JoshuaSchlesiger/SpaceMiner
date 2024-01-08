@@ -12,8 +12,7 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">@lang('auth.view.login.email'):</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-end">@lang('auth.view.login.email'):</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -29,13 +28,15 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">@lang('auth.view.login.password'):</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-end">@lang('auth.view.login.password'):</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="current-password">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                            id="password" required autocomplete="current-password" name="password">
+                                        <button class="btn btn-outline-secondary" type="button" id="btnShowPassword"><i
+                                                class="bi bi-eye" id="passwordEye"></i></button>
+                                    </div>
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
