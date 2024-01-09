@@ -46,7 +46,20 @@ $("#inputTableBodyRock").on("click", ".deletePart", function () {
         $(this).closest("tr").remove();
         sendDataAndShow(getAllInputs());
     } else {
-        alert("Es kann nur gelöscht werden, wenn mehr als eine Zeile vorhanden ist.");
+
+        let select = $(this).closest("tr");
+        select.find("select:first option:disabled").prop("selected", true);
+
+        let input = $(this).closest("tr");
+        input.find("input:first").val("");
+
+
+        $("#costs").text(formatNumber(0));
+        $("#refinedProfit").text(formatNumber(0));
+        $("#duration").text(formatMinToMinAndHorus(0));
+        $("#unitCount").text(formatNumber(0));
+        $("#valuableMass").text(formatNumber(0));
+        $("#rawProfit").text(formatNumber(0));
     }
 
 });

@@ -16,6 +16,8 @@ const btnSave = $('#btnSave');
 const btnSaveToDashboard = $('#btnSaveToDashboard');
 const btnReset = $('#btnReset');
 
+const language = $('.language');
+
 
 $(document).on("load", function () {
     $('#selectMiner option').prop('selected', false);
@@ -39,7 +41,12 @@ $('#addMiner').on("click", function () {
     const minerValue = miner.val();
 
     if(minerValue == ""){
-        showBootstrapAlert('danger', 'Miner feld darf nicht leer sein!');
+        if(language.text().trim() === 'DE') {
+            showBootstrapAlert('danger', 'Miner feld darf nicht leer sein!');
+        }
+        else{
+            showBootstrapAlert('danger', 'Miner field must not be empty!');
+        }
         return;
     }
 
@@ -48,7 +55,12 @@ $('#addMiner').on("click", function () {
         selectMiner.append(createOption(minerValue));
         selectMinerHidden.append(createOption(minerValue));
     } else {
-        showBootstrapAlert('danger', 'Miner bereits vorhanden!');
+        if(language.text().trim() === 'DE') {
+            showBootstrapAlert('danger', 'Miner bereits vorhanden!');
+        }
+        else{
+            showBootstrapAlert('danger', 'Miner already available!');
+        }
     }
 
     miner.val("");
@@ -73,7 +85,12 @@ $('#addScouts').on("click", function () {
     const scoutsValue = scouts.val();
 
     if(scoutsValue == ""){
-        showBootstrapAlert('danger', 'Scout feld darf nicht leer sein!');
+        if(language.text().trim() === 'DE') {
+            showBootstrapAlert('danger', 'Scout feld darf nicht leer sein!');
+        }
+        else{
+            showBootstrapAlert('danger', 'Scout field must not be empty!');
+        }
         return;
     }
 
@@ -81,7 +98,12 @@ $('#addScouts').on("click", function () {
         selectScouts.append(createOption(scoutsValue));
         selectScoutsHidden.append(createOption(scoutsValue));
     } else {
-        showBootstrapAlert('danger', 'Scout bereits vorhanden!');
+        if(language.text().trim() === 'DE') {
+            showBootstrapAlert('danger', 'Scout bereits vorhanden!');
+        }
+        else{
+            showBootstrapAlert('danger', 'Scout already available!');
+        }
     }
 
     scouts.val("");
