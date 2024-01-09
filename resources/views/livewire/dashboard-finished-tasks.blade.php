@@ -75,7 +75,7 @@
             @if (!empty($taskOfOtherUsers))
             <div class="header-text card-header mb-3 border-top">
                 <div class="text-center fs-4">
-                    Geteilte abgeschlossene Aufträge
+                    @lang('dashboard.view.sharedFinishedTask.header')
                 </div>
             </div>
             <div class="card-body finishedTaskListShared">

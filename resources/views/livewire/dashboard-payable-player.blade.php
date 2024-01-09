@@ -24,7 +24,8 @@
                     @else
                         <div class="row">
                             <div class="col text-start">
-                                <button type="button" id="deleteTask" wire:click.prevent="deleteTask('payablePlayer')" class="btn btn-outline-danger trash-button btn-sm"><i
+                                <button type="button" id="deleteTask" wire:click.prevent="deleteTask('payablePlayer')"
+                                    class="btn btn-outline-danger trash-button btn-sm"><i
                                         class="bi bi-trash h5"></i></button>
                             </div>
 
@@ -164,6 +165,31 @@
                     <hr>
                 @endforeach
             </div>
+
+            @if (!empty($taskOfOtherUsers))
+                <div class="header-text card-header text-center fs-4 border-top">
+                    @lang('dashboard.view.sharedPayablePlayer.header')
+                </div>
+                <div class="card-body payablePlayerListShared">
+                    @foreach ($taskOfOtherUsers as $id => $info)
+                        <div class="row listItems align-items-center ms-2 me-2"
+                            wire:click.prevent='showModal({{ $id }}, "payablePlayer")'>
+                            <div class="col row fs-5 d-flex justify-content-evenly">
+                                <div class="col-6 text-white-50 text-center">@lang('dashboard.view.payablePlayer.creatorName'):</div>
+                                <div class="col text-info text-center">{{ $info["creator"] }}</div>
+                            </div>
+                            <div class="col row fs-5 d-flex justify-content-evenly">
+                                <div class="col-4 text-white-50 text-center">@lang('dashboard.view.payablePlayer.amount'):</div>
+                                <div class="col"><span class="text-success">
+                                        {{ number_format(round($info["amount"]), 0, ',', '.') }}</span>
+                                        <span>aUEC</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    @endforeach
+                </div>
+            @endif
         </div>
     @endif
 

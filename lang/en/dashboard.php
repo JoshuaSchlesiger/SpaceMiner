@@ -5,6 +5,7 @@ return [
     'view.taskCreator' => 'Creator',
 
     'view.finishedTask.header' => 'Completed tasks',
+    'view.sharedFinishedTask.header' => 'Completed shared tasks',
     'view.finishedTask.headerCombine' => 'Combinable tasks',
     'view.finishedTask.station' => 'Station',
     'view.finishedTask.playercount' => 'Headcount',
@@ -20,7 +21,9 @@ return [
     'view.finishedTask.cancel' => 'Cancel',
 
     'view.payablePlayer.header' => 'Players for payment',
+    'view.sharedPayablePlayer.header' => 'Incoming paiments',
     'view.payablePlayer.playername' => 'Player name',
+    'view.payablePlayer.creatorName' => 'Creator',
     'view.payablePlayer.amount' => 'Amount',
 
     'view.payablePlayer.header2' => 'Sell',
@@ -37,6 +40,8 @@ return [
     'view.modal.delete' => 'Delete',
     'view.modal.cancel' => 'Cancel',
 
+    'view.runningTask.header' => 'Current tasks',
+    'view.sharedRunningTask.header' => 'Current shared tasks',
     'view.runningTask.station' => 'Station',
     'view.runningTask.ores' => 'Ores',
     'view.runningTask.playercount' => 'Headcount',

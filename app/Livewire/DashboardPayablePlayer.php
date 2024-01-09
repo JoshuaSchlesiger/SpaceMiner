@@ -14,6 +14,7 @@ use Livewire\Attributes\On;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Lang;
+use App\Models\User;
 
 
 class DashboardPayablePlayer extends Component
@@ -39,6 +40,8 @@ class DashboardPayablePlayer extends Component
     public $selectedTaskID = null;
 
     public $selectedPlayer = null;
+
+    public $taskOfOtherUsers = [];
 
     #[On('renderPayablePlayer')]
     public function render()
@@ -102,13 +105,137 @@ class DashboardPayablePlayer extends Component
                     }
                 }
             }
+
+            if ($user->show_external_tasks) {
+                $this->taskOfOtherUsers = [];
+                $tasksUsers = TasksUsers::where("tasks_users.user_id", $user->id)
+                    ->where("visability", true)
+                    ->where("paid", false)
+                    ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
+                    ->where('tasks.actualCompletionDate', '<', Carbon::now())
+                    ->pluck('tasks_users.id');
+
+                foreach ($tasksUsers as $id) {
+
+                    $tasksUser = TasksUsers::find($id);
+                    $task = Tasks::find($tasksUser->task_id);
+                    $taskCreator = User::where("id", $task->user_id)->pluck("name")->first();
+
+                    $this->taskOfOtherUsers[$id] = [];
+                    $this->taskOfOtherUsers[$id]["creator"] = $taskCreator;
+
+                    $task_ores_values = TasksOres::where("task_id", $tasksUser->task_id)
+                        ->pluck("selling_value")
+                        ->toArray();
+
+                    if (in_array(null, $task_ores_values) || empty($task_ores_values)) {
+                        continue;
+                    }
+
+                    $payableMinerCount = TasksUsers::where("task_id", $tasksUser->task_id)
+                        ->where("type", "miner")
+                        ->count();
+
+                    $payableScoutsCount = TasksUsers::where("task_id", $tasksUser->task_id)
+                        ->where("type", "scout")
+                        ->count();
+
+                    $profit = ($task["actualProceeds"] - $task["actualCosts"]);
+
+                    if ($payableScoutsCount > 0) {
+                        $profitPerScout = $profit * ((100 - $task["minerRation"]) / 100) / $payableScoutsCount;
+                        $profitPerMiner = $profit * ($task["minerRation"] / 100) / $payableMinerCount;
+                    } else {
+                        $profitPerScout = 0;
+                        $profitPerMiner = $profit / $payableMinerCount;
+                    }
+                    $this->taskOfOtherUsers[$id]["amount"] = 0;
+
+                    if ($tasksUser->type === "miner") {
+                        $this->taskOfOtherUsers[$id]["amount"] = $profitPerMiner;
+                    } else {
+                        $this->taskOfOtherUsers[$id]["amount"] = $profitPerScout;
+                    }
+                }
+            } else {
+                $this->taskOfOtherUsers = [];
+
+                $userData = json_decode($user->whitelisted_player, true);
+
+                if (!empty($userData)) {
+                    $this->taskOfOtherUsers = [];
+
+                    $names = $userData['username'];
+
+                    $tasksUsers = TasksUsers::where("tasks_users.user_id", $user->id)
+                        ->where("visability", true)
+                        ->where("paid", false)
+                        ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
+                        ->where('tasks.actualCompletionDate', '<', Carbon::now())
+                        ->pluck('tasks_users.id');
+
+                    foreach ($tasksUsers as $id) {
+
+                        $tasksUser = TasksUsers::find($id);
+                        $task = Tasks::find($tasksUser->task_id);
+                        $taskCreator = User::where("id", $task->user_id)->pluck("name")->first();
+
+                        if (!in_array($taskCreator, $names)) {
+                            continue;
+                        }
+
+                        $this->taskOfOtherUsers[$id] = [];
+                        $this->taskOfOtherUsers[$id]["creator"] = $taskCreator;
+
+                        $task_ores_values = TasksOres::where("task_id", $tasksUser->task_id)
+                            ->pluck("selling_value")
+                            ->toArray();
+
+                        if (in_array(null, $task_ores_values) || empty($task_ores_values)) {
+                            continue;
+                        }
+
+                        $payableMinerCount = TasksUsers::where("task_id", $tasksUser->task_id)
+                            ->where("type", "miner")
+                            ->count();
+
+                        $payableScoutsCount = TasksUsers::where("task_id", $tasksUser->task_id)
+                            ->where("type", "scout")
+                            ->count();
+
+                        $profit = ($task["actualProceeds"] - $task["actualCosts"]);
+
+                        if ($payableScoutsCount > 0) {
+                            $profitPerScout = $profit * ((100 - $task["minerRation"]) / 100) / $payableScoutsCount;
+                            $profitPerMiner = $profit * ($task["minerRation"] / 100) / $payableMinerCount;
+                        } else {
+                            $profitPerScout = 0;
+                            $profitPerMiner = $profit / $payableMinerCount;
+                        }
+                        $this->taskOfOtherUsers[$id]["amount"] = 0;
+
+                        if ($tasksUser->type === "miner") {
+                            $this->taskOfOtherUsers[$id]["amount"] = $profitPerMiner;
+                        } else {
+                            $this->taskOfOtherUsers[$id]["amount"] = $profitPerScout;
+                        }
+                    }
+                }
+            }
         }
         return view('livewire.dashboard-payable-player');
     }
 
+    public function showModal($taskID, $actionType)
+    {
+        $this->successMessage = '';
+        $this->dispatch('showModal', $taskID, $actionType);
+    }
+
     #region Userarea
-    public function setToUserPayMode($username){
-        if(!array_key_exists($username, $this->payablePlayer)){
+    public function setToUserPayMode($username)
+    {
+        if (!array_key_exists($username, $this->payablePlayer)) {
             return;
         }
         $this->selectedPlayer = $username;
@@ -116,13 +243,15 @@ class DashboardPayablePlayer extends Component
         $this->dispatch('setToUserPayMode', $username, $this->payablePlayer[$username]);
     }
 
-    public function resetSelectedPlayer(){
+    public function resetSelectedPlayer()
+    {
         $this->selectedPlayer = null;
     }
 
 
     #[On('showInfoMessageUser')]
-    public function showInfoMessageUser($successMessage){
+    public function showInfoMessageUser($successMessage)
+    {
         $this->successMessage = $successMessage;
     }
     #endregion
@@ -141,7 +270,7 @@ class DashboardPayablePlayer extends Component
         $this->selectedOreUnits = 0;
         $this->selectedOre = null;
 
-        if(!empty($tasksInformations[0])){
+        if (!empty($tasksInformations[0])) {
             $this->selectedTaskID = $tasksInformations[0]["task"]["id"];
         }
 

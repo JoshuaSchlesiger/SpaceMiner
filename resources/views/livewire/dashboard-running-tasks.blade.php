@@ -7,7 +7,7 @@
     <div>
         <div class="header-text card-header">
             <div class="text-center fs-4">
-                Laufende Aufträge
+                @lang('dashboard.view.runningTask.header')
             </div>
         </div>
         <div class="card-body">
@@ -61,7 +61,7 @@
         @if (!empty($taskOfOtherUsers))
             <div class="header-text card-header mb-3 border-top">
                 <div class="text-center fs-4">
-                    Geteilte laufende Aufträge
+                    @lang('dashboard.view.sharedRunningTask.header')
                 </div>
             </div>
             <div class="card-body">

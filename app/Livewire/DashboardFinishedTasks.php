@@ -114,12 +114,18 @@ class DashboardFinishedTasks extends Component
                         ->where('tasks.actualCompletionDate', '<', Carbon::now())
                         ->pluck('tasks_users.task_id');
 
-                    $names = $userData['username'];;
+                    $names = $userData['username'];
                     foreach ($tasksIDsOfOther as $taskID) {
 
                         $task_ores_values = TasksOres::where("task_id", $taskID)
                             ->pluck("selling_value")
                             ->toArray();
+
+                        $taskInfo = Tasks::find($taskID);
+                        $taskInfoUser = User::find($taskInfo->user_id);
+                        if (!in_array($taskInfoUser->name, $names)) {
+                            continue;
+                        }
 
                         if (!in_array(null, $task_ores_values) && !empty($task_ores_values)) {
                             continue;
@@ -148,7 +154,6 @@ class DashboardFinishedTasks extends Component
         }
         return view('livewire.dashboard-finished-tasks');
     }
-
 
     public function showModal($taskID, $actionType)
     {

@@ -5,6 +5,7 @@ return [
     'view.taskCreator' => 'Ersteller',
 
     'view.finishedTask.header' => 'Abgeschlossene Aufträge',
+    'view.sharedFinishedTask.header' => 'Geteilte abgeschlossene Aufträge',
     'view.finishedTask.headerCombine' => 'Kombinierbare Aufträge',
     'view.finishedTask.station' => 'Station',
     'view.finishedTask.playercount' => 'Spieleranzahl',
@@ -20,7 +21,9 @@ return [
     'view.finishedTask.cancel' => 'Abbrechen',
 
     'view.payablePlayer.header' => 'Spieler zur Zahlung',
+    'view.sharedPayablePlayer.header' => 'Einkommende Zahlungen',
     'view.payablePlayer.playername' => 'Spielername',
+    'view.payablePlayer.creatorName' => 'Ersteller',
     'view.payablePlayer.amount' => 'Betrag',
 
     'view.payablePlayer.header2' => 'Verkaufen',
@@ -37,6 +40,8 @@ return [
     'view.modal.delete' => 'Löschen',
     'view.modal.cancel' => 'Abbrechen',
 
+    'view.runningTask.header' => 'Laufende Aufträge',
+    'view.sharedRunningTask.header' => 'Laufende geteilte Aufträge',
     'view.runningTask.station' => 'Station',
     'view.runningTask.ores' => 'Erze',
     'view.runningTask.playercount' => 'Anzahl Spieler',
