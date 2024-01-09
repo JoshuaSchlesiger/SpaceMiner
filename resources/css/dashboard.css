@@ -4,6 +4,12 @@
     overflow: auto;
 }
 
+.finishedTaskListShared{
+    min-height: 0;
+    max-height: 200px;
+    overflow: auto;
+}
+
 .payablePlayerList {
     min-height: 395px;
     max-height: 395px;
@@ -58,7 +64,7 @@
     z-index: 9999;
     display: block;
   }
-  
+
    .modal-content {
     position: absolute;
     top: 50%;

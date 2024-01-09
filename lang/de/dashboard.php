@@ -2,6 +2,8 @@
 
 return [
 
+    'view.taskCreator' => 'Ersteller',
+
     'view.finishedTask.header' => 'Abgeschlossene Aufträge',
     'view.finishedTask.headerCombine' => 'Kombinierbare Aufträge',
     'view.finishedTask.station' => 'Station',
@@ -46,6 +48,7 @@ return [
     'controller.showInfoMessageUser.selectedAmountID.select' => 'Bitte wählen Sie eine Option',
 
     'controller.showInfoMessage.task.deleted' => 'Auftrag erfolgreich gelöscht!',
+    'controller.showInfoMessage.task.hidden' => 'Der Auftrag wurde erfolgreich versteckt!',
     'controller.showInfoMessage.task.insufficientPermission' => 'Sie sind nicht berechtigt, diesen Auftrag zu löschen.',
 
     'controller.soldOre.success' => 'Erz erfolgreich verkauft!',

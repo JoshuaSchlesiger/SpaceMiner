@@ -59,9 +59,9 @@
         </div>
 
         @if (!empty($taskOfOtherUsers))
-            <div class="header-text card-header mb-3">
+            <div class="header-text card-header mb-3 border-top">
                 <div class="text-center fs-4">
-                    Geteilte Aufträge
+                    Geteilte laufende Aufträge
                 </div>
             </div>
             <div class="card-body">
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-5 col-md-3 fs-5 d-flex justify-content-evenly">
-                                <div class="text-white-50">Auftragbesitzer:</div>
+                                <div class="text-white-50">@lang('dashboard.view.taskCreator'):</div>
                                 <div class="ms-2 ">{{ $task['taskInfoUser']->name }}</div>
                             </div>
                             <div class="col-sm-5 col-md-3 fs-5 d-flex justify-content-evenly">

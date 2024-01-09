@@ -40,6 +40,7 @@ class DashboardPayablePlayer extends Component
 
     public $selectedPlayer = null;
 
+    #[On('renderPayablePlayer')]
     public function render()
     {
         if (Auth::check()) {

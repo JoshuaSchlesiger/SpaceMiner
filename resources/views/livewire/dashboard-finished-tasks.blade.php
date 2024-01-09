@@ -71,6 +71,41 @@
                     @endforeach
                 @endforelse
             </div>
+
+            @if (!empty($taskOfOtherUsers))
+            <div class="header-text card-header mb-3 border-top">
+                <div class="text-center fs-4">
+                    Geteilte abgeschlossene Aufträge
+                </div>
+            </div>
+            <div class="card-body finishedTaskListShared">
+                @foreach ($taskOfOtherUsers as $id => $task)
+                    <div class="row listItems align-items-center ms-2 me-2" wire:click.prevent='showModal({{ $id }}, "runningTaskOther")'>
+                        <div class="col-sm-10 col-md-4 fs-5 d-flex justify-content-evenly">
+                            <div class="text-white-50">@lang('dashboard.view.finishedTask.station'):</div>
+                            <div class="ms-2 text-info text-center">{{ $task['taskInfoStation']->name }}</div>
+                        </div>
+                        <div class="col-sm-10 col-md-3 fs-5 d-flex justify-content-evenly">
+                            <div class="text-white-50">@lang('dashboard.view.taskCreator'):</div>
+                            <div class="ms-2 ">{{ $task['taskInfoUser']->name }}</div>
+                        </div>
+                        <div class="col-sm-10 col-md-5 fs-5 d-flex justify-content-evenly">
+                            <div class="text-white-50">@lang('dashboard.view.finishedTask.ores'):</div>
+                            <div class="ms-2 w-100">
+                                <select class="form-select text-center form-select-sm" onclick="event.stopPropagation()">
+                                    @foreach ($task['taskInfoTasks_Ores'] as $task_ore)
+                                        <option>
+                                            {{ $task_ore->name }}: {{ $task_ore->units }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                @endforeach
+            </div>
+        @endif
         </div>
     @else
         <div>

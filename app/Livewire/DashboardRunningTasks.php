@@ -65,15 +65,17 @@ class DashboardRunningTasks extends Component
                 }
             } else {
                 $this->taskOfOtherUsers = [];
-                $tasksIDsOfOther = TasksUsers::where("tasks_users.user_id", $user->id)
+
+                $userData = json_decode($user->whitelisted_player, true);
+                if(!empty($userData)){
+
+                    $tasksIDsOfOther = TasksUsers::where("tasks_users.user_id", $user->id)
                     ->where("visability", true)
                     ->where("paid", false)
                     ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
                     ->where('tasks.actualCompletionDate', '>', Carbon::now())
                     ->pluck('tasks_users.task_id');
 
-                $userData = json_decode($user->whitelisted_player, true);
-                if(!empty($userData)){
                     $names = $userData['username'];
 
                     foreach ($tasksIDsOfOther as $taskID) {

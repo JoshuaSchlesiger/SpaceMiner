@@ -2,6 +2,8 @@
 
 return [
 
+    'view.taskCreator' => 'Creator',
+
     'view.finishedTask.header' => 'Completed tasks',
     'view.finishedTask.headerCombine' => 'Combinable tasks',
     'view.finishedTask.station' => 'Station',
@@ -46,6 +48,7 @@ return [
     'controller.showInfoMessageUser.selectedAmountID.select' => 'Please select an option',
 
     'controller.showInfoMessage.task.deleted' => 'Task successfully deleted!',
+    'controller.showInfoMessage.task.hidden' => 'The task was successfully hidden!',
     'controller.showInfoMessage.task.insufficientPermission' => 'You are not authorized to delete this order.',
 
     'controller.soldOre.success' => 'Ore sold successfully!',

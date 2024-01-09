@@ -49,6 +49,8 @@ class DashboardModal extends Component
             if ($this->actionType === "runningTaskOther") {
                 TasksUsers::where("username", Auth::user()->name)->where("task_id", $task->id)->update(['visability' => 0]);
                 $this->dispatch('renderRunningTasks');
+                $this->dispatch('renderFinishedTasks');
+                $this->dispatch('renderPayablePlayer');
             } else {
                 // Überprüfe, ob der Benutzer die Berechtigung zum Löschen der Aufgabe hat
                 if (!Gate::denies('delete', $task)) {
