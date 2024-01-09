@@ -126,7 +126,11 @@
                     <div class="card">
                         <div class="header-text card-header">
                             <div class="row">
-                                <div class="col-8 text-center fs-4">
+                                <div class="col-2 text-start tooltip">
+                                    <i class="bi bi-info-circle"></i>
+                                    <span class="tooltiptext">@lang('task.view.hint')</span>
+                                </div>
+                                <div class="col-6 text-center fs-4">
                                     @lang('task.view.player')
                                 </div>
                                 <div class="col-4 text-end">

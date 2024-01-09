@@ -57,6 +57,8 @@ return [
     'view.oldGroup' => 'Alte Gruppe',
     'view.payoutRatio' => 'Auszahlungsverhältnis',
 
+    'view.hint' => 'Nutze den genauen Namen (username) eines Spielers, damit dieser auch den Auftrag sieht',
+
     'view.ores' => 'Erze',
     'view.oresType' => 'Erzart',
     'view.units' => 'Einheiten',

@@ -1,3 +1,6 @@
+import $ from 'jquery';
+window.$ = $;
+
 import 'bootstrap';
 
 /**
@@ -32,6 +35,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     enabledTransports: ['ws', 'wss'],
 // });
 
-import $ from 'jquery';
-window.$ = $;
+
 

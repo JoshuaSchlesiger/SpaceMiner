@@ -1,15 +1,47 @@
-.multiple{
+.multiple {
     height: 2.65em;
 }
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.bi-info-circle {
+    font-size: 25px;
+    color: cyan;
+    position: absolute;
+}
+
+/* Tooltip-Stil */
+.tooltip{
+    opacity: 1;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s;
+
+    width: 200px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: -100px;
+    margin-top: -20px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.789);
+    opacity: 1;
 }
