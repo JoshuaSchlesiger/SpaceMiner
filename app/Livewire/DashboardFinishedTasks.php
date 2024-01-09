@@ -75,10 +75,18 @@ class DashboardFinishedTasks extends Component
                     ->where("visability", true)
                     ->where("paid", false)
                     ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
-                    ->where('tasks.actualCompletionDate', '>', Carbon::now())
+                    ->where('tasks.actualCompletionDate', '<', Carbon::now())
                     ->pluck('tasks_users.task_id');
 
                 foreach ($tasksIDsOfOther as $taskID) {
+
+                    $task_ores_values = TasksOres::where("task_id", $taskID)
+                        ->pluck("selling_value")
+                        ->toArray();
+
+                    if (!in_array(null, $task_ores_values) && !empty($task_ores_values)) {
+                        continue;
+                    }
 
                     $taskInfo = Tasks::find($taskID);
                     $taskInfoStation = Stations::find($taskInfo->station_id);
@@ -98,16 +106,24 @@ class DashboardFinishedTasks extends Component
                 $this->taskOfOtherUsers = [];
 
                 $userData = json_decode($user->whitelisted_player, true);
-                if(!empty($userData)){
+                if (!empty($userData)) {
                     $tasksIDsOfOther = TasksUsers::where("tasks_users.user_id", $user->id)
-                    ->where("visability", true)
-                    ->where("paid", false)
-                    ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
-                    ->where('tasks.actualCompletionDate', '<', Carbon::now())
-                    ->pluck('tasks_users.task_id');
+                        ->where("visability", true)
+                        ->where("paid", false)
+                        ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
+                        ->where('tasks.actualCompletionDate', '<', Carbon::now())
+                        ->pluck('tasks_users.task_id');
 
                     $names = $userData['username'];;
                     foreach ($tasksIDsOfOther as $taskID) {
+
+                        $task_ores_values = TasksOres::where("task_id", $taskID)
+                            ->pluck("selling_value")
+                            ->toArray();
+
+                        if (!in_array(null, $task_ores_values) && !empty($task_ores_values)) {
+                            continue;
+                        }
 
                         $taskInfo = Tasks::find($taskID);
                         $taskInfoStation = Stations::find($taskInfo->station_id);
@@ -137,7 +153,7 @@ class DashboardFinishedTasks extends Component
     public function showModal($taskID, $actionType)
     {
         $this->successMessage = '';
-        if($actionType !=  "runningTaskOther") {
+        if ($actionType !=  "runningTaskOther") {
             if (!array_key_exists($taskID, $this->percentageCompletion)) {
                 return;
             }
@@ -189,7 +205,7 @@ class DashboardFinishedTasks extends Component
         $locale = Session::get('app_locale', 'en');
         App::setLocale($locale);
 
-        if($this->selectedAmountID === null){
+        if ($this->selectedAmountID === null) {
             $this->addError('selectedAmountID', Lang::get('dashboard.controller.selectedAmountID.select'));
             return;
         }
@@ -203,7 +219,7 @@ class DashboardFinishedTasks extends Component
             unset($this->selectedUserPartAmountArray[$this->selectedAmountID]);
             $this->selectedAmountID = null;
 
-            if(empty($this->selectedUserPartAmountArray)){
+            if (empty($this->selectedUserPartAmountArray)) {
                 $this->resetUserPayMode();
                 $this->dispatch('showInfoMessageUser', Lang::get('dashboard.controller.showInfoMessageUser.success'));
                 return;
