@@ -50,7 +50,7 @@ class DashboardModal extends Component
                 TasksUsers::where("username", Auth::user()->name)->where("task_id", $task->id)->update(['visability' => 0]);
                 $this->dispatch('renderRunningTasks');
                 $this->dispatch('renderFinishedTasks');
-            }elseif($this->actionType === "payablePlayer"){
+            }elseif($this->actionType === "payablePlayer2"){
                 TasksUsers::where("id", $this->selectedTaskID)->update(['visability' => 0]);
                 $this->dispatch('renderPayablePlayer');
             }
