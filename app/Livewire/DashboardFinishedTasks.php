@@ -99,7 +99,13 @@ class DashboardFinishedTasks extends Component
                     $buffer[$taskID]["taskInfoStation"] = $taskInfoStation;
                     $buffer[$taskID]["taskInfoTasks_Ores"] = $taskInfoTasks_Ores;
                     $buffer[$taskID]["taskInfoUser"] = $taskInfoUser;
-                    $buffer[$taskID]["percentageCompletion"] = number_format(min((strtotime(Carbon::now()->toDateTimeString()) - strtotime($taskInfo->created_at)) / (strtotime($taskInfo->actualCompletionDate) - strtotime($taskInfo->created_at)) * 100, 100));
+                    if(strtotime($taskInfo->actualCompletionDate) - strtotime($taskInfo->created_at) == 0){
+                        $buffer[$taskID]["percentageCompletion"] = 1;
+                    }
+                    else{
+                        $buffer[$taskID]["percentageCompletion"] = number_format(min((strtotime(Carbon::now()->toDateTimeString()) -
+                        strtotime($taskInfo->created_at)) / (strtotime($taskInfo->actualCompletionDate) - strtotime($taskInfo->created_at)) * 100, 100));
+                    }
                     $this->taskOfOtherUsers[$taskID] = $buffer[$taskID];
                 }
             } else {
@@ -146,7 +152,13 @@ class DashboardFinishedTasks extends Component
                         $buffer[$taskID]["taskInfoStation"] = $taskInfoStation;
                         $buffer[$taskID]["taskInfoTasks_Ores"] = $taskInfoTasks_Ores;
                         $buffer[$taskID]["taskInfoUser"] = $taskInfoUser;
-                        $buffer[$taskID]["percentageCompletion"] = number_format(min((strtotime(Carbon::now()->toDateTimeString()) - strtotime($taskInfo->created_at)) / (strtotime($taskInfo->actualCompletionDate) - strtotime($taskInfo->created_at)) * 100, 100));
+                        if(strtotime($taskInfo->actualCompletionDate) - strtotime($taskInfo->created_at) == 0){
+                            $buffer[$taskID]["percentageCompletion"] = 1;
+                        }
+                        else{
+                            $buffer[$taskID]["percentageCompletion"] = number_format(min((strtotime(Carbon::now()->toDateTimeString()) -
+                            strtotime($taskInfo->created_at)) / (strtotime($taskInfo->actualCompletionDate) - strtotime($taskInfo->created_at)) * 100, 100));
+                        }
                         $this->taskOfOtherUsers[$taskID] = $buffer[$taskID];
                     }
                 }
