@@ -121,9 +121,6 @@ class DashboardPayablePlayer extends Component
                     $task = Tasks::find($tasksUser->task_id);
                     $taskCreator = User::where("id", $task->user_id)->pluck("name")->first();
 
-                    $this->taskOfOtherUsers[$id] = [];
-                    $this->taskOfOtherUsers[$id]["creator"] = $taskCreator;
-
                     $task_ores_values = TasksOres::where("task_id", $tasksUser->task_id)
                         ->pluck("selling_value")
                         ->toArray();
@@ -149,6 +146,9 @@ class DashboardPayablePlayer extends Component
                         $profitPerScout = 0;
                         $profitPerMiner = $profit / $payableMinerCount;
                     }
+
+                    $this->taskOfOtherUsers[$id] = [];
+                    $this->taskOfOtherUsers[$id]["creator"] = $taskCreator;
                     $this->taskOfOtherUsers[$id]["amount"] = 0;
 
                     if ($tasksUser->type === "miner") {
@@ -214,7 +214,7 @@ class DashboardPayablePlayer extends Component
                         $this->taskOfOtherUsers[$id] = [];
                         $this->taskOfOtherUsers[$id]["creator"] = $taskCreator;
                         $this->taskOfOtherUsers[$id]["amount"] = 0;
-
+                        Info($this->taskOfOtherUsers[$id]);
                         if ($tasksUser->type === "miner") {
                             $this->taskOfOtherUsers[$id]["amount"] = $profitPerMiner;
                         } else {

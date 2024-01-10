@@ -44,7 +44,7 @@
 
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
                                     <button class="btn btn-outline-secondary" type="button" id="btnShowPassword"><i class="bi bi-eye" id="passwordEye"></i></button>
                                   </div>
                                 @error('password')
