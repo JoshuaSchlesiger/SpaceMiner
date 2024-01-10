@@ -172,7 +172,8 @@
                 </div>
                 <div class="card-body payablePlayerListShared">
                     @foreach ($taskOfOtherUsers as $id => $info)
-                        <div class="row listItems align-items-center ms-2 me-2"
+                        <?php var_dump($info) ?>
+                        {{-- <div class="row listItems align-items-center ms-2 me-2"
                             wire:click.prevent='showModal({{ $id }}, "payablePlayer2")'>
                             <div class="col row fs-5 d-flex justify-content-evenly">
                                 <div class="col-6 text-white-50 text-center">@lang('dashboard.view.payablePlayer.creatorName'):</div>
@@ -185,7 +186,7 @@
                                         <span>aUEC</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <hr>
                     @endforeach
                 </div>
