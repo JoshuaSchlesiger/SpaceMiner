@@ -22,4 +22,8 @@ return [
     'view.result.duration' => 'Dauer (ca.):',
     'view.result.units' => 'Einheiten (ca.):',
 
+    'view.hint.stone' => 'Berechnung von Steinen',
+    'view.hint.ship' => 'Berechnung der Schiffladung',
+
+
 ];

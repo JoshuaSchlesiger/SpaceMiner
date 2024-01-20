@@ -22,4 +22,6 @@ return [
     'view.result.duration' => 'Duration (∼):',
     'view.result.units' => 'Units (∼):',
 
+    'view.hint.stone' => 'Calculation of stones',
+    'view.hint.ship' => "Calculation of the ship's cargo",
 ];
