@@ -18,6 +18,9 @@ const btnReset = $('#btnReset');
 
 const language = $('.language');
 
+let minerCount = 0;
+let scoutCount = 0;
+
 
 $(document).on("load", function () {
     $('#selectMiner option').prop('selected', false);
@@ -31,21 +34,21 @@ $(function ($) {
 //#region Mitspieler
 
 
-$("#miner").on("keypress",function(event){
+$("#miner").on("keypress", function (event) {
     if (event.which === 13) {
         $("#addMiner").trigger("click");
     }
-  });
+});
 
 $('#addMiner').on("click", function () {
     const miner = $('#miner');
     const minerValue = miner.val();
 
-    if(minerValue == ""){
-        if(language.text().trim() === 'DE') {
+    if (minerValue == "") {
+        if (language.text().trim() === 'DE') {
             showBootstrapAlert('danger', 'Miner feld darf nicht leer sein!');
         }
-        else{
+        else {
             showBootstrapAlert('danger', 'Miner field must not be empty!');
         }
         return;
@@ -55,11 +58,15 @@ $('#addMiner').on("click", function () {
         // Wert zum Dropdown hinzufügen
         selectMiner.append(createOption(minerValue));
         selectMinerHidden.append(createOption(minerValue));
+
+        minerCount += 1;
+        calculateRatio();
+
     } else {
-        if(language.text().trim() === 'DE') {
+        if (language.text().trim() === 'DE') {
             showBootstrapAlert('danger', 'Miner bereits vorhanden!');
         }
-        else{
+        else {
             showBootstrapAlert('danger', 'Miner already available!');
         }
     }
@@ -73,23 +80,29 @@ $('#delMiner').on('click', function () {
 
     const selectedOption2 = selectMinerHidden.find(`option[value="${selectedOption.val()}"]`);
     selectedOption2.remove();
+
+    if (minerCount > 0) {
+        minerCount -= 1;
+        calculateRatio();
+    }
+
 });
 
-$("#scouts").on("keypress",function(event){
+$("#scouts").on("keypress", function (event) {
     if (event.which === 13) {
         $("#addScouts").trigger("click");
     }
-  });
+});
 
 $('#addScouts').on("click", function () {
     const scouts = $('#scouts');
     const scoutsValue = scouts.val();
 
-    if(scoutsValue == ""){
-        if(language.text().trim() === 'DE') {
+    if (scoutsValue == "") {
+        if (language.text().trim() === 'DE') {
             showBootstrapAlert('danger', 'Scout feld darf nicht leer sein!');
         }
-        else{
+        else {
             showBootstrapAlert('danger', 'Scout field must not be empty!');
         }
         return;
@@ -98,11 +111,15 @@ $('#addScouts').on("click", function () {
     if (!selectScouts.find(`option[value='${scoutsValue}']`).length) {
         selectScouts.append(createOption(scoutsValue));
         selectScoutsHidden.append(createOption(scoutsValue));
+
+        scoutCount += 1;
+        calculateRatio();
+
     } else {
-        if(language.text().trim() === 'DE') {
+        if (language.text().trim() === 'DE') {
             showBootstrapAlert('danger', 'Scout bereits vorhanden!');
         }
-        else{
+        else {
             showBootstrapAlert('danger', 'Scout already available!');
         }
     }
@@ -116,6 +133,11 @@ $('#delScouts').on('click', function () {
 
     const selectedOption2 = selectScoutsHidden.find(`option[value="${selectedOption.val()}"]`);
     selectedOption2.remove();
+
+    if (scoutCount > 0) {
+        scoutCount -= 1;
+        calculateRatio();
+    }
 });
 
 $('#btnOnldGroup').on('click', function () {
@@ -146,7 +168,7 @@ $('#btnOnldGroup').on('click', function () {
                     selectScoutsHidden.append(createOption(element));
                 });
             }
-            else{
+            else {
                 $("#messageOldGroup").text(response.error);
             }
         },
@@ -224,6 +246,27 @@ $("#payoutRatio").on("input", function () {
     // Rufe die Funktion auf, um die Anzeige zu aktualisieren
     updateRatioValues(scoutValue, minerValue);
 });
+
+function calculateRatio() {
+    // Berechne die Gesamtanzahl der Einheiten
+    const totalUnits = minerCount + scoutCount;
+
+    if (totalUnits === 0) {
+        $("#payoutRatio").val(50);
+        updateRatioValues(50, 50);
+        return;
+    }
+
+    // Berechne die Prozentsätze für Miner und Scout
+    const minerPercentage = Math.round((minerCount / totalUnits) * 100);
+    const scoutPercentage = Math.round((scoutCount / totalUnits) * 100);
+
+    // Rufe die Funktion auf, um die Anzeige zu aktualisieren
+    updateRatioValues(scoutPercentage, minerPercentage);
+
+    $("#payoutRatio").val(minerPercentage);
+}
+
 
 // Funktion zum Aktualisieren der Anzeige
 function updateRatioValues(scoutValue, minerValue) {
