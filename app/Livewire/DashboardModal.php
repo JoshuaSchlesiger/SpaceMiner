@@ -40,9 +40,6 @@ class DashboardModal extends Component
     public function deleteTask()
     {
         if (Auth::check()) {
-            $locale = Session::get('app_locale', 'en');
-            App::setLocale($locale);
-
             // Holen Sie die Aufgabe basierend auf der übergebenen ID
             $task = Tasks::find($this->selectedTaskID);
 

@@ -77,9 +77,6 @@ class StoreTasksRequest extends FormRequest
 
     public function messages()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         return [
             'refineryStation.required' => Lang::get('task.refineryStation.required'),
             'refineryStation.exists' => Lang::get('task.refineryStation.exists'),

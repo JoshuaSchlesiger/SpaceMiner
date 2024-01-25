@@ -26,9 +26,6 @@ class UserSettings extends Controller
      */
     public function index()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
        return view('auth/userSettings');
     }
 }

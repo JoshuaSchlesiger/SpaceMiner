@@ -45,8 +45,6 @@ class RegisterController extends Controller
 
     protected function showRegistrationForm()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
         return view('auth.register');
     }
 

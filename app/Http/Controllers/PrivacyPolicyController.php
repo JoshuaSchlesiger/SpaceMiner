@@ -10,9 +10,6 @@ class PrivacyPolicyController extends Controller
 {
     public function index()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
        return view('Miner/privacypolicy');
     }
 }

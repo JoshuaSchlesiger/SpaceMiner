@@ -31,8 +31,6 @@ class ForgotPasswordController extends Controller
 
     protected function showLinkRequestForm()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
         return view('auth.passwords.email');
     }
 
@@ -44,9 +42,6 @@ class ForgotPasswordController extends Controller
      */
     public function sendResetLinkEmail(Request $request)
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         $this->validateEmail($request);
 
         // We will send the password reset link to this user. Once we have attempted
@@ -69,8 +64,6 @@ class ForgotPasswordController extends Controller
      */
     protected function validateEmail(Request $request)
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
         $request->validate(['email' => 'required|email']);
     }
 
@@ -82,8 +75,6 @@ class ForgotPasswordController extends Controller
      */
     protected function credentials(Request $request)
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
         return $request->only('email');
     }
 
@@ -96,10 +87,7 @@ class ForgotPasswordController extends Controller
      */
     protected function sendResetLinkResponse(Request $request, $response)
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
-        return $request->wantsJson()
+                return $request->wantsJson()
                     ? new JsonResponse(['message' => trans($response)], 200)
                     : back()->with('status', trans($response));
     }
@@ -115,9 +103,6 @@ class ForgotPasswordController extends Controller
      */
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         if ($request->wantsJson()) {
             throw ValidationException::withMessages([
                 'email' => [trans($response)],
@@ -136,8 +121,6 @@ class ForgotPasswordController extends Controller
      */
     public function broker()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
         return Password::broker();
     }
 }

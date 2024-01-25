@@ -33,9 +33,6 @@ class CalculatorController extends Controller
      */
     public function index()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         $ores = Ores::orderByDesc('refinedValue')
             ->select('id', 'name')
             ->get();

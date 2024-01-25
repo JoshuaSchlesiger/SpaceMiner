@@ -33,9 +33,6 @@ class ResetPasswordController extends Controller
 
     protected function showResetForm(Request $request)
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         $token = $request->route()->parameter('token');
 
         return view('auth.passwords.reset')->with(

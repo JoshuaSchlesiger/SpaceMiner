@@ -314,10 +314,6 @@ class DashboardPayablePlayer extends Component
     {
         $this->validate();
         $selectedTaskOreArray = $this->ores[$this->selectedOre];
-
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         $allUnits = 0;
         foreach ($selectedTaskOreArray["units"] as $units) {
             $allUnits += $units;

@@ -42,8 +42,6 @@ class ConfirmPasswordController extends Controller
 
     protected function showConfirmForm()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
         return view('auth.passwords.confirm');
     }
 

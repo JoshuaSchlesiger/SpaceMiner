@@ -39,9 +39,6 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         $ores = Ores::orderByDesc('refinedValue')
             ->select('id', 'name')
             ->get();
@@ -60,9 +57,6 @@ class TasksController extends Controller
 
     public function save(StoreTasksRequest $request)
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         $lastTask = Tasks::where('user_id', $request->user()->id)
             ->orderBy('created_at', 'desc')
             ->first();
@@ -114,9 +108,6 @@ class TasksController extends Controller
     //Get old group
     public function ajaxFunction(Request $request)
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         $key = $request->ip(); // Verwende die IP-Adresse des Benutzers als Schlüssel
 
         $rateLimiter = app(RateLimiter::class);

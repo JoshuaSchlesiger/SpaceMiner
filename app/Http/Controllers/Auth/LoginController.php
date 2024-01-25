@@ -49,16 +49,11 @@ class LoginController extends Controller
 
     protected function showLoginForm()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
         return view('auth.login');
     }
 
     protected function sendFailedLoginResponse(Request $request)
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         throw ValidationException::withMessages([
             "password" => [Lang::get('auth.failed')],
         ]);
@@ -66,9 +61,6 @@ class LoginController extends Controller
 
     protected function sendLockoutResponse(Request $request)
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         throw ValidationException::withMessages([
             "password" => [Lang::get('auth.throttle', ['seconds' => $this->limiter()->availableIn($this->throttleKey($request))])],
         ]);

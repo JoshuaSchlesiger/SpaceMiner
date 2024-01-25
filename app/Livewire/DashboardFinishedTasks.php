@@ -201,9 +201,6 @@ class DashboardFinishedTasks extends Component
 
     public function fullpayUser()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         foreach ($this->selectedUserPartAmountArray as $id => $amount) {
             $tasksUser = TasksUsers::find($id);
             if ($this->authorize('update', $tasksUser)) {
@@ -219,9 +216,6 @@ class DashboardFinishedTasks extends Component
 
     public function selectedAmountPay()
     {
-        $locale = Session::get('app_locale', 'en');
-        App::setLocale($locale);
-
         if ($this->selectedAmountID === null) {
             $this->addError('selectedAmountID', Lang::get('dashboard.controller.selectedAmountID.select'));
             return;
