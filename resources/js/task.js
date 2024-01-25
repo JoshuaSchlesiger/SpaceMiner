@@ -233,6 +233,18 @@ $('#btnAddOrePart').on('click', function () {
     $("#oreTableEntries").append(copy);
 });
 
+function checkEmptyRows(){
+    // Iteriere über alle Select-Elemente in den Zellen der Klasse 'oreType' (starte bei 1, um das erste Element zu überspringen)
+    $('.oreType:gt(0)').each(function (index) {
+        // Überprüfe, ob das Dropdown-Element selected und disabled ist und das zugehörige Element in der zweiten Spalte leer ist
+        if ($(this).val() === null && $(this).closest('tr').find('.oreUnit').val() === '') {
+            // Lösche die gesamte Zeile
+            $(this).closest('tr').remove();
+        }
+    });
+}
+
+
 //#endregion
 
 //#region Auszahlungsverhältnis
@@ -289,6 +301,7 @@ function resetForm() {
 btnSave.on("click", function () {
     $('#selectMinerHidden option').prop('selected', true);
     $('#selectScoutsHidden option').prop('selected', true);
+    checkEmptyRows();
     $('#form').trigger("submit");
 });
 
@@ -297,6 +310,7 @@ btnSaveToDashboard.on("click", function () {
     $('#selectScoutsHidden option').prop('selected', true);
 
     $('#form').append('<input type="hidden" name="action" value="saveToDashboard">');
+    checkEmptyRows()
     $('#form').trigger("submit");
 });
 

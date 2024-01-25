@@ -63,11 +63,11 @@ class StoreTasksRequest extends FormRequest
                 'min:1',
                 function ($attribute, $value, $fail) {
                     foreach ($value as $index => $item) {
-                        if($item < 1){
-                            $fail(Lang::get('task.oreUnits.min', ['index' => $index]));
-                        }
                         if ($item === null) {
-                            $fail(Lang::get('task.oreUnits.null', ['index' => $index]));
+                            $fail(Lang::get('task.oreUnits.null', ['index' => $index+1]));
+                        }
+                        if($item < 1){
+                            $fail(Lang::get('task.oreUnits.min', ['index' => $index+1]));
                         }
                     }
                 },

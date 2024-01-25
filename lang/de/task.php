@@ -36,8 +36,8 @@ return [
     'oreTypes.exists' => 'Ein oder mehrere ausgewählte Erze sind ungültig.',
     'oreUnits.required' => 'Das Feld Einheiten in Erze ist erforderlich.',
     'oreUnits.numeric' => 'Die Einheiten in den Erzen muss eine Zahl sein.',
-    'oreUnits.min' => "Das Element auf Position :index darf nicht kleiner als 1 sein",
-    'oreUnits.null' => "Das Element an der Position :index darf nicht null sein",
+    'oreUnits.min' => "Die Einheiten an der Position :index dürfen nicht kleiner als 1 sein",
+    'oreUnits.null' => "Die Einheiten an der Position :index darf nicht leer sein",
 
     'oldgroup.ratelimit' => 'Ratengrenze überschritten, einfach abwarten',
     'oldgroup.exists' => 'Es gibt keine alten Gruppen',

@@ -36,8 +36,8 @@ return [
     'oreTypes.exists' => 'One or more selected ore types are invalid.',
     'oreUnits.required' => 'The ore unit field in ore types is required.',
     'oreUnits.numeric' => 'The ore unit in ore types must be a number.',
-    'oreUnits.min' => "The element on postion :index must not be smaller then 1",
-    'oreUnits.null' => "The element on postion :index must not be null",
+    'oreUnits.min' => "The units on postion :index must not be smaller then 1",
+    'oreUnits.null' => "The units on postion :index must not be empty",
 
     'oldgroup.ratelimit' => 'Rate limit exceeded, just chill',
     'oldgroup.exists' => 'There are no old groups',
