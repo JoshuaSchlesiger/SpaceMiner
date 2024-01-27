@@ -29,6 +29,7 @@ $(document).on("load", function () {
 
 $(function ($) {
     $("#successMessage").delay(2000).fadeOut(800);
+    calculateRatioRaw();
 });
 
 //#region Mitspieler
@@ -273,6 +274,31 @@ function calculateRatio() {
     // Berechne die Prozentsätze für Miner und Scout
     const minerPercentage = Math.round((minerCount / totalUnits) * 100);
     const scoutPercentage = Math.round((scoutCount / totalUnits) * 100);
+
+    // Rufe die Funktion auf, um die Anzeige zu aktualisieren
+    updateRatioValues(scoutPercentage, minerPercentage);
+
+    $("#payoutRatio").val(minerPercentage);
+}
+
+function calculateRatioRaw() {
+    // Berechne die Gesamtanzahl der Einheiten
+    const minerCountRaw = $("#selectMinerHidden option").length;
+    minerCount = minerCountRaw;
+    const scoutCountRaw = $("#selectScoutsHidden option").length;
+    scoutCount = scoutCountRaw;
+    const totalUnits = minerCountRaw + scoutCountRaw;
+
+
+    if (totalUnits === 0) {
+        $("#payoutRatio").val(50);
+        updateRatioValues(50, 50);
+        return;
+    }
+
+    // Berechne die Prozentsätze für Miner und Scout
+    const minerPercentage = Math.round((minerCountRaw / totalUnits) * 100);
+    const scoutPercentage = Math.round((scoutCountRaw / totalUnits) * 100);
 
     // Rufe die Funktion auf, um die Anzeige zu aktualisieren
     updateRatioValues(scoutPercentage, minerPercentage);
