@@ -41,6 +41,7 @@ class DashboardRunningTasks extends Component
             if ($user->show_external_tasks) {
                 $this->taskOfOtherUsers = [];
                 $tasksIDsOfOther = TasksUsers::where("tasks_users.user_id", $user->id)
+                    ->where("tasks.user_id", "!=", $user->id)
                     ->where("visability", true)
                     ->where("paid", false)
                     ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
@@ -70,6 +71,7 @@ class DashboardRunningTasks extends Component
                 if(!empty($userData)){
 
                     $tasksIDsOfOther = TasksUsers::where("tasks_users.user_id", $user->id)
+                    ->where("tasks.user_id", "!=", $user->id)
                     ->where("visability", true)
                     ->where("paid", false)
                     ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
