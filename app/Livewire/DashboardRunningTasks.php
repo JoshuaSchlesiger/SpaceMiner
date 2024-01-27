@@ -46,6 +46,7 @@ class DashboardRunningTasks extends Component
                     ->where("paid", false)
                     ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
                     ->where('tasks.actualCompletionDate', '>', Carbon::now())
+                    ->orderBy('tasks.actualCompletionDate', 'ASC')
                     ->pluck('tasks_users.task_id');
 
                 foreach ($tasksIDsOfOther as $taskID) {
@@ -76,6 +77,7 @@ class DashboardRunningTasks extends Component
                     ->where("paid", false)
                     ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
                     ->where('tasks.actualCompletionDate', '>', Carbon::now())
+                    ->orderBy('tasks.actualCompletionDate', 'ASC')
                     ->pluck('tasks_users.task_id');
 
                     $names = $userData['username'];
