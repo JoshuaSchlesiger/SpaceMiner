@@ -89,7 +89,7 @@
                                 class="hyperlink text-reset">VerseTime</a>
                         </p>
                         <p>
-                            <a href="https://xenosystems.space/star-citizen-resources#official" target="_blank"
+                            <a href="https://xenosystems.space/star-citizen-resources" target="_blank"
                                 class="hyperlink text-reset">Xenosystems</a>
                         </p>
                     </div>
@@ -103,7 +103,7 @@
                             </a>
                         </p>
                         <p>
-                            <a href="#" target="_blank" class="hyperlink">
+                            <a href="mailto:help@SpaceMiner.de" target="_blank" class="hyperlink">
                                 <i class="bi bi-envelope-at link-secondary h4 me-1"></i> <span
                                     class="">help@SpaceMiner.de</span>
                             </a>
