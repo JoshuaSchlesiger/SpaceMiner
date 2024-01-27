@@ -130,11 +130,11 @@
                                     <i class="bi bi-info-circle"></i>
                                     <span class="tooltiptext">@lang('task.view.hint')</span>
                                 </div>
-                                <div class="col-6 text-center fs-4">
+                                <div class="col-5 text-center fs-4">
                                     @lang('task.view.player')
                                 </div>
-                                <div class="col-4 text-end">
-                                    <button type="button" class="btn btn-outline-secondary" id="btnOnldGroup"
+                                <div class="col-5 text-end">
+                                    <button type="button" class="btn btn-outline-secondary w-100" id="btnOnldGroup"
                                         data-ajax-url="{{ route('ajax.task') }}"> @lang('task.view.oldGroup')</button>
                                 </div>
                                 <div class="text-end">

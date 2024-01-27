@@ -54,7 +54,7 @@ return [
     'view.pleaseSelect' => 'Bitte auswählen',
 
     'view.player' => 'Spieler',
-    'view.oldGroup' => 'Alte Gruppe',
+    'view.oldGroup' => 'Vorherige Gruppe',
     'view.payoutRatio' => 'Auszahlungsverhältnis',
 
     'view.hint' => 'Nutze den genauen Namen (username) eines Spielers, damit dieser auch den Auftrag sieht',

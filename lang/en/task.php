@@ -53,7 +53,7 @@ return [
     'view.pleaseSelect' => 'Please select',
 
     'view.player' => 'Player',
-    'view.oldGroup' => 'Old Group',
+    'view.oldGroup' => 'Previous Group',
     'view.payoutRatio' => 'Payout ratio',
 
     'view.hint' => 'Use the exact name (username) of a player so they can also see the task',
