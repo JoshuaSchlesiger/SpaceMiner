@@ -212,7 +212,8 @@ function showBootstrapAlert(type, message) {
 //#region Erze
 
 $("#oreTableEntries").on("click", ".deletePart", function () {
-    if ($(this).closest("tr").attr("id") === undefined) {
+    let rowCount = $('#oreTableEntries .deletePart').length;
+    if (rowCount > 1) {
         $(this).closest("tr").remove();
     } else {
         let select = $(this).closest("tr");
@@ -225,7 +226,7 @@ $("#oreTableEntries").on("click", ".deletePart", function () {
 
 $('#btnAddOrePart').on('click', function () {
 
-    const sourceElement = $("#oreTableEntry");
+    const sourceElement = $("#oreTableEntries").find('tr:first');
     const copy = sourceElement.clone();
     copy.find('input').val("");
     copy.removeAttr("id");

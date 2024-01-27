@@ -33,7 +33,7 @@ return [
     'payoutRatio.max' => 'Die Ausschüttungsquote muss maximal 100 % betragen.',
 
     'oreTypes.required' => 'Das Feld Erzart in Erze ist erforderlich.',
-    'oreTypes.exists' => 'Ein oder mehrere ausgewählte Erze sind ungültig.',
+    'oreTypes.exists' => 'Ein oder mehrere ausgewählte Erzearten sind ungültig.',
     'oreUnits.required' => 'Das Feld Einheiten in Erze ist erforderlich.',
     'oreUnits.numeric' => 'Die Einheiten in den Erzen muss eine Zahl sein.',
     'oreUnits.min' => "Die Einheiten an der Position :index dürfen nicht kleiner als 1 sein",

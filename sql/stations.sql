@@ -3,7 +3,7 @@ INSERT INTO `stations` (`id`, `name`) VALUES
 (1, 'ARC-L1'),
 (2, 'ARC-L2'),
 (3, 'ARC-L4'),
-(4, 'CRU-1'),
+(4, 'CRU-L1'),
 (5, 'HUR-L1'),
 (6, 'HUR-L2'),
 (7, 'MIC-L1'),
