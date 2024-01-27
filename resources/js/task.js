@@ -238,7 +238,7 @@ function checkEmptyRows(){
     // Iteriere über alle Select-Elemente in den Zellen der Klasse 'oreType' (starte bei 1, um das erste Element zu überspringen)
     $('.oreType:gt(0)').each(function (index) {
         // Überprüfe, ob das Dropdown-Element selected und disabled ist und das zugehörige Element in der zweiten Spalte leer ist
-        if ($(this).val() === null && $(this).closest('tr').find('.oreUnit').val() === '') {
+        if ($(this).val() === "null" && $(this).closest('tr').find('.oreUnit').val() === '') {
             // Lösche die gesamte Zeile
             $(this).closest('tr').remove();
         }
