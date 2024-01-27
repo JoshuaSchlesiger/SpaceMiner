@@ -18,7 +18,7 @@ return [
     'view.result.method' => 'Method:',
     'view.result.station' => 'Station:',
     'view.result.costs' => 'Costs (∼):',
-    'view.result.profit' => 'Profit (∼):',
+    'view.result.profit' => 'Proceeds (∼):',
     'view.result.duration' => 'Duration (∼):',
     'view.result.units' => 'Units (∼):',
 

@@ -18,7 +18,7 @@ return [
     'view.result.method' => 'Methode:',
     'view.result.station' => 'Station:',
     'view.result.costs' => 'Kosten (ca.):',
-    'view.result.profit' => 'Gewinn (ca.):',
+    'view.result.profit' => 'Erlös (ca.):',
     'view.result.duration' => 'Dauer (ca.):',
     'view.result.units' => 'Einheiten (ca.):',
 
