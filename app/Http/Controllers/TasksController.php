@@ -14,10 +14,9 @@ use Illuminate\Cache\RateLimiter;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTasksRequest;
+use App\Http\Requests\TaskProceeds;
 use App\Models\TasksUsers;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Lang;
 
 class TasksController extends Controller
@@ -208,5 +207,28 @@ class TasksController extends Controller
         }
 
         return $combinedArray;
+    }
+
+    public function taskProceeds(TaskProceeds $request) {
+        $userInputs = $request->all();
+        $returnArray = ["rawProfit" => 0, "refinedProfit" => 0];
+
+        foreach ($userInputs["oreTypes"] as $key => $value) {
+            if(empty($value) || empty($userInputs["units"][$key])){
+                continue;
+            }
+
+            $oreValue = Ores::where("id", $value)->select("rawValue", "refinedValue")->get()->first();
+            $returnArray["rawProfit"] += ($oreValue["rawValue"] * ($userInputs["units"][$key]));
+
+            $refinements = Refinements::where("ore_id", $value)->where("station_id", $userInputs["refineryStation"])
+                                        ->select("factorTime", "factorCosts", "factorYield")->get()->first();
+
+            $methods = Methods::where("id", $userInputs["method"])
+                                        ->select("factorTime", "factorCosts", "factorYield")->get()->first();
+
+            $returnArray["refinedProfit"] += ($oreValue["refinedValue"] * ($userInputs["units"][$key]) * ($refinements["factorYield"] / 100) * $methods["factorYield"]);
+        }
+        return response()->json(['success' => round($returnArray["refinedProfit"]/100)]);
     }
 }

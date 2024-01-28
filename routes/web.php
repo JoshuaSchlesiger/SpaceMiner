@@ -35,6 +35,7 @@ Route::middleware([SetLanguage::class])->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('task', [TasksController::class, 'index'])->name('task');
         Route::post('task', [TasksController::class, 'save'])->name('task.save');
+        Route::post('taskProceeds', [TasksController::class, 'taskProceeds'])->name('task.taskProceeds');
         Route::get('ajax-task', [TasksController::class, 'ajaxFunction'])->name('ajax.task');
 
         Route::get('userSettings', [UserSettings::class, "index"])->name('userSettings');

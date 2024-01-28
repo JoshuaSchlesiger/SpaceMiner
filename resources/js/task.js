@@ -4,13 +4,13 @@ const selectScouts = $('#selectScouts');
 const selectMinerHidden = $('#selectMinerHidden');
 const selectScoutsHidden = $('#selectScoutsHidden');
 
-const refineryStaion = $('#refineryStaion');
-const method = $('#method');
+let refineryStaion = $('#refineryStaion');
+let method = $('#method');
 const costs = $('#costs');
 const duration = $('#duration');
 const oreTableEntry = $('#oreTableEntry');
-const oreTypes = $('.oreType');
-const oreUnits = $('.oreUnit');
+let oreTypes = $('.oreType');
+let oreUnits = $('.oreUnit');
 
 const btnSave = $('#btnSave');
 const btnSaveToDashboard = $('#btnSaveToDashboard');
@@ -31,6 +31,19 @@ $(function ($) {
     $("#successMessage").delay(2000).fadeOut(800);
     calculateRatioRaw();
 });
+
+//#region Refinery
+
+$("#refineryStaion").on("change", function () {
+    getProceeds();
+});
+
+$("#method").on("change", function () {
+    getProceeds();
+});
+
+//#endregion
+
 
 //#region Mitspieler
 
@@ -212,7 +225,52 @@ function showBootstrapAlert(type, message) {
 
 //#region Erze
 
+function getProceeds() {
+
+    oreTypes = $('.oreType');
+    oreUnits = $('.oreUnit');
+    refineryStaion = $('#refineryStaion');
+    method = $('#method');
+
+    const oreTypeValues = [];
+
+    oreTypes.each(function () {
+        oreTypeValues.push($(this).val());
+    });
+
+    const oreUnitsValues = [];
+
+    oreUnits.each(function () {
+        oreUnitsValues.push($(this).val());
+    });
+
+    if(oreUnits.length === 0 || oreTypes.length === 0 || !refineryStaion.val() || !method.val() ){
+        return;
+    }
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        url: $('#route').val() + "Proceeds",
+        data: {
+            "refineryStation": refineryStaion.val(),
+            "method": method.val(),
+            "oreTypes": oreTypeValues,
+            "units": oreUnitsValues,
+        },
+        success: function (response) {
+            $('#expectedProceeds').text(response.success);
+        },
+        error: function (error) {
+        }
+    });
+}
+
+
 $("#oreTableEntries").on("click", ".deletePart", function () {
+    getProceeds();
     let rowCount = $('#oreTableEntries .deletePart').length;
     if (rowCount > 1) {
         $(this).closest("tr").remove();
@@ -225,7 +283,16 @@ $("#oreTableEntries").on("click", ".deletePart", function () {
     }
 });
 
+$("#oreTableEntries").on("change", ".oreType", function () {
+    getProceeds();
+});
+
+$("#oreTableEntries").on("input", ".oreUnit", function () {
+    getProceeds();
+});
+
 $('#btnAddOrePart').on('click', function () {
+    getProceeds();
 
     const sourceElement = $("#oreTableEntries").find('tr:first');
     const copy = sourceElement.clone();
@@ -235,7 +302,7 @@ $('#btnAddOrePart').on('click', function () {
     $("#oreTableEntries").append(copy);
 });
 
-function checkEmptyRows(){
+function checkEmptyRows() {
     // Iteriere über alle Select-Elemente in den Zellen der Klasse 'oreType' (starte bei 1, um das erste Element zu überspringen)
     $('.oreType:gt(0)').each(function (index) {
         // Überprüfe, ob das Dropdown-Element selected und disabled ist und das zugehörige Element in der zweiten Spalte leer ist
@@ -245,7 +312,6 @@ function checkEmptyRows(){
         }
     });
 }
-
 
 //#endregion
 

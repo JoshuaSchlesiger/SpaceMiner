@@ -7,11 +7,7 @@ use App\Models\Ores;
 use App\Models\Stations;
 use App\Models\Methods;
 use App\Models\Refinements;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
+
 
 class CalculatorController extends Controller
 {

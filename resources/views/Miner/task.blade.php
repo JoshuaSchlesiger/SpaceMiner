@@ -439,6 +439,12 @@ if (null !== $oreUnits){
                     </div>
                 </div>
 
+                <div class="header-text card-header border border-top">
+                    <div class="text-center fs-5">
+                        <span>@lang('task.view.expectedProceeds'):</span>
+                        <span class="text-success fs-5" id="expectedProceeds">0</span> <span>aUEC</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

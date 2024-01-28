@@ -4,7 +4,7 @@ return [
 
     'view.input.header' => 'Input of values',
     'view.input.mass' => 'Mass of the stone:',
-    'view.input.mass.hint' => 'Mass in SCU',
+    'view.input.mass.hint' => 'Mass of stone in SCU',
     'view.input.oreType' => 'Ore type',
     'view.input.shares' => 'Shares (%)',
     'view.input.mass' => 'Mass (SCU)',

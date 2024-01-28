@@ -63,6 +63,7 @@ return [
     'view.oresType' => 'Erzart',
     'view.units' => 'Einheiten',
     'view.addPart' => 'Weiterer Anteil',
+    'view.expectedProceeds' => 'Erwarteter Erlös',
 
     'view.save' => 'Speichern',
     'view.saveToDashboard' => 'Speichern und zum Dashboard',

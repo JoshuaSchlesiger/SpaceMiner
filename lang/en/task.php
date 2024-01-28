@@ -62,6 +62,7 @@ return [
     'view.oresType' => 'Ore type',
     'view.units' => 'Units',
     'view.addPart' => 'Additional share',
+    'view.expectedProceeds' => 'Expected proceeds',
 
     'view.save' => 'Save',
     'view.saveToDashboard' => 'Save to dashboard',

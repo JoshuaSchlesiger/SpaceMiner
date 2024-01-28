@@ -197,17 +197,12 @@ function sendDataAndShow(dataObject) {
         return;
     }
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        }
-    });
-
-
-
     $.ajax({
         type: "POST",
-        url: $('#route').val(), // Hier stimmt der Name der Route überein
+        url: $('#route').val(),
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: {
             "type": dataObject.type,
             "massStone": parseInt(dataObject.massStone),

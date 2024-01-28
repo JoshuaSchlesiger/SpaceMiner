@@ -36,7 +36,7 @@ return [
     'view.payablePlayer.cancel' => 'Cancel',
     'view.payablePlayer.pleaseSelect' => 'Please select',
 
-    'view.modal.header' => 'Really delete the order?',
+    'view.modal.header' => 'Delete task?',
     'view.modal.delete' => 'Delete',
     'view.modal.cancel' => 'Cancel',
 

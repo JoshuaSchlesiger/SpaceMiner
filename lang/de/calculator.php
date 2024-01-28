@@ -4,7 +4,7 @@ return [
 
     'view.input.header' => 'Eingabe der Werte',
     'view.input.mass' => 'Masse des Steines::',
-    'view.input.mass.hint' => 'Masse in SCU',
+    'view.input.mass.hint' => 'Masse des Steins in SCU',
     'view.input.oreType' => 'Erztyp',
     'view.input.shares' => 'Anteile (%)',
     'view.input.mass' => 'Masse (SCU)',
