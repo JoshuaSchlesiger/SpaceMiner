@@ -33,7 +33,7 @@ class TaskProceeds extends FormRequest
                     // Überprüfe, ob alle Werte in oreTypes in der Datenbank existieren
                     $existingOreTypes = Ores::pluck('id')->toArray();
                     foreach ($value as $oreType) {
-                        if ($oreType !== 'NULL' && !in_array($oreType, $existingOreTypes)) {
+                        if ($oreType !== 'null' && !in_array($oreType, $existingOreTypes)) {
                             $fail("");
                         }
                     }
