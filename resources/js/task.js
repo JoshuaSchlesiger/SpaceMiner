@@ -244,7 +244,7 @@ function getProceeds() {
         oreUnitsValues.push($(this).val());
     });
 
-    if(oreUnits.length === 1 || oreTypes.length === 1 || !refineryStaion.val() || !method.val()){
+    if(($('#oreTableEntries').children().length === 1 && (oreTypeValues[0] === "null" || oreUnitsValues[0] === "")) || !refineryStaion.val() || !method.val()){
         return;
     }
 
@@ -268,19 +268,19 @@ function getProceeds() {
     });
 }
 
-
 $("#oreTableEntries").on("click", ".deletePart", function () {
-    getProceeds();
     let rowCount = $('#oreTableEntries .deletePart').length;
     if (rowCount > 1) {
         $(this).closest("tr").remove();
     } else {
         let select = $(this).closest("tr");
-        select.find("select:first option:disabled").prop("selected", true);
+        select.find("option:selected").prop("selected", false);
 
         let input = $(this).closest("tr");
         input.find("input:first").val("");
     }
+
+    getProceeds();
 });
 
 $("#oreTableEntries").on("change", ".oreType", function () {
@@ -292,14 +292,14 @@ $("#oreTableEntries").on("input", ".oreUnit", function () {
 });
 
 $('#btnAddOrePart').on('click', function () {
-    getProceeds();
-
     const sourceElement = $("#oreTableEntries").find('tr:first');
     const copy = sourceElement.clone();
     copy.find('input').val("");
     copy.removeAttr("id");
 
     $("#oreTableEntries").append(copy);
+
+    getProceeds();
 });
 
 function checkEmptyRows() {
