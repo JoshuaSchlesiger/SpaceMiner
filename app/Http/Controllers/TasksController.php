@@ -214,7 +214,7 @@ class TasksController extends Controller
         $returnArray = ["rawProfit" => 0, "refinedProfit" => 0];
 
         foreach ($userInputs["oreTypes"] as $key => $value) {
-            if(empty($value) || empty($userInputs["units"][$key])){
+            if(empty($value) || empty($userInputs["units"][$key]) || $userInputs["units"][$key] > 99999){
                 continue;
             }
 

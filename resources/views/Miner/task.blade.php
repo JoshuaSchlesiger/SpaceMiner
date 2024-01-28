@@ -405,7 +405,7 @@ if (null !== $oreUnits){
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <div class="w-75">
-                                                <input type="number" min="1" class="form-control oreUnit"
+                                                <input type="number" min="1" max="99999" class="form-control oreUnit"
                                                     placeholder="cSCU" name="oreUnits[]">
                                             </div>
                                         </div>
