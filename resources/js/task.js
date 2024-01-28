@@ -244,7 +244,7 @@ function getProceeds() {
         oreUnitsValues.push($(this).val());
     });
 
-    if(oreUnits.length === 0 || oreTypes.length === 0 || !refineryStaion.val() || !method.val() ){
+    if(oreUnits.length === 1 || oreTypes.length === 1 || !refineryStaion.val() || !method.val()){
         return;
     }
 
