@@ -110,6 +110,7 @@ class DashboardPayablePlayer extends Component
                 $this->taskOfOtherUsers = [];
                 $tasksUsers = TasksUsers::where("tasks_users.user_id", $user->id)
                     ->where("visability", true)
+                    ->where("tasks.user_id", "!=", $user->id)
                     ->where("paid", false)
                     ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
                     ->where('tasks.actualCompletionDate', '<', Carbon::now())
@@ -170,6 +171,7 @@ class DashboardPayablePlayer extends Component
                     $tasksUsers = TasksUsers::where("tasks_users.user_id", $user->id)
                         ->where("visability", true)
                         ->where("paid", false)
+                        ->where("tasks.user_id", "!=", $user->id)
                         ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
                         ->where('tasks.actualCompletionDate', '<', Carbon::now())
                         ->pluck('tasks_users.id');

@@ -74,6 +74,7 @@ class DashboardFinishedTasks extends Component
                 $tasksIDsOfOther = TasksUsers::where("tasks_users.user_id", $user->id)
                     ->where("visability", true)
                     ->where("paid", false)
+                    ->where("tasks.user_id", "!=", $user->id)
                     ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
                     ->where('tasks.actualCompletionDate', '<', Carbon::now())
                     ->pluck('tasks_users.task_id');
@@ -116,6 +117,7 @@ class DashboardFinishedTasks extends Component
                     $tasksIDsOfOther = TasksUsers::where("tasks_users.user_id", $user->id)
                         ->where("visability", true)
                         ->where("paid", false)
+                        ->where("tasks.user_id", "!=", $user->id)
                         ->join('tasks as tasks', 'tasks.id', '=', 'tasks_users.task_id')
                         ->where('tasks.actualCompletionDate', '<', Carbon::now())
                         ->pluck('tasks_users.task_id');
