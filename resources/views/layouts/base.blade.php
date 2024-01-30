@@ -36,6 +36,7 @@
     @yield('content')
 
     @include('layouts.footer')
+    @include('popper::assets')
     @yield('footer')
     @livewireScripts
     @cookieconsentview

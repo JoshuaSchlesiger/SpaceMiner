@@ -56,7 +56,7 @@ return [
     'view.oldGroup' => 'Previous Group',
     'view.payoutRatio' => 'Payout ratio',
 
-    'view.hint' => 'Use the exact name (username) of a player so they can also see the task',
+    'view.hint' => 'Use the exact name (username) of a player. Then they are able to see the task too',
 
     'view.ores' => 'Ores',
     'view.oresType' => 'Ore type',
