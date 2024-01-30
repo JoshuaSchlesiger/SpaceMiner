@@ -151,11 +151,11 @@
                 @foreach ($payablePlayer as $username => $player)
                     <div class="row listItems align-items-center ms-2 me-2 @if ($selectedPlayer === $username) bg-info bg-opacity-25 @endif"
                         wire:click.prevent="setToUserPayMode('{{ $username }}')">
-                        <div class="col row fs-5 d-flex justify-content-evenly">
+                        <div class="col-sm-10 col-md-6 row fs-5 d-flex justify-content-evenly">
                             <div class="col-6 text-white-50 text-center">@lang('dashboard.view.payablePlayer.playername'):</div>
                             <div class="col text-info text-center">{{ $username }}</div>
                         </div>
-                        <div class="col row fs-5 d-flex justify-content-evenly">
+                        <div class="col-sm-10 col-md-6 row fs-5 d-flex justify-content-evenly">
                             <div class="col-4 text-white-50 text-center">@lang('dashboard.view.payablePlayer.amount'):</div>
                             <div class="col"><span
                                     class="text-danger">{{ number_format(round($playerValue[$username]), 0, ',', '.') }}</span><span>

@@ -18,7 +18,7 @@
         <form method="POST" action="{{ route('task') }}" id="form">
             @csrf
             <div class="row">
-                <div class="col">
+                <div class="col-md-10 col-lg-4">
                     <div class="card">
                         <div class="header-text card-header">
                             <div class="text-center fs-4">
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-md-10 col-lg-4 mt-5 mt-lg-0">
                     <div class="card">
                         <div class="header-text card-header">
                             <div class="row">
@@ -284,7 +284,7 @@
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col-md-10 col-lg-4 mt-5 mt-lg-0">
             <div class="card">
                 <div class="header-text card-header">
                     <div class="text-center fs-4">
@@ -360,7 +360,7 @@
                                                     <input min="1" type="number"
                                                         class="form-control oreUnit" placeholder="cSCU"
                                                         value="@php
-if (null !== $oreUnits){
+                                                            if (null !== $oreUnits){
                                                         echo $units;
                                                     } @endphp"
                                                         name="oreUnits[]">
