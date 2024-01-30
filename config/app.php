@@ -169,7 +169,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\CookiesServiceProvider::class,
-        andcarpi\Popper\PopperServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -185,7 +184,6 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'Popper' => andcarpi\Popper\Facades\Popper::class,
     ])->toArray(),
 
 ];
