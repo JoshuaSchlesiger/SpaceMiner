@@ -30,9 +30,9 @@
             <div class="container text-center text-md-start mt-5">
                 <div class="row mt-3">
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">
+                        <p class="text-uppercase fw-bold mb-4">
                             DochSergeantTV
-                        </h6>
+                        </p>
                         <p>
                             @lang('footer.view.text')
                         </p>
@@ -40,9 +40,9 @@
 
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
-                        <h6 class="text-uppercase fw-bold mb-4">
+                        <p class="text-uppercase fw-bold mb-4">
                             Navigation
-                        </h6>
+                        </p>
 
                         @if (auth()->check())
                             <p>
@@ -73,9 +73,9 @@
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
-                        <h6 class="text-uppercase fw-bold mb-4">
+                        <p class="text-uppercase fw-bold mb-4">
                             @lang('footer.view.usefulLinks')
-                        </h6>
+                        </p>
                         <p>
                             <a href="https://www.erkul.games/" target="_blank" class="hyperlink text-reset">DPS
                                 Calculator</a>
@@ -95,7 +95,7 @@
                     </div>
 
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">@lang('footer.view.contact')</h6>
+                        <p class="text-uppercase fw-bold mb-4">@lang('footer.view.contact')</p>
                         <p>
                             <a href="https://discord.gg/uWQX5Zy8sT" target="_blank" class="hyperlink">
                                 <i class="bi bi-discord link-secondary h4 me-1"></i><span
