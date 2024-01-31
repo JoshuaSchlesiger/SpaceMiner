@@ -108,12 +108,6 @@
                                     class="">help@SpaceMiner.de</span>
                             </a>
                         </p>
-                        <p>
-                            <a href="https://twitter.com/DochSergeant" target="_blank" class="hyperlink">
-                                <i class="bi bi-twitter-x h4 link-secondary"></i> <span
-                                    class="">twitter@DochSergeant</span>
-                            </a>
-                        </p>
                     </div>
                 </div>
             </div>
