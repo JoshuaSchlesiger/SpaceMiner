@@ -10,7 +10,7 @@
         content="Mining tool for Star Citizen that not only tracks your crew's payment amounts but also has the ability to save mission assignments">
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="author" content="DochSergeantTV">
-    <title>SpaceMiner | Calculations of stones and storing tasks in Star Citizen</title>
+    <title>SpaceMiner | Calculations and task storage for Star Citizen</title>
 
     @if (!Request::is('/', '/aboutme', '/privacypolicy', '/calculator', '/register', '/login'))
         <meta name="robots" content="noindex,nofollow"/>
