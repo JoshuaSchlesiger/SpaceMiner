@@ -6,28 +6,33 @@
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
-      <url>
+
+    <url>
       <loc>https://spaceminer.de/calculator</loc>
       <lastmod>2024-02-01</lastmod>
       <changefreq>monthly</changefreq>
       <priority>1</priority>
-         <url>
+    </url>
+
+    <url>
       <loc>https://spaceminer.de/aboutme</loc>
       <lastmod>2024-02-01</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.3</priority>
    </url>
-      <url>
+
+    <url>
       <loc>https://spaceminer.de/register</loc>
       <lastmod>2024-02-01</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
-      <url>
+
+    <url>
       <loc>https://spaceminer.de/login</loc>
       <lastmod>2024-02-01</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
-   </url>
+
 </urlset>
