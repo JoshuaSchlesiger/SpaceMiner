@@ -44,7 +44,6 @@ $("#method").on("change", function () {
 
 //#endregion
 
-
 //#region Mitspieler
 
 
@@ -70,8 +69,9 @@ $('#addMiner').on("click", function () {
 
     if (!selectMiner.find(`option[value='${minerValue}']`).length) {
         // Wert zum Dropdown hinzufügen
-        selectMiner.append(createOption(minerValue));
-        selectMinerHidden.append(createOption(minerValue));
+        selectMiner.prepend(createOption(minerValue));
+        selectMiner.find('option:first').prop('selected', true);
+        selectMinerHidden.prepend(createOption(minerValue));
 
         minerCount += 1;
         calculateRatio();
@@ -123,8 +123,9 @@ $('#addScouts').on("click", function () {
     }
 
     if (!selectScouts.find(`option[value='${scoutsValue}']`).length) {
-        selectScouts.append(createOption(scoutsValue));
-        selectScoutsHidden.append(createOption(scoutsValue));
+        selectScouts.prepend(createOption(scoutsValue));
+        selectScouts.find('option:first').prop('selected', true);
+        selectScoutsHidden.prepend(createOption(scoutsValue));
 
         scoutCount += 1;
         calculateRatio();
