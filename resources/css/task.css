@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+  }
+
 .multiple {
     height: 2.65em;
 }
@@ -19,3 +23,21 @@ input[type=number] {
     color: cyan;
     position: absolute;
 }
+
+.card{
+    border: 2px dashed rgba(105, 105, 105, 0.5);
+}
+
+.deletePart {
+    display:block;
+    height: 2.9em;
+    width: 2.9em;
+    border-radius: 50%;
+}
+
+.deletePart2 {
+    display: block;
+    border-radius: 50%;
+    scale: 1;
+}
+

@@ -17,7 +17,7 @@
     @endif
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/calculator.css', 'resources/css/task.css', 'resources/css/dashboard.css', 'resources/css/auth.css'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="icon" href="{{ url('images/favicon/IconDark192.png') }}">
     <link rel="icon" href="{{ url('images/favicon/IconLight192.png') }}">
 

@@ -2,6 +2,7 @@
 
 
 @section('content')
+    @vite(['resources/css/dashboard.css'])
     <input type="hidden" id="calculateRoute" value="{{ route('calculator.calculate') }}">
 
     <div class="container mt-5">

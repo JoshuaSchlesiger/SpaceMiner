@@ -1,7 +1,28 @@
+body {
+    overflow-x: hidden;
+}
+
 #passwordEye {
     font-size: 14px;
 }
 
 #btnShowPassword:hover {
     border-color: white !important;
+}
+
+.card{
+    border: 2px dashed rgba(105, 105, 105, 0.5);
+}
+
+.switch2{
+    scale: 1.7;
+    margin-right: 1.5em;
+    margin-top: 0.8em;
+
+}
+
+.deletePart2 {
+    display: block;
+    border-radius: 50%;
+    scale: 1;
 }

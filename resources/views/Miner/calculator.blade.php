@@ -2,6 +2,7 @@
 
 
 @section('content')
+@vite(["resources/css/calculator.css"])
     <section>
         <div class="container mt-5">
             <div class="row">

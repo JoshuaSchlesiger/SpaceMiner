@@ -2,7 +2,6 @@
 
 return [
 
-    'view.header' => 'Privacy policy',
     'view.text' => '<h1 class="text-center">Privacy Policy</h1>
     <p><strong>Preamble</strong></p>
     <p>This privacy policy aims to inform you about the types of personal data (hereinafter also referred to as "data") we process, for what purposes, and to what extent. The privacy policy applies to all processing of personal data carried out by us, both in the provision of our services and especially on our websites, mobile applications, and external online presences, such as our social media profiles (hereinafter collectively referred to as the "online offering").</p>

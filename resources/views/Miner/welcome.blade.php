@@ -2,6 +2,7 @@
 
 
 @section('content')
+@vite(["resources/css/welcome.css"])
     <section>
         <div class="index-bg">
             <div class="index-bg-text">

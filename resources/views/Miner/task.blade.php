@@ -2,6 +2,7 @@
 
 
 @section('content')
+@vite(["resources/css/task.css"])
     <div class="container mt-5">
         @if (session('success'))
             <div class="alert alert-success text-center" id="successMessage">
