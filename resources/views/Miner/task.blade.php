@@ -127,7 +127,7 @@
                     <div class="card">
                         <div class="header-text card-header">
                             <div class="row">
-                                <div class="col-2 text-start" @popper({{ __('task.view.hint') }})>
+                                <div class="col-2 text-start" data-tippy-content="{{ __('task.view.hint') }}">
                                     <i class="bi bi-info-circle"></i>
                                 </div>
                                 <div class="col-5 text-center fs-4">

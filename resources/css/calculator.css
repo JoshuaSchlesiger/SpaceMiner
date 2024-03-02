@@ -21,9 +21,8 @@ input[type=number] {
 
 /*#region switch*/
 .switchGem{
-    min-width: 60px;
     scale: 1.7;
-    margin-top: 0.5em;
+
 }
 
 .switchRocket{
@@ -31,11 +30,16 @@ input[type=number] {
     margin-top: 0.5em;
 }
 
+.moveIcon{
+    margin-top: 0.5em;
+    min-width: 60px;
+    margin-right: 1em;
+}
+
 .switch{
     scale: 1.7;
     margin-right: 1.5em;
     margin-top: 0.8em;
-
 }
 
 .switch:checked{

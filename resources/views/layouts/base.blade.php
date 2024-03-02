@@ -18,7 +18,6 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <link rel="icon" href="{{ url('images/favicon/IconDark192.png') }}">
     <link rel="icon" href="{{ url('images/favicon/IconLight192.png') }}">
 
     @php
@@ -44,8 +43,10 @@
     @yield('content')
 
     @include('layouts.footer')
-    @include('popper::assets')
+    {{-- @include('popper::assets') --}}
+
     @yield('footer')
+
     @livewireScripts
     @cookieconsentview
 </body>
