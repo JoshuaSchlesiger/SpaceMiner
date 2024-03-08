@@ -7,7 +7,7 @@ use App\Models\Ores;
 use App\Models\Stations;
 use App\Models\Methods;
 use App\Models\Refinements;
-
+use Mockery\Undefined;
 
 class CalculatorController extends Controller
 {
@@ -56,6 +56,10 @@ class CalculatorController extends Controller
                 return response()->json(['success' => $returnArray]);
             }
 
+            if (!isset($data["oreTypes"])) {
+                return response()->json(['success' => $returnArray]);
+            }
+
             foreach ($data["oreTypes"] as $key => $value) {
                 if(empty($value) || empty($data["oreInput"][$key])){
                     continue;
@@ -84,6 +88,11 @@ class CalculatorController extends Controller
 
             return response()->json(['success' => $returnArray]);
         }else if($data["type"] === "ship"){
+            
+            if (!isset($data["oreTypes"])) {
+                return response()->json(['success' => $returnArray]);
+            }
+
             foreach ($data["oreTypes"] as $key => $value) {
 
                 if(empty($value) || empty($data["oreInput"][$key])){
